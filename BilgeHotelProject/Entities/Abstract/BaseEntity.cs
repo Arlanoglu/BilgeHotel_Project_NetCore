@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Entities.Abstract
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
-        public Guid ID { get; set; }
+        public int ID { get; set; }
     }
 }

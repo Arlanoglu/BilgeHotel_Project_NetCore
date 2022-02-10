@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Entities.Concrete
 {
     public class Employee : BaseEntity
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime StartDateOfWork { get; set; }
         public bool IsActive { get; set; }
@@ -19,10 +20,10 @@ namespace Entities
         public DateTime LeavingWorkDate { get; set; }
         public string ReasonForLeaving { get; set; }
 
-        public Guid DepartmentID { get; set; }
-        public Guid ShiftID { get; set; }
-        public Guid EmployeeStatuID { get; set; }
-        public Guid UserID { get; set; }
+        public int DepartmentID { get; set; }
+        public int ShiftID { get; set; }
+        public int EmployeeStatuID { get; set; }
+        public int UserID { get; set; }
         public virtual Department Department { get; set; }
         public virtual Shift Shift { get; set; }
         public virtual EmployeeStatu EmployeeStatu { get; set; }

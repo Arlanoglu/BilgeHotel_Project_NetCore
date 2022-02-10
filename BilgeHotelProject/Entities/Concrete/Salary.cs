@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Entities.Concrete
 {
     public class Salary : BaseEntity
     {
@@ -12,7 +13,7 @@ namespace Entities
         public bool BeenPaid { get; set; }
         public string Description { get; set; }
 
-        public Guid EmployeeID { get; set; }
+        public int EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }
