@@ -14,5 +14,7 @@ namespace Entities.Concrete
         public string IdCardBackSideImage { get; set; }
         public int RegistrationID { get; set; }
         public virtual Registration Registration { get; set; }
+
+        //Todo: Müşteri kalıyorsa aktif çıktıysa pasif gibi bir bilgi tutacak IsActive propertysi eklenebilir.
     }
 }

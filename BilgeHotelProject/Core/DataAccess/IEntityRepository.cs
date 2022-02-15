@@ -10,13 +10,14 @@ namespace Core.DataAccess
 {
     public interface IEntityRepository<T> where T : BaseEntity
     {
-        string Create(T model);
-        List<T> GetList(T model);
-        T GetById(int id);
-        string Update(T model);
-        string Delete(int id);
-        bool Any(Expression<Func<T, bool>> exp);
-        List<T> GetDefault(Expression<Func<T, bool>> exp);
+        Task<string> Create(T model);
+        Task<List<T>> GetList(T model);
+        Task<T> GetById(int id);
+        Task<string> Update(T model);
+        Task<string> Delete(int id);
+        Task<string> RemoveForce(int id);
+        Task<bool> Any(Expression<Func<T, bool>> exp);
+        Task<List<T>> GetDefault(Expression<Func<T, bool>> exp);
         
     }
 }

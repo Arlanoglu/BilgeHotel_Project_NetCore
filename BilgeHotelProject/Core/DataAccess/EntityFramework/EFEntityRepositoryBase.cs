@@ -9,39 +9,54 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess.EntityFramework
 {
-    public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : BaseEntity where TContext : DbContext
+    public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : BaseEntity where TContext : DbContext, new()
     {
-        public bool Any(Expression<Func<TEntity, bool>> exp)
+        public async Task<bool> Any(Expression<Func<TEntity, bool>> exp)
+        {
+            using (TContext db = new TContext())
+            {
+                return await db.Set<TEntity>().AnyAsync(exp);
+            }
+        }
+
+        public Task<string> Create(TEntity model)
         {
             throw new NotImplementedException();
         }
 
-        public string Create(TEntity model)
+        public async Task<string> Delete(int id)
+        {
+            using (TContext db = new TContext())
+            {
+                try
+                {
+                    //Todo: delete işleminde sadece statu değişecek. ForceRemoveda silme işlemi yapılacak.
+                    return "Veri Silindi.";
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+        public Task<TEntity> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public string Delete(int id)
+        public Task<List<TEntity>> GetDefault(Expression<Func<TEntity, bool>> exp)
         {
             throw new NotImplementedException();
         }
 
-        public TEntity GetById(int id)
+        public Task<List<TEntity>> GetList(TEntity model)
         {
             throw new NotImplementedException();
         }
 
-        public List<TEntity> GetDefault(Expression<Func<TEntity, bool>> exp)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<TEntity> GetList(TEntity model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Update(TEntity model)
+        public Task<string> Update(TEntity model)
         {
             throw new NotImplementedException();
         }
