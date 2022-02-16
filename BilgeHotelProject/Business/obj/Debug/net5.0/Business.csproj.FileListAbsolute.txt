@@ -1,0 +1,12 @@
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Business.deps.json
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Business.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\ref\Business.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Business.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.csproj.AssemblyReference.cache
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.AssemblyInfoInputs.cache
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.AssemblyInfo.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\ref\Business.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.pdb

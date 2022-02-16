@@ -11,7 +11,7 @@ namespace Core.DataAccess
     public interface IEntityRepository<T> where T : BaseEntity
     {
         Task<string> Create(T model);
-        Task<List<T>> GetList(T model);
+        Task<List<T>> GetList();
         Task<T> GetById(int id);
         Task<string> Update(T model);
         Task<string> Delete(int id);

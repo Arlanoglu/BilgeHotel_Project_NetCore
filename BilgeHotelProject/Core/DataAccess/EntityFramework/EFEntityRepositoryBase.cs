@@ -19,46 +19,103 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public Task<string> Create(TEntity model)
+        public  async Task<string> Create(TEntity model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(TContext db = new TContext())
+                {
+                    await db.Set<TEntity>().AddAsync(model);
+                    await db.SaveChangesAsync();
+                    return "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
         }
 
         public async Task<string> Delete(int id)
         {
-            using (TContext db = new TContext())
+            try
             {
-                try
+                using (TContext db = new TContext())
                 {
-                    //Todo: delete işleminde sadece statu değişecek. ForceRemoveda silme işlemi yapılacak.
-                    return "Veri Silindi.";
+                    TEntity model = await GetById(id);
+                    model.Status = Entities.Enum.Status.Deleted;
+                    await db.SaveChangesAsync();
+                    return "Silme işlemi başarıyla gerçekleştirildi.";
                 }
-                catch (Exception)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    throw;
-                }
+                return ex.Message;
             }
         }
 
-        public Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            throw new NotImplementedException();
+            using(TContext db = new TContext())
+            {
+                return await db.Set<TEntity>().FindAsync(id);
+            }
         }
 
-        public Task<List<TEntity>> GetDefault(Expression<Func<TEntity, bool>> exp)
+        public async Task<List<TEntity>> GetDefault(Expression<Func<TEntity, bool>> exp)
         {
-            throw new NotImplementedException();
+            using(TContext db = new TContext())
+            {
+                return await db.Set<TEntity>().Cast<TEntity>().Where(exp).ToListAsync();
+            }
         }
 
-        public Task<List<TEntity>> GetList(TEntity model)
+        public async Task<List<TEntity>> GetList()
         {
-            throw new NotImplementedException();
+            using(TContext db = new TContext())
+            {
+                return await db.Set<TEntity>().ToListAsync();
+            }
         }
 
-        public Task<string> Update(TEntity model)
+        public async Task<string> RemoveForce(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(TContext db = new TContext())
+                {
+                    TEntity model = await GetById(id);
+                    db.Set<TEntity>().Remove(model);
+                    await db.SaveChangesAsync();
+                    return "Silme işlemi başarıyla gerçekleştirildi.";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
+        public async Task<string> Update(TEntity model)
+        {
+            try
+            {
+                using(TContext db = new TContext())
+                {
+                    TEntity entity = await GetById(model.ID);
+                    db.Entry(entity).CurrentValues.SetValues(model);
+                    await db.SaveChangesAsync();
+                    return "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
         }
     }
 }
