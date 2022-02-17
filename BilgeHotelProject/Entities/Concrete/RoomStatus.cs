@@ -5,7 +5,7 @@ namespace Entities.Concrete
 {
     public class RoomStatus : BaseEntity
     {
-        public string Status { get; set; }
+        public string StatusName { get; set; }
 
         public virtual List<StatusOfRoom> StatusOfRooms { get; set; }
     }
