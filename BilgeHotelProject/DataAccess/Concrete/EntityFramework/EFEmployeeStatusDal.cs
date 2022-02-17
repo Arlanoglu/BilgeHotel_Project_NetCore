@@ -3,7 +3,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFEmployeeStatuDal : EFBaseDal<EmployeeStatu>,IEmployeeStatuDal
+    public class EFEmployeeStatusDal : EFBaseDal<EmployeeStatus>,IEmployeeStatusDal
     {
     }
 }

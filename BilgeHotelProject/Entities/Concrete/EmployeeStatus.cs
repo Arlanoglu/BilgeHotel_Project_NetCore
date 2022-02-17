@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities.Concrete
 {
-    public class EmployeeStatu : BaseEntity
+    public class EmployeeStatus : BaseEntity
     {
         public string StatuName { get; set; }
 

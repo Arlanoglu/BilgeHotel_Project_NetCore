@@ -22,7 +22,7 @@ namespace Entities.Concrete
         public int UserID { get; set; }
         public virtual Department Department { get; set; }
         public virtual Shift Shift { get; set; }
-        public virtual EmployeeStatu EmployeeStatu { get; set; }
+        public virtual EmployeeStatus EmployeeStatu { get; set; }
         //Todo: User nasıl eklenecek araştırılacak. IdentityUser
     }
 }
