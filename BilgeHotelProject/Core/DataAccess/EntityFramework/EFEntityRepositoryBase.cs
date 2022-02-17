@@ -11,22 +11,22 @@ namespace Core.DataAccess.EntityFramework
 {
     public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : BaseEntity where TContext : DbContext, new()
     {
-        public async Task<bool> Any(Expression<Func<TEntity, bool>> exp)
+        public bool Any(Expression<Func<TEntity, bool>> exp)
         {
             using (TContext db = new TContext())
             {
-                return await db.Set<TEntity>().AnyAsync(exp);
+                return db.Set<TEntity>().Any(exp);
             }
         }
 
-        public  async Task<string> Create(TEntity model)
+        public virtual string Create(TEntity model)
         {
             try
             {
-                using(TContext db = new TContext())
+                using (TContext db = new TContext())
                 {
-                    await db.Set<TEntity>().AddAsync(model);
-                    await db.SaveChangesAsync();
+                    db.Set<TEntity>().Add(model);
+                    db.SaveChanges();
                     return "Oluşturma işlemi başarıyla gerçekleştirildi.";
                 }
             }
@@ -37,15 +37,15 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public async Task<string> Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (TContext db = new TContext())
                 {
-                    TEntity model = await GetById(id);
+                    TEntity model = GetById(id);
                     model.Status = Entities.Enum.Status.Deleted;
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                     return "Silme işlemi başarıyla gerçekleştirildi.";
                 }
             }
@@ -56,39 +56,39 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public async Task<TEntity> GetById(int id)
+        public TEntity GetById(int id)
         {
             using(TContext db = new TContext())
             {
-                return await db.Set<TEntity>().FindAsync(id);
+                return db.Set<TEntity>().Find(id);
             }
         }
 
-        public async Task<List<TEntity>> GetDefault(Expression<Func<TEntity, bool>> exp)
+        public List<TEntity> GetDefault(Expression<Func<TEntity, bool>> exp)
         {
             using(TContext db = new TContext())
             {
-                return await db.Set<TEntity>().Cast<TEntity>().Where(exp).ToListAsync();
+                return db.Set<TEntity>().Cast<TEntity>().Where(exp).ToList();
             }
         }
 
-        public async Task<List<TEntity>> GetList()
+        public List<TEntity> GetList()
         {
             using(TContext db = new TContext())
             {
-                return await db.Set<TEntity>().ToListAsync();
+                return db.Set<TEntity>().ToList();
             }
         }
 
-        public async Task<string> RemoveForce(int id)
+        public string RemoveForce(int id)
         {
             try
             {
                 using(TContext db = new TContext())
                 {
-                    TEntity model = await GetById(id);
+                    TEntity model = GetById(id);
                     db.Set<TEntity>().Remove(model);
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                     return "Silme işlemi başarıyla gerçekleştirildi.";
                 }
             }
@@ -99,15 +99,15 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public async Task<string> Update(TEntity model)
+        public string Update(TEntity model)
         {
             try
             {
                 using(TContext db = new TContext())
                 {
-                    TEntity entity = await GetById(model.ID);
+                    TEntity entity = GetById(model.ID);
                     db.Entry(entity).CurrentValues.SetValues(model);
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                     return "Güncelleme işlemi başarıyla gerçekleştirildi.";
                 }
             }
