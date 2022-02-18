@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,13 @@ namespace Core.DataAccess
 {
     public interface IEntityRepository<T> where T : BaseEntity
     {
-        string Create(T model);
-        List<T> GetList();
+        IResult Create(T model);
+        List<T> GetAll();
+        List<T> GetActive();
         T GetById(int id);
-        string Update(T model);
-        string Delete(int id);
-        string RemoveForce(int id);
+        IResult Update(T model);
+        IResult Delete(int id);
+        IResult RemoveForce(int id);
         bool Any(Expression<Func<T, bool>> exp);
         List<T> GetDefault(Expression<Func<T, bool>> exp);
         

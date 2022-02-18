@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Results.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace Core.DataAccess.EntityFramework
 {
     public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : BaseEntity where TContext : DbContext, new()
     {
+        private readonly IResult result;
+        public EFEntityRepositoryBase(IResult result)
+        {
+            this.result = result;
+        }
+
         public bool Any(Expression<Func<TEntity, bool>> exp)
         {
             using (TContext db = new TContext())
@@ -19,7 +26,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public virtual string Create(TEntity model)
+        public IResult Create(TEntity model)
         {
             try
             {
@@ -27,17 +34,21 @@ namespace Core.DataAccess.EntityFramework
                 {
                     db.Set<TEntity>().Add(model);
                     db.SaveChanges();
-                    return "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-
-                return ex.Message;
+                result.ResultStatus = Results.Concrete.ResultStatus.Error;
+                result.Message = ex.Message;
+                result.Exception = ex;
+                return result;
             }
         }
 
-        public string Delete(int id)
+        public IResult Delete(int id)
         {
             try
             {
@@ -46,13 +57,17 @@ namespace Core.DataAccess.EntityFramework
                     TEntity model = GetById(id);
                     model.Status = Entities.Enum.Status.Deleted;
                     db.SaveChanges();
-                    return "Silme işlemi başarıyla gerçekleştirildi.";
+                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-
-                return ex.Message;
+                result.ResultStatus = Results.Concrete.ResultStatus.Error;
+                result.Message = ex.Message;
+                result.Exception = ex;
+                return result;
             }
         }
 
@@ -72,15 +87,22 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public List<TEntity> GetList()
+        public List<TEntity> GetAll()
         {
             using(TContext db = new TContext())
             {
                 return db.Set<TEntity>().ToList();
             }
         }
+        public List<TEntity> GetActive()
+        {
+            using (TContext db = new TContext())
+            {
+                return db.Set<TEntity>().Where(x => x.Status == Entities.Enum.Status.Active).ToList();
+            }
+        }
 
-        public string RemoveForce(int id)
+        public IResult RemoveForce(int id)
         {
             try
             {
@@ -89,17 +111,21 @@ namespace Core.DataAccess.EntityFramework
                     TEntity model = GetById(id);
                     db.Set<TEntity>().Remove(model);
                     db.SaveChanges();
-                    return "Silme işlemi başarıyla gerçekleştirildi.";
+                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-
-                return ex.Message;
+                result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                result.Message = ex.Message;
+                result.Exception = ex;
+                return result;
             }
         }
 
-        public string Update(TEntity model)
+        public IResult Update(TEntity model)
         {
             try
             {
@@ -108,14 +134,19 @@ namespace Core.DataAccess.EntityFramework
                     TEntity entity = GetById(model.ID);
                     db.Entry(entity).CurrentValues.SetValues(model);
                     db.SaveChanges();
-                    return "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-
-                return ex.Message;
+                result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                result.Message = ex.Message;
+                result.Exception = ex;
+                return result;
             }
         }
+
     }
 }

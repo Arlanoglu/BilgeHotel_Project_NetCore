@@ -6,7 +6,12 @@ using Entities.Enum;
 namespace Entities.Concrete
 {
     public class ReceptionReservation : BaseEntity, IBaseReservation
-    {        
+    {
+        public ReceptionReservation()
+        {
+            ReservationDate = DateTime.Now;
+            ReservationStatus = ReservationStatus.ReservationReceived;
+        }
         public DateTime ReservationDate { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }

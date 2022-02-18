@@ -22,7 +22,6 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomFacility> RoomFacilities { get; set; }
-        public DbSet<RoomStatus> RoomStatuses { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<ServicePack> ServicePacks { get; set; }
         public DbSet<Shift> Shifts { get; set; }
@@ -31,6 +30,18 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<WebReservation> WebReservations { get; set; }
         public DbSet<WorkSchedule> WorkSchedules { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
+
+        public override int SaveChanges()
+        {
+            //Todo: Savechanges override edilecek.
+            return base.SaveChanges();
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Seed();
+            base.OnModelCreating(builder);
+        }
 
     }
 }

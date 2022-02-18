@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Enum;
 using System;
 
 namespace Entities.Concrete
@@ -7,12 +8,9 @@ namespace Entities.Concrete
     {
         public DateTime StatusStartDate { get; set; }
         public DateTime StatusEndDate { get; set; }
+        public RoomStatus RoomStatus { get; set; }
 
         public int RoomID { get; set; }
-        public int RoomStatusID { get; set; }
         public virtual Room Room { get; set; }
-        public virtual RoomStatus RoomStatus { get; set; }
-
-        //Todo: Map işlemlerinde Idsi ignore edilecek.
     }
 }

@@ -6,8 +6,13 @@ using Entities.Enum;
 namespace Entities.Concrete
 {
     public class WebReservation : BaseEntity, IBaseReservation
-    {        
-        public DateTime ReservationDate { get; set; } //Manuel doldurulacak
+    {
+        public WebReservation()
+        {
+            ReservationDate = DateTime.Now;
+            ReservationStatus = ReservationStatus.ReservationReceived;
+        }
+        public DateTime ReservationDate { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int NumberOfPeople { get; set; }
@@ -18,7 +23,7 @@ namespace Entities.Concrete
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        public ReservationStatus ReservationStatus { get; set; } //Manuel doldurulacak       
+        public ReservationStatus ReservationStatus { get; set; }       
 
         public int RoomID { get; set; } //Rondom atanacak
         public int RoomTypeID { get; set; }
