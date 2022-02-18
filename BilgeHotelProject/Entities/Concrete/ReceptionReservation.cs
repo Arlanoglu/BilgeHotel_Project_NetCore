@@ -19,9 +19,12 @@ namespace Entities.Concrete
         public string Email { get; set; }
         public string Description { get; set; }
         public ReservationStatus ReservationStatus { get; set; }
+
         public int RoomID { get; set; }
+        public int RoomTypeID { get; set; }
         public int ServicePackID { get; set; }
         public virtual Room Room { get; set; }
+        public virtual RoomType RoomType { get; set; }
         public virtual ServicePack ServicePack { get; set; }
     }
 }

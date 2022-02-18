@@ -7,11 +7,7 @@ namespace Entities.Concrete
     {
         public string RoomNumber { get; set; }
         public int FloorNumber { get; set; }
-        public int NumberOfPeople { get; set; }
-        public int NumberOfBed { get; set; }
         public string Description { get; set; }
-        public decimal RoomPrice { get; set; }
-        public string RoomImage { get; set; }
         public int RoomTypeID { get; set; }
 
         public virtual RoomType RoomType { get; set; }

@@ -30,5 +30,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<UseOfExtraService> UseOfExtraServices { get; set; }
         public DbSet<WebReservation> WebReservations { get; set; }
         public DbSet<WorkSchedule> WorkSchedules { get; set; }
+        public DbSet<RoomType> RoomTypes { get; set; }
+
     }
 }
