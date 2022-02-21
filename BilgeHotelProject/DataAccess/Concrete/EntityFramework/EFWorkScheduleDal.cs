@@ -1,9 +1,13 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Results.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFWorkScheduleDal : EFBaseDal<WorkSchedule>, IWorkScheduleDal 
+    public class EFWorkScheduleDal : EFBaseDal<WorkSchedule>, IWorkScheduleDal
     {
+        public EFWorkScheduleDal(IResult result) : base(result)
+        {
+        }
     }
 }

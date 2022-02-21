@@ -1,6 +1,9 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
@@ -8,12 +11,11 @@ namespace DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-CAP6I0L\\SQLEXPRESS; Database=Northwind; Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-CAP6I0L\\SQLEXPRESS; Database=BilgeHotelDB; Trusted_Connection=True");
         }
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeeStatus> EmployeeStatuses { get; set; }
         public DbSet<ExtraService> ExtraServices { get; set; }
         public DbSet<FacilityOfRoom> FacilitiesOfRooms { get; set; }
         public DbSet<Guest> Guests { get; set; }
@@ -33,7 +35,34 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
         public override int SaveChanges()
         {
-            //Todo: Savechanges override edilecek.
+            var modifiedEntiries = ChangeTracker.Entries().Where(x => x.State == EntityState.Added || x.State == EntityState.Modified);
+
+            DateTime dateTime = DateTime.Now;
+
+            try
+            {
+                foreach (var item in modifiedEntiries)
+                {
+                    var entityRepository = item.Entity as BaseEntity;
+                    if (entityRepository != null)
+                    {
+                        if (item.State == EntityState.Added)
+                        {
+                            entityRepository.CreatedDate = dateTime;
+                        }
+                        else if(item.State == EntityState.Modified)
+                        {
+                            entityRepository.ModifiedDate = dateTime;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
             return base.SaveChanges();
         }
 

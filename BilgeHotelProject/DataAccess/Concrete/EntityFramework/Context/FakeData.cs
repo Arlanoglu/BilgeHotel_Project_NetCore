@@ -13,9 +13,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public static void Seed(this ModelBuilder builder)
         {
             builder.Entity<Department>().HasData(
-                    new Department { DepartmentName = "Yardımcı Hizmetler" },
-                    new Department { DepartmentName = "Bilgi İşlem" },
-                    new Department { DepartmentName = "Mutfak" }
+                    new Department { ID = 1, DepartmentName = "Yardımcı Hizmetler" },
+                    new Department { ID = 2, DepartmentName = "Bilgi İşlem" },
+                    new Department { ID = 3, DepartmentName = "Mutfak" }
                 );
         }
     }

@@ -8,6 +8,7 @@ namespace Entities.Concrete
         public string LastName { get; set; }
         public string IdentificationNumber { get; set; }
         public string Adress { get; set; }
+        public bool TurkeyCitizen { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string IdCardFrontSideImage { get; set; }

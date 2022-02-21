@@ -8,7 +8,6 @@ namespace Entities.Concrete
         public int RoomFacilityID { get; set; }
         public virtual RoomType RoomType { get; set; }
         public virtual RoomFacility RoomFacility { get; set; }
-
-        //Todo: Map işlemlerinde Idsi ignore edilecek.
+        
     }
 }

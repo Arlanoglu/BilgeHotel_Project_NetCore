@@ -10,3 +10,10 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.dll
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\ref\Business.dll
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Core.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\DataAccess.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Entities.dll
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\DataAccess.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Core.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\bin\Debug\net5.0\Entities.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Business\obj\Debug\net5.0\Business.csproj.CopyComplete

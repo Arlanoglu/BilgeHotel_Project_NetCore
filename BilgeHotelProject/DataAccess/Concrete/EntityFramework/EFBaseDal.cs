@@ -10,7 +10,6 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public EFBaseDal(IResult result) : base(result)
         {
-
         }
     }
 }

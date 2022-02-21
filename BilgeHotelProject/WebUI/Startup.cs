@@ -1,6 +1,8 @@
+using DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +25,7 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("defaultConnection"), x => x.MigrationsAssembly("DataAccess")));
 
         }
 
