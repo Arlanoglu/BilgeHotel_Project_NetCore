@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using DataAccess.Concrete.EntityFramework.Mappings;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<ReceptionReservation> ReceptionReservations { get; set; }
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomPicture> RoomPictures { get; set; }
         public DbSet<RoomFacility> RoomFacilities { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<ServicePack> ServicePacks { get; set; }
@@ -68,6 +70,27 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //builder.ApplyConfiguration<BaseEntity>(new BaseMap());
+            builder.ApplyConfiguration<Department>(new DepartmentMap());
+            builder.ApplyConfiguration<Employee>(new EmployeeMap());
+            builder.ApplyConfiguration<ExtraService>(new ExtraServiceMap());
+            builder.ApplyConfiguration<FacilityOfRoom>(new FacilityOfRoomMap());
+            builder.ApplyConfiguration<Guest>(new GuestMap());
+            builder.ApplyConfiguration<Income>(new IncomeMap());
+            builder.ApplyConfiguration<ReceptionReservation>(new ReceptionReservationMap());
+            builder.ApplyConfiguration<Registration>(new RegistrationMap());
+            builder.ApplyConfiguration<RoomFacility>(new RoomFacilityMap());
+            builder.ApplyConfiguration<Room>(new RoomMap());
+            builder.ApplyConfiguration<RoomPicture>(new RoomPictureMap());
+            builder.ApplyConfiguration<RoomType>(new RoomTypeMap());
+            builder.ApplyConfiguration<Salary>(new SalaryMap());
+            builder.ApplyConfiguration<ServicePack>(new ServicePackMap());
+            builder.ApplyConfiguration<Shift>(new ShiftMap());
+            builder.ApplyConfiguration<StatusOfRoom>(new StatusOfRoomMap());
+            builder.ApplyConfiguration<UseOfExtraService>(new UseOfExtraServiceMap());
+            builder.ApplyConfiguration<WebReservation>(new WebReservationMap());
+            builder.ApplyConfiguration<WorkSchedule>(new WorkScheduleMap());
+
             builder.Seed();
             base.OnModelCreating(builder);
         }

@@ -10,5 +10,6 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
 {
     public class BaseMap : CoreMap<BaseEntity>
     {
+
     }
 }

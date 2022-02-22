@@ -13,7 +13,7 @@ namespace Entities.Concrete
         public string Description { get; set; }
 
         public int EmployeeID { get; set; }
-        public int ShiftID { get; set; }
+        public int? ShiftID { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Shift Shift { get; set; }
     }

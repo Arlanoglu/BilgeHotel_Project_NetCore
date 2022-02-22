@@ -23,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.Email).HasMaxLength(100);
             builder.Property(x => x.Description).HasMaxLength(200);
             builder.Property(x => x.ReservationStatus).IsRequired();
+            builder.Property(x => x.AppUserID).IsRequired();
         }
     }
 }
