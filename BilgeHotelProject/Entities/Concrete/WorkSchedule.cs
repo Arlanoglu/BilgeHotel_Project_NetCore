@@ -9,10 +9,8 @@ namespace Entities.Concrete
         public TimeSpan TotalWorkTime { get; set; }
         public TimeSpan TimesWorked { get; set; }
         public bool HaveOverTime { get; set; }
-        //Todo: Girilen bilgieye göre burada true false gönderilecek.
-        public TimeSpan OverTimeHour { get; set; }
+        public TimeSpan? OverTimeHour { get; set; }
         public string Description { get; set; }
-        public decimal DailyEarnings { get; set; }
 
         public int EmployeeID { get; set; }
         public int ShiftID { get; set; }

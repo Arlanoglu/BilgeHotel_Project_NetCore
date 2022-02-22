@@ -7,8 +7,6 @@ namespace Entities.Concrete
     {
         public string FacilityName { get; set; }
         public string Description { get; set; }
-        public string IsItPaid { get; set; }
-        //Todo: IsitPaid kontrol edilecek
 
         public virtual List<FacilityOfRoom> FacilityOfRooms { get; set; }
     }

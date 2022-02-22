@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class RoomMap : BaseMap, IEntityTypeConfiguration<Room>
+    public class RoomPictureMap : BaseMap, IEntityTypeConfiguration<RoomPicture>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<RoomPicture> builder)
         {
-            builder.Property(x => x.RoomNumber).IsRequired();
-            builder.Property(x => x.FloorNumber).IsRequired();
+            builder.Property(x => x.Picture).HasMaxLength(150).IsRequired();
+            builder.Property(x => x.RoomTypeID).IsRequired();
         }
     }
 }

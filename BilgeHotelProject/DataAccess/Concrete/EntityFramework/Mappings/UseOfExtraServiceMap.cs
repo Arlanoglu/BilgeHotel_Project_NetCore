@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class RoomMap : BaseMap, IEntityTypeConfiguration<Room>
+    public class UseOfExtraServiceMap : BaseMap, IEntityTypeConfiguration<UseOfExtraService>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<UseOfExtraService> builder)
         {
-            builder.Property(x => x.RoomNumber).IsRequired();
-            builder.Property(x => x.FloorNumber).IsRequired();
+            builder.Ignore(x => x.ID);
+            builder.HasKey(x => x.ExtraServiceID);
+            builder.HasKey(x => x.RegistrationID);
         }
     }
 }
