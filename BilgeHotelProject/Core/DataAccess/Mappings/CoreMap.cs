@@ -13,6 +13,7 @@ namespace Core.DataAccess.Mappings
     {
         public void Configure(EntityTypeBuilder<T> builder)
         {
+            
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Status).HasDefaultValue(Core.Entities.Enum.Status.Active).IsRequired();
 

@@ -1,5 +1,5 @@
 ﻿using Core.Entities;
-using Core.Results.Abstract;
+using Core.Utilities.Results.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -34,14 +34,14 @@ namespace Core.DataAccess.EntityFramework
                 {
                     db.Set<TEntity>().Add(model);
                     db.SaveChanges();
-                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
                     result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
                     return result;
                 }
             }
             catch (Exception ex)
             {
-                result.ResultStatus = Results.Concrete.ResultStatus.Error;
+                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Error;
                 result.Message = ex.Message;
                 result.Exception = ex;
                 return result;
@@ -57,14 +57,14 @@ namespace Core.DataAccess.EntityFramework
                     TEntity model = GetById(id);
                     model.Status = Entities.Enum.Status.Deleted;
                     db.SaveChanges();
-                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
                     result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
                     return result;
                 }
             }
             catch (Exception ex)
             {
-                result.ResultStatus = Results.Concrete.ResultStatus.Error;
+                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Error;
                 result.Message = ex.Message;
                 result.Exception = ex;
                 return result;
@@ -111,14 +111,14 @@ namespace Core.DataAccess.EntityFramework
                     TEntity model = GetById(id);
                     db.Set<TEntity>().Remove(model);
                     db.SaveChanges();
-                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
                     result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
                     return result;
                 }
             }
             catch (Exception ex)
             {
-                result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = ex.Message;
                 result.Exception = ex;
                 return result;
@@ -134,14 +134,14 @@ namespace Core.DataAccess.EntityFramework
                     TEntity entity = GetById(model.ID);
                     db.Entry(entity).CurrentValues.SetValues(model);
                     db.SaveChanges();
-                    result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
                     result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
                     return result;
                 }
             }
             catch (Exception ex)
             {
-                result.ResultStatus = Results.Concrete.ResultStatus.Success;
+                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = ex.Message;
                 result.Exception = ex;
                 return result;
