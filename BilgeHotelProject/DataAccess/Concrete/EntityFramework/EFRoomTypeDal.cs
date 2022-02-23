@@ -12,14 +12,16 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EFRoomTypeDal : EFBaseDal<RoomType>, IRoomTypeDal
     {
-        public EFRoomTypeDal(IResult result) : base(result)
+        private readonly AppDbContext db;
+
+        public EFRoomTypeDal(IResult result, AppDbContext db) : base(result,db)
         {
+            this.db = db;
         }
 
         //Todo: Db instence ı Dependecy injection uygulanacak. Önce test edilip sonra sıkı bağımlılık kaldırılacak.
         public List<RoomType> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
         {
-            AppDbContext db = new AppDbContext();
             var roomTypes = db.StatusesOfRooms.Where(x => ((x.StatusStartDate! <= checkinDate && x.StatusEndDate! >= checkinDate) || (x.StatusStartDate! <= checkoutDate && x.StatusEndDate! >= checkoutDate)) && x.RoomStatus == Entities.Enum.RoomStatus.Bos).Select(x => x.Room.RoomType);
 
             return roomTypes.Where(x => x.NumberOfPeople == numberOfPeople).ToList();

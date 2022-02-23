@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EFBaseDal<T> : EFEntityRepositoryBase<T, AppDbContext> where T: BaseEntity
     {
-        public EFBaseDal(IResult result) : base(result)
+        public EFBaseDal(IResult result, AppDbContext db) : base(result,db)
         {
         }
     }
