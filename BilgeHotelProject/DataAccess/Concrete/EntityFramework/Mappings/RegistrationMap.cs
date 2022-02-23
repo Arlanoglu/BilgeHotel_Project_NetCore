@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess.Mappings;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class RegistrationMap : BaseMap, IEntityTypeConfiguration<Registration>
+    public class RegistrationMap : CoreMap<Registration>, IEntityTypeConfiguration<Registration>
     {
         public void Configure(EntityTypeBuilder<Registration> builder)
         {
+            CoreConfig(builder);
             builder.Property(x => x.CheckInDate).HasColumnType("date");
             builder.Property(x => x.CheckOutDate).HasColumnType("date");
             builder.Property(x => x.NumberOfPeople).IsRequired();

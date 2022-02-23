@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess.Mappings;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class GuestMap : BaseMap, IEntityTypeConfiguration<Guest>
+    public class GuestMap : CoreMap<Guest>, IEntityTypeConfiguration<Guest>
     {
         public void Configure(EntityTypeBuilder<Guest> builder)
         {
+            CoreConfig(builder);
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.IdentificationNumber).IsRequired().HasMaxLength(11);

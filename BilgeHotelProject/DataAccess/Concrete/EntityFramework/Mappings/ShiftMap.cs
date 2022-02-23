@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess.Mappings;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class ShiftMap : BaseMap, IEntityTypeConfiguration<Shift>
+    public class ShiftMap : CoreMap<Shift>, IEntityTypeConfiguration<Shift>
     {
         public void Configure(EntityTypeBuilder<Shift> builder)
         {
+            CoreConfig(builder);
             builder.Property(x => x.ShiftName).IsRequired().HasMaxLength(20);
             builder.Property(x => x.StartTime).IsRequired();
             builder.Property(x => x.EndTime).IsRequired();

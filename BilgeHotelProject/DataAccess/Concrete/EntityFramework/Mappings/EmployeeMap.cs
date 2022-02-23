@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess.Mappings;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class EmployeeMap : BaseMap, IEntityTypeConfiguration<Employee>
+    public class EmployeeMap : CoreMap<Employee>, IEntityTypeConfiguration<Employee>
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
+            CoreConfig(builder);
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(20);            
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(20);
             builder.Property(x => x.StartDateOfWork).IsRequired().HasColumnType("date");

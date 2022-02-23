@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess.Mappings
 {
-    public abstract class CoreMap<T> : IEntityTypeConfiguration<T> where T : BaseEntity
+    public abstract class CoreMap<T> where T : BaseEntity
     {
-        public void Configure(EntityTypeBuilder<T> builder)
+        public void CoreConfig(EntityTypeBuilder<T> builder)
         {
             
             builder.HasKey(x => x.ID);
