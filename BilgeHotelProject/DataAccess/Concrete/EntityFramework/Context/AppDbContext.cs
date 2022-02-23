@@ -10,9 +10,13 @@ namespace DataAccess.Concrete.EntityFramework.Context
 {
     public class AppDbContext : IdentityDbContext<AppUser>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=DESKTOP-CAP6I0L\\SQLEXPRESS; Database=BilgeHotelDB; Trusted_Connection=True");
+        //}
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-CAP6I0L\\SQLEXPRESS; Database=BilgeHotelDB; Trusted_Connection=True");
+
         }
 
         public DbSet<Department> Departments { get; set; }
@@ -71,25 +75,25 @@ namespace DataAccess.Concrete.EntityFramework.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.ApplyConfiguration<BaseEntity>(new BaseMap());
-            builder.ApplyConfiguration<Department>(new DepartmentMap());
-            builder.ApplyConfiguration<Employee>(new EmployeeMap());
-            builder.ApplyConfiguration<ExtraService>(new ExtraServiceMap());
-            builder.ApplyConfiguration<FacilityOfRoom>(new FacilityOfRoomMap());
-            builder.ApplyConfiguration<Guest>(new GuestMap());
-            builder.ApplyConfiguration<Income>(new IncomeMap());
-            builder.ApplyConfiguration<ReceptionReservation>(new ReceptionReservationMap());
-            builder.ApplyConfiguration<Registration>(new RegistrationMap());
-            builder.ApplyConfiguration<RoomFacility>(new RoomFacilityMap());
-            builder.ApplyConfiguration<Room>(new RoomMap());
-            builder.ApplyConfiguration<RoomPicture>(new RoomPictureMap());
-            builder.ApplyConfiguration<RoomType>(new RoomTypeMap());
-            builder.ApplyConfiguration<Salary>(new SalaryMap());
-            builder.ApplyConfiguration<ServicePack>(new ServicePackMap());
-            builder.ApplyConfiguration<Shift>(new ShiftMap());
-            builder.ApplyConfiguration<StatusOfRoom>(new StatusOfRoomMap());
-            builder.ApplyConfiguration<UseOfExtraService>(new UseOfExtraServiceMap());
-            builder.ApplyConfiguration<WebReservation>(new WebReservationMap());
-            builder.ApplyConfiguration<WorkSchedule>(new WorkScheduleMap());
+            builder.ApplyConfiguration(new DepartmentMap());
+            builder.ApplyConfiguration(new EmployeeMap());
+            builder.ApplyConfiguration(new ExtraServiceMap());
+            builder.ApplyConfiguration(new FacilityOfRoomMap());
+            builder.ApplyConfiguration(new GuestMap());
+            builder.ApplyConfiguration(new IncomeMap());
+            builder.ApplyConfiguration(new ReceptionReservationMap());
+            builder.ApplyConfiguration(new RegistrationMap());
+            builder.ApplyConfiguration(new RoomFacilityMap());
+            builder.ApplyConfiguration(new RoomMap());
+            builder.ApplyConfiguration(new RoomPictureMap());
+            builder.ApplyConfiguration(new RoomTypeMap());
+            builder.ApplyConfiguration(new SalaryMap());
+            builder.ApplyConfiguration(new ServicePackMap());
+            builder.ApplyConfiguration(new ShiftMap());
+            builder.ApplyConfiguration(new StatusOfRoomMap());
+            builder.ApplyConfiguration(new UseOfExtraServiceMap());
+            builder.ApplyConfiguration(new WebReservationMap());
+            builder.ApplyConfiguration(new WorkScheduleMap());
 
             builder.Seed();
             base.OnModelCreating(builder);
