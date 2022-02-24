@@ -1,3 +1,4 @@
+using Business.IocContainer;
 using DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,8 @@ namespace WebUI
         {
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("defaultConnection"), x => x.MigrationsAssembly("DataAccess")));
+
+            services.ConfigureServices(); //Ioc containerda extension metot oluþturuldu.
 
         }
 
