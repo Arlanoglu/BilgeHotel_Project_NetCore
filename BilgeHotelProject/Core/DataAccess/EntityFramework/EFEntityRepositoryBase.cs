@@ -21,7 +21,7 @@ namespace Core.DataAccess.EntityFramework
             this.db = db;
             entity = db.Set<TEntity>();
         }
-
+        //Todo: SaveChanges ler kaldırılacak.
         public bool Any(Expression<Func<TEntity, bool>> exp)
         {
             return entity.Any(exp);
