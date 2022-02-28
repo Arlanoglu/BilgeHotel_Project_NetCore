@@ -46,7 +46,7 @@ namespace WebUI
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); //External style ve script file larý tanýtmak için yazýlýr.
 
             app.UseRouting();
 
