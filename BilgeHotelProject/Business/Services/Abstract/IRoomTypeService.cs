@@ -9,5 +9,6 @@ namespace Business.Services.Abstract
 {
     public interface IRoomTypeService : IService<RoomType>
     {
+        Task<List<RoomType>> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople);
     }
 }

@@ -34,6 +34,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Core\\Core.csproj"
+              },
               "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\DataAccess\\DataAccess.csproj": {
                 "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\DataAccess\\DataAccess.csproj"
               }

@@ -11,15 +11,16 @@ namespace Core.DataAccess
 {
     public interface IEntityRepository<T> where T : BaseEntity
     {
-        IResult Create(T model);
-        List<T> GetAll();
-        List<T> GetActive();
-        T GetById(int id);
-        IResult Update(T model);
-        IResult Delete(int id);
-        IResult RemoveForce(int id);
-        bool Any(Expression<Func<T, bool>> exp);
-        List<T> GetDefault(Expression<Func<T, bool>> exp);
+        void Create(T model);
+        Task<List<T>> GetAll();
+        Task<List<T>> GetActive();
+        Task<T> GetById(int id);
+        void Update(T model);
+        void Delete(int id);
+        void RemoveForce(int id);
+        Task<bool> Any(Expression<Func<T, bool>> exp);
+        Task<List<T>> GetDefault(Expression<Func<T, bool>> exp);
+        IQueryable<T> Where(Expression<Func<T, bool>> exp);
         
     }
 }

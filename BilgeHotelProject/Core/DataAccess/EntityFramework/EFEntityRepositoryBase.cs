@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using Core.Utilities.Results.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,118 +11,137 @@ namespace Core.DataAccess.EntityFramework
 {
     public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : BaseEntity where TContext : DbContext
     {
-        private readonly IResult result;
         private readonly TContext db;
         private readonly DbSet<TEntity> entity;
-        public EFEntityRepositoryBase(IResult result, TContext db)
+        public EFEntityRepositoryBase(TContext db)
         {
-            this.result = result;
             this.db = db;
             entity = db.Set<TEntity>();
         }
-        //Todo: SaveChanges ler kaldırılacak.
-        public bool Any(Expression<Func<TEntity, bool>> exp)
+        //IResult DI ı bu classtan kaldırılacak.
+        public async Task<bool> Any(Expression<Func<TEntity, bool>> exp)
         {
-            return entity.Any(exp);
+            return await entity.AnyAsync(exp);
         }
 
-        public IResult Create(TEntity model)
+        public void Create(TEntity model)
         {
-            try
-            {
-                entity.Add(model);
-                db.SaveChanges();
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Error;
-                result.Message = ex.Message;
-                result.Exception = ex;
-                return result;
-            }
+            #region OldMetot
+            //try
+            //{
+            //    entity.Add(model);
+            //    db.SaveChanges();
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
+            //    result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+            //    return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Error;
+            //    result.Message = ex.Message;
+            //    result.Exception = ex;
+            //    return result;
+            //}
+            #endregion
+            entity.Add(model);
         }
 
-        public IResult Delete(int id)
+        public async void Delete(int id)
         {
-            try
-            {
-                TEntity model = GetById(id);
-                model.Status = Entities.Enum.Status.Deleted;
-                db.SaveChanges();
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Error;
-                result.Message = ex.Message;
-                result.Exception = ex;
-                return result;
-            }
+            #region OldMetot
+            //try
+            //{
+            //    TEntity model = GetById(id);
+            //    model.Status = Entities.Enum.Status.Deleted;
+            //    db.SaveChanges();
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
+            //    result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+            //    return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Error;
+            //    result.Message = ex.Message;
+            //    result.Exception = ex;
+            //    return result;
+            //}
+            #endregion
+            TEntity model = await GetById(id);
+            model.Status = Entities.Enum.Status.Deleted;
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return entity.Find(id);
+            return await entity.FindAsync(id);
         }
 
-        public List<TEntity> GetDefault(Expression<Func<TEntity, bool>> exp)
+        public async Task<List<TEntity>> GetDefault(Expression<Func<TEntity, bool>> exp)
         {
-            return entity.Cast<TEntity>().Where(exp).ToList();
+            return await entity.Cast<TEntity>().Where(exp).ToListAsync();
         }
 
-        public List<TEntity> GetAll()
+        public async Task<List<TEntity>> GetAll()
         {
-            return entity.ToList();
+            return await entity.ToListAsync();
         }
-        public List<TEntity> GetActive()
+        public async Task<List<TEntity>> GetActive()
         {
-            return entity.Where(x => x.Status == Entities.Enum.Status.Active).ToList();
-        }
-
-        public IResult RemoveForce(int id)
-        {
-            try
-            {
-                TEntity model = GetById(id);
-                entity.Remove(model);
-                db.SaveChanges();
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = ex.Message;
-                result.Exception = ex;
-                return result;
-            }
+            return await entity.Where(x => x.Status == Entities.Enum.Status.Active).ToListAsync();
         }
 
-        public IResult Update(TEntity model)
+        public async void RemoveForce(int id)
         {
-            try
-            {
-                TEntity entity = GetById(model.ID);
-                db.Entry(entity).CurrentValues.SetValues(model);
-                db.SaveChanges();
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = ex.Message;
-                result.Exception = ex;
-                return result;
-            }
+            #region OldMetot
+            //try
+            //{
+            //    TEntity model = GetById(id);
+            //    entity.Remove(model);
+            //    db.SaveChanges();
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
+            //    result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+            //    return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
+            //    result.Message = ex.Message;
+            //    result.Exception = ex;
+            //    return result;
+            //}
+            #endregion
+            TEntity model = await GetById(id);
+            entity.Remove(model);
+
         }
 
+        public async void Update(TEntity model)
+        {
+            #region OldMetot
+            //try
+            //{
+            //    TEntity entity = GetById(model.ID);
+            //    db.Entry(entity).CurrentValues.SetValues(model);
+            //    db.SaveChanges();
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
+            //    result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+            //    return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    result.ResultStatus = Utilities.Results.Concrete.ResultStatus.Success;
+            //    result.Message = ex.Message;
+            //    result.Exception = ex;
+            //    return result;
+            //}
+            #endregion
+            TEntity entity = await GetById(model.ID);
+            db.Entry(entity).CurrentValues.SetValues(model);
+
+        }
+
+        public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> exp)
+        {
+            return entity.Where(exp);
+        }
     }
 }

@@ -14,3 +14,4 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\DataAccess\bin\Debug\net5.0\Entities.dll
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\DataAccess\bin\Debug\net5.0\Core.pdb
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\DataAccess\bin\Debug\net5.0\Entities.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CopyComplete
