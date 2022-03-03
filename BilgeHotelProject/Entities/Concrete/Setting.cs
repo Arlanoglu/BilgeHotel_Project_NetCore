@@ -9,10 +9,10 @@ namespace Entities.Concrete
 {
     public class Setting : BaseEntity
     {
-        public string SmtpServer { get; set; }
+        public string SmtpHost { get; set; }
+        public string SmtpPort { get; set; }
         public string SmtpEmail { get; set; }
         public string SmtpPassword { get; set; }
-        public string SmtpPort { get; set; }
 
         public int HomePageID { get; set; }
         public int AboutusID { get; set; }

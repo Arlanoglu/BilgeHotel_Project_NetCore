@@ -13,10 +13,10 @@ namespace Entities.Concrete
         public string Subtitle { get; set; }
         public string PictureUrl { get; set; }
         public string Paragraph1 { get; set; }
-        public string Paragraph2 { get; set; }
-        public string Paragraph3 { get; set; }
-        public string Paragraph4 { get; set; }
-        public string Paragraph5 { get; set; }
+        public string? Paragraph2 { get; set; }
+        public string? Paragraph3 { get; set; }
+        public string? Paragraph4 { get; set; }
+        public string? Paragraph5 { get; set; }
 
         public virtual List<HomePageSlide> HomePageSlides { get; set; }
         public virtual List<Setting> Settings { get; set; }

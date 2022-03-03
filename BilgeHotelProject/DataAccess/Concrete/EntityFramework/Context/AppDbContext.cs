@@ -74,7 +74,14 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.ApplyConfiguration<BaseEntity>(new BaseMap());
+            builder.ApplyConfiguration(new ContactMap());
+            builder.ApplyConfiguration(new HomePageSlideMap());
+            builder.ApplyConfiguration(new HotelServiceMap());
+            builder.ApplyConfiguration(new HomePageMap());
+            builder.ApplyConfiguration(new SettingMap());
+            builder.ApplyConfiguration(new PictureMap());
+            builder.ApplyConfiguration(new AboutusMap());
+
             builder.ApplyConfiguration(new DepartmentMap());
             builder.ApplyConfiguration(new EmployeeMap());
             builder.ApplyConfiguration(new ExtraServiceMap());
