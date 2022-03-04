@@ -12,7 +12,7 @@ namespace DataAccess.UnitOfWork
     {
         private readonly AppDbContext context;
 
-        public UnitOfWork(AppDbContext context, IDepartmentDal departmentDal, IEmployeeDal employeeDal, IExtraServiceDal extraServiceDal, IFacilityOfRoomDal facilityOfRoomDal, IGuestDal guestDal, IIncomeDal incomeDal, IReceptionReservationDal receptionReservationDal, IRegistrationDal registrationDal, IRoomDal roomDal, IRoomFacilityDal roomFacilityDal, IRoomTypeDal roomTypeDal, ISalaryDal salaryDal, IServicePackDal servicePackDal, IShiftDal shiftDal, IStatusOfRoomDal statusOfRoomDal, IUseOfExtraServiceDal useOfExtraServiceDal, IWebReservationDal webReservationDal, IWorkScheduleDal workScheduleDal)
+        public UnitOfWork(AppDbContext context, IDepartmentDal departmentDal, IEmployeeDal employeeDal, IExtraServiceDal extraServiceDal, IFacilityOfRoomDal facilityOfRoomDal, IGuestDal guestDal, IIncomeDal incomeDal, IReceptionReservationDal receptionReservationDal, IRegistrationDal registrationDal, IRoomDal roomDal, IRoomFacilityDal roomFacilityDal, IRoomTypeDal roomTypeDal, ISalaryDal salaryDal, IServicePackDal servicePackDal, IShiftDal shiftDal, IStatusOfRoomDal statusOfRoomDal, IUseOfExtraServiceDal useOfExtraServiceDal, IWebReservationDal webReservationDal, IWorkScheduleDal workScheduleDal, IPictureDal pictureDal, IAboutusDal aboutusDal, IHomePageDal homePageDal, IHomePageSlideDal homePageSlideDal, IHotelServiceDal hotelServiceDal, IContactDal contactDal, ISettingDal settingDal)
         {
             this.context = context;
             DepartmentDal = departmentDal;
@@ -33,6 +33,13 @@ namespace DataAccess.UnitOfWork
             UseOfExtraServiceDal = useOfExtraServiceDal;
             WebReservationDal = webReservationDal;
             WorkScheduleDal = workScheduleDal;
+            PictureDal = pictureDal;
+            AboutusDal = aboutusDal;
+            HomePageDal = homePageDal;
+            HomePageSlideDal = homePageSlideDal;
+            HotelServiceDal = hotelServiceDal;
+            ContactDal = contactDal;
+            SettingDal = settingDal;
         }
         public IDepartmentDal DepartmentDal { get; }
 
@@ -69,6 +76,13 @@ namespace DataAccess.UnitOfWork
         public IWebReservationDal WebReservationDal { get; }
 
         public IWorkScheduleDal WorkScheduleDal { get; }
+        public IPictureDal PictureDal { get; }
+        public IAboutusDal AboutusDal { get; }
+        public IHomePageDal HomePageDal { get; }
+        public IHomePageSlideDal HomePageSlideDal { get; }
+        public IHotelServiceDal HotelServiceDal { get; }
+        public IContactDal ContactDal { get; }
+        public ISettingDal SettingDal { get; }
 
         public void Dispose()
         {

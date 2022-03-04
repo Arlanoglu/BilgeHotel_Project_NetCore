@@ -27,6 +27,13 @@ namespace DataAccess.UnitOfWork
         IUseOfExtraServiceDal UseOfExtraServiceDal { get; }
         IWebReservationDal WebReservationDal { get; }
         IWorkScheduleDal WorkScheduleDal { get; }
+        IPictureDal PictureDal { get; }
+        IAboutusDal AboutusDal { get; }
+        IHomePageDal HomePageDal { get; }
+        IHomePageSlideDal HomePageSlideDal { get; }
+        IHotelServiceDal HotelServiceDal { get; }
+        IContactDal ContactDal { get; }
+        ISettingDal SettingDal { get; }
 
         int SaveChange();
 

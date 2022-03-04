@@ -39,6 +39,13 @@ namespace Business.IocContainer
             services.AddScoped<IUseOfExtraServiceService, UseOfExtraServiceManager>();
             services.AddScoped<IWebReservationService, WebReservationManager>();
             services.AddScoped<IWorkScheduleService, WorkScheduleManager>();
+            services.AddScoped<IPictureService, PictureManager>();
+            services.AddScoped<IAboutusService, AboutusManager>();
+            services.AddScoped<IHomePageService, HomePageManager>();
+            services.AddScoped<IHomePageSlideService, HomePageSlideManager>();
+            services.AddScoped<IHotelServiceService, HotelServiceManager>();
+            services.AddScoped<IContactService, ContactManager>();
+            services.AddScoped<ISettingService, SettingManager>();
 
             services.AddScoped<IDepartmentDal, EFDepartmentDal>();
             services.AddScoped<IEmployeeDal, EFEmployeeDal>();
@@ -58,6 +65,13 @@ namespace Business.IocContainer
             services.AddScoped<IUseOfExtraServiceDal, EFUseOfExtraServiceDal>();
             services.AddScoped<IWebReservationDal, EFWebReservationDal>();
             services.AddScoped<IWorkScheduleDal, EFWorkScheduleDal>();
+            services.AddScoped<IPictureDal, EFPictureDal>();
+            services.AddScoped<IAboutusDal, EFAboutusDal>();
+            services.AddScoped<IHomePageDal, EFHomePageDal>();
+            services.AddScoped<IHomePageSlideDal, EFHomePageSlideDal>();
+            services.AddScoped<IHotelServiceDal, EFHotelServiceDal>();
+            services.AddScoped<IContactDal, EFContactDal>();
+            services.AddScoped<ISettingDal, EFSettingDal>();
 
             return services;
         }
