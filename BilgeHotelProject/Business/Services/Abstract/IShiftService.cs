@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Services.Abstract
 {
-    public interface IShiftService : IService<Shift>
+    public interface IShiftService : IService<ShiftPlan>
     {
     }
 }

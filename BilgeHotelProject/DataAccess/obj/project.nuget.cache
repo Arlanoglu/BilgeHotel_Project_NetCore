@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "n49WS4jLjcXDFYU2NbiXpLP7aHmasoBKy8mduPPaJPUuGcGgemOeoSjTE5wjwtCrxpvUZJblMfYpqqnCsJzlHQ==",
+  "dgSpecHash": "zDH9w6YZwkC6PRIUijNTiOX/Ta+Tn2YNwT1nKHSbt4siyLBjJTUM0z/8KMEs4/sqtMcz5kChCptA1MePxzz7dQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\arlan\\.nuget\\packages\\bogus\\34.0.1\\bogus.34.0.1.nupkg.sha512",
     "C:\\Users\\arlan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.10\\microsoft.aspnetcore.cryptography.internal.5.0.10.nupkg.sha512",
     "C:\\Users\\arlan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.10\\microsoft.aspnetcore.cryptography.keyderivation.5.0.10.nupkg.sha512",
     "C:\\Users\\arlan\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.10\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.10.nupkg.sha512",

@@ -32,7 +32,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<RoomFacility> RoomFacilities { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<ServicePack> ServicePacks { get; set; }
-        public DbSet<Shift> Shifts { get; set; }
+        public DbSet<ShiftPlan> Shifts { get; set; }
         public DbSet<StatusOfRoom> StatusesOfRooms { get; set; }
         public DbSet<UseOfExtraService> UseOfExtraServices { get; set; }
         public DbSet<WebReservation> WebReservations { get; set; }

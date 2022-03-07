@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFShiftDal : EFBaseDal<Shift>, IShiftDal
+    public class EFShiftDal : EFBaseDal<ShiftPlan>, IShiftDal
     {
         public EFShiftDal(AppDbContext db) : base(db)
         {

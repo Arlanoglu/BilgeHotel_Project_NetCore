@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace Entities.Concrete
 {
@@ -15,5 +16,7 @@ namespace Entities.Concrete
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public virtual List<Employee> Employees { get; set; }
     }
 }

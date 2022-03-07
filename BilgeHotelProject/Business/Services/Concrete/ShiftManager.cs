@@ -21,12 +21,12 @@ namespace Business.Services.Concrete
             this.unitOfWork = unitOfWork;
             this.result = result;
         }
-        public async Task<bool> Any(Expression<Func<Shift, bool>> exp)
+        public async Task<bool> Any(Expression<Func<ShiftPlan, bool>> exp)
         {
             return await unitOfWork.ShiftDal.Any(exp);
         }
 
-        public IResult Create(Shift model)
+        public IResult Create(ShiftPlan model)
         {
             try
             {
@@ -66,22 +66,22 @@ namespace Business.Services.Concrete
             }
         }
 
-        public async Task<List<Shift>> GetActive()
+        public async Task<List<ShiftPlan>> GetActive()
         {
             return await unitOfWork.ShiftDal.GetActive();
         }
 
-        public async Task<List<Shift>> GetAll()
+        public async Task<List<ShiftPlan>> GetAll()
         {
             return await unitOfWork.ShiftDal.GetAll();
         }
 
-        public async Task<Shift> GetById(int id)
+        public async Task<ShiftPlan> GetById(int id)
         {
             return await unitOfWork.ShiftDal.GetById(id);
         }
 
-        public async Task<List<Shift>> GetDefault(Expression<Func<Shift, bool>> exp)
+        public async Task<List<ShiftPlan>> GetDefault(Expression<Func<ShiftPlan, bool>> exp)
         {
             return await unitOfWork.ShiftDal.GetDefault(exp);
         }
@@ -105,7 +105,7 @@ namespace Business.Services.Concrete
             }
         }
 
-        public IResult Update(Shift model)
+        public IResult Update(ShiftPlan model)
         {
             try
             {

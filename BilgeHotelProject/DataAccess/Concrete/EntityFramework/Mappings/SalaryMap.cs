@@ -15,9 +15,10 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<Salary> builder)
         {
             CoreConfig(builder);
-            builder.Property(x => x.MounthlySalary).IsRequired();
+            builder.Property(x => x.MonthlySalary).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(200);
             builder.Property(x => x.EmployeeID).IsRequired();
+            builder.Property(x => x.Month).HasMaxLength(20).IsRequired();
         }
     }
 }
