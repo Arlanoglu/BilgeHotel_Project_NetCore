@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class ShiftMap : CoreMap<ShiftPlan>, IEntityTypeConfiguration<ShiftPlan>
+    public class ShiftMap : CoreMap<Shift>, IEntityTypeConfiguration<Shift>
     {
-        public void Configure(EntityTypeBuilder<ShiftPlan> builder)
+        public void Configure(EntityTypeBuilder<Shift> builder)
         {
             CoreConfig(builder);
             builder.Property(x => x.ShiftName).IsRequired().HasMaxLength(20);

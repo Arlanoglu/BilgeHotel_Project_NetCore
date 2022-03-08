@@ -3,7 +3,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IShiftDal : IEntityRepository<ShiftPlan>
+    public interface IShiftDal : IEntityRepository<Shift>
     {
     }
 }

@@ -11,26 +11,27 @@ using System.Threading.Tasks;
 
 namespace Business.Services.Concrete
 {
-    public class ShiftManager : IShiftService
+    public class EmployeeShiftManager : IEmployeeShiftService
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IResult result;
 
-        public ShiftManager(IUnitOfWork unitOfWork, IResult result)
+        public EmployeeShiftManager(IUnitOfWork unitOfWork, IResult result)
         {
             this.unitOfWork = unitOfWork;
             this.result = result;
         }
-        public async Task<bool> Any(Expression<Func<Shift, bool>> exp)
+
+        public async Task<bool> Any(Expression<Func<EmployeeShift, bool>> exp)
         {
-            return await unitOfWork.ShiftDal.Any(exp);
+            return await unitOfWork.EmployeeShiftDal.Any(exp);
         }
 
-        public IResult Create(Shift model)
+        public IResult Create(EmployeeShift model)
         {
             try
             {
-                unitOfWork.ShiftDal.Create(model);
+                unitOfWork.EmployeeShiftDal.Create(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
@@ -50,7 +51,7 @@ namespace Business.Services.Concrete
         {
             try
             {
-                unitOfWork.ShiftDal.Delete(id);
+                unitOfWork.EmployeeShiftDal.Delete(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
@@ -66,31 +67,31 @@ namespace Business.Services.Concrete
             }
         }
 
-        public async Task<List<Shift>> GetActive()
+        public async Task<List<EmployeeShift>> GetActive()
         {
-            return await unitOfWork.ShiftDal.GetActive();
+            return await unitOfWork.EmployeeShiftDal.GetActive();
         }
 
-        public async Task<List<Shift>> GetAll()
+        public async Task<List<EmployeeShift>> GetAll()
         {
-            return await unitOfWork.ShiftDal.GetAll();
+            return await unitOfWork.EmployeeShiftDal.GetAll();
         }
 
-        public async Task<Shift> GetById(int id)
+        public async Task<EmployeeShift> GetById(int id)
         {
-            return await unitOfWork.ShiftDal.GetById(id);
+            return await unitOfWork.EmployeeShiftDal.GetById(id);
         }
 
-        public async Task<List<Shift>> GetDefault(Expression<Func<Shift, bool>> exp)
+        public async Task<List<EmployeeShift>> GetDefault(Expression<Func<EmployeeShift, bool>> exp)
         {
-            return await unitOfWork.ShiftDal.GetDefault(exp);
+            return await unitOfWork.EmployeeShiftDal.GetDefault(exp);
         }
 
         public IResult RemoveForce(int id)
         {
             try
             {
-                unitOfWork.ShiftDal.RemoveForce(id);
+                unitOfWork.EmployeeShiftDal.RemoveForce(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
@@ -105,11 +106,11 @@ namespace Business.Services.Concrete
             }
         }
 
-        public IResult Update(Shift model)
+        public IResult Update(EmployeeShift model)
         {
             try
             {
-                unitOfWork.ShiftDal.Update(model);
+                unitOfWork.EmployeeShiftDal.Update(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";

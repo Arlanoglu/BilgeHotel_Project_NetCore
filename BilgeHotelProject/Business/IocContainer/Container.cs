@@ -46,6 +46,7 @@ namespace Business.IocContainer
             services.AddScoped<IHotelServiceService, HotelServiceManager>();
             services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<ISettingService, SettingManager>();
+            services.AddScoped<IEmployeeShiftService, EmployeeShiftManager>();
 
             services.AddScoped<IDepartmentDal, EFDepartmentDal>();
             services.AddScoped<IEmployeeDal, EFEmployeeDal>();
@@ -72,6 +73,7 @@ namespace Business.IocContainer
             services.AddScoped<IHotelServiceDal, EFHotelServiceDal>();
             services.AddScoped<IContactDal, EFContactDal>();
             services.AddScoped<ISettingDal, EFSettingDal>();
+            services.AddScoped<IEmployeeShiftDal, EFEmployeeShiftDal>();
 
             return services;
         }

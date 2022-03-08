@@ -11,13 +11,11 @@ namespace Entities.Concrete
         public TimeSpan TimesWorked { get; set; }
         public bool HaveOverTime { get; set; }
         public TimeSpan? OverTimeHour { get; set; }
-        public bool IsHoliday { get; set; }
-        public Holiday? Holiday { get; set; }
         public string Description { get; set; }
 
         public int EmployeeID { get; set; }
-        public int? ShiftPlanID { get; set; }
+        public int? ShiftID { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual ShiftPlan ShiftPlan { get; set; }
+        public virtual Shift Shift { get; set; }
     }
 }

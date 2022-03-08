@@ -34,6 +34,7 @@ namespace DataAccess.UnitOfWork
         IHotelServiceDal HotelServiceDal { get; }
         IContactDal ContactDal { get; }
         ISettingDal SettingDal { get; }
+        IEmployeeShiftDal EmployeeShiftDal { get; }
 
         int SaveChange();
 

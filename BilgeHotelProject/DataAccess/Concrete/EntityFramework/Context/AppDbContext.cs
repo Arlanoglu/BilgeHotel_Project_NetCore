@@ -32,12 +32,13 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<RoomFacility> RoomFacilities { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<ServicePack> ServicePacks { get; set; }
-        public DbSet<ShiftPlan> Shifts { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
         public DbSet<StatusOfRoom> StatusesOfRooms { get; set; }
         public DbSet<UseOfExtraService> UseOfExtraServices { get; set; }
         public DbSet<WebReservation> WebReservations { get; set; }
         public DbSet<WorkSchedule> WorkSchedules { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
+        public DbSet<EmployeeShift> EmployeesShifts { get; set; }
 
         public override int SaveChanges()
         {
@@ -101,6 +102,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.ApplyConfiguration(new UseOfExtraServiceMap());
             builder.ApplyConfiguration(new WebReservationMap());
             builder.ApplyConfiguration(new WorkScheduleMap());
+            builder.ApplyConfiguration(new EmployeeMap());
 
             builder.Seed();
             base.OnModelCreating(builder);
