@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<RoomPicture> builder)
         {
             CoreConfig(builder);
-            builder.Property(x => x.Picture).HasMaxLength(150).IsRequired();
+            builder.Property(x => x.PictureUrl).HasMaxLength(150).IsRequired();
             builder.Property(x => x.RoomTypeID).IsRequired();
         }
     }

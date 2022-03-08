@@ -9,10 +9,11 @@ namespace Entities.Concrete
 {
     public class HotelService : BaseEntity
     {
-        public string? IconCode { get; set; }
+        public string IconUrl { get; set; }
         public string ServiceName { get; set; }
         public string Description { get; set; }
 
-        public virtual List<Setting> Settings { get; set; }
+        public int SettingID { get; set; }
+        public virtual Setting Setting { get; set; }
     }
 }

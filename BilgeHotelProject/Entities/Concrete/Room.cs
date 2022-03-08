@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Enum;
 using System.Collections.Generic;
 
 namespace Entities.Concrete
@@ -7,6 +8,7 @@ namespace Entities.Concrete
     {
         public string RoomNumber { get; set; }
         public int FloorNumber { get; set; }
+        public RoomStatus RoomStatus { get; set; }
         public string Description { get; set; }
         public int RoomTypeID { get; set; }
 

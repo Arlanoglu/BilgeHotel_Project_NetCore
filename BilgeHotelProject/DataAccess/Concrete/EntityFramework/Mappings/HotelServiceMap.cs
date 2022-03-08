@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<HotelService> builder)
         {
             CoreConfig(builder);
-            builder.Property(x => x.IconCode).HasMaxLength(100);
+            builder.Property(x => x.IconUrl).HasMaxLength(100);
             builder.Property(x => x.ServiceName).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(200);
         }

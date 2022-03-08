@@ -22,5 +22,6 @@ namespace Entities.Concrete
         public virtual Aboutus Aboutus { get; set; }
         public virtual Contact Contact { get; set; }
         public virtual HotelService HotelService { get; set; }
+        public virtual List<HotelService> HotelServices { get; set; }
     }
 }

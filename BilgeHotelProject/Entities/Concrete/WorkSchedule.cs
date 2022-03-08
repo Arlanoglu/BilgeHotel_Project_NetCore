@@ -11,6 +11,8 @@ namespace Entities.Concrete
         public TimeSpan TimesWorked { get; set; }
         public bool HaveOverTime { get; set; }
         public TimeSpan? OverTimeHour { get; set; }
+        public bool IsHoliday { get; set; }
+        public Holiday? Holiday { get; set; }
         public string Description { get; set; }
 
         public int EmployeeID { get; set; }

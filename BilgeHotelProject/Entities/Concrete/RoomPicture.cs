@@ -9,7 +9,7 @@ namespace Entities.Concrete
 {
     public class RoomPicture : BaseEntity
     {
-        public string Picture { get; set; }
+        public string PictureUrl { get; set; }
         public int RoomTypeID { get; set; }
         public virtual RoomType RoomType { get; set; }
     }

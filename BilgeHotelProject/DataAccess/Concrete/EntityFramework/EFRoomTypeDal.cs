@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             this.db = db;
         }
-
+        //Todo: Sorgu güncellenecek room tablosundan çekilecek.
         public async Task<List<RoomType>> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
         {
             var roomTypes = db.StatusesOfRooms.Where(x => ((x.StatusStartDate! <= checkinDate && x.StatusEndDate! >= checkinDate) || (x.StatusStartDate! <= checkoutDate && x.StatusEndDate! >= checkoutDate)) && x.RoomStatus == Entities.Enum.RoomStatus.Bos).Select(x => x.Room.RoomType);

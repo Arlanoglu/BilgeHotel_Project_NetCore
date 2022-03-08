@@ -6,7 +6,7 @@ namespace Entities.Concrete
     public class ServicePack : BaseEntity
     {
         public string PackName { get; set; }
-        public string PackPrice { get; set; }
+        public decimal PackPrice { get; set; }
         public string Description { get; set; }
 
         public virtual List<WebReservation> WebReservations { get; set; }
