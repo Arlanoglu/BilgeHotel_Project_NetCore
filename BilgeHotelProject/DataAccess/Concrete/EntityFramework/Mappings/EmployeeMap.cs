@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.IsActive).IsRequired().HasDefaultValue(true);
             builder.Property(x => x.IdentificationNumber).HasMaxLength(11);
             builder.Property(x => x.Email).HasMaxLength(50);
-            builder.Property(x => x.PhoneNumber).HasMaxLength(11).IsRequired();
+            builder.Property(x => x.PhoneNumber).HasMaxLength(20).IsRequired();
             builder.Property(x => x.LeavingWorkDate).HasColumnType("date");
             builder.Property(x => x.ReasonForLeaving).HasMaxLength(200);
             builder.Property(x => x.EmployeeStatus).IsRequired();        

@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             CoreConfig(builder);
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(11);
+            builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(20);
             builder.Property(x => x.Email).HasMaxLength(50);
             builder.Property(x => x.NumberOfPeople).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(200);

@@ -46,8 +46,8 @@ namespace DataAccess.Concrete.EntityFramework.Context
             #region Contact
             var fakeContact = new Faker<Contact>()
                 .RuleFor(x => x.Adress, x => x.Address.FullAddress())
-                .RuleFor(x => x.Phone1, x => x.Phone.PhoneNumber())
-                .RuleFor(x => x.Fax, x => x.Phone.PhoneNumber())
+                .RuleFor(x => x.Phone1, x => x.Phone.PhoneNumber("05454526235"))
+                .RuleFor(x => x.Fax, x => x.Phone.PhoneNumber("05454526235"))
                 .RuleFor(x => x.Email, x => x.Person.Email);
             Contact contact = fakeContact;
             contact.ID = 1;
@@ -127,9 +127,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
                     .RuleFor(x => x.LastName, x => x.Person.LastName)
                     .RuleFor(x => x.StartDateOfWork, x => x.Date.Between(DateTime.Parse("2019-01-01"), DateTime.Now))
                     .RuleFor(x => x.HourlyRate, x => x.Random.Decimal(190, 200))
-                    .RuleFor(x => x.IdentificationNumber, x => x.Random.ULong(111111111111, 999999999999).ToString())
+                    .RuleFor(x => x.IdentificationNumber, x => x.Random.ULong(1111, 9999).ToString())
                     .RuleFor(x => x.Email, x => x.Person.Email)
-                    .RuleFor(x => x.PhoneNumber, x => x.Person.Phone);
+                    .RuleFor(x => x.PhoneNumber, x => x.Phone.PhoneNumber("05454526235"));
                 Employee emp = employee;
                 emp.ID = employees.Count + 1; emp.Title = title; emp.EmployeeStatus = status; emp.DepartmentID = departmentId; emp.IsActive = true;
                 employees.Add(emp);
@@ -324,7 +324,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             List<Room> rooms = new List<Room>();
             int sayi=100;
             //1. Kat 1 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -337,7 +337,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //1. Kat 4 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -350,7 +350,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //2. Kat 1 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -363,7 +363,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //2. Kat 2 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -376,7 +376,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //3. Kat 3 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -389,7 +389,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //3. Kat 5 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -402,7 +402,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //4. Kat 3 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
@@ -415,7 +415,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 sayi++;
             }
             //4. Kat 6 nolu tip
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Room room = new Room();
                 room.ID = sayi - 99;
