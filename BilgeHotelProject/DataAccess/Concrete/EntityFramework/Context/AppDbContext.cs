@@ -39,6 +39,13 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<WorkSchedule> WorkSchedules { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<EmployeeShift> EmployeesShifts { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
+        public DbSet<Aboutus> Aboutus { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<HomePage> HomePages { get; set; }
+        public DbSet<HomePageSlide> HomePageSlides { get; set; }
+        public DbSet<HotelService> HotelServices { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         public override int SaveChanges()
         {
@@ -102,9 +109,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.ApplyConfiguration(new UseOfExtraServiceMap());
             builder.ApplyConfiguration(new WebReservationMap());
             builder.ApplyConfiguration(new WorkScheduleMap());
-            builder.ApplyConfiguration(new EmployeeMap());
+            builder.ApplyConfiguration(new EmployeeShiftMap());
 
-            builder.Seed();
+            //builder.Seed();
             base.OnModelCreating(builder);
         }
 
