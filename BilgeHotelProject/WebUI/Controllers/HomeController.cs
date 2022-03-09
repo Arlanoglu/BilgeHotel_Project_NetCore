@@ -30,17 +30,18 @@ namespace WebUI.Controllers
             this.roomPictureService = roomPictureService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var homePage = homePageService.GetFirstOrDefault();
-            var homePageSlides = homePageSlideService.GetActive();
-            var roomPictures = roomPictureService.GetActive();
-            var roomTypes = roomTypeService.GetActive();
+            var homePage = await homePageService.GetFirstOrDefault();
+            var homePageSlides = await homePageSlideService.GetActive();
+            var roomPictures = await roomPictureService.GetActive();
+            var roomTypes = await roomTypeService.GetActive();
 
             var vmHomePage = mapper.Map<VMHomePage>(homePage);
             var vmHomePageSlides = mapper.Map<List<VMHomePageSlide>>(homePageSlides);
             var vmRoomPictures = mapper.Map <List<VMRoomPicture>>(roomPictures);
             var vmRoomTypes = mapper.Map <List<VMRoomType>>(roomTypes);
+
             VMHomeIndex vMHomeIndex = new VMHomeIndex();
             vMHomeIndex.VMHomePage = vmHomePage;
             vMHomeIndex.VMHomePageSlides = vmHomePageSlides;
