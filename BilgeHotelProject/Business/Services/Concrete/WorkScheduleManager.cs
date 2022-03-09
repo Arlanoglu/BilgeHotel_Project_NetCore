@@ -123,5 +123,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<WorkSchedule> GetFirstOrDefault()
+        {
+            return await unitOfWork.WorkScheduleDal.GetFirstOrDefault();
+        }
     }
 }

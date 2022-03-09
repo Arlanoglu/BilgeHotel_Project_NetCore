@@ -198,7 +198,7 @@ namespace DataAccess.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FacilityName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -276,10 +276,10 @@ namespace DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ShiftName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ShiftName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     StartTime = table.Column<TimeSpan>(type: "time", nullable: false),
                     EndTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -638,10 +638,10 @@ namespace DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FloorNumber = table.Column<int>(type: "int", nullable: false),
                     RoomStatus = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     RoomTypeID = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -821,8 +821,8 @@ namespace DataAccess.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CheckInDate = table.Column<DateTime>(type: "date", nullable: false),
+                    CheckOutDate = table.Column<DateTime>(type: "date", nullable: false),
                     NumberOfPeople = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Payment = table.Column<bool>(type: "bit", nullable: false),
@@ -955,7 +955,7 @@ namespace DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReservationDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ReservationDate = table.Column<DateTime>(type: "date", nullable: false),
                     CheckInDate = table.Column<DateTime>(type: "date", nullable: false),
                     CheckOutDate = table.Column<DateTime>(type: "date", nullable: false),
                     NumberOfPeople = table.Column<int>(type: "int", nullable: false),
@@ -965,7 +965,7 @@ namespace DataAccess.Migrations
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     ReservationStatus = table.Column<int>(type: "int", nullable: false),
                     RoomID = table.Column<int>(type: "int", nullable: false),
                     RoomTypeID = table.Column<int>(type: "int", nullable: true),
@@ -1023,7 +1023,7 @@ namespace DataAccess.Migrations
                     IdentificationNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     TurkeyCitizen = table.Column<bool>(type: "bit", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     IdCardFrontSideImage = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     IdCardBackSideImage = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
@@ -1126,7 +1126,7 @@ namespace DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ID", "Adress", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Email", "Facebook", "Fax", "Instagram", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "Phone1", "Phone2", "Twitter" },
-                values: new object[] { 1, "118 Satterfield Stream, West Berenice, Estonia", null, null, null, null, null, "Moses_Klocko22@gmail.com", "facebook.com/bilgehotel", "05454526235", "instagram.com/bilgehotel", null, null, null, null, null, "05454526235", null, "twitter.com/bilgehotel" });
+                values: new object[] { 1, "95032 Moore Mountain, Kihnhaven, Mongolia", null, null, null, null, null, "Debbie_Schuster@yahoo.com", "facebook.com/bilgehotel", "05454526235", "instagram.com/bilgehotel", null, null, null, null, null, "05454526235", null, "twitter.com/bilgehotel" });
 
             migrationBuilder.InsertData(
                 table: "Departments",
@@ -1202,48 +1202,48 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "AppUserId", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "DepartmentID", "Email", "EmployeeStatus", "FirstName", "HourlyRate", "IdentificationNumber", "IsActive", "LastName", "LeavingWorkDate", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "MonthlySalary", "PhoneNumber", "ReasonForLeaving", "StartDateOfWork", "Title", "UserID" },
                 values: new object[,]
                 {
-                    { 3, null, null, null, null, null, null, 4, "Ryan83@gmail.com", 3, "Ryan", 197.83215332675360m, "2199", true, "Buckridge", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 11, 17, 12, 19, 58, 86, DateTimeKind.Unspecified).AddTicks(2036), "Resepsiyonist", 0 },
-                    { 25, null, null, null, null, null, null, 3, "Norma.Haley9@yahoo.com", 3, "Norma", 194.834497251936470m, "5297", true, "Haley", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 6, 2, 18, 23, 42, 166, DateTimeKind.Unspecified).AddTicks(7940), "Aşçı", 0 },
-                    { 26, null, null, null, null, null, null, 3, "Doyle_Dickinson37@gmail.com", 3, "Doyle", 192.165517672973460m, "5009", true, "Dickinson", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 9, 15, 16, 49, 14, 84, DateTimeKind.Unspecified).AddTicks(6556), "Aşçı", 0 },
-                    { 27, null, null, null, null, null, null, 3, "Lindsay_Wisozk@hotmail.com", 3, "Lindsay", 192.077119560948160m, "5165", true, "Wisozk", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 7, 30, 2, 6, 51, 547, DateTimeKind.Unspecified).AddTicks(4534), "Aşçı", 0 },
-                    { 28, null, null, null, null, null, null, 3, "Vanessa74@gmail.com", 3, "Vanessa", 198.47575825102430m, "2152", true, "Hammes", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 10, 8, 23, 22, 32, 367, DateTimeKind.Unspecified).AddTicks(6857), "Aşçı", 0 },
-                    { 29, null, null, null, null, null, null, 3, "Jackie_Murphy@yahoo.com", 3, "Jackie", 195.851946904255050m, "2227", true, "Murphy", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 6, 13, 17, 30, 42, 186, DateTimeKind.Unspecified).AddTicks(9555), "Aşçı", 0 },
-                    { 31, null, null, null, null, null, null, 3, "Josephine.Boyle25@gmail.com", 3, "Josephine", 195.685847967716790m, "3177", true, "Boyle", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 3, 22, 12, 26, 36, 454, DateTimeKind.Unspecified).AddTicks(8787), "Garson", 0 },
-                    { 32, null, null, null, null, null, null, 3, "Dale89@yahoo.com", 3, "Dale", 191.100717676384710m, "2960", true, "Kub", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 12, 12, 14, 37, 7, 282, DateTimeKind.Unspecified).AddTicks(3476), "Garson", 0 },
-                    { 33, null, null, null, null, null, null, 3, "Spencer88@yahoo.com", 3, "Spencer", 190.4359406886789670m, "9414", true, "Koepp", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 1, 9, 23, 35, 21, 706, DateTimeKind.Unspecified).AddTicks(7582), "Garson", 0 },
-                    { 34, null, null, null, null, null, null, 3, "Jackie51@hotmail.com", 3, "Jackie", 190.836674636619480m, "6785", true, "Greenfelder", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 4, 23, 9, 27, 52, 304, DateTimeKind.Unspecified).AddTicks(4694), "Garson", 0 },
-                    { 35, null, null, null, null, null, null, 3, "Arturo_Grimes0@gmail.com", 3, "Arturo", 196.08350506335660m, "9126", true, "Grimes", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 3, 29, 13, 7, 16, 718, DateTimeKind.Unspecified).AddTicks(1475), "Garson", 0 },
-                    { 36, null, null, null, null, null, null, 3, "Herbert.Roberts@hotmail.com", 3, "Herbert", 195.611674038512480m, "7912", true, "Roberts", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 9, 5, 19, 24, 57, 513, DateTimeKind.Unspecified).AddTicks(6106), "Garson", 0 },
-                    { 37, null, null, null, null, null, null, 3, "Lillie.Kozey@gmail.com", 3, "Lillie", 194.559494259096450m, "8457", true, "Kozey", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 10, 1, 10, 11, 0, 208, DateTimeKind.Unspecified).AddTicks(8311), "Garson", 0 },
-                    { 38, null, null, null, null, null, null, 3, "Jessie.Ankunding@gmail.com", 3, "Jessie", 190.7569636827134360m, "3294", true, "Ankunding", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 4, 29, 18, 52, 23, 679, DateTimeKind.Unspecified).AddTicks(615), "Garson", 0 },
-                    { 39, null, null, null, null, null, null, 3, "Gloria70@yahoo.com", 3, "Gloria", 192.521567122322310m, "1278", true, "Farrell", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 20, 0, 14, 19, 325, DateTimeKind.Unspecified).AddTicks(5564), "Garson", 0 },
-                    { 40, null, null, null, null, null, null, 3, "Isaac.Grimes@yahoo.com", 3, "Isaac", 195.456600391984270m, "6061", true, "Grimes", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 10, 10, 22, 37, 20, 114, DateTimeKind.Unspecified).AddTicks(7413), "Garson", 0 },
-                    { 41, null, null, null, null, null, null, 3, "Clara12@yahoo.com", 3, "Clara", 198.892088881177870m, "9191", true, "Walter", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 27, 13, 5, 40, 744, DateTimeKind.Unspecified).AddTicks(8553), "Garson", 0 },
-                    { 42, null, null, null, null, null, null, 3, "Viola.Rice@yahoo.com", 3, "Viola", 194.791739846017090m, "5257", true, "Rice", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 9, 5, 4, 8, 44, 822, DateTimeKind.Unspecified).AddTicks(3571), "Garson", 0 },
-                    { 1, null, null, null, null, null, null, 4, "Brett.OConnell@yahoo.com", 3, "Brett", 196.765468342586170m, "4450", true, "O'Connell", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 1, 8, 5, 26, 25, 375, DateTimeKind.Unspecified).AddTicks(9664), "Resepsiyonist", 0 },
-                    { 2, null, null, null, null, null, null, 4, "Bruce45@yahoo.com", 3, "Bruce", 193.958952801282960m, "4621", true, "Padberg", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 5, 6, 2, 18, 28, 166, DateTimeKind.Unspecified).AddTicks(2278), "Resepsiyonist", 0 },
-                    { 4, null, null, null, null, null, null, 4, "Helen_Cruickshank5@gmail.com", 3, "Helen", 191.085963426663520m, "1820", true, "Cruickshank", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 3, 9, 0, 47, 37, 184, DateTimeKind.Unspecified).AddTicks(5956), "Resepsiyonist", 0 },
-                    { 5, null, null, null, null, null, null, 4, "Vanessa_Huel@yahoo.com", 3, "Vanessa", 195.26091742574280m, "4244", true, "Huel", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 5, 13, 16, 5, 5, 408, DateTimeKind.Unspecified).AddTicks(7182), "Resepsiyonist", 0 },
-                    { 6, null, null, null, null, null, null, 4, "Lorene.Kshlerin7@gmail.com", 3, "Lorene", 197.193707720001090m, "8044", true, "Kshlerin", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 12, 23, 20, 36, 803, DateTimeKind.Unspecified).AddTicks(6065), "Resepsiyonist", 0 },
-                    { 7, null, null, null, null, null, null, 4, "Bryan.Gutkowski@gmail.com", 3, "Bryan", 197.715809437313960m, "7154", true, "Gutkowski", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 23, 6, 43, 30, 385, DateTimeKind.Unspecified).AddTicks(9410), "Resepsiyonist", 0 },
-                    { 24, null, null, null, null, null, null, 3, "Michele23@hotmail.com", 3, "Michele", 196.938519299467340m, "3475", true, "Reinger", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 9, 9, 6, 43, 5, 696, DateTimeKind.Unspecified).AddTicks(7893), "Aşçı", 0 },
-                    { 23, null, null, null, null, null, null, 3, "Bradley_Medhurst40@hotmail.com", 3, "Bradley", 190.6162878780701610m, "8512", true, "Medhurst", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 4, 21, 40, 23, 747, DateTimeKind.Unspecified).AddTicks(6186), "Aşçı", 0 },
-                    { 30, null, null, null, null, null, null, 3, "Nadine74@gmail.com", 3, "Nadine", 193.452999593435320m, "7069", true, "Koepp", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 8, 12, 6, 17, 28, 631, DateTimeKind.Unspecified).AddTicks(2882), "Garson", 0 },
-                    { 21, null, null, null, null, null, null, 3, "Rita63@hotmail.com", 3, "Rita", 199.195144609173360m, "1196", true, "Brekke", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 5, 17, 54, 36, 6, DateTimeKind.Unspecified).AddTicks(318), "Aşçı", 0 },
-                    { 22, null, null, null, null, null, null, 3, "Howard.Okuneva10@gmail.com", 3, "Howard", 193.825466629967780m, "9861", true, "Okuneva", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 3, 1, 16, 14, 32, 869, DateTimeKind.Unspecified).AddTicks(6740), "Aşçı", 0 },
-                    { 8, null, null, null, null, null, null, 1, "Bennie13@gmail.com", 3, "Bennie", 191.051669708011520m, "9677", true, "Sauer", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 5, 7, 12, 30, 58, 869, DateTimeKind.Unspecified).AddTicks(7226), "Temizlik Görevlisi", 0 },
-                    { 9, null, null, null, null, null, null, 1, "Lynn.Okuneva@gmail.com", 3, "Lynn", 194.271999445870520m, "6853", true, "Okuneva", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 1, 4, 20, 10, 16, 531, DateTimeKind.Unspecified).AddTicks(2766), "Temizlik Görevlisi", 0 },
-                    { 10, null, null, null, null, null, null, 1, "Kelvin_Gibson@gmail.com", 3, "Kelvin", 193.475610396580590m, "9120", true, "Gibson", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 30, 14, 32, 1, 376, DateTimeKind.Unspecified).AddTicks(8478), "Temizlik Görevlisi", 0 },
-                    { 12, null, null, null, null, null, null, 1, "Steven.Nader23@hotmail.com", 3, "Steven", 195.914345875342540m, "3611", true, "Nader", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 2, 5, 17, 56, 10, 504, DateTimeKind.Unspecified).AddTicks(7488), "Temizlik Görevlisi", 0 },
-                    { 13, null, null, null, null, null, null, 1, "Cornelius_Kiehn@hotmail.com", 3, "Cornelius", 197.083250729871560m, "3630", true, "Kiehn", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 11, 21, 19, 22, 17, 179, DateTimeKind.Unspecified).AddTicks(7290), "Temizlik Görevlisi", 0 },
-                    { 14, null, null, null, null, null, null, 1, "Lawrence_Romaguera@yahoo.com", 3, "Lawrence", 196.58417433806890m, "6331", true, "Romaguera", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 12, 3, 7, 17, 57, 793, DateTimeKind.Unspecified).AddTicks(6868), "Temizlik Görevlisi", 0 },
-                    { 15, null, null, null, null, null, null, 1, "Pat28@yahoo.com", 3, "Pat", 190.04356450868936470m, "8787", true, "Pacocha", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 6, 23, 5, 15, 670, DateTimeKind.Unspecified).AddTicks(2733), "Temizlik Görevlisi", 0 },
-                    { 11, null, null, null, null, null, null, 1, "Beverly48@gmail.com", 3, "Beverly", 193.165293919465180m, "9164", true, "Denesik", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 3, 21, 13, 44, 0, 150, DateTimeKind.Unspecified).AddTicks(985), "Temizlik Görevlisi", 0 },
-                    { 17, null, null, null, null, null, null, 1, "Winston_Spinka82@gmail.com", 3, "Winston", 197.393483634755710m, "1738", true, "Spinka", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 9, 6, 10, 59, 15, 452, DateTimeKind.Unspecified).AddTicks(3353), "Temizlik Görevlisi", 0 },
-                    { 18, null, null, null, null, null, null, 1, "Courtney7@gmail.com", 3, "Courtney", 190.6366273158400450m, "6178", true, "Williamson", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 11, 30, 0, 32, 22, 21, DateTimeKind.Unspecified).AddTicks(5530), "Temizlik Görevlisi", 0 },
-                    { 43, null, null, null, null, null, null, 1, "Lauren.Littel77@gmail.com", 3, "Lauren", 192.152281330037990m, "9815", true, "Littel", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 7, 19, 4, 10, 46, 734, DateTimeKind.Unspecified).AddTicks(6240), "Elektirikçi", 0 },
-                    { 44, null, null, null, null, null, null, 2, "Jacquelyn_Williamson89@yahoo.com", 3, "Jacquelyn", 195.526081829111130m, "8307", true, "Williamson", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 11, 14, 1, 49, 28, 34, DateTimeKind.Unspecified).AddTicks(7301), "Bilgi İşlem Sorumlusu", 0 },
-                    { 19, null, null, null, null, null, null, 3, "Levi80@hotmail.com", 3, "Levi", 196.491732372199990m, "4353", true, "Howell", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 29, 9, 18, 4, 932, DateTimeKind.Unspecified).AddTicks(8243), "Aşçı", 0 }
+                    { 3, null, null, null, null, null, null, 4, "Inez.Konopelski95@gmail.com", 3, "Inez", 192.744226759646190m, "9458", true, "Konopelski", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 1, 23, 6, 36, 40, 565, DateTimeKind.Unspecified).AddTicks(9008), "Resepsiyonist", 0 },
+                    { 25, null, null, null, null, null, null, 3, "Lonnie.Hickle@yahoo.com", 3, "Lonnie", 198.078784219957320m, "3443", true, "Hickle", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 2, 18, 17, 20, 56, 372, DateTimeKind.Unspecified).AddTicks(8207), "Aşçı", 0 },
+                    { 26, null, null, null, null, null, null, 3, "Beulah.Boyle@hotmail.com", 3, "Beulah", 192.330676276390760m, "5358", true, "Boyle", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 2, 8, 8, 51, 9, 289, DateTimeKind.Unspecified).AddTicks(5069), "Aşçı", 0 },
+                    { 27, null, null, null, null, null, null, 3, "Jesus_Beier6@yahoo.com", 3, "Jesus", 199.227510899876950m, "3827", true, "Beier", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 7, 5, 16, 46, 3, 783, DateTimeKind.Unspecified).AddTicks(8876), "Aşçı", 0 },
+                    { 28, null, null, null, null, null, null, 3, "Rex_Harvey@gmail.com", 3, "Rex", 194.7483068680150m, "1503", true, "Harvey", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 18, 18, 26, 29, 715, DateTimeKind.Unspecified).AddTicks(888), "Aşçı", 0 },
+                    { 29, null, null, null, null, null, null, 3, "Allen68@gmail.com", 3, "Allen", 193.717532569410990m, "7206", true, "Schmidt", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 7, 29, 15, 17, 34, 490, DateTimeKind.Unspecified).AddTicks(2555), "Aşçı", 0 },
+                    { 31, null, null, null, null, null, null, 3, "Mathew_Friesen@yahoo.com", 3, "Mathew", 196.529773402274480m, "5636", true, "Friesen", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 11, 18, 19, 27, 32, 740, DateTimeKind.Unspecified).AddTicks(1709), "Garson", 0 },
+                    { 32, null, null, null, null, null, null, 3, "Angela14@hotmail.com", 3, "Angela", 196.156192289738070m, "8551", true, "Kris", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 8, 14, 1, 3, 54, 208, DateTimeKind.Unspecified).AddTicks(7200), "Garson", 0 },
+                    { 33, null, null, null, null, null, null, 3, "Marianne.Muller53@hotmail.com", 3, "Marianne", 195.719727187286940m, "7770", true, "Muller", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 6, 22, 20, 28, 32, 471, DateTimeKind.Unspecified).AddTicks(3466), "Garson", 0 },
+                    { 34, null, null, null, null, null, null, 3, "Daryl23@yahoo.com", 3, "Daryl", 199.436570005229010m, "1442", true, "Hagenes", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 5, 25, 21, 14, 39, 926, DateTimeKind.Unspecified).AddTicks(3928), "Garson", 0 },
+                    { 35, null, null, null, null, null, null, 3, "Charlene63@hotmail.com", 3, "Charlene", 190.6687591321155240m, "7961", true, "Runte", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 10, 16, 10, 25, 17, 72, DateTimeKind.Unspecified).AddTicks(632), "Garson", 0 },
+                    { 36, null, null, null, null, null, null, 3, "Tricia92@gmail.com", 3, "Tricia", 195.551092487550850m, "6107", true, "Metz", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 5, 1, 5, 8, 42, 758, DateTimeKind.Unspecified).AddTicks(3410), "Garson", 0 },
+                    { 37, null, null, null, null, null, null, 3, "Johnathan18@gmail.com", 3, "Johnathan", 190.5178416476202390m, "1850", true, "Heaney", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 3, 6, 5, 45, 53, 942, DateTimeKind.Unspecified).AddTicks(2760), "Garson", 0 },
+                    { 38, null, null, null, null, null, null, 3, "Bonnie_Wehner@gmail.com", 3, "Bonnie", 198.305993698679840m, "9945", true, "Wehner", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 7, 28, 16, 3, 44, 934, DateTimeKind.Unspecified).AddTicks(61), "Garson", 0 },
+                    { 39, null, null, null, null, null, null, 3, "Frank_Morissette@yahoo.com", 3, "Frank", 190.6707440366366620m, "9606", true, "Morissette", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 2, 11, 13, 31, 39, 468, DateTimeKind.Unspecified).AddTicks(8073), "Garson", 0 },
+                    { 40, null, null, null, null, null, null, 3, "Manuel42@hotmail.com", 3, "Manuel", 198.203616653663860m, "6930", true, "Lebsack", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 19, 16, 57, 48, 21, DateTimeKind.Unspecified).AddTicks(7645), "Garson", 0 },
+                    { 41, null, null, null, null, null, null, 3, "Donnie45@yahoo.com", 3, "Donnie", 197.960527645405630m, "4048", true, "Pagac", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 1, 3, 1, 0, 21, 7, DateTimeKind.Unspecified).AddTicks(8809), "Garson", 0 },
+                    { 42, null, null, null, null, null, null, 3, "Minnie_Williamson@gmail.com", 3, "Minnie", 192.223039154067190m, "3535", true, "Williamson", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 5, 8, 6, 36, 962, DateTimeKind.Unspecified).AddTicks(8160), "Garson", 0 },
+                    { 1, null, null, null, null, null, null, 4, "Terrell.Swift16@gmail.com", 3, "Terrell", 190.7153786489345960m, "2624", true, "Swift", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 4, 24, 20, 25, 49, 591, DateTimeKind.Unspecified).AddTicks(2231), "Resepsiyonist", 0 },
+                    { 2, null, null, null, null, null, null, 4, "Helen.Schulist@gmail.com", 3, "Helen", 197.69818203882230m, "4903", true, "Schulist", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 10, 23, 14, 35, 19, 463, DateTimeKind.Unspecified).AddTicks(1030), "Resepsiyonist", 0 },
+                    { 4, null, null, null, null, null, null, 4, "Judith20@yahoo.com", 3, "Judith", 199.502387074521920m, "5399", true, "Glover", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 4, 13, 2, 10, 59, 956, DateTimeKind.Unspecified).AddTicks(6374), "Resepsiyonist", 0 },
+                    { 5, null, null, null, null, null, null, 4, "Wilma.Wisozk48@hotmail.com", 3, "Wilma", 190.8678720290157350m, "7505", true, "Wisozk", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 1, 21, 19, 14, 40, 287, DateTimeKind.Unspecified).AddTicks(432), "Resepsiyonist", 0 },
+                    { 6, null, null, null, null, null, null, 4, "Allen_Willms@yahoo.com", 3, "Allen", 197.634520804339330m, "8926", true, "Willms", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 1, 0, 18, 24, 291, DateTimeKind.Unspecified).AddTicks(2944), "Resepsiyonist", 0 },
+                    { 7, null, null, null, null, null, null, 4, "Michele.Grady@gmail.com", 3, "Michele", 199.360014092810460m, "5593", true, "Grady", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 5, 15, 14, 15, 38, 345, DateTimeKind.Unspecified).AddTicks(9266), "Resepsiyonist", 0 },
+                    { 24, null, null, null, null, null, null, 3, "Traci8@yahoo.com", 3, "Traci", 191.365043572785820m, "4243", true, "Kreiger", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 9, 5, 14, 28, 10, 314, DateTimeKind.Unspecified).AddTicks(536), "Aşçı", 0 },
+                    { 23, null, null, null, null, null, null, 3, "Molly.Welch59@yahoo.com", 3, "Molly", 198.997755553106660m, "6722", true, "Welch", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 2, 23, 3, 20, 27, 979, DateTimeKind.Unspecified).AddTicks(6100), "Aşçı", 0 },
+                    { 30, null, null, null, null, null, null, 3, "Margaret.Hayes@gmail.com", 3, "Margaret", 194.228809906276320m, "5533", true, "Hayes", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 3, 11, 14, 11, 18, 771, DateTimeKind.Unspecified).AddTicks(2951), "Garson", 0 },
+                    { 21, null, null, null, null, null, null, 3, "Josephine.Schroeder65@yahoo.com", 3, "Josephine", 190.1927856729332290m, "9911", true, "Schroeder", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 8, 31, 18, 40, 49, 941, DateTimeKind.Unspecified).AddTicks(7412), "Aşçı", 0 },
+                    { 22, null, null, null, null, null, null, 3, "Brandy.Zemlak@gmail.com", 3, "Brandy", 198.053831582914030m, "4254", true, "Zemlak", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 2, 7, 11, 18, 14, 400, DateTimeKind.Unspecified).AddTicks(1175), "Aşçı", 0 },
+                    { 8, null, null, null, null, null, null, 1, "Virginia_Auer@yahoo.com", 3, "Virginia", 195.418203335915790m, "5234", true, "Auer", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 1, 16, 14, 56, 10, 217, DateTimeKind.Unspecified).AddTicks(4012), "Temizlik Görevlisi", 0 },
+                    { 9, null, null, null, null, null, null, 1, "Gene.Bahringer@hotmail.com", 3, "Gene", 190.8455039145636860m, "2806", true, "Bahringer", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 6, 22, 15, 57, 50, 813, DateTimeKind.Unspecified).AddTicks(1769), "Temizlik Görevlisi", 0 },
+                    { 10, null, null, null, null, null, null, 1, "Karen.Hyatt@yahoo.com", 3, "Karen", 195.12716223724520m, "8600", true, "Hyatt", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 3, 16, 14, 33, 34, 348, DateTimeKind.Unspecified).AddTicks(2754), "Temizlik Görevlisi", 0 },
+                    { 12, null, null, null, null, null, null, 1, "Sidney_Smitham@gmail.com", 3, "Sidney", 193.861303079808740m, "3834", true, "Smitham", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 1, 19, 23, 22, 13, 255, DateTimeKind.Unspecified).AddTicks(7551), "Temizlik Görevlisi", 0 },
+                    { 13, null, null, null, null, null, null, 1, "Hubert.Keeling@yahoo.com", 3, "Hubert", 193.815366688098460m, "7145", true, "Keeling", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 6, 10, 18, 55, 28, 621, DateTimeKind.Unspecified).AddTicks(590), "Temizlik Görevlisi", 0 },
+                    { 14, null, null, null, null, null, null, 1, "Leonard_Goodwin@hotmail.com", 3, "Leonard", 191.491879625940640m, "4236", true, "Goodwin", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 3, 28, 16, 5, 14, 864, DateTimeKind.Unspecified).AddTicks(612), "Temizlik Görevlisi", 0 },
+                    { 15, null, null, null, null, null, null, 1, "Bill52@gmail.com", 3, "Bill", 190.2768763714827950m, "9503", true, "Watsica", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 9, 14, 10, 33, 13, 645, DateTimeKind.Unspecified).AddTicks(1928), "Temizlik Görevlisi", 0 },
+                    { 11, null, null, null, null, null, null, 1, "Glenda27@gmail.com", 3, "Glenda", 194.571414945913210m, "2378", true, "Stehr", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 1, 26, 16, 0, 18, 304, DateTimeKind.Unspecified).AddTicks(6342), "Temizlik Görevlisi", 0 },
+                    { 17, null, null, null, null, null, null, 1, "Elmer_Bednar@hotmail.com", 3, "Elmer", 199.472890766092060m, "4253", true, "Bednar", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 1, 30, 12, 4, 58, 117, DateTimeKind.Unspecified).AddTicks(3557), "Temizlik Görevlisi", 0 },
+                    { 18, null, null, null, null, null, null, 1, "Phillip81@gmail.com", 3, "Phillip", 199.368092748042240m, "2937", true, "Gulgowski", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 8, 11, 5, 0, 1, 650, DateTimeKind.Unspecified).AddTicks(5706), "Temizlik Görevlisi", 0 },
+                    { 43, null, null, null, null, null, null, 1, "Charlotte_Weissnat62@hotmail.com", 3, "Charlotte", 196.318881984948590m, "2249", true, "Weissnat", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 9, 27, 19, 4, 35, 156, DateTimeKind.Unspecified).AddTicks(1951), "Elektirikçi", 0 },
+                    { 44, null, null, null, null, null, null, 2, "Bobbie.Parisian@hotmail.com", 3, "Bobbie", 199.75731980044270m, "3372", true, "Parisian", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 1, 13, 23, 35, 19, 544, DateTimeKind.Unspecified).AddTicks(1825), "Bilgi İşlem Sorumlusu", 0 },
+                    { 19, null, null, null, null, null, null, 3, "Lorenzo_Mayer@gmail.com", 3, "Lorenzo", 197.59036446809320m, "6933", true, "Mayer", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 8, 27, 10, 35, 34, 382, DateTimeKind.Unspecified).AddTicks(3462), "Aşçı", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -1251,8 +1251,8 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "AppUserId", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "DepartmentID", "Email", "EmployeeStatus", "FirstName", "HourlyRate", "IdentificationNumber", "IsActive", "LastName", "LeavingWorkDate", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "MonthlySalary", "PhoneNumber", "ReasonForLeaving", "StartDateOfWork", "Title", "UserID" },
                 values: new object[,]
                 {
-                    { 16, null, null, null, null, null, null, 1, "Jose_Walsh69@hotmail.com", 3, "Jose", 193.185965518088060m, "5719", true, "Walsh", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 1, 28, 22, 39, 44, 413, DateTimeKind.Unspecified).AddTicks(7565), "Temizlik Görevlisi", 0 },
-                    { 20, null, null, null, null, null, null, 3, "Lela.Hickle@hotmail.com", 3, "Lela", 195.389449189132760m, "1598", true, "Hickle", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 1, 18, 1, 25, 16, 849, DateTimeKind.Unspecified).AddTicks(5822), "Aşçı", 0 }
+                    { 16, null, null, null, null, null, null, 1, "Eloise12@gmail.com", 3, "Eloise", 194.224369723454290m, "5753", true, "Schuster", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 8, 7, 19, 23, 39, 384, DateTimeKind.Unspecified).AddTicks(1601), "Temizlik Görevlisi", 0 },
+                    { 20, null, null, null, null, null, null, 3, "Dolores.Little67@yahoo.com", 3, "Dolores", 194.207593777313640m, "2813", true, "Little", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 9, 3, 0, 20, 6, 715, DateTimeKind.Unspecified).AddTicks(2084), "Aşçı", 0 }
                 });
 
             migrationBuilder.InsertData(

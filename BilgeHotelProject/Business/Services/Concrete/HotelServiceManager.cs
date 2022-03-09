@@ -124,5 +124,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<HotelService> GetFirstOrDefault()
+        {
+            return await unitOfWork.HotelServiceDal.GetFirstOrDefault();
+        }
     }
 }

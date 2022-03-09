@@ -129,5 +129,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<RoomType> GetFirstOrDefault()
+        {
+            return await unitOfWork.RoomTypeDal.GetFirstOrDefault();
+        }
     }
 }

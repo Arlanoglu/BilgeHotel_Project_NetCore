@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace WebUI
@@ -29,6 +30,9 @@ namespace WebUI
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("defaultConnection"), x => x.MigrationsAssembly("DataAccess")));
 
             services.ConfigureServices(); //Ioc containerda extension metot oluþturuldu.
+
+            //AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
         

@@ -123,5 +123,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<WebReservation> GetFirstOrDefault()
+        {
+            return await unitOfWork.WebReservationDal.GetFirstOrDefault();
+        }
     }
 }

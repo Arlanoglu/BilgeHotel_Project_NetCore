@@ -20,5 +20,6 @@ namespace Business.Services.Abstract
         IResult RemoveForce(int id);
         Task<bool> Any(Expression<Func<T, bool>> exp);
         Task<List<T>> GetDefault(Expression<Func<T, bool>> exp);
+        Task<T> GetFirstOrDefault();
     }
 }

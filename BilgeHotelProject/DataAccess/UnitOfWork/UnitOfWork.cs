@@ -12,7 +12,7 @@ namespace DataAccess.UnitOfWork
     {
         private readonly AppDbContext context;
 
-        public UnitOfWork(AppDbContext context, IDepartmentDal departmentDal, IEmployeeDal employeeDal, IExtraServiceDal extraServiceDal, IFacilityOfRoomDal facilityOfRoomDal, IGuestDal guestDal, IIncomeDal incomeDal, IReceptionReservationDal receptionReservationDal, IRegistrationDal registrationDal, IRoomDal roomDal, IRoomFacilityDal roomFacilityDal, IRoomTypeDal roomTypeDal, ISalaryDal salaryDal, IServicePackDal servicePackDal, IShiftDal shiftDal, IStatusOfRoomDal statusOfRoomDal, IUseOfExtraServiceDal useOfExtraServiceDal, IWebReservationDal webReservationDal, IWorkScheduleDal workScheduleDal, IPictureDal pictureDal, IAboutusDal aboutusDal, IHomePageDal homePageDal, IHomePageSlideDal homePageSlideDal, IHotelServiceDal hotelServiceDal, IContactDal contactDal, ISettingDal settingDal, IEmployeeShiftDal employeeShiftDal)
+        public UnitOfWork(AppDbContext context, IDepartmentDal departmentDal, IEmployeeDal employeeDal, IExtraServiceDal extraServiceDal, IFacilityOfRoomDal facilityOfRoomDal, IGuestDal guestDal, IIncomeDal incomeDal, IReceptionReservationDal receptionReservationDal, IRegistrationDal registrationDal, IRoomDal roomDal, IRoomFacilityDal roomFacilityDal, IRoomTypeDal roomTypeDal, ISalaryDal salaryDal, IServicePackDal servicePackDal, IShiftDal shiftDal, IStatusOfRoomDal statusOfRoomDal, IUseOfExtraServiceDal useOfExtraServiceDal, IWebReservationDal webReservationDal, IWorkScheduleDal workScheduleDal, IPictureDal pictureDal, IAboutusDal aboutusDal, IHomePageDal homePageDal, IHomePageSlideDal homePageSlideDal, IHotelServiceDal hotelServiceDal, IContactDal contactDal, ISettingDal settingDal, IEmployeeShiftDal employeeShiftDal, IRoomPictureDal roomPictureDal)
         {
             this.context = context;
             DepartmentDal = departmentDal;
@@ -41,6 +41,7 @@ namespace DataAccess.UnitOfWork
             ContactDal = contactDal;
             SettingDal = settingDal;
             EmployeeShiftDal = employeeShiftDal;
+            RoomPictureDal = roomPictureDal;
         }
         public IDepartmentDal DepartmentDal { get; }
 
@@ -85,6 +86,7 @@ namespace DataAccess.UnitOfWork
         public IContactDal ContactDal { get; }
         public ISettingDal SettingDal { get; }
         public IEmployeeShiftDal EmployeeShiftDal { get; }
+        public IRoomPictureDal RoomPictureDal { get; }
 
         public void Dispose()
         {

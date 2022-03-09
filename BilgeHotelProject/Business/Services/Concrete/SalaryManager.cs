@@ -123,5 +123,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<Salary> GetFirstOrDefault()
+        {
+            return await unitOfWork.SalaryDal.GetFirstOrDefault();
+        }
     }
 }

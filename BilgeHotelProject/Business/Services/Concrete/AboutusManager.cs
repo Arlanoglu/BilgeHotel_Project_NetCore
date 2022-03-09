@@ -87,6 +87,11 @@ namespace Business.Services.Concrete
             return await unitOfWork.AboutusDal.GetDefault(exp);
         }
 
+        public async Task<Aboutus> GetFirstOrDefault()
+        {
+            return await unitOfWork.AboutusDal.GetFirstOrDefault();
+        }
+
         public IResult RemoveForce(int id)
         {
             try

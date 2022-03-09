@@ -124,5 +124,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<Contact> GetFirstOrDefault()
+        {
+            return await unitOfWork.ContactDal.GetFirstOrDefault();
+        }
     }
 }

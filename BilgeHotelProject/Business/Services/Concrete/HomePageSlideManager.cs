@@ -1,5 +1,6 @@
 ﻿using Business.Services.Abstract;
 using Core.Utilities.Results.Abstract;
+using DataAccess.UnitOfWork;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,49 +13,120 @@ namespace Business.Services.Concrete
 {
     public class HomePageSlideManager : IHomePageSlideService
     {
-        public Task<bool> Any(Expression<Func<HomePageSlide, bool>> exp)
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IResult result;
+
+        public HomePageSlideManager(IUnitOfWork unitOfWork, IResult result)
         {
-            throw new NotImplementedException();
+            this.unitOfWork = unitOfWork;
+            this.result = result;
+        }
+
+        public async Task<bool> Any(Expression<Func<HomePageSlide, bool>> exp)
+        {
+            return await unitOfWork.HomePageSlideDal.Any(exp);
         }
 
         public IResult Create(HomePageSlide model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                unitOfWork.HomePageSlideDal.Create(model);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
         }
 
         public IResult Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                unitOfWork.HomePageSlideDal.Delete(id);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
         }
 
-        public Task<List<HomePageSlide>> GetActive()
+        public async Task<List<HomePageSlide>> GetActive()
         {
-            throw new NotImplementedException();
+            return await unitOfWork.HomePageSlideDal.GetActive();
         }
 
-        public Task<List<HomePageSlide>> GetAll()
+        public async Task<List<HomePageSlide>> GetAll()
         {
-            throw new NotImplementedException();
+            return await unitOfWork.HomePageSlideDal.GetAll();
         }
 
-        public Task<HomePageSlide> GetById(int id)
+        public async Task<HomePageSlide> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await unitOfWork.HomePageSlideDal.GetById(id);
         }
 
-        public Task<List<HomePageSlide>> GetDefault(Expression<Func<HomePageSlide, bool>> exp)
+        public async Task<List<HomePageSlide>> GetDefault(Expression<Func<HomePageSlide, bool>> exp)
         {
-            throw new NotImplementedException();
+            return await unitOfWork.HomePageSlideDal.GetDefault(exp);
         }
 
         public IResult RemoveForce(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                unitOfWork.HomePageSlideDal.RemoveForce(id);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
         }
 
         public IResult Update(HomePageSlide model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                unitOfWork.HomePageSlideDal.Update(model);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
+        public async Task<HomePageSlide> GetFirstOrDefault()
+        {
+            return await unitOfWork.HomePageSlideDal.GetFirstOrDefault();
         }
     }
 }

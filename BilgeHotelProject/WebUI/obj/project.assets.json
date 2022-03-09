@@ -2123,7 +2123,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Core": "1.0.0",
           "DataAccess": "1.0.0"
         },
@@ -7474,7 +7473,9 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "Business >= 1.0.0",
+      "Entities >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.10",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2"
@@ -7517,6 +7518,9 @@
           "projectReferences": {
             "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Business\\Business.csproj": {
               "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Business\\Business.csproj"
+            },
+            "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Entities\\Entities.csproj"
             }
           }
         }
@@ -7531,6 +7535,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[11.0.0, )"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",

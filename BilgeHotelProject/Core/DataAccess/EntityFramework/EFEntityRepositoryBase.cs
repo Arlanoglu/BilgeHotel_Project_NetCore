@@ -143,5 +143,10 @@ namespace Core.DataAccess.EntityFramework
         {
             return entity.Where(exp);
         }
+
+        public async Task<TEntity> GetFirstOrDefault()
+        {
+            return await entity.FirstOrDefaultAsync();
+        }
     }
 }

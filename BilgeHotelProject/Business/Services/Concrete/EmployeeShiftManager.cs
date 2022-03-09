@@ -124,5 +124,9 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+        public async Task<EmployeeShift> GetFirstOrDefault()
+        {
+            return await unitOfWork.EmployeeShiftDal.GetFirstOrDefault();
+        }
     }
 }

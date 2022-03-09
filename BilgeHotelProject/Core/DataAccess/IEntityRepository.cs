@@ -21,6 +21,7 @@ namespace Core.DataAccess
         Task<bool> Any(Expression<Func<T, bool>> exp);
         Task<List<T>> GetDefault(Expression<Func<T, bool>> exp);
         IQueryable<T> Where(Expression<Func<T, bool>> exp);
-        
+        Task<T> GetFirstOrDefault();
+
     }
 }
