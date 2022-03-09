@@ -29,7 +29,6 @@ namespace WebUI
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("defaultConnection"), x => x.MigrationsAssembly("DataAccess")));
 
             services.ConfigureServices(); //Ioc containerda extension metot oluþturuldu.
-
         }
 
         

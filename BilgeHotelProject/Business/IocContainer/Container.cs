@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -74,6 +75,9 @@ namespace Business.IocContainer
             services.AddScoped<IContactDal, EFContactDal>();
             services.AddScoped<ISettingDal, EFSettingDal>();
             services.AddScoped<IEmployeeShiftDal, EFEmployeeShiftDal>();
+
+            //AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }

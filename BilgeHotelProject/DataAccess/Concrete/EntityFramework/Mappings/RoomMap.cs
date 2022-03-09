@@ -15,8 +15,9 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<Room> builder)
         {
             CoreConfig(builder);
-            builder.Property(x => x.RoomNumber).IsRequired();
+            builder.Property(x => x.RoomNumber).IsRequired().HasMaxLength(50);
             builder.Property(x => x.FloorNumber).IsRequired();
+            builder.Property(x => x.Description).HasMaxLength(500);
         }
     }
 }

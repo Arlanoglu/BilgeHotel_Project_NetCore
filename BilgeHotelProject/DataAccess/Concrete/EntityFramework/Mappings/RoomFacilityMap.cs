@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         {
             CoreConfig(builder);
             builder.Property(x => x.FacilityName).HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Description).HasMaxLength(200);
+            builder.Property(x => x.Description).HasMaxLength(500);
         }
     }
 }

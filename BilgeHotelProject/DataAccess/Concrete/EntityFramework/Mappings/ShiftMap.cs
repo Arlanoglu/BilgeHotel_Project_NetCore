@@ -15,10 +15,10 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<Shift> builder)
         {
             CoreConfig(builder);
-            builder.Property(x => x.ShiftName).IsRequired().HasMaxLength(20);
+            builder.Property(x => x.ShiftName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.StartTime).IsRequired();
             builder.Property(x => x.EndTime).IsRequired();
-            builder.Property(x => x.Description).HasMaxLength(200);
+            builder.Property(x => x.Description).HasMaxLength(500);
         }
     }
 }
