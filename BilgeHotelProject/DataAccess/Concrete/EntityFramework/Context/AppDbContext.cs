@@ -111,7 +111,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.ApplyConfiguration(new WorkScheduleMap());
             builder.ApplyConfiguration(new EmployeeShiftMap());
 
-            builder.Seed();
+            //builder.Seed();
             base.OnModelCreating(builder);
         }
 

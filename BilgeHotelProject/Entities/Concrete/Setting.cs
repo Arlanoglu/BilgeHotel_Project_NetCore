@@ -17,11 +17,9 @@ namespace Entities.Concrete
         public int HomePageID { get; set; }
         public int AboutusID { get; set; }
         public int ContactID { get; set; }
-        public int HotelServiceID { get; set; }
         public virtual HomePage HomePage { get; set; }
         public virtual Aboutus Aboutus { get; set; }
         public virtual Contact Contact { get; set; }
-        public virtual HotelService HotelService { get; set; }
         public virtual List<HotelService> HotelServices { get; set; }
     }
 }
