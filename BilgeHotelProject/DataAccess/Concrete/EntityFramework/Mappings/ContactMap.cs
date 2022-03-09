@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.Adress).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Phone1).HasMaxLength(11).IsRequired();
             builder.Property(x => x.Phone2).HasMaxLength(11);
-            builder.Property(x => x.Fax).HasMaxLength(11);
+            builder.Property(x => x.Fax).HasMaxLength(20);
             builder.Property(x => x.Email).HasMaxLength(100).IsRequired();
             builder.Property(x => x.Facebook).HasMaxLength(200);
             builder.Property(x => x.Instagram).HasMaxLength(200);

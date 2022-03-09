@@ -16,8 +16,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         {
             CoreConfig(builder);
             builder.Ignore(x => x.ID);
-            builder.HasKey(x => x.ExtraServiceID);
-            builder.HasKey(x => x.RegistrationID);
+            builder.HasKey(x => new { x.ExtraServiceID, x.RegistrationID });
         }
     }
 }
