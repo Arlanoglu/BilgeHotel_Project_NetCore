@@ -17,7 +17,6 @@ namespace WebUI.Controllers
     {
         private readonly IMapper mapper;
         private readonly IHomePageService homePageService;
-        private readonly IHomePageSlideService homePageSlideService;
         private readonly IRoomTypeService roomTypeService;
         private readonly IRoomPictureService roomPictureService;
 
@@ -25,7 +24,6 @@ namespace WebUI.Controllers
         {
             this.mapper = mapper;
             this.homePageService = homePageService;
-            this.homePageSlideService = homePageSlideService;
             this.roomTypeService = roomTypeService;
             this.roomPictureService = roomPictureService;
         }
