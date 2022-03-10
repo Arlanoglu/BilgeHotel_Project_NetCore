@@ -12,5 +12,7 @@ namespace WebUI.Models.RoomType
         public int NumberOfPeople { get; set; }
         public int NumberOfBed { get; set; }
         public decimal Price { get; set; }
+
+        public List<VMRoomPicture> VMRoomPictures { get; set; }
     }
 }

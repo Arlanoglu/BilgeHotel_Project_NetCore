@@ -21,7 +21,7 @@ namespace WebUI.Controllers
         private readonly IRoomTypeService roomTypeService;
         private readonly IRoomPictureService roomPictureService;
 
-        public HomeController(IMapper mapper, IHomePageService homePageService, IHomePageSlideService homePageSlideService, IRoomTypeService roomTypeService, IRoomPictureService roomPictureService)
+        public HomeController(IMapper mapper, IHomePageService homePageService, IRoomTypeService roomTypeService, IRoomPictureService roomPictureService)
         {
             this.mapper = mapper;
             this.homePageService = homePageService;
@@ -33,19 +33,24 @@ namespace WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var homePage = await homePageService.GetFirstOrDefault();
-            var homePageSlides = await homePageSlideService.GetActive();
-            var roomPictures = await roomPictureService.GetActive();
+            //var roomPictures = await roomPictureService.GetActive();
             var roomTypes = await roomTypeService.GetActive();
 
             var vmHomePage = mapper.Map<VMHomePage>(homePage);
-            var vmHomePageSlides = mapper.Map<List<VMHomePageSlide>>(homePageSlides);
-            var vmRoomPictures = mapper.Map <List<VMRoomPicture>>(roomPictures);
-            var vmRoomTypes = mapper.Map <List<VMRoomType>>(roomTypes);
+            var vmHomePageSlides = mapper.Map<List<VMHomePageSlide>>(homePage.HomePageSlides);
+
+            List<VMRoomType> vmRoomTypes = new List<VMRoomType>();
+            foreach (var item in roomTypes)
+            {
+                var vmRoomPictures = mapper.Map<List<VMRoomPicture>>(item.RoomPictures);
+                var vmRoomType = mapper.Map<VMRoomType>(item);
+                vmRoomType.VMRoomPictures = vmRoomPictures;
+                vmRoomTypes.Add(vmRoomType);
+            }
 
             VMHomeIndex vMHomeIndex = new VMHomeIndex();
             vMHomeIndex.VMHomePage = vmHomePage;
             vMHomeIndex.VMHomePageSlides = vmHomePageSlides;
-            vMHomeIndex.VMRoomPictures = vmRoomPictures;
             vMHomeIndex.VMRoomTypes = vmRoomTypes;
 
             return View();
