@@ -8,6 +8,6 @@ namespace Entities.Concrete
         public string ServiceName { get; set; }
         public decimal Price { get; set; }
 
-        public virtual List<UseOfExtraService> UseOfExtraServices { get; set; }
+        public virtual ICollection<UseOfExtraService> UseOfExtraServices { get; set; }
     }
 }

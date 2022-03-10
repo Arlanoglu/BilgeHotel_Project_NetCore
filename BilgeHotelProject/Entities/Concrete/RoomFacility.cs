@@ -8,6 +8,6 @@ namespace Entities.Concrete
         public string FacilityName { get; set; }
         public string Description { get; set; }
 
-        public virtual List<FacilityOfRoom> FacilityOfRooms { get; set; }
+        public virtual ICollection<FacilityOfRoom> FacilityOfRooms { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace Entities.Concrete
         public int RoomTypeID { get; set; }
 
         public virtual RoomType RoomType { get; set; }
-        public virtual List<StatusOfRoom> StatusOfRooms { get; set; }
-        public virtual List<WebReservation> WebReservations { get; set; }
-        public virtual List<Registration> Registirations { get; set; }
-        public virtual List<ReceptionReservation> ReceptionReservations { get; set; }
+        public virtual ICollection<StatusOfRoom> StatusOfRooms { get; set; }
+        public virtual ICollection<WebReservation> WebReservations { get; set; }
+        public virtual ICollection<Registration> Registirations { get; set; }
+        public virtual ICollection<ReceptionReservation> ReceptionReservations { get; set; }
 
     }
 }

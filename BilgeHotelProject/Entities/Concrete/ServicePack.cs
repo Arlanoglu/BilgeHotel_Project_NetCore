@@ -9,8 +9,8 @@ namespace Entities.Concrete
         public decimal PackPrice { get; set; }
         public string Description { get; set; }
 
-        public virtual List<WebReservation> WebReservations { get; set; }
-        public virtual List<ReceptionReservation> ReceptionReservations { get; set; }
-        public virtual List<Registration> Registirations { get; set; }
+        public virtual ICollection<WebReservation> WebReservations { get; set; }
+        public virtual ICollection<ReceptionReservation> ReceptionReservations { get; set; }
+        public virtual ICollection<Registration> Registirations { get; set; }
     }
 }

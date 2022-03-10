@@ -26,7 +26,7 @@ namespace Entities.Concrete
         public virtual Department Department { get; set; }
         public virtual AppUser AppUser { get; set; }
 
-        public virtual List<EmployeeShift> EmployeesShifts { get; set; }
-        public virtual List<WorkSchedule> WorkSchedules { get; set; }
+        public virtual ICollection<EmployeeShift> EmployeesShifts { get; set; }
+        public virtual ICollection<WorkSchedule> WorkSchedules { get; set; }
     }
 }

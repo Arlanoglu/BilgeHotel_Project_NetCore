@@ -18,7 +18,7 @@ namespace Entities.Concrete
         public string Paragraph4 { get; set; }
         public string Paragraph5 { get; set; }
 
-        public virtual List<HomePageSlide> HomePageSlides { get; set; }
-        public virtual List<Setting> Settings { get; set; }
+        public virtual ICollection<HomePageSlide> HomePageSlides { get; set; }
+        public virtual ICollection<Setting> Settings { get; set; }
     }
 }

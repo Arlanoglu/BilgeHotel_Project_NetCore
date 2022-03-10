@@ -17,7 +17,7 @@ namespace Entities.Concrete
         public string Paragraph4 { get; set; }
         public string Paragraph5 { get; set; }
 
-        public virtual List<Picture> Pictures { get; set; }
-        public virtual List<Setting> Settings { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual ICollection<Setting> Settings { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Entities.Concrete
         public string Description { get; set; }
 
         
-        public virtual List<WorkSchedule> WorkSchedules { get; set; }
-        public virtual List<EmployeeShift> EmployeesShifts { get; set; }
+        public virtual ICollection<WorkSchedule> WorkSchedules { get; set; }
+        public virtual ICollection<EmployeeShift> EmployeesShifts { get; set; }
     }
 }

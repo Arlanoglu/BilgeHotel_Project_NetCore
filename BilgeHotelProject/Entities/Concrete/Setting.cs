@@ -20,6 +20,6 @@ namespace Entities.Concrete
         public virtual HomePage HomePage { get; set; }
         public virtual Aboutus Aboutus { get; set; }
         public virtual Contact Contact { get; set; }
-        public virtual List<HotelService> HotelServices { get; set; }
+        public virtual ICollection<HotelService> HotelServices { get; set; }
     }
 }

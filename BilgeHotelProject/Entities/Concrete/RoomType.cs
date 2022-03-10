@@ -15,11 +15,11 @@ namespace Entities.Concrete
         public int NumberOfBed { get; set; }
         public decimal Price { get; set; }
 
-        public virtual List<Room> Rooms { get; set; }
-        public virtual List<FacilityOfRoom> FacilityOfRooms { get; set; }
-        public virtual List<WebReservation> WebReservations { get; set; }
-        public virtual List<ReceptionReservation> ReceptionReservations { get; set; }
-        public virtual List<RoomPicture> RoomPictures { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<FacilityOfRoom> FacilityOfRooms { get; set; }
+        public virtual ICollection<WebReservation> WebReservations { get; set; }
+        public virtual ICollection<ReceptionReservation> ReceptionReservations { get; set; }
+        public virtual ICollection<RoomPicture> RoomPictures { get; set; }
 
 
     }
