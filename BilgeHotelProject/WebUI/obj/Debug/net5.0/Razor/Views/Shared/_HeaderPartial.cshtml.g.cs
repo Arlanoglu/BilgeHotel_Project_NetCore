@@ -40,8 +40,15 @@ using WebUI.Models.Contact;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Views\_ViewImports.cshtml"
+using WebUI.Models.Aboutus;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"32e4a293f15f58f86644e7722149191751f82862", @"/Views/Shared/_HeaderPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"53eda672ceb39a3ea634d7b213fd73e06e7f527c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1a00dcfdda4f476633de69a57e8e28cefa695baf", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__HeaderPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/Home/Index"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -76,7 +83,7 @@ using WebUI.Models.Contact;
         {
             WriteLiteral("  <!-- ======= Header ======= -->\r\n<header id=\"header\" class=\"fixed-top\">\r\n    <div class=\"container d-flex align-items-center\">\r\n\r\n");
             WriteLiteral("        <h1 class=\"logo mr-auto\"><a href=\"index.html\"><span>BILGE </span>HOTEL</a></h1>\r\n\r\n\r\n        <nav class=\"nav-menu d-none d-lg-block\">\r\n            <ul>\r\n                <li class=\"active\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828626208", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828626435", async() => {
                 WriteLiteral("Ana Sayfa");
             }
             );
@@ -91,7 +98,7 @@ using WebUI.Models.Contact;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828627311", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828627538", async() => {
                 WriteLiteral("Hakkımızda");
             }
             );
@@ -114,7 +121,7 @@ using WebUI.Models.Contact;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                </li>\r\n                <li>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828628864", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828629091", async() => {
                 WriteLiteral("Hizmetler");
             }
             );
@@ -129,7 +136,7 @@ using WebUI.Models.Contact;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f828629967", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f8286210194", async() => {
                 WriteLiteral("İletişim");
             }
             );
@@ -144,7 +151,7 @@ using WebUI.Models.Contact;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                <li>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f8286211069", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e4a293f15f58f86644e7722149191751f8286211297", async() => {
                 WriteLiteral("Rezervasyon");
             }
             );

@@ -1,4 +1,4 @@
-﻿
+﻿@model VMAboutus
 @{
     ViewData["Title"] = "Hakkımızda";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,28 +27,40 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about-img">
-                        <img src="~/img/about-img3.jpg" alt="Images" class="img-fluid">
+                        @if (Model.PictureUrl != null)
+                        {
+                            <img src="@Model.PictureUrl" class="img-fluid">
+                        }
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-content">
                         <div class="section-title-1">
-                            <h2>We Have More Than 20+ Global & International Experience</h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt ante tellus,
-                                sit amet rhoncus massa aliquam sit amet. Cras porttitor mauris quis mattis ornare.
-                                In efficitur at sem quis pretium. Aenean sit amet neque ut dolor lacinia rutrum.
-                                In vulputate pellentesque turpis et porta.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt ante tellus,
-                                sit amet rhoncus massa aliquam sit amet. 
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt ante tellus,
-                                sit amet rhoncus massa aliquam sit amet. Cras porttitor mauris quis mattis ornare.
-                                In efficitur at sem quis pretium.
-                            </p>
+                            @if (Model.Title != null)
+                            {
+                                <h2>@Model.Title</h2>
+                            }
+                            @if (Model.Paragraph1 != null)
+                            {
+                                <p>@Model.Paragraph1</p>
+                            }
+                            @if (Model.Paragraph2 != null)
+                            {
+                                <p>@Model.Paragraph2</p>
+                            }
+                            @if (Model.Paragraph3 != null)
+                            {
+                                <p>@Model.Paragraph3</p>
+                            }
+                            @if (Model.Paragraph4 != null)
+                            {
+                                <p>@Model.Paragraph4</p>
+                            }
+                            @if (Model.Paragraph5 != null)
+                            {
+                                <p>@Model.Paragraph5</p>
+                            }
+
                         </div>
                     </div>
                 </div>

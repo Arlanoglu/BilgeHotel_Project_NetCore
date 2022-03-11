@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUI.Models.Aboutus;
 using WebUI.Models.Contact;
 using WebUI.Models.HomePage;
+using WebUI.Models.Picture;
 using WebUI.Models.RoomType;
 
 namespace WebUI.Utilities
@@ -31,6 +33,12 @@ namespace WebUI.Utilities
             CreateMap<VMContact, Contact>();
             CreateMap<VMSocialMedia, Contact>();
             CreateMap<Contact, VMSocialMedia>();
+
+            CreateMap<Aboutus, VMAboutus>();
+            CreateMap<VMAboutus, Aboutus>();
+
+            CreateMap<Picture, VMPicture>();
+            CreateMap<VMPicture, Picture>();
         }
     }
 }

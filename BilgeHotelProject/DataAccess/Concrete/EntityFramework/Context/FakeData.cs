@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.Entity<Aboutus>().HasData(
                 new Aboutus {
                     ID = 1,
-                    PictureUrl= "~/img/about-img.jpg",
+                    PictureUrl= "/img/aboutus-img.jpg",
                     Title = "Bilge Hotel, Kalite ve Konforun Adresi",
                     Paragraph1 = "Kemer’in tarihi ve kültürel merkezlerinin kesişim noktasında yer alan, şehrin ilk 5 yıldızlı konaklama tesisi unvanına sahip Bilge Hotel, 35 yıllık deneyimi ile alanının en iyisi olmaya devam ediyor.",
                     Paragraph2 = "Bilge Hotel, Osmanlı sarayları ve Fransız mimarisinden esinlenilerek özenle tasarlanmış yeni konsepti kapsamında; birbirinden farklı şekilde dekore edilmiş lüks oda ve süitleri, Türk ve dünya mutfağının seçkin lezzetlerini servis eden restoranları, A’dan Z’ye yenilenmiş SPA tesisiyle misafirlerine en konforlu konaklama deneyimini sunuyor.",
