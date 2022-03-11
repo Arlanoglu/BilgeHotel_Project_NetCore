@@ -1,0 +1,28 @@
+﻿@model VMContact
+
+@{
+    if (Model.Adress != null)
+    {
+        <p>@Model.Adress</p>
+    }
+    if (Model.Phone1 != null)
+    {
+        <strong>Phone:</strong> @Model.Phone1
+        <br>
+    }
+    if (Model.Phone2 != null)
+    {
+        <strong>Phone:</strong> @Model.Phone2
+        <br>
+    }
+    if (Model.Fax != null)
+    {
+        <strong>Phone:</strong> @Model.Fax
+        <br>
+    }
+    if (Model.Email != null)
+    {
+        <strong>Email:</strong> @Model.Email
+        <br>
+    }
+}

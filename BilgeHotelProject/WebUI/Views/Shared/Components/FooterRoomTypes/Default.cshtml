@@ -1,0 +1,8 @@
+﻿@model List<VMRoomTypeName>
+
+@foreach (var item in Model)
+{
+    <ul>
+        <li><i class="bx bx-chevron-right"></i> <a href="/Room/RoomDetail/@item.ID">@item.RoomTypeName</a></li>
+    </ul>
+}

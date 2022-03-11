@@ -7,6 +7,7 @@ namespace WebUI.Models.RoomType
 {
     public class VMRoomType
     {
+        public int ID { get; set; }
         public string RoomTypeName { get; set; }
         public string Description { get; set; }
         public int NumberOfPeople { get; set; }

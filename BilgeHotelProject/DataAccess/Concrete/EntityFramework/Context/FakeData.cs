@@ -31,15 +31,15 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region Picture
             builder.Entity<Picture>().HasData(
-                new Picture { ID = 1, PictureName = "Görsel1", PictureUrl = "~/img/gallery-img1.jpg", AboutusID = 1 },
-                new Picture { ID = 2, PictureName = "Görsel2", PictureUrl = "~/img/gallery-img2.jpg", AboutusID = 1 },
-                new Picture { ID = 3, PictureName = "Görsel3", PictureUrl = "~/img/gallery-img3.jpg", AboutusID = 1 },
-                new Picture { ID = 4, PictureName = "Görsel4", PictureUrl = "~/img/gallery-img4.jpg", AboutusID = 1 },
-                new Picture { ID = 5, PictureName = "Görsel5", PictureUrl = "~/img/gallery-img5.jpg", AboutusID = 1 },
-                new Picture { ID = 6, PictureName = "Görsel6", PictureUrl = "~/img/gallery-img6.jpg", AboutusID = 1 },
-                new Picture { ID = 7, PictureName = "Görsel7", PictureUrl = "~/img/gallery-img7.jpg", AboutusID = 1 },
-                new Picture { ID = 8, PictureName = "Görsel8", PictureUrl = "~/img/gallery-img8.jpg", AboutusID = 1 },
-                new Picture { ID = 9, PictureName = "Görsel9", PictureUrl = "~/img/gallery-img9.jpg", AboutusID = 1 }
+                new Picture { ID = 1, PictureName = "Görsel1", PictureUrl = "/img/gallery-img1.jpg", AboutusID = 1 },
+                new Picture { ID = 2, PictureName = "Görsel2", PictureUrl = "/img/gallery-img2.jpg", AboutusID = 1 },
+                new Picture { ID = 3, PictureName = "Görsel3", PictureUrl = "/img/gallery-img3.jpg", AboutusID = 1 },
+                new Picture { ID = 4, PictureName = "Görsel4", PictureUrl = "/img/gallery-img4.jpg", AboutusID = 1 },
+                new Picture { ID = 5, PictureName = "Görsel5", PictureUrl = "/img/gallery-img5.jpg", AboutusID = 1 },
+                new Picture { ID = 6, PictureName = "Görsel6", PictureUrl = "/img/gallery-img6.jpg", AboutusID = 1 },
+                new Picture { ID = 7, PictureName = "Görsel7", PictureUrl = "/img/gallery-img7.jpg", AboutusID = 1 },
+                new Picture { ID = 8, PictureName = "Görsel8", PictureUrl = "/img/gallery-img8.jpg", AboutusID = 1 },
+                new Picture { ID = 9, PictureName = "Görsel9", PictureUrl = "/img/gallery-img9.jpg", AboutusID = 1 }
                 );
             #endregion            
 
@@ -51,9 +51,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 .RuleFor(x => x.Email, x => x.Person.Email);
             Contact contact = fakeContact;
             contact.ID = 1;
-            contact.Facebook = "facebook.com/bilgehotel";
-            contact.Instagram = "instagram.com/bilgehotel";
-            contact.Twitter = "twitter.com/bilgehotel";
+            contact.Facebook = "https://www.facebook.com/bilgehotel";
+            contact.Instagram = "https://www.instagram.com/bilgehotel";
+            contact.Twitter = "https://www.twitter.com/bilgehotel";
 
             builder.Entity<Contact>().HasData(contact);
             #endregion
@@ -62,7 +62,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.Entity<HomePage>().HasData(
                 new HomePage {
                     ID = 1,
-                    PictureUrl= "~/img/about-img3.jpg",
+                    PictureUrl= "/img/homepage-img.jpg",
                     Title = "Kalite ve Konfor",
                     Subtitle = "Bilge Hotel'e Hoşgeldiniz...",
                     Paragraph1 = "Bilge Hotel Thermal Spa & Convention Center; Kemer şehir merkezinde, güler yüzlü ve profesyonel ekibi ile beklentilerin üzerinde hizmet vermektedir.",
@@ -310,13 +310,13 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region RoomPicture
             builder.Entity<RoomPicture>().HasData(
-                new RoomPicture { ID = 1, RoomTypeID=1, PictureUrl="~/img/roomtypes/room-single.jpg"},
-                new RoomPicture { ID = 2, RoomTypeID=2, PictureUrl="~/img/roomtypes/room-double.jpg"},
-                new RoomPicture { ID = 3, RoomTypeID=3, PictureUrl="~/img/roomtypes/room-double-superrior.jpg"},
-                new RoomPicture { ID = 4, RoomTypeID=4, PictureUrl="~/img/roomtypes/room-triple.jpg"},
-                new RoomPicture { ID = 5, RoomTypeID=5, PictureUrl="~/img/roomtypes/room-triple-superrior.jpg"},
-                new RoomPicture { ID = 6, RoomTypeID=6, PictureUrl="~/img/roomtypes/room-family.jpg"},
-                new RoomPicture { ID = 7, RoomTypeID=7, PictureUrl="~/img/roomtypes/room-presidential-suite.jpg"}
+                new RoomPicture { ID = 1, RoomTypeID=1, PictureUrl="/img/roomtypes/room-single.jpg"},
+                new RoomPicture { ID = 2, RoomTypeID=2, PictureUrl="/img/roomtypes/room-double.jpg"},
+                new RoomPicture { ID = 3, RoomTypeID=3, PictureUrl="/img/roomtypes/room-double-superrior.jpg"},
+                new RoomPicture { ID = 4, RoomTypeID=4, PictureUrl="/img/roomtypes/room-triple.jpg"},
+                new RoomPicture { ID = 5, RoomTypeID=5, PictureUrl="/img/roomtypes/room-triple-superrior.jpg"},
+                new RoomPicture { ID = 6, RoomTypeID=6, PictureUrl="/img/roomtypes/room-family.jpg"},
+                new RoomPicture { ID = 7, RoomTypeID=7, PictureUrl="/img/roomtypes/room-presidential-suite.jpg"}
                 );
             #endregion
 

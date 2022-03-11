@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 using WebUI.Models.HomePage;
 using WebUI.Models.RoomType;
 
-namespace WebUI.Models.HomeIndex
+namespace WebUI.Models
 {
     public class VMHomeIndex
     {
         public VMHomePage VMHomePage { get; set; }
-        public List<VMHomePageSlide> VMHomePageSlides { get; set; }
         public List<VMRoomType> VMRoomTypes { get; set; }
-        public List<VMRoomPicture> VMRoomPictures { get; set; }
     }
 }

@@ -15,5 +15,7 @@ namespace WebUI.Models.HomePage
         public string Paragraph3 { get; set; }
         public string Paragraph4 { get; set; }
         public string Paragraph5 { get; set; }
+
+        public List<VMHomePageSlide> VMHomePageSlide { get; set; }
     }
 }

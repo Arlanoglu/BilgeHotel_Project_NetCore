@@ -1,4 +1,5 @@
-﻿  <!-- ======= Footer ======= -->
+﻿@*@model VMFooter*@ 
+ <!-- ======= Footer ======= -->
 <footer id="footer">
 
     <div class="footer-top">
@@ -6,36 +7,27 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Bilge Hotel</h3>
-                    <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
-                    </p>
+                    <h3>Bilge Hotel</h3>                    
+                    <div class="w-100 h-100">
+                        @await Component.InvokeAsync("FooterContact")
+                    </div>
+                    
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Bağlantılar</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Ana Sayfa</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Hakkımızda</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/Home/Index">Ana Sayfa</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/About/Index">Hakkımızda</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Odalar</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Hizmetler</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">İletişim</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/Service/Index">Hizmetler</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/Contact/Index">İletişim</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Odalar</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                    </ul>
+                    @await Component.InvokeAsync("FooterRoomTypes") 
                 </div>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
