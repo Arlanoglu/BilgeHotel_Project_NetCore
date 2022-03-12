@@ -9,6 +9,7 @@ using WebUI.Models.Contact;
 using WebUI.Models.HomePage;
 using WebUI.Models.Picture;
 using WebUI.Models.RoomType;
+using WebUI.Models.HotelService;
 
 namespace WebUI.Utilities
 {
@@ -39,6 +40,9 @@ namespace WebUI.Utilities
 
             CreateMap<Picture, VMPicture>();
             CreateMap<VMPicture, Picture>();
+
+            CreateMap<HotelService, VMHotelService>();
+            CreateMap<VMHotelService, HotelService>();
         }
     }
 }

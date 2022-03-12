@@ -31,15 +31,13 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region Picture
             builder.Entity<Picture>().HasData(
-                new Picture { ID = 1, PictureName = "Görsel1", PictureUrl = "/img/gallery-img1.jpg", AboutusID = 1 },
-                new Picture { ID = 2, PictureName = "Görsel2", PictureUrl = "/img/gallery-img2.jpg", AboutusID = 1 },
-                new Picture { ID = 3, PictureName = "Görsel3", PictureUrl = "/img/gallery-img3.jpg", AboutusID = 1 },
-                new Picture { ID = 4, PictureName = "Görsel4", PictureUrl = "/img/gallery-img4.jpg", AboutusID = 1 },
-                new Picture { ID = 5, PictureName = "Görsel5", PictureUrl = "/img/gallery-img5.jpg", AboutusID = 1 },
-                new Picture { ID = 6, PictureName = "Görsel6", PictureUrl = "/img/gallery-img6.jpg", AboutusID = 1 },
-                new Picture { ID = 7, PictureName = "Görsel7", PictureUrl = "/img/gallery-img7.jpg", AboutusID = 1 },
-                new Picture { ID = 8, PictureName = "Görsel8", PictureUrl = "/img/gallery-img8.jpg", AboutusID = 1 },
-                new Picture { ID = 9, PictureName = "Görsel9", PictureUrl = "/img/gallery-img9.jpg", AboutusID = 1 }
+                new Picture { ID = 1, PictureName = "Görsel1", AboutusID=1, PictureUrl= "/img/gallery/room-single.jpg"},
+                new Picture { ID = 2, PictureName = "Görsel2", AboutusID=1, PictureUrl= "/img/gallery/room-double.jpg" },
+                new Picture { ID = 3, PictureName = "Görsel3", AboutusID=1, PictureUrl= "/img/gallery/room-double-superrior.jpg" },
+                new Picture { ID = 4, PictureName = "Görsel4", AboutusID=1, PictureUrl= "/img/gallery/room-triple.jpg" },
+                new Picture { ID = 5, PictureName = "Görsel5", AboutusID=1, PictureUrl= "/img/gallery/room-triple-superrior.jpg" },
+                new Picture { ID = 6, PictureName = "Görsel6", AboutusID=1, PictureUrl= "/img/gallery/room-family.jpg" },
+                new Picture { ID = 7, PictureName = "Görsel7", AboutusID = 1, PictureUrl = "/img/gallery/room-presidential-suite.jpg" }
                 );
             #endregion            
 
@@ -87,21 +85,21 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region HotelService
             builder.Entity<HotelService>().HasData(
-                new HotelService { ID = 1, IconUrl = "https://roof264.com/media/image/mobil/oda-servisi.jpg", ServiceName = "Oda Servisi", SettingID = 1 },
-                new HotelService { ID = 2, IconUrl = "https://roof264.com/media/image/mobil/ucretsiz-wi-fi.jpg", ServiceName = "Ücretsiz Wifi", SettingID = 1 },
-                new HotelService { ID = 3, IconUrl = "https://roof264.com/media/image/mobil/camasir-yikama.jpg", ServiceName = "Çamaşır Yıkama", SettingID = 1 },
-                new HotelService { ID = 4, IconUrl = "https://roof264.com/media/image/mobil/oda-ici-kasa.jpg", ServiceName = "Kasa", SettingID = 1 },
-                new HotelService { ID = 5, IconUrl = "https://roof264.com/media/image/mobil/toplanti-olanaklari-max-10.jpg", ServiceName = "Toplantı Olanakları", SettingID = 1 },
-                new HotelService { ID = 6, IconUrl = "https://roof264.com/media/image/mobil/bagaj-depolama.jpg", ServiceName = "Bagaj Depolama", SettingID = 1 },
-                new HotelService { ID = 7, IconUrl = "https://roof264.com/media/image/mobil/hizli-c-in-c-out.jpg", ServiceName = "Hızlı C in / C out", SettingID = 1 },
-                new HotelService { ID = 8, IconUrl = "https://roof264.com/media/image/mobil/kuru-temizleme.jpg", ServiceName = "Kuru Temizleme", SettingID = 1 },
-                new HotelService { ID = 9, IconUrl = "https://roof264.com/media/image/mobil/bebek-karyolasi.jpg", ServiceName = "Bebek Karyolası", SettingID = 1 },
-                new HotelService { ID = 10, IconUrl = "https://roof264.com/media/image/mobil/aile-odasi.jpg", ServiceName = "Aile Odası", SettingID = 1 },
-                new HotelService { ID = 11, IconUrl = "https://roof264.com/media/image/mobil/sicak-kahvalti.jpg", ServiceName = "Sıcak Kahvaltı", SettingID = 1 },
-                new HotelService { ID = 12, IconUrl = "https://roof264.com/media/image/mobil/merkezi-konum.jpg", ServiceName = "Merkezi Konum", SettingID = 1 },
-                new HotelService { ID = 13, IconUrl = "https://roof264.com/media/image/mobil/ucretsiz-acik-kapali-otopark.jpg", ServiceName = "Ücretsiz Açık / Kapalı Otopark", SettingID = 1 },
-                new HotelService { ID = 14, IconUrl = "https://roof264.com/media/image/mobil/utu-hizmeti.jpg", ServiceName = "Ütü Hizmeti", SettingID = 1 },
-                new HotelService { ID = 15, IconUrl = "https://roof264.com/media/image/mobil/cay-kahve-hizmeti.jpg", ServiceName = "Çay - Kahve Hizmeti", SettingID = 1 }
+                new HotelService { ID = 1, IconPicture = "https://roof264.com/media/image/mobil/oda-servisi.jpg", ServiceName = "Oda Servisi", SettingID = 1 },
+                new HotelService { ID = 2, IconPicture = "https://roof264.com/media/image/mobil/ucretsiz-wi-fi.jpg", ServiceName = "Ücretsiz Wifi", SettingID = 1 },
+                new HotelService { ID = 3, IconPicture = "https://roof264.com/media/image/mobil/camasir-yikama.jpg", ServiceName = "Çamaşır Yıkama", SettingID = 1 },
+                new HotelService { ID = 4, IconPicture = "https://roof264.com/media/image/mobil/oda-ici-kasa.jpg", ServiceName = "Kasa", SettingID = 1 },
+                new HotelService { ID = 5, IconPicture = "https://roof264.com/media/image/mobil/toplanti-olanaklari-max-10.jpg", ServiceName = "Toplantı Olanakları", SettingID = 1 },
+                new HotelService { ID = 6, IconPicture = "https://roof264.com/media/image/mobil/bagaj-depolama.jpg", ServiceName = "Bagaj Depolama", SettingID = 1 },
+                new HotelService { ID = 7, IconPicture = "https://roof264.com/media/image/mobil/hizli-c-in-c-out.jpg", ServiceName = "Hızlı C in / C out", SettingID = 1 },
+                new HotelService { ID = 8, IconPicture = "https://roof264.com/media/image/mobil/kuru-temizleme.jpg", ServiceName = "Kuru Temizleme", SettingID = 1 },
+                new HotelService { ID = 9, IconPicture = "https://roof264.com/media/image/mobil/bebek-karyolasi.jpg", ServiceName = "Bebek Karyolası", SettingID = 1 },
+                new HotelService { ID = 10, IconPicture = "https://roof264.com/media/image/mobil/aile-odasi.jpg", ServiceName = "Aile Odası", SettingID = 1 },
+                new HotelService { ID = 11, IconPicture = "https://roof264.com/media/image/mobil/sicak-kahvalti.jpg", ServiceName = "Sıcak Kahvaltı", SettingID = 1 },
+                new HotelService { ID = 12, IconPicture = "https://roof264.com/media/image/mobil/merkezi-konum.jpg", ServiceName = "Merkezi Konum", SettingID = 1 },
+                new HotelService { ID = 13, IconPicture = "https://roof264.com/media/image/mobil/ucretsiz-acik-kapali-otopark.jpg", ServiceName = "Ücretsiz Açık / Kapalı Otopark", SettingID = 1 },
+                new HotelService { ID = 14, IconPicture = "https://roof264.com/media/image/mobil/utu-hizmeti.jpg", ServiceName = "Ütü Hizmeti", SettingID = 1 },
+                new HotelService { ID = 15, IconPicture = "https://roof264.com/media/image/mobil/cay-kahve-hizmeti.jpg", ServiceName = "Çay - Kahve Hizmeti", SettingID = 1 }
                 );
             #endregion
 

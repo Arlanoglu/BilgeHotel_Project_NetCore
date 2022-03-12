@@ -19,7 +19,7 @@
                 <h3>Hakkımızda</h3>
             </div>
         </div>
-    </div>   
+    </div>
 
 
     <div class="about-area pt-100 pb-70">
@@ -65,7 +65,35 @@
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Galeri</h2>
+                </div>
+                <div class="row portfolio-container" style="position: relative; height: 1800px;">
+
+                    @foreach (var item in Model.VMPictures)
+                    {
+                        if (item.PictureUrl != null)
+                        {
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                                <div class="portfolio-wrap">
+                                    <img style="height:14rem" src="@item.PictureUrl" class="img-fluid" alt="@item.PictureName">
+                                    <div class="portfolio-info">
+                                        <div class="portfolio-links">
+                                            <a href="@item.PictureUrl" data-gall="portfolioGallery" class="venobox"><i class="icofont-expand"></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </section>
 
 </main>
