@@ -11,6 +11,7 @@ using WebUI.Models;
 using WebUI.Models.Contact;
 using WebUI.Models.HomePage;
 using WebUI.Models.RoomType;
+using WebUI.Utilities;
 
 namespace WebUI.Controllers
 {
@@ -48,7 +49,9 @@ namespace WebUI.Controllers
                 vmRoomTypes.Add(vmRoomType);
             }
 
-            VMHomeIndex vMHomeIndex = new VMHomeIndex();
+            ObjectCreator creator = new ObjectCreator();
+            var vMHomeIndex = (VMHomeIndex)creator.FactoryMethod(Utilities.Enums.ViewModels.VMHomeIndex);
+
             vMHomeIndex.VMHomePage = vmHomePage;
             vMHomeIndex.VMRoomTypes = vmRoomTypes;
 

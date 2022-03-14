@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUI.Models.RoomFacility;
 
 namespace WebUI.Models.RoomType
 {
-    public class VMRoomType
+    public class VMRoomType : BaseVM
     {
         public int ID { get; set; }
         public string RoomTypeName { get; set; }
@@ -15,5 +16,6 @@ namespace WebUI.Models.RoomType
         public decimal Price { get; set; }
 
         public List<VMRoomPicture> VMRoomPictures { get; set; }
+        public List<VMRoomFacility> VMRoomFacilities { get; set; }
     }
 }

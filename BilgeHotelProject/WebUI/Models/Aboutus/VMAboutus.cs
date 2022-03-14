@@ -6,7 +6,7 @@ using WebUI.Models.Picture;
 
 namespace WebUI.Models.Aboutus
 {
-    public class VMAboutus
+    public class VMAboutus : BaseVM
     {
         public string Title { get; set; }
         public string PictureUrl { get; set; }

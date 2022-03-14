@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.RoomType
 {
-    public class VMRoomPicture
+    public class VMRoomPicture : BaseVM
     {
         public string PictureUrl { get; set; }
     }

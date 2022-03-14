@@ -54,8 +54,15 @@ using WebUI.Models.HotelService;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Views\_ViewImports.cshtml"
+using WebUI.Models.Reservation;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a29320bdbcefb08cb36ceb6885baed2ea7a46dca", @"/Views/Shared/_FooterPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e6451c4e2a0d45c29789d647e1e6ea0c8f334940", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1321f05d455997e00aa298db0b8db471fe43665b", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__FooterPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString(""), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -136,7 +143,7 @@ using WebUI.Models.HotelService;
                     <h4>Üye Ol</h4>
                     <p>Üye değilseniz hemen üye olun indirimli online rezervasyon fırsatını kaçırmayın.</p>
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a29320bdbcefb08cb36ceb6885baed2ea7a46dca7096", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a29320bdbcefb08cb36ceb6885baed2ea7a46dca7327", async() => {
                 WriteLiteral("\r\n                        <input type=\"email\" name=\"email\"><input type=\"submit\" value=\"Subscribe\">\r\n                    ");
             }
             );

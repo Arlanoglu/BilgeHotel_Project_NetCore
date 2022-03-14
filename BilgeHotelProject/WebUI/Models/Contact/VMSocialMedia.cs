@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.Contact
 {
-    public class VMSocialMedia
+    public class VMSocialMedia : BaseVM
     {
         public string Facebook { get; set; }
         public string Instagram { get; set; }

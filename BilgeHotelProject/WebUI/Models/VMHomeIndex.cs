@@ -7,7 +7,7 @@ using WebUI.Models.RoomType;
 
 namespace WebUI.Models
 {
-    public class VMHomeIndex
+    public class VMHomeIndex : BaseVM
     {
         public VMHomePage VMHomePage { get; set; }
         public List<VMRoomType> VMRoomTypes { get; set; }

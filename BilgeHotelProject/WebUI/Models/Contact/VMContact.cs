@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.Contact
 {
-    public class VMContact
+    public class VMContact : BaseVM
     {
         public string Adress { get; set; }
         public string Phone1 { get; set; }

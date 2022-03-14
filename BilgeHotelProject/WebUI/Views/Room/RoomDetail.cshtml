@@ -1,0 +1,78 @@
+﻿@model VMWebReservation
+@{
+    ViewData["Title"] = "Oda Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main">
+
+    <div class="inner-banner inner-bg7">
+        <div class="container">
+            <div class="inner-title">
+                <ul>
+                    <li>
+                        <a href="/Home/Index">Home</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right'></i></li>
+                    <li>Oda Detayları</li> <!--Viewbag vs. buraya oda ismi taşınabilir.-->
+                </ul>
+                <h3>Oda Detayları</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="room-details-area pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="room-details-side">
+                        <div class="side-bar-form">
+                            <h3>Rezervasyon</h3>
+                            <form asp-controller="Reservation" asp-action="SelectedRoomWebReservation" method="post">
+                                <div class="row align-items-center">
+                                    <input asp-for="RoomTypeID" type="hidden" value="@ViewBag.RoomTypeName.ID"/>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label asp-for="CheckInDate">Giriş Tarihi</label>
+                                            <div class="input-group">
+                                                <input asp-for="CheckInDate" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label asp-for="CheckOutDate">Çıkış Tarihi</label>
+                                            <div class="input-group">
+                                                <input asp-for="CheckOutDate" type="date" class="form-control" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label asp-for="NumberOfPeople">Kişi Sayısı</label>
+                                            <select asp-for="NumberOfPeople" class="form-control">
+                                                @for (int i = 1; i <= ViewBag.RoomTypeName.NumberOfPeople; i++)
+                                                {
+                                                    <option>@i</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <button type="submit" class="default-btn btn-bg-three border-radius-5">
+                                            Rezervasyon
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                @await Component.InvokeAsync("RoomTypeDetail", new { id = ViewBag.RoomTypeName.ID })
+            </div>
+        </div>
+    </div>
+
+</main>
+

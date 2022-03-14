@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.HomePage
 {
-    public class VMHomePageSlide
+    public class VMHomePageSlide : BaseVM
     {
         public string PictureName { get; set; }
         public string PictureUrl { get; set; }

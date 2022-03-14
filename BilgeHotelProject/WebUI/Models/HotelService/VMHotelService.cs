@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.HotelService
 {
-    public class VMHotelService
+    public class VMHotelService : BaseVM
     {
         public string IconPicture { get; set; }
         public string ServiceName { get; set; }

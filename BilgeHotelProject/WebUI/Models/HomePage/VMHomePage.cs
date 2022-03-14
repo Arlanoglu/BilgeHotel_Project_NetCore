@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.HomePage
 {
-    public class VMHomePage
+    public class VMHomePage : BaseVM
     {
         public string Title { get; set; }
         public string Subtitle { get; set; }

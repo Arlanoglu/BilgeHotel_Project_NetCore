@@ -54,8 +54,15 @@ using WebUI.Models.HotelService;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Views\_ViewImports.cshtml"
+using WebUI.Models.Reservation;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ba5042ea830108f313f9c81d99dbe320df7db41", @"/Views/Contact/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e6451c4e2a0d45c29789d647e1e6ea0c8f334940", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1321f05d455997e00aa298db0b8db471fe43665b", @"/Views/_ViewImports.cshtml")]
     public class Views_Contact_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<VMContact>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("forms/contact.php"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -223,7 +230,7 @@ using WebUI.Models.HotelService;
             <div class=""row mt-5 justify-content-center"" data-aos=""fade-up"">
                 <div class=""col-lg-10"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ba5042ea830108f313f9c81d99dbe320df7db4110868", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ba5042ea830108f313f9c81d99dbe320df7db4111099", async() => {
                 WriteLiteral(@"
                         <div class=""form-row"">
                             <div class=""col-md-6 form-group"">

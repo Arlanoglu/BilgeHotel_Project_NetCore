@@ -10,6 +10,8 @@ using WebUI.Models.HomePage;
 using WebUI.Models.Picture;
 using WebUI.Models.RoomType;
 using WebUI.Models.HotelService;
+using WebUI.Models.RoomFacility;
+using WebUI.Models.Reservation;
 
 namespace WebUI.Utilities
 {
@@ -43,6 +45,12 @@ namespace WebUI.Utilities
 
             CreateMap<HotelService, VMHotelService>();
             CreateMap<VMHotelService, HotelService>();
+
+            CreateMap<VMRoomFacility, RoomFacility>();
+            CreateMap<RoomFacility, VMRoomFacility>();
+
+            CreateMap<WebReservation, VMWebReservation>();
+            CreateMap<VMWebReservation, WebReservation>();
         }
     }
 }

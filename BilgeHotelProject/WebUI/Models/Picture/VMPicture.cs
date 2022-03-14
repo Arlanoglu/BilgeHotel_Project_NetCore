@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.Picture
 {
-    public class VMPicture
+    public class VMPicture : BaseVM
     {
         public string PictureName { get; set; }
         public string PictureUrl { get; set; }
