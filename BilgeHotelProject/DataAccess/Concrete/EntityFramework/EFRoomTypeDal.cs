@@ -23,6 +23,8 @@ namespace DataAccess.Concrete.EntityFramework
         {
             var roomTypes = db.StatusesOfRooms.Where(x => ((x.StatusStartDate! <= checkinDate && x.StatusEndDate! >= checkinDate) || (x.StatusStartDate! <= checkoutDate && x.StatusEndDate! >= checkoutDate)) && x.RoomStatus == Entities.Enum.RoomStatus.Bos).Select(x => x.Room.RoomType);
 
+            var r = db.Rooms.Where(x => x.StatusOfRooms.Where(x => x.StatusStartDate! <= checkinDate && x.StatusEndDate! >= checkinDate).Select(x => x.Room.RoomType));
+
             return await roomTypes.Where(x => x.NumberOfPeople == numberOfPeople).ToListAsync();
             //Todo: Karşılanan yerde (UIda) boş değilse liste gönderilecek boş ise viewbag ile mesaj gösterilecek.s
         }

@@ -1,6 +1,6 @@
 ﻿@model VMWebReservation
 @{
-    ViewData["Title"] = "Oda Detay";
+    ViewData["Title"] = ViewBag.RoomTypeName.RoomTypeName + " Oda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,10 +11,10 @@
             <div class="inner-title">
                 <ul>
                     <li>
-                        <a href="/Home/Index">Home</a>
+                        <a href="/Home/Index">Ana Sayfa</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
-                    <li>Oda Detayları</li> <!--Viewbag vs. buraya oda ismi taşınabilir.-->
+                    <li>@ViewBag.RoomTypeName.RoomTypeName Oda</li>
                 </ul>
                 <h3>Oda Detayları</h3>
             </div>

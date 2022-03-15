@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Business.Services.Abstract;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,18 +8,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models.Reservation;
 using WebUI.Models.RoomType;
+using WebUI.Models.ServicePack;
 using WebUI.Utilities;
 
 namespace WebUI.Controllers
 {
     public class ReservationController : Controller
     {
-        public ReservationController()
+        private readonly IMapper mapper;
+        private readonly IServicePackService servicePackService;
+
+        public ReservationController(IMapper mapper, IServicePackService servicePackService)
+        {
+            this.mapper = mapper;
+            this.servicePackService = servicePackService;
+        }
+        public IActionResult WebReservation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult WebReservation(VMWebReservation vMWebReservation)
         {
 
-        }
-        public IActionResult Index()
-        {
             return View();
         }
         public IActionResult SelectedRoomWebReservation()
@@ -27,12 +40,16 @@ namespace WebUI.Controllers
             return View(creator.FactoryMethod(Utilities.Enums.ViewModels.VMWebReservation));
         }
         [HttpPost]
-        public IActionResult SelectedRoomWebReservation(VMWebReservation vMWebReservation)
+        public async Task<IActionResult> SelectedRoomWebReservation(VMWebReservation vMWebReservation)
         {
             var roomTypeName = JsonConvert.DeserializeObject<VMRoomTypeName>(TempData["RoomTypeName"].ToString());
             TempData.Keep("RoomTypeName");
 
+            var servicePacks = await servicePackService.GetActive();
+            var vmServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
+
             ViewBag.RoomTypeName = roomTypeName;
+            ViewBag.ServicePacks = vmServicePacks;
 
             return View(vMWebReservation);
         }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models.Reservation;
 using WebUI.Models.RoomType;
+using WebUI.Models.ServicePack;
 using WebUI.Utilities;
 
 namespace WebUI.Controllers
@@ -29,8 +30,9 @@ namespace WebUI.Controllers
         
         public async Task<IActionResult> RoomDetail(int id)
         {
-            var roomType = await roomTypeService.GetById(id);
+            var roomType = await roomTypeService.GetById(id);            
             var vmRoomType = mapper.Map<VMRoomTypeName>(roomType);
+
             TempData["RoomTypeName"] = JsonConvert.SerializeObject(vmRoomType);
 
             ViewBag.RoomTypeName = vmRoomType;

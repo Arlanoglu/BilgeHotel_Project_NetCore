@@ -61,8 +61,15 @@ using WebUI.Models.Reservation;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Views\_ViewImports.cshtml"
+using WebUI.Models.ServicePack;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0087e4ef6d7e3fd63d4cad6c0db1b618fce56a94", @"/Views/About/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1321f05d455997e00aa298db0b8db471fe43665b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7444a5094449e7b806336027213763bc406a0604", @"/Views/_ViewImports.cshtml")]
     public class Views_About_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<VMAboutus>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/Home/Index"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -100,7 +107,7 @@ using WebUI.Models.Reservation;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<main id=\"main\">\r\n\r\n    <div class=\"inner-banner inner-bg7\">\r\n        <div class=\"container\">\r\n            <div class=\"inner-title\">\r\n                <ul>\r\n                    <li>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0087e4ef6d7e3fd63d4cad6c0db1b618fce56a945209", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0087e4ef6d7e3fd63d4cad6c0db1b618fce56a945440", async() => {
                 WriteLiteral("Ana Sayfa");
             }
             );
