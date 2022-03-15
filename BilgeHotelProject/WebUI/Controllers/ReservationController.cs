@@ -17,14 +17,17 @@ namespace WebUI.Controllers
     {
         private readonly IMapper mapper;
         private readonly IServicePackService servicePackService;
+        private readonly IRoomTypeService roomTypeService;
 
-        public ReservationController(IMapper mapper, IServicePackService servicePackService)
+        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService)
         {
             this.mapper = mapper;
             this.servicePackService = servicePackService;
+            this.roomTypeService = roomTypeService;
         }
         public IActionResult WebReservation()
         {
+            roomTypeService.AvaibleRoomTypes(DateTime.Parse("2022-03-13"), DateTime.Parse("2022-03-15"), 2);
             return View();
         }
         [HttpPost]
