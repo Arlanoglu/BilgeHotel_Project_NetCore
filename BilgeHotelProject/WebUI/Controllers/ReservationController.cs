@@ -27,14 +27,17 @@ namespace WebUI.Controllers
         }
         public IActionResult WebReservation()
         {
-            roomTypeService.AvaibleRoomTypes(DateTime.Parse("2022-03-13"), DateTime.Parse("2022-03-15"), 2);
+            
+
             return View();
         }
         [HttpPost]
-        public IActionResult WebReservation(VMWebReservation vMWebReservation)
+        public async Task<IActionResult> WebReservation(VMWebReservation vMWebReservation)
         {
-
-            return View();
+            var roomTypes = await roomTypeService.AvaibleRoomTypes(vMWebReservation.CheckInDate,vMWebReservation.CheckOutDate,vMWebReservation.NumberOfPeople);
+            var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
+            ViewBag.RoomTypes = vmRoomTypes;
+            return View(vMWebReservation);
         }
         public IActionResult SelectedRoomWebReservation()
         {

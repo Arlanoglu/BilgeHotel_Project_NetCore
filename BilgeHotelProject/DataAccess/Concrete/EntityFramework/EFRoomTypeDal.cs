@@ -18,17 +18,23 @@ namespace DataAccess.Concrete.EntityFramework
         {
             this.db = db;
         }
-        //Todo: Sorgu güncellenecek room tablosundan çekilecek.
+        
         public async Task<List<RoomType>> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
         {
-            //var roomTypes = db.StatusesOfRooms.Where(x => ((x.StatusStartDate! <= checkinDate && x.StatusEndDate! >= checkinDate) || (x.StatusStartDate! <= checkoutDate && x.StatusEndDate! >= checkoutDate)) && x.RoomStatus == Entities.Enum.RoomStatus.Bos).Select(x => x.Room.RoomType);
+            var rooms = await db.Rooms.Where(x => (x.StatusOfRooms.Any(x=> (!(x.StatusStartDate <= checkinDate && x.StatusEndDate > checkinDate) && !(x.StatusStartDate < checkoutDate && x.StatusEndDate >= checkoutDate)) && x.Status == Core.Entities.Enum.Status.Active) || x.StatusOfRooms.Count == 0) && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat).ToListAsync();
 
-            var r = db.Rooms.Where(x => x.StatusOfRooms.Any(x=> (!(x.StatusStartDate <= checkinDate && x.StatusEndDate >= checkinDate) || !(x.StatusStartDate <= checkoutDate && x.StatusEndDate >= checkoutDate)) && x.Status == Core.Entities.Enum.Status.Active) || x.StatusOfRooms.Count == 0).ToList();
+            var rooms2 = rooms.Where(x => x.RoomType.NumberOfPeople <= numberOfPeople).ToList();
 
-
-            //var r = db.Rooms.Where(x => (x.StatusOfRooms.Any(x => ((x.StatusStartDate! <= checkinDate && x.StatusEndDate! >= checkinDate) || (x.StatusStartDate! <= checkoutDate && x.StatusEndDate! >= checkoutDate)) && x.Status == Core.Entities.Enum.Status.Active) || x.StatusOfRooms.Count == 0) && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat).ToList();
-
-            return  r.Where(x => x.RoomType.NumberOfPeople == numberOfPeople).Select(x => x.RoomType).ToList();
+            List<RoomType> roomTypes = new List<RoomType>();
+            foreach (var item in db.RoomTypes)
+            {
+                if (rooms2.Any(x=>x.RoomTypeID==item.ID))
+                {
+                    roomTypes.Add(item);
+                }
+            }
+            //rooms.Where(x => x.RoomType.NumberOfPeople == numberOfPeople).Select(x => x.RoomType).ToList();
+            return roomTypes;
             //Todo: Karşılanan yerde (UIda) boş değilse liste gönderilecek boş ise viewbag ile mesaj gösterilecek.s
         }
     }
