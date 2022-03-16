@@ -46,14 +46,32 @@
                             </div>
                             <div class="col-md-3 form-group">
                                 <div class="row"><label class="col-form-label"><br /></label></div>
-                                
+
                                 <button class="" type="submit">Odaları Listele</button>
                             </div>
                         </div>
                     </form>
 
                 </div>
+            </div>
 
+            <div class="row justify-content-center mt-3" data-aos="fade-up">
+                <div class="col-lg-10">
+                    @if (ViewBag.RoomTypes != null && ViewBag.RoomTypes.Count > 0)
+                    {
+                        <form class="php-email-form" asp-controller="Reservation" asp-action="WebReservation">
+
+                            @foreach (var item in ViewBag.RoomTypes as List<VMRoomType>)
+                            {
+
+                                <div class="form-row php-email-form mt-2">
+                                    @item.RoomTypeName
+                                </div>
+                            }
+                        </form>
+                    }
+
+                </div>
             </div>
         </div>
     </section>

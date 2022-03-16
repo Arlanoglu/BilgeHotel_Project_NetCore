@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             var rooms = await db.Rooms.Where(x => (x.StatusOfRooms.Any(x=> (!(x.StatusStartDate <= checkinDate && x.StatusEndDate > checkinDate) && !(x.StatusStartDate < checkoutDate && x.StatusEndDate >= checkoutDate)) && x.Status == Core.Entities.Enum.Status.Active) || x.StatusOfRooms.Count == 0) && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat).ToListAsync();
 
-            var rooms2 = rooms.Where(x => x.RoomType.NumberOfPeople <= numberOfPeople).ToList();
+            var rooms2 = rooms.Where(x => x.RoomType.NumberOfPeople >= numberOfPeople).ToList();
 
             List<RoomType> roomTypes = new List<RoomType>();
             foreach (var item in db.RoomTypes)
