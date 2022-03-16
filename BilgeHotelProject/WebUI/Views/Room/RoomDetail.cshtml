@@ -53,7 +53,14 @@
                                             <select asp-for="NumberOfPeople" class="form-control">
                                                 @for (int i = 1; i <= ViewBag.RoomTypeName.NumberOfPeople; i++)
                                                 {
-                                                    <option>@i</option>
+                                                    if (ViewBag.RoomTypeName.NumberOfPeople == i)
+                                                    {
+                                                        <option selected>@i</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option>@i</option>
+                                                    }
                                                 }
                                             </select>
                                         </div>
