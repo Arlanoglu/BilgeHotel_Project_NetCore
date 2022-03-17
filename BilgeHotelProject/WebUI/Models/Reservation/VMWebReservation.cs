@@ -19,7 +19,7 @@ namespace WebUI.Models.Reservation
         public string Description { get; set; }
 
         public int RoomID { get; set; } //Rondom atanacak
-        public int? RoomTypeID { get; set; }
+        public int RoomTypeID { get; set; }
         public int ServicePackID { get; set; }
         public string AppUserID { get; set; }
     }

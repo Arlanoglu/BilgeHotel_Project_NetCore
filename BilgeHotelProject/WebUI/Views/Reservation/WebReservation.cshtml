@@ -73,16 +73,91 @@
                 <div class="col-lg-10">
                     @if (ViewBag.RoomTypes != null && ViewBag.RoomTypes.Count > 0)
                     {
-                        <form class="php-email-form" asp-controller="Reservation" asp-action="WebReservation">
-
-                            @foreach (var item in ViewBag.RoomTypes as List<VMRoomType>)
-                            {
-
-                                <div class="form-row php-email-form mt-2">
-                                    @item.RoomTypeName
+                        @foreach (var item in ViewBag.RoomTypes as List<VMRoomType>)
+                        {
+                            <form class="php-email-form mt-3" asp-controller="Reservation" asp-action="SelectedRoomWebReservation">
+                                <div class="row">
+                                    <input type="hidden" asp-for="CheckInDate" value="@Model.CheckInDate" />
+                                    <input type="hidden" asp-for="CheckOutDate" value="@Model.CheckOutDate" />
+                                    <input type="hidden" asp-for="NumberOfPeople" value="@Model.NumberOfPeople" />
+                                    <input type="hidden" asp-for="RoomTypeID" value="@item.ID" />
+                                    <div class="col-xl-10 col-12">
+                                        <div class="row">
+                                            <div class="col-xl-5 border border-dark col-12 p-0">
+                                                <!--RoomPhotosCarousel-->
+                                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                                    <div class="carousel-inner">
+                                                        @foreach (var picture in item.VMRoomPictures)
+                                                        {
+                                                            <div class="carousel-item active">
+                                                                <img style="height:15rem" src="@picture.PictureUrl" class="d-block w-100">
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </div>
+                                                <!--EndRoomPhotosCarousel-->
+                                            </div>
+                                            <div class="col-xl-7 col-12">
+                                                <div class="row h-100">
+                                                    <div class="col-12 text-center mt-2"><h2>@item.RoomTypeName</h2><hr /></div>
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="row h-100 align-items-center">
+                                                            <div class="col-xl-12 col-6 text-center">
+                                                                <h6>Kapasite</h6>
+                                                                <hr />
+                                                            </div>
+                                                            <div class="col-xl-12 col-6 text-center">
+                                                                <h6>@item.NumberOfPeople</h6><hr />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="row h-100 align-items-center">
+                                                            <div class="col-xl-12 col-6 text-center">
+                                                                <h6>Yatak Sayısı</h6>
+                                                                <hr />
+                                                            </div>
+                                                            <div class="col-xl-12 col-6 text-center">
+                                                                <h6>@item.NumberOfBed</h6><hr />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="row h-100 align-items-center">
+                                                            <div class="col-xl-12 col-6 text-center">
+                                                                <h6>Fiyat/Gecelik</h6>
+                                                                <hr />
+                                                            </div>
+                                                            <div class="col-xl-12 col-6 text-center">
+                                                                <h6>@item.Price.ToString("C2")</h6><hr />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 mt-4">
+                                                <p class="font-weight-lighter"><b>Detay: </b>@item.Description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-12 p-0 d-flex justify-content-center align-content-center">
+                                        <button class="btn btn-danger" type="submit">Rezervasyon</button>
+                                    </div>
+                                    
                                 </div>
-                            }
-                        </form>
+                            </form>
+
+                        }
                     }
 
                 </div>

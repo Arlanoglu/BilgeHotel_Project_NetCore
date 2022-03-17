@@ -36,6 +36,10 @@ namespace WebUI.Controllers
         {
             var roomTypes = await roomTypeService.AvaibleRoomTypes(vMWebReservation.CheckInDate,vMWebReservation.CheckOutDate,vMWebReservation.NumberOfPeople);
             var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
+            for (int i = 0; i < roomTypes.Count; i++)
+            {
+                vmRoomTypes[i].VMRoomPictures = mapper.Map<List<VMRoomPicture>>(roomTypes[i].RoomPictures);
+            }
             ViewBag.RoomTypes = vmRoomTypes;
             return View(vMWebReservation);
         }
@@ -48,12 +52,20 @@ namespace WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> SelectedRoomWebReservation(VMWebReservation vMWebReservation)
         {
-            var roomTypeName = JsonConvert.DeserializeObject<VMRoomTypeName>(TempData["RoomTypeName"].ToString());
-            TempData.Keep("RoomTypeName");
+            VMRoomTypeName roomTypeName = null;
+            if (vMWebReservation.RoomTypeID==0)
+            {
+                roomTypeName = JsonConvert.DeserializeObject<VMRoomTypeName>(TempData["RoomTypeName"].ToString());
+                TempData.Keep("RoomTypeName");
+            }
+            else
+            {
+                var roomType = await roomTypeService.GetById(vMWebReservation.RoomTypeID);
+                roomTypeName = mapper.Map<VMRoomTypeName>(roomType);
+            }
 
             var servicePacks = await servicePackService.GetActive();
             var vmServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
-
             ViewBag.RoomTypeName = roomTypeName;
             ViewBag.ServicePacks = vmServicePacks;
 
