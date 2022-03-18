@@ -5,16 +5,16 @@
     <div class="room-details-article">
         @if (Model.VMRoomPictures.Count > 0)
         {
-            <div class="room-details-slider owl-carousel owl-theme owl-loaded owl-drag border border-danger">
+            <div class="room-details-slider owl-carousel owl-theme owl-loaded owl-drag">
 
 
 
-                <div class="owl-stage-outer border border-primary">
-                    <div class="owl-stage border border-warning" style="transform: translate3d(-1314px, 0px, 0px); transition: all 0.25s ease 0s; width: 3066px;">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1314px, 0px, 0px); transition: all 0.25s ease 0s; width: 3066px;">
                         @foreach (var item in Model.VMRoomPictures)
                         {
-                            <div class="owl-item cloned border border-dark" style="width: 408px; margin-right: 30px;">
-                                <div class="room-details-item border border-danger">
+                            <div class="owl-item cloned" style="width: 408px; margin-right: 30px;">
+                                <div class="room-details-item">
                                     <img src="@item.PictureUrl">
                                 </div>
                             </div>

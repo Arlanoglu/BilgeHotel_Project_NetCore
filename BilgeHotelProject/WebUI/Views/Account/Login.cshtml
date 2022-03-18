@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kemer bölgesinde tatilinizi rahat ve güzel geçirmenizi sağlayacak 5 yıldızlı otel." />
+    <meta name="keywords" content="otel, tatil, rezervasyon, antalya, kemer" />
+
+    <!--Favicon-->
+    <link rel="icon" href="~/favicon.png" type="image/x-icon" />
+
+    <title>Giriş Yap | Bilge Hotel</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/icofont/icofont.min.css" rel="stylesheet">
+    <link href="~/lib/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/lib/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/lib/venobox/venobox.css" rel="stylesheet">
+    <link href="~/lib/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/remixicon/remixicon.css" rel="stylesheet">
+
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <section id="contact" class="contact mt-5">
+        <div class="container">
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-10 php-email-form">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <a href="/Home/Index"><img style="width:18rem; height:18rem" src="~/img/logo.png" alt="Bilge Hotel" /></a>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Giriş Yap</h2><hr />
+                            <form asp-controller="Account" asp-action="Login">
+                                <div class="form-row">
+                                    <div class="col-10 form-group">
+                                        <label class="col-form-label">E-Posta</label>
+                                        <input class="form-control" type="text" placeholder="E-Posta" />
+                                    </div>
+                                    <div class="col-10 form-group">
+                                        <label class="col-form-label">Şifre</label>
+                                        <input class="form-control" type="password" placeholder="Şifre" />
+                                    </div>
+                                    <div class="col-10 form-group">
+                                        <button class="w-100" type="submit">Giriş Yap</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Vendor JS Files -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/lib/jquery-sticky/jquery.sticky.js"></script>
+    <script src="~/lib/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/lib/venobox/venobox.min.js"></script>
+    <script src="~/lib/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/lib/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/lib/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/main.js"></script>
+</body>
+</html>
