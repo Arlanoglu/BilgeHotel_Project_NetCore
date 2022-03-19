@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore.Proxies;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using WebUI.Utilities;
+using Microsoft.AspNetCore.Http;
 
 namespace WebUI
 {
@@ -52,10 +53,23 @@ namespace WebUI
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             //Session
-            services.AddSession(x =>
+            //services.AddSession(x =>
+            //{
+            //    x.Cookie.Name = "user.Session";
+            //    x.IdleTimeout = TimeSpan.FromMinutes(5);
+            //});
+
+            //Cookie
+            services.ConfigureApplicationCookie(x =>
             {
-                x.Cookie.Name = "user.Session";
-                x.IdleTimeout = TimeSpan.FromMinutes(5);
+                x.LoginPath = new PathString("/Account/Login");
+                //DeniredPath yapýlmadý.
+                x.Cookie = new CookieBuilder
+                {
+                    Name = "userAuthCookie"
+                };
+                x.SlidingExpiration = true;
+                x.ExpireTimeSpan = TimeSpan.FromMinutes(10);
             });
         }
 
@@ -77,7 +91,10 @@ namespace WebUI
 
             app.UseRouting();
 
-            app.UseSession(); //Session
+            app.UseAuthentication(); //Kimlik yönetimi
+            app.UseAuthorization(); //Yetki Yönetimi
+
+            //app.UseSession(); //Session
 
             app.UseAuthorization();
 

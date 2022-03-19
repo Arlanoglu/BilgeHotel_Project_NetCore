@@ -40,7 +40,7 @@ namespace WebUI.Controllers
                     {
                         //Session İşlemleri yapılacak.
                         var vmUser = mapper.Map<VMUserSession>(user);
-                        HttpContext.Session.SetObject("user", vmUser);
+                        //HttpContext.Session.SetObject("user", vmUser);
                         return RedirectToAction("Index", "Home");
                     }
                     else

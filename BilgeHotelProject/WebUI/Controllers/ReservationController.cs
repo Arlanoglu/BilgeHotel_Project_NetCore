@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -71,6 +72,7 @@ namespace WebUI.Controllers
 
             return View(vMWebReservation);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult WebReservationComplete(VMWebReservation vMWebReservation)
         {

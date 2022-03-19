@@ -1,4 +1,11 @@
-﻿<!-- ======= Header ======= -->
+﻿@{
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<AppUser> signInManager
+    @inject UserManager<AppUser> userManager
+
+    var user = await userManager.GetUserAsync(User);
+}
+<!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -8,11 +15,21 @@
         <div class="nav-menu mr-auto">
             <ul>
                 <li class="drop-down">
-                    <a href="#" class="twitter"><i class="icofont-ui-user"></i> Giriş Yap</a>
-                    <ul>
-                        <li><a class="" href="/Account/Login">Giriş Yap</a></li>
-                        <li><a class="" href="/Account/Register">Üye Ol</a></li>
-                    </ul>
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <a href="#" class="twitter"><i class="icofont-ui-user"></i>@user.FirstName @user.LastName</a>
+                        <ul>
+                            <li><a class="" href="/Account/Logout">Çıkış Yap</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="#" class="twitter"><i class="icofont-ui-user"></i> Giriş Yap</a>
+                        <ul>
+                            <li><a class="" href="/Account/Login">Giriş Yap</a></li>
+                            <li><a class="" href="/Account/Register">Üye Ol</a></li>
+                        </ul>
+                    }
                 </li>
             </ul>
         </div>
