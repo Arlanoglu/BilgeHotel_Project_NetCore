@@ -50,6 +50,13 @@ namespace WebUI
 
             //AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            //Session
+            services.AddSession(x =>
+            {
+                x.Cookie.Name = "user.Session";
+                x.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
         }
 
         
@@ -69,6 +76,8 @@ namespace WebUI
             app.UseStaticFiles(); //External style ve script file larý tanýtmak için yazýlýr.
 
             app.UseRouting();
+
+            app.UseSession(); //Session
 
             app.UseAuthorization();
 
