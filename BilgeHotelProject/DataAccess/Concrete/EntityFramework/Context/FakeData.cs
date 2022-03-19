@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bogus;
 using Entities.Enum;
+using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
@@ -152,6 +153,8 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             FakeEmployee("Elektirikçi", 1, EmployeeStatus.Worker);
             FakeEmployee("Bilgi İşlem Sorumlusu", 2, EmployeeStatus.Worker);
+            FakeEmployee("Müdür", 5, EmployeeStatus.SeniorManagement);
+            FakeEmployee("İnsan Kaynakları Müdürü", 6, EmployeeStatus.MiddleManagement);
 
             builder.Entity<Employee>().HasData(employees);
             #endregion
@@ -249,9 +252,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.Entity<RoomType>().HasData(
                 new RoomType { ID = 1, RoomTypeName="Single Room", NumberOfPeople=1, NumberOfBed=1, Price=600, Description= "15 - 20 m² Single Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda tek kişilik bir adet yatak bulunmaktadır."},
                 new RoomType { ID = 2, RoomTypeName="Double Room", NumberOfPeople=2, NumberOfBed=2, Price=1050, Description= "20 - 25 m² Double Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda tek kişilik iki adet yatak bulunmaktadır."},
-                new RoomType { ID = 3, RoomTypeName= "Double Superior Room", NumberOfPeople=2, NumberOfBed=2, Price=1050, Description= "20 - 25 m² Double Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda iki kişilik bir adet yatak bulunmaktadır."},
-                new RoomType { ID = 4, RoomTypeName= "Triple Room", NumberOfPeople=3, NumberOfBed=2, Price=1500, Description= "25 - 30 m² Triple Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda üç adet tek kişilik yatak bulunmaktadır." },
-                new RoomType { ID = 5, RoomTypeName= "Triple Superrior Room", NumberOfPeople=3, NumberOfBed=3, Price=1500, Description= "25 - 30 m² Triple Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda bir adet tek kişilik, bir adet iki kişilik yatak bulunmaktadır." },
+                new RoomType { ID = 3, RoomTypeName= "Double Superior Room", NumberOfPeople=2, NumberOfBed=1, Price=1050, Description= "20 - 25 m² Double Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda iki kişilik bir adet yatak bulunmaktadır."},
+                new RoomType { ID = 4, RoomTypeName= "Triple Room", NumberOfPeople=3, NumberOfBed=3, Price=1500, Description= "25 - 30 m² Triple Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda üç adet tek kişilik yatak bulunmaktadır." },
+                new RoomType { ID = 5, RoomTypeName= "Triple Superior Room", NumberOfPeople=3, NumberOfBed=2, Price=1500, Description= "25 - 30 m² Triple Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda bir adet tek kişilik, bir adet iki kişilik yatak bulunmaktadır." },
                 new RoomType { ID = 6, RoomTypeName= "Family Room", NumberOfPeople=4, NumberOfBed=3, Price=1900, Description= "30 - 35 m² Family Room’da ihtiyaç duyabileceğiniz her şey sizin için düşünülmüştür. Park, şehir ve dağ manzaralı odalar iş ve tatil seyahatleriniz için ideal bir seçenek. Kullanışlı, modern bir tasarıma sahip odalarda bir adet çift kişilik, iki adet tek kişilik yatak bulunmaktadır."},
                 new RoomType { ID = 7, RoomTypeName= "Presidential Suite", NumberOfPeople=2, NumberOfBed=1, Price=2500, Description= "Yatak odası, yemek yeme alanına sahip oturma salonu ve iki ayrı banyosuyla 85 m² olan geniş kullanım alanı, şehir ve dağ manzarası ile konforu sunuyor.Rahatlamak ve keyif almak için özel olarak tasarlanan jakuzili banyoda ruhunuzu ve bedeninizi dinlendirebilir, gününüzü keyifle noktalayabilirsiniz." }
                 );
@@ -450,6 +453,18 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 new ExtraService { ID = 1, ServiceName = "Sauna", Price = 600 }
                 );
             #endregion
+
+            //User
+            #region Role
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole { Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1", Name = "user", NormalizedName = "user".ToUpper() },
+                new IdentityRole { Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b", Name = "admin", NormalizedName = "admin".ToUpper() },
+                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "reseption", NormalizedName = "reseption".ToUpper() },
+                new IdentityRole { Id = "75d8b242-e230-4fe8-ad20-b8e818d97957", Name = "insankaynaklari", NormalizedName = "insankaynaklari".ToUpper() },
+                new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimcihizmetler", NormalizedName = "yardimcihizmetler".ToUpper() }
+                );
+            #endregion
+
         }
     }
 }

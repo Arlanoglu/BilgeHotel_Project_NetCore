@@ -13,6 +13,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Proxies;
+using Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
+using WebUI.Utilities;
 
 namespace WebUI
 {
@@ -34,6 +37,14 @@ namespace WebUI
                 x.UseSqlServer(Configuration.GetConnectionString("defaultConnection"), x => x.MigrationsAssembly("DataAccess"));
             });
 
+            services.AddIdentity<AppUser, IdentityRole>(x =>
+            {
+                x.Password.RequireDigit = true;
+                x.Password.RequireLowercase = true;
+                x.Password.RequireUppercase = true;
+                x.Password.RequiredLength = 8;
+                x.Password.RequireNonAlphanumeric = false;
+            }).AddErrorDescriber<CustomValidation>().AddEntityFrameworkStores<AppDbContext>();
 
             services.ConfigureServices(); //Ioc containerda extension metot oluþturuldu.
 

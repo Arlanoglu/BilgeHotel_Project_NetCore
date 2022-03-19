@@ -1,4 +1,4 @@
-﻿  <!-- ======= Header ======= -->
+﻿<!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -8,14 +8,22 @@
         <div class="nav-menu mr-auto">
             <ul>
                 <li class="drop-down">
-                    <a href="#" class="twitter"><i class="icofont-ui-user"></i> Giriş Yap</a>
-                    <ul>
-                        <li><a class="" href="/Account/Login">Giriş Yap</a></li>
-                        <li><a class="" href="/Account/Register">Üye Ol</a></li>
-                    </ul>
+                    @if (Model == null)
+                    {
+                        <a href="#" class="twitter"><i class="icofont-ui-user"></i> Giriş Yap</a>
+                        <ul>
+                            <li><a class="" href="/Account/Login">Giriş Yap</a></li>
+                            <li><a class="" href="/Account/Register">Üye Ol</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="#" class="twitter"><i class="icofont-ui-user"></i>@Model.FirstName @Model.LastName</a>
+                    }
                 </li>
             </ul>
-        </div><!--EndAccount-->
+        </div>
+        <!--EndAccount-->
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>

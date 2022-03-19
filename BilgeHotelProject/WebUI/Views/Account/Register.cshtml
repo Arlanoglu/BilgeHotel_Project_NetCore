@@ -1,4 +1,4 @@
-﻿
+﻿@model VMRegister
 @{
     Layout = null;
 }
@@ -39,7 +39,16 @@
 
     <section id="contact" class="contact mt-5">
         <div class="container">
+            
             <div class="row justify-content-center" data-aos="fade-up">
+                @if (ViewBag.RegisterSuccess != null)
+                {
+                    <div class="col-10 text-center alert-success"><h6 class="mt-2">@ViewBag.RegisterSuccess Giriş yapmak için <a href="/Account/Login">tıklayın</a></h6></div>
+                }
+                @if (ViewBag.RegisterError != null)
+                {
+                    <div class="col-10 text-center alert-danger"><h6 class="mt-2">@ViewBag.RegisterError</h6></div>
+                }
                 <div class="col-10 php-email-form">
                     <div class="row">
                         <div class="col-lg-6 d-flex align-items-center justify-content-center">
@@ -47,37 +56,40 @@
                         </div>
                         <div class="col-lg-6">
                             <h2>Üye Ol</h2><hr />
-                            <form asp-controller="Account" asp-action="Login">
+                            <form asp-controller="Account" asp-action="Register">
+                                <div asp-validation-summary="All">
+
+                                </div>
                                 <div class="form-row">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6 form-group">
-                                                <label class="col-form-label">İsim</label>
-                                                <input class="form-control" type="text" placeholder="İsim" />
+                                                <label asp-for="FirstName" class="col-form-label">İsim</label>
+                                                <input asp-for="FirstName" class="form-control" type="text" placeholder="İsim" />
                                             </div>
                                             <div class="col-6 form-group">
-                                                <label class="col-form-label">Soyisim</label>
-                                                <input class="form-control" type="text" placeholder="Soyisim" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 form-group">
-                                                <label class="col-form-label">E-Posta</label>
-                                                <input class="form-control" type="text" placeholder="E-Posta" />
-                                            </div>
-                                            <div class="col-6 form-group">
-                                                <label class="col-form-label">Telefon</label>
-                                                <input class="form-control" type="tel" placeholder="05xx xxx xxxx" />
+                                                <label asp-for="LastName" class="col-form-label">Soyisim</label>
+                                                <input asp-for="LastName" class="form-control" type="text" placeholder="Soyisim" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6 form-group">
-                                                <label class="col-form-label">Şifre</label>
-                                                <input class="form-control" type="password" placeholder="Şifre" />
+                                                <label asp-for="Email" class="col-form-label">E-Posta</label>
+                                                <input asp-for="Email" class="form-control" type="text" placeholder="E-Posta" />
                                             </div>
                                             <div class="col-6 form-group">
-                                                <label class="col-form-label">Şifre Tekrar</label>
-                                                <input class="form-control" type="password" placeholder="Şifre Tekrar" />
+                                                <label asp-for="PhoneNumber" class="col-form-label">Telefon</label>
+                                                <input asp-for="PhoneNumber" class="form-control" type="tel" placeholder="05xx xxx xxxx" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 form-group">
+                                                <label asp-for="Password" class="col-form-label">Şifre</label>
+                                                <input asp-for="Password" class="form-control" type="password" placeholder="Şifre" />
+                                            </div>
+                                            <div class="col-6 form-group">
+                                                <label asp-for="ConfirmPassword" class="col-form-label">Şifre Tekrar</label>
+                                                <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Şifre Tekrar" />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -86,9 +98,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
+
+
+
                                 </div>
                             </form>
                         </div>

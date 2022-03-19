@@ -13,6 +13,7 @@ using WebUI.Models.HotelService;
 using WebUI.Models.RoomFacility;
 using WebUI.Models.Reservation;
 using WebUI.Models.ServicePack;
+using WebUI.Models.Account;
 
 namespace WebUI.Utilities
 {
@@ -55,6 +56,15 @@ namespace WebUI.Utilities
 
             CreateMap<ServicePack, VMServicePack>();
             CreateMap<VMServicePack, ServicePack>();
+
+            CreateMap<AppUser, VMLogin>();
+            CreateMap<VMLogin, AppUser>();
+
+            CreateMap<VMRegister, AppUser>();
+            CreateMap<AppUser, VMRegister>();
+
+            CreateMap<AppUser, VMUserSession>();
+            CreateMap<VMUserSession, AppUser>();
         }
     }
 }
