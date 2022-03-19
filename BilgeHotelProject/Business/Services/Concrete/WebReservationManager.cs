@@ -127,5 +127,24 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.WebReservationDal.GetFirstOrDefault();
         }
+
+        public decimal DiscountPrice(decimal reservationPrice, DateTime checkInDate, DateTime reservationDate, string servicePackName)
+        {
+            var result = (checkInDate.Date - reservationDate.Date).TotalDays;
+            if (result > 30 && servicePackName == "Her Şey Dahil")
+            {
+                reservationPrice = reservationPrice - (reservationPrice * 18 / 100);
+            }
+            else if (result > 30 && servicePackName == "Tam Pansiyon")
+            {
+                reservationPrice = reservationPrice - (reservationPrice * 16 / 100);
+            }
+            else if (result > 90)
+            {
+                reservationPrice = reservationPrice - (reservationPrice * 23 / 100);
+            }
+
+            return reservationPrice;
+        }
     }
 }

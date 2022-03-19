@@ -9,5 +9,6 @@ namespace Business.Services.Abstract
 {
     public interface IWebReservationService : IService<WebReservation>
     {
+        public decimal DiscountPrice(decimal reservationPrice, DateTime checkInDate, DateTime reservationDate, string servicePackName);
     }
 }

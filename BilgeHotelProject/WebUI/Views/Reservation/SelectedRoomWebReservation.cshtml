@@ -29,7 +29,10 @@
 
             <div class="row mt-5 justify-content-center" data-aos="fade-up">
                 <div class="col-lg-10">
-
+                    @if (TempData["FormError"] != null)
+                    {
+                        <div class="text-center"><h6>@TempData["FormError"]</h6></div>
+                    }
                     <form class="php-email-form" asp-controller="Reservation" asp-action="WebReservationComplete">
                         <div class="form-row">
                             <input type="hidden" asp-for="RoomTypeID" value="@ViewBag.RoomTypeName.ID" />

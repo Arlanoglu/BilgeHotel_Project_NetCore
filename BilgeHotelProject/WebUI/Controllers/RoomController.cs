@@ -42,5 +42,20 @@ namespace WebUI.Controllers
             //vmWebReservation.RoomTypeID = id;
             return View();
         }
+
+        [HttpPost]
+        public IActionResult RoomDetailReservation(VMWebReservation vMWebReservation)
+        {
+            if (vMWebReservation.CheckInDate < vMWebReservation.CheckOutDate)
+            {
+                return RedirectToAction("SelectedRoomWebReservation", "Reservation",vMWebReservation);
+            }
+            else
+            {
+                TempData["FormError"] = "Giriş tarihi çıkış tarihinden büyük olamaz.";
+            }
+            
+            return RedirectToAction("RoomDetail", new { id = vMWebReservation.RoomTypeID });
+        }
     }
 }
