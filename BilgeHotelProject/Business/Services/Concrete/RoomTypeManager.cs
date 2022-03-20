@@ -26,10 +26,20 @@ namespace Business.Services.Concrete
             return await unitOfWork.RoomTypeDal.Any(exp);
         }
 
-        public Task<List<RoomType>> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
+        public async Task<List<RoomType>> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
         {
-            return unitOfWork.RoomTypeDal.AvaibleRoomTypes(checkinDate, checkoutDate, numberOfPeople);
-            //Todo: Eğer bu katmana EFCore yüklenirse bu metot içerisindeki işlemler burda yapılacak.
+            var rooms = await unitOfWork.RoomDal.AvaibleRooms(checkinDate, checkoutDate, numberOfPeople);
+            var roomTypes = await this.GetActive();
+
+            List<RoomType> roomTypesList = new List<RoomType>();
+            foreach (var item in roomTypes)
+            {
+                if (rooms.Any(x => x.RoomTypeID == item.ID))
+                {
+                    roomTypesList.Add(item);
+                }
+            }
+            return roomTypesList;
         }
 
         public IResult Create(RoomType model)

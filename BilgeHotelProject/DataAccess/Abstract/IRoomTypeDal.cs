@@ -8,6 +8,5 @@ namespace DataAccess.Abstract
 {
     public interface IRoomTypeDal : IEntityRepository<RoomType>
     {
-        Task<List<RoomType>> AvaibleRoomTypes(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople);
     }
 }

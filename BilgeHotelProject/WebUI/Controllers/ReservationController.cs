@@ -57,6 +57,7 @@ namespace WebUI.Controllers
 
                 var roomTypes = await roomTypeService.AvaibleRoomTypes(vMReservation.CheckInDate, vMReservation.CheckOutDate, vMReservation.NumberOfPeople);
                 var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
+
                 for (int i = 0; i < roomTypes.Count; i++)
                 {
                     vmRoomTypes[i].TotalPrice = (vmRoomTypes[i].Price + selectedServicePack.PackPrice) * decimal.Parse(numberOfDays.ToString());
@@ -83,19 +84,9 @@ namespace WebUI.Controllers
 
             if (vMReservation.CheckInDate < vMReservation.CheckOutDate)
             {
-                VMRoomTypeName roomTypeName = null;
-                if (vMReservation.RoomTypeID == 0)
-                {
-                    roomTypeName = JsonConvert.DeserializeObject<VMRoomTypeName>(TempData["RoomTypeName"].ToString());
-                    TempData.Keep("RoomTypeName");
-                }
-                else
-                {
-                    var roomType = await roomTypeService.GetById(vMReservation.RoomTypeID);
-                    roomTypeName = mapper.Map<VMRoomTypeName>(roomType);
-                }
+                var roomType = await roomTypeService.GetById(vMReservation.RoomTypeID);
 
-                ViewBag.RoomTypeName = roomTypeName;
+                ViewBag.RoomTypeName = roomType.RoomTypeName;
             }
             else
             {

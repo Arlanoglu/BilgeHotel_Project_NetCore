@@ -127,5 +127,10 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.RoomDal.GetFirstOrDefault();
         }
+
+        public async Task<List<Room>> AvaibleRooms(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
+        {
+            return await unitOfWork.RoomDal.AvaibleRooms(checkinDate, checkoutDate, numberOfPeople);
+        }
     }
 }
