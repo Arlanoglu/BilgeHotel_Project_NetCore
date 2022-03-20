@@ -11,6 +11,7 @@ namespace WebUI.Models.Reservation
         public DateTime CheckOutDate { get; set; }
         public int NumberOfPeople { get; set; }
         public decimal Price { get; set; } //Nerede doldurulacak karar verilmedi
+        public decimal DiscountedPrice { get; set; }
         public bool Payment { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

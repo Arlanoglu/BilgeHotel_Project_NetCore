@@ -1,4 +1,4 @@
-﻿@model VMWebReservation
+﻿@model VMReservation
 @{
     ViewData["Title"] = "Rezervasyon";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,67 +23,87 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="row justify-content-center" data-aos="fade-up">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     @if (TempData["FormError"] != null)
                     {
                         <div class="text-center"><h6>@TempData["FormError"]</h6></div>
                     }
-                    <form class="php-email-form" asp-controller="Reservation" asp-action="WebReservation">
-                        <div class="form-row">
-                            <div class="col-md-3 form-group">
-                                <label class="col-form-label" asp-for="CheckInDate">Giriş Tarihi</label>
-                                @if (Model != null)
-                                {
-                                    <input class="form-control" asp-for="CheckInDate" type="date" id="checkinDate" value="@Model.CheckInDate.ToString("yyyy-MM-dd")">
-                                }
-                                else
-                                {
-                                    <input class="form-control" asp-for="CheckInDate" type="date" id="checkinDate" value="@DateTime.Now.ToString("yyyy-MM-dd")">
-                                }
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label class="col-form-label" asp-for="CheckOutDate">Çıkış Tarihi</label>
-                                @if (Model != null)
-                                {
-                                    <input class="form-control" asp-for="CheckOutDate" type="date" id="checkoutDate" value="@Model.CheckOutDate.ToString("yyyy-MM-dd")">
-                                }
-                                else
-                                {
-                                    <input class="form-control" asp-for="CheckOutDate" type="date" id="checkoutDate" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
-                                }
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label class="col-form-label" asp-for="NumberOfPeople">Kişi Sayısı</label>
-                                <select asp-for="NumberOfPeople" class="form-control" style="height:44px">
-                                    @for (int i = 1; i <= 4; i++)
+                    @if (Model !=null )
+                    {
+                        <form class="php-email-form" asp-controller="Reservation" asp-action="WebReservation">
+                            <div class="form-row">
+                                <div class="col-md-3 form-group">
+                                    <label class="col-form-label" asp-for="CheckInDate">Giriş Tarihi</label>
+                                    @if (Model.CheckInDate != DateTime.Parse("01-01-0001"))
                                     {
-                                        <option>@i</option>
+                                        <input class="form-control" asp-for="CheckInDate" type="date" id="checkinDate" value="@Model.CheckInDate.ToString("yyyy-MM-dd")">
                                     }
-                                </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <div class="row"><label class="col-form-label"><br /></label></div>
+                                    else
+                                    {
+                                        <input class="form-control" asp-for="CheckInDate" type="date" id="checkinDate" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                    }
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="col-form-label" asp-for="CheckOutDate">Çıkış Tarihi</label>
+                                    @if (Model.CheckOutDate != DateTime.Parse("01-01-0001"))
+                                    {
+                                        <input class="form-control" asp-for="CheckOutDate" type="date" id="checkoutDate" value="@Model.CheckOutDate.ToString("yyyy-MM-dd")">
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" asp-for="CheckOutDate" type="date" id="checkoutDate" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+                                    }
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label class="col-form-label" asp-for="NumberOfPeople">Kişi Sayısı</label>
+                                    <select asp-for="NumberOfPeople" class="form-control" style="height:44px">
+                                        @for (int i = 1; i <= 4; i++)
+                                        {
+                                            <option>@i</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label class="col-form-label" asp-for="ServicePackID">Hizmet Paketi</label>
+                                    <select asp-for="ServicePackID" class="form-control" style="height:44px">
+                                        @if (Model.VMServicePacks.Count > 0)
+                                        {
+                                            @foreach (var item in Model.VMServicePacks)
+                                            {
+                                                <option value="@item.ID">@item.PackName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <div class="row"><label class="col-form-label"><br /></label></div>
 
-                                <button class="" type="submit">Odaları Listele</button>
+                                    <button class="" type="submit">Odaları Listele</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    }
 
                 </div>
             </div>
 
             <div class="row justify-content-center mt-3" data-aos="fade-up">
-                <div class="col-lg-10">
-                    @if (ViewBag.RoomTypes != null && ViewBag.RoomTypes.Count > 0)
+                <div class="col-lg-12">
+                    @if (Model.VMRoomTypes != null && Model.VMRoomTypes.Count > 0)
                     {
-                        @foreach (var item in ViewBag.RoomTypes as List<VMRoomType>)
+                        var numberOfDays = (Model.CheckOutDate.Date - Model.CheckInDate.Date).TotalDays;
+
+                        @foreach (var item in Model.VMRoomTypes)
                         {
                             <form class="php-email-form mt-3" asp-controller="Reservation" asp-action="SelectedRoomWebReservation">
                                 <div class="row">
                                     <input type="hidden" asp-for="CheckInDate" value="@Model.CheckInDate" />
                                     <input type="hidden" asp-for="CheckOutDate" value="@Model.CheckOutDate" />
                                     <input type="hidden" asp-for="NumberOfPeople" value="@Model.NumberOfPeople" />
+                                    <input type="hidden" asp-for="ServicePackID" value="@Model.ServicePackID" />
                                     <input type="hidden" asp-for="RoomTypeID" value="@item.ID" />
+                                    <input type="hidden" asp-for="Price" value="@item.TotalPrice" />
+                                    <input type="hidden" asp-for="DiscountedPrice" value="@item.DiscountedPrice" />
                                     <div class="col-xl-10 col-12">
                                         <div class="row">
                                             <div class="col-xl-5 border border-dark col-12 p-0">
@@ -111,39 +131,89 @@
                                             <div class="col-xl-7 col-12">
                                                 <div class="row h-100">
                                                     <div class="col-12 text-center mt-2"><h2>@item.RoomTypeName</h2><hr /></div>
-                                                    <div class="col-12 col-xl-4">
-                                                        <div class="row h-100 align-items-center">
-                                                            <div class="col-xl-12 col-6 text-center">
-                                                                <h6>Kapasite</h6>
-                                                                <hr />
-                                                            </div>
-                                                            <div class="col-xl-12 col-6 text-center">
-                                                                <h6>@item.NumberOfPeople</h6><hr />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-xl-4">
-                                                        <div class="row h-100 align-items-center">
-                                                            <div class="col-xl-12 col-6 text-center">
-                                                                <h6>Yatak Sayısı</h6>
-                                                                <hr />
-                                                            </div>
-                                                            <div class="col-xl-12 col-6 text-center">
-                                                                <h6>@item.NumberOfBed</h6><hr />
+                                                    @if (item.TotalPrice == item.DiscountedPrice)
+                                                    {
+                                                        <div class="col-12 col-xl-4">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>Kapasite</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>@item.NumberOfPeople</h6><hr />
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-12 col-xl-4">
-                                                        <div class="row h-100 align-items-center">
-                                                            <div class="col-xl-12 col-6 text-center">
-                                                                <h6>Fiyat/Gecelik</h6>
-                                                                <hr />
-                                                            </div>
-                                                            <div class="col-xl-12 col-6 text-center">
-                                                                <h6>@item.Price.ToString("C2")</h6><hr />
+                                                        <div class="col-12 col-xl-4">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>Yatak Sayısı</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>@item.NumberOfBed</h6><hr />
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="col-12 col-xl-4">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>Fiyat/@numberOfDays Gece</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>@item.TotalPrice.ToString("C2")</h6><hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-12 col-xl-3">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>Kapasite</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>@item.NumberOfPeople</h6><hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-xl-3">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>Yatak Sayısı</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>@item.NumberOfBed</h6><hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-xl-3">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>Fiyat/@numberOfDays Gece</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>@item.TotalPrice.ToString("C2")</h6><hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-xl-3">
+                                                            <div class="row h-100 align-items-center">
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6>İndirimli Fiyat</h6>
+                                                                    <hr />
+                                                                </div>
+                                                                <div class="col-xl-12 col-6 text-center">
+                                                                    <h6 class="text-success">@item.DiscountedPrice.ToString("C2")</h6><hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -156,7 +226,7 @@
                                     <div class="col-xl-2 col-12 p-0 d-flex justify-content-center align-content-center">
                                         <button class="btn btn-danger" type="submit">Rezervasyon</button>
                                     </div>
-                                    
+
                                 </div>
                             </form>
 

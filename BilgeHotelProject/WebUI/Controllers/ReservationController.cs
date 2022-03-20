@@ -15,6 +15,7 @@ using Entities.Concrete;
 
 namespace WebUI.Controllers
 {
+    [Authorize]
     public class ReservationController : Controller
     {
         private readonly IMapper mapper;
@@ -29,67 +30,81 @@ namespace WebUI.Controllers
             this.roomTypeService = roomTypeService;
             this.webReservationService = webReservationService;
         }
-        public IActionResult WebReservation()
+        public async Task<IActionResult> WebReservation()
         {
-            
+            var servicePacks = await servicePackService.GetActive();
+            var vmServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
 
-            return View();
+            ObjectCreator creator = new ObjectCreator();
+            VMReservation vmReservation = (VMReservation)creator.FactoryMethod(Utilities.Enums.ViewModels.VMReservation);
+
+            vmReservation.VMServicePacks = vmServicePacks;
+            TempData["VMServicePacks"] = JsonConvert.SerializeObject(vmServicePacks);
+
+            return View(vmReservation);
         }
         [HttpPost]
-        public async Task<IActionResult> WebReservation(VMWebReservation vMWebReservation)
+        public async Task<IActionResult> WebReservation(VMReservation vMReservation)
         {
-            if (vMWebReservation.CheckInDate.Date < vMWebReservation.CheckOutDate)
+            vMReservation.VMServicePacks = JsonConvert.DeserializeObject<List<VMServicePack>>(TempData["VMServicePacks"].ToString());
+            TempData.Keep("VMServicePacks");
+
+            var selectedServicePack = vMReservation.VMServicePacks.Where(x => x.ID == vMReservation.ServicePackID).FirstOrDefault();
+
+            if (vMReservation.CheckInDate.Date < vMReservation.CheckOutDate.Date)
             {
-                var roomTypes = await roomTypeService.AvaibleRoomTypes(vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate, vMWebReservation.NumberOfPeople);
+                var numberOfDays = (vMReservation.CheckOutDate.Date - vMReservation.CheckInDate.Date).TotalDays;
+
+                var roomTypes = await roomTypeService.AvaibleRoomTypes(vMReservation.CheckInDate, vMReservation.CheckOutDate, vMReservation.NumberOfPeople);
                 var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
                 for (int i = 0; i < roomTypes.Count; i++)
                 {
+                    vmRoomTypes[i].TotalPrice = (vmRoomTypes[i].Price + selectedServicePack.PackPrice) * decimal.Parse(numberOfDays.ToString());
+
+                    vmRoomTypes[i].DiscountedPrice = webReservationService.DiscountPrice(vmRoomTypes[i].TotalPrice, vMReservation.CheckInDate, DateTime.Now, selectedServicePack.PackName);
+
                     vmRoomTypes[i].VMRoomPictures = mapper.Map<List<VMRoomPicture>>(roomTypes[i].RoomPictures);
                 }
-                ViewBag.RoomTypes = vmRoomTypes;
+                vMReservation.VMRoomTypes = vmRoomTypes;
+
             }
             else
             {
                 TempData["FormError"] = "Giriş tarihi çıkış tarihinden büyük olamaz.";
             }
-            return View(vMWebReservation);
+
+            return View(vMReservation);
         }
-        public IActionResult SelectedRoomWebReservation()
-        {
-            ObjectCreator creator = new ObjectCreator();
-            
-            return View(/*creator.FactoryMethod(Utilities.Enums.ViewModels.VMWebReservation)*/);
-        }
+
         [HttpPost]
-        public async Task<IActionResult> SelectedRoomWebReservation(VMWebReservation vMWebReservation)
+        public async Task<IActionResult> SelectedRoomWebReservation(VMReservation vMReservation)
         {
-            if (vMWebReservation.CheckInDate < vMWebReservation.CheckOutDate)
+            var vmWebReservation = mapper.Map<VMWebReservation>(vMReservation);
+
+            if (vMReservation.CheckInDate < vMReservation.CheckOutDate)
             {
                 VMRoomTypeName roomTypeName = null;
-                if (vMWebReservation.RoomTypeID == 0)
+                if (vMReservation.RoomTypeID == 0)
                 {
                     roomTypeName = JsonConvert.DeserializeObject<VMRoomTypeName>(TempData["RoomTypeName"].ToString());
                     TempData.Keep("RoomTypeName");
                 }
                 else
                 {
-                    var roomType = await roomTypeService.GetById(vMWebReservation.RoomTypeID);
+                    var roomType = await roomTypeService.GetById(vMReservation.RoomTypeID);
                     roomTypeName = mapper.Map<VMRoomTypeName>(roomType);
                 }
 
-                var servicePacks = await servicePackService.GetActive();
-                var vmServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
                 ViewBag.RoomTypeName = roomTypeName;
-                ViewBag.ServicePacks = vmServicePacks;
             }
             else
             {
                 TempData["FormError"] = "Giriş tarihi çıkış tarihinden büyük olamaz.";
             }
 
-            return View(vMWebReservation);
+            return View(vmWebReservation);
         }
-        [Authorize]
+
         [HttpPost]
         public async Task<IActionResult> WebReservationComplete(VMWebReservation vMWebReservation)
         {

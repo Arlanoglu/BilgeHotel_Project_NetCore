@@ -14,6 +14,8 @@ namespace WebUI.Models.RoomType
         public int NumberOfPeople { get; set; }
         public int NumberOfBed { get; set; }
         public decimal Price { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal DiscountedPrice { get; set; }
 
         public List<VMRoomPicture> VMRoomPictures { get; set; }
         public List<VMRoomFacility> VMRoomFacilities { get; set; }

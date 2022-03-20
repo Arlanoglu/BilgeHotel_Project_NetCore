@@ -65,6 +65,9 @@ namespace WebUI.Utilities
 
             CreateMap<AppUser, VMUserSession>();
             CreateMap<VMUserSession, AppUser>();
+
+            CreateMap<VMReservation, VMWebReservation>();
+            CreateMap<VMWebReservation, VMReservation>();
         }
     }
 }

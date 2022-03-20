@@ -19,6 +19,7 @@ namespace WebUI.Utilities.Enums
         VMRoomType,
         VMRoomTypeName,
         VMHomeIndex,
-        VMWebReservation
+        VMWebReservation,
+        VMReservation
     }
 }

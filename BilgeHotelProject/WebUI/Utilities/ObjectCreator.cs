@@ -61,6 +61,9 @@ namespace WebUI.Utilities
                 case ViewModels.VMWebReservation:
                     viewModel = new VMWebReservation();
                     break;
+                case ViewModels.VMReservation:
+                    viewModel = new VMReservation();
+                    break;
             }
             return viewModel;
         }
