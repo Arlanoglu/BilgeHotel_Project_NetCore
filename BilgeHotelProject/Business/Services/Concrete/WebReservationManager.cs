@@ -168,5 +168,31 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+
+        public IResult CancelReservation(WebReservation webReservation)
+        {
+            webReservation.ReservationStatus = Entities.Enum.ReservationStatus.RezervasyonIptalEdildi;
+            webReservation.Status = Core.Entities.Enum.Status.Modified;
+
+            var statusOfRoomId = webReservation.Room.StatusOfRooms.Where(x => x.StatusStartDate == webReservation.CheckInDate && x.StatusEndDate == webReservation.CheckOutDate).Select(x=>x.ID).FirstOrDefault();
+            try
+            {
+                unitOfWork.WebReservationDal.Update(webReservation);
+                unitOfWork.StatusOfRoomDal.Delete(statusOfRoomId);
+
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Rezervasyon başarıyla iptal edildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }

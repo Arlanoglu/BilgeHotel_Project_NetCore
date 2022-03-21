@@ -1,0 +1,167 @@
+﻿@model List<VMMyReservation>
+@{
+    ViewData["Title"] = "MyReservations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="contact" class="contact mt-5">
+    <div class="container">
+        @if (TempData["CancelReservationResult"] != null)
+        {
+            <div class="row justify-content-center mt-4">
+                <div class="col-12 d-flex justify-content-center bg-warning">
+                    <h5>@TempData["CancelReservationResult"]</h5>
+                </div>
+            </div>
+        }
+
+        @if (Model != null && Model.Count > 0)
+        {
+            @for (int i = Model.Count - 1; i >= 0; i--)
+            {
+                <div class="row justify-content-center mt-4">
+                    <div class="col-12 php-email-form">
+
+                        <div class="row">
+                            <div class="col-md-2 col-12 d-flex justify-content-center">
+                                <div class="row mb-4 mb-md-0">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <b class="text-danger">Rezerv. No.</b>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <span class="text-danger">BLGHTL-@Model[i].ID</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>İsim</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].FirstName @Model[i].LastName
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Rzrv. Tarihi</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].ReservationDate
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Oda Tipi</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].VMRoomTypeName.RoomTypeName
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Giriş Tarihi</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].CheckInDate.Date.ToShortDateString()
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Çıkış Tarihi</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].CheckOutDate.Date.ToShortDateString()
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Hizmet Pak.</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].VMServicePack.PackName
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Tutar</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].DiscountedPrice.ToString("C2")
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Ödeme Dur.</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @if (Model[i].Payment)
+                                                {
+                                                    <span class="text-success">Ödendi</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger">Ödenmedi</span>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <b>Durum</b>
+                                            </div>
+                                            <div class="col-12">
+                                                @Model[i].ReservationStatus
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr />
+                                    </div>
+                                </div>
+                                @if (Model[i].ReservationStatus == Entities.Enum.ReservationStatus.RezervasyonAlindi && (Model[i].CheckInDate.Date - DateTime.Now.Date).TotalDays > 2)
+                                {
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end">
+                                            @Html.ActionLink("İptal Et", "CancelWebReservation", "Reservation", new { id = Model[i].ID }, new { @class = "btn btn-danger w-100" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</section>
+
+

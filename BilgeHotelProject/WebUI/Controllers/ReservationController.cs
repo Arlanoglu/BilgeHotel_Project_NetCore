@@ -16,6 +16,7 @@ using WebUI.Models.StatusOfRoom;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using WebUI.Utilities.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebUI.Controllers
 {
@@ -27,14 +28,16 @@ namespace WebUI.Controllers
         private readonly IRoomTypeService roomTypeService;
         private readonly IWebReservationService webReservationService;
         private readonly IRoomService roomService;
+        private readonly UserManager<AppUser> userManager;
 
-        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService, IWebReservationService webReservationService, IRoomService roomService)
+        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService, IWebReservationService webReservationService, IRoomService roomService, UserManager<AppUser> userManager)
         {
             this.mapper = mapper;
             this.servicePackService = servicePackService;
             this.roomTypeService = roomTypeService;
             this.webReservationService = webReservationService;
             this.roomService = roomService;
+            this.userManager = userManager;
         }
         public async Task<IActionResult> WebReservation()
         {
@@ -134,6 +137,24 @@ namespace WebUI.Controllers
             ViewBag.ReservationResult = result;
 
             return View(vMWebReservation);
+        }
+
+        public async Task<IActionResult> CancelWebReservation(int id)
+        {
+            var webReservation = await webReservationService.GetById(id);
+            var cancelResult = webReservationService.CancelReservation(webReservation);
+
+            var user = await userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                TempData["CancelReservationResult"] = cancelResult.Message;
+                return RedirectToAction("MyReservations", "Account", new { id = user.Id });
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Services.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models.Account;
+using WebUI.Models.Reservation;
+using WebUI.Models.RoomType;
+using WebUI.Models.ServicePack;
 using WebUI.Utilities;
 
 namespace WebUI.Controllers
@@ -16,12 +20,14 @@ namespace WebUI.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
+        private readonly IWebReservationService webReservationService;
 
-        public AccountController(IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebReservationService webReservationService)
         {
             this.mapper = mapper;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.webReservationService = webReservationService;
         }
         public IActionResult Login()
         {
@@ -61,6 +67,12 @@ namespace WebUI.Controllers
                 return View(vMLogin);
             }
             
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
         }
 
         public IActionResult Register()
@@ -110,6 +122,20 @@ namespace WebUI.Controllers
                 ViewBag.RegisterError = "Kayıt gerçekleştirilemedi.";
                 return View(vMRegister);
             }
+        }
+
+        public async Task<IActionResult> MyReservations(string id)
+        {
+            var reservations = await webReservationService.GetDefault(x => x.AppUserID == id && x.Status!=Core.Entities.Enum.Status.Deleted);
+            var vmMyReservations = mapper.Map<List<VMMyReservation>>(reservations);
+
+            for (int i = 0; i < vmMyReservations.Count; i++)
+            {
+                vmMyReservations[i].VMRoomTypeName = mapper.Map<VMRoomTypeName>(reservations[i].RoomType);
+                vmMyReservations[i].VMServicePack = mapper.Map<VMServicePack>(reservations[i].ServicePack);
+            }
+
+            return View(vmMyReservations);
         }
     }
 }

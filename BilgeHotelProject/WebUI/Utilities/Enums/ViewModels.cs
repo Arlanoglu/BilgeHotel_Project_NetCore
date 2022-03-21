@@ -21,6 +21,7 @@ namespace WebUI.Utilities.Enums
         VMHomeIndex,
         VMWebReservation,
         VMReservation,
-        VMStatusOfRoom
+        VMStatusOfRoom,
+        VMMyReservation
     }
 }

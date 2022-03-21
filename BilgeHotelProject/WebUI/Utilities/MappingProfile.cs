@@ -72,6 +72,9 @@ namespace WebUI.Utilities
 
             CreateMap<VMStatusOfRoom, StatusOfRoom>();
             CreateMap<StatusOfRoom, VMStatusOfRoom>();
+
+            CreateMap<VMMyReservation, WebReservation>();
+            CreateMap<WebReservation, VMMyReservation>();
         }
     }
 }

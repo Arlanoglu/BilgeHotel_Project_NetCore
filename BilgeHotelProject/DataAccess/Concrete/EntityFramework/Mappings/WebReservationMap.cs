@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<WebReservation> builder)
         {
             CoreConfig(builder);
-            builder.Property(x => x.ReservationDate).HasColumnType("date");
+            builder.Property(x => x.ReservationDate).HasColumnType("datetime");
             builder.Property(x => x.CheckInDate).HasColumnType("date").IsRequired();
             builder.Property(x => x.CheckOutDate).HasColumnType("date").IsRequired();
             builder.Property(x => x.NumberOfPeople).IsRequired();

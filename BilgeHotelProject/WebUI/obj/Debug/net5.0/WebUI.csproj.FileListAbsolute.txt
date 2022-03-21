@@ -180,3 +180,4 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Views\Reservation\WebReservationResult.cshtml.g.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Views\Account\MyReservations.cshtml.g.cs

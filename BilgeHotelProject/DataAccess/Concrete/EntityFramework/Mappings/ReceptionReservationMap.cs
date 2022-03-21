@@ -24,6 +24,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.ReservationStatus).IsRequired();
             builder.Property(x => x.CheckInDate).IsRequired().HasColumnType("date");
             builder.Property(x => x.CheckOutDate).IsRequired().HasColumnType("date");
+            builder.Property(x => x.ReservationDate).HasColumnType("datetime");
         }
     }
 }

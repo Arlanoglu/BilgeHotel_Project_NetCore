@@ -8,10 +8,10 @@ namespace Entities.Enum
 {
     public enum ReservationStatus
     {
-        ReservationReceived,
-        ReservationUpdated,
-        ReservationCanceled,
-        ReservationCompleted
+        RezervasyonAlindi,
+        RezervasyonGuncellendi,
+        RezervasyonIptalEdildi,
+        RezervasyonTamamlandi
 
     }
 }

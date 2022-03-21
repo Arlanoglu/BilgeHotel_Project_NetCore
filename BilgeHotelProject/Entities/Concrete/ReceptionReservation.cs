@@ -10,7 +10,7 @@ namespace Entities.Concrete
         public ReceptionReservation()
         {
             ReservationDate = DateTime.Now;
-            ReservationStatus = ReservationStatus.ReservationReceived;
+            ReservationStatus = ReservationStatus.RezervasyonAlindi;
         }
         public DateTime ReservationDate { get; set; }
         public DateTime CheckInDate { get; set; }

@@ -19,7 +19,8 @@
                     {
                         <a href="#" class="twitter"><i class="icofont-ui-user"></i>@user.FirstName @user.LastName</a>
                         <ul>
-                            <li><a class="" href="/Account/Logout">Çıkış Yap</a></li>
+                            <li>@Html.ActionLink("Rezervasyonlarım", "MyReservations", "Account", new { id = user.Id })</li>
+                            <li><a href="/Account/Logout">Çıkış Yap</a></li>
                         </ul>
                     }
                     else
