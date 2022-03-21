@@ -14,6 +14,7 @@ using WebUI.Models.RoomFacility;
 using WebUI.Models.Reservation;
 using WebUI.Models.ServicePack;
 using WebUI.Models.Account;
+using WebUI.Models.StatusOfRoom;
 
 namespace WebUI.Utilities
 {
@@ -68,6 +69,9 @@ namespace WebUI.Utilities
 
             CreateMap<VMReservation, VMWebReservation>();
             CreateMap<VMWebReservation, VMReservation>();
+
+            CreateMap<VMStatusOfRoom, StatusOfRoom>();
+            CreateMap<StatusOfRoom, VMStatusOfRoom>();
         }
     }
 }

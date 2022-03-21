@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "WebReservationResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="contact" class="contact mt-5">
+    <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-10 php-email-form">
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                        <a href="/Home/Index"><img style="width:18rem; height:18rem" src="~/img/logo.png" alt="Bilge Hotel" /></a>
+                    </div>
+                    <div class="col-md-6">
+                        @if (ViewBag.ReservationResult != null)
+                        {
+                            <div><h6>@ViewBag.ReservationResult.Message</h6></div>
+
+                            if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+                            {
+                                <p>Rezervasyonunuzla ilgili bilgiler mail adresinize gönderildi.</p>
+                                <p>Oluşturulan rezervasyonlarınızı görüntülemek için <a href="/Account/MyReservastions">rezervasyonlarım</a>'a tıklayabilirsiniz.</p>
+                                <p>Bu sayfadan rezervasyonlarınızı kontrol edebilir, aynı zamanda var olan rezervasyonlarınızı iptal edebilirsiniz.</p>
+                                <p>Rezervasyon tarihinize 2 gün kala ödeme işlemi gerçekleştirilmediği takdirde rezervasyonunuz iptal edilecektir.</p><br />
+                                <i>Bizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.</i>
+                                <i>Saygılarımızla,</i><br />
+                                <i>Bilge Hotel</i>
+                            }
+                            else
+                            {
+                                <p>Hatanın sebebi çözümlenemedi.</p>
+                                <p>Oluşturmuş olduğunuz rezervasyonu kontrol ederek tekrar oluşturmanızı rica ederiz.</p>
+                                <p>Aynı problemle tekrar karşılaşırsanız, <a href="/Contact/Index">iletişim</a> bölümünden bizimle iletişime geçebilirsiniz.</p>
+
+                                <i>Saygılarımızla,</i><br />
+                                <i>Bilge Hotel</i>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

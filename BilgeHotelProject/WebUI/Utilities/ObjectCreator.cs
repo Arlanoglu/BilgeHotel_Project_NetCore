@@ -11,6 +11,7 @@ using WebUI.Models.Picture;
 using WebUI.Models.Reservation;
 using WebUI.Models.RoomFacility;
 using WebUI.Models.RoomType;
+using WebUI.Models.StatusOfRoom;
 using WebUI.Utilities.Enums;
 
 namespace WebUI.Utilities
@@ -63,6 +64,9 @@ namespace WebUI.Utilities
                     break;
                 case ViewModels.VMReservation:
                     viewModel = new VMReservation();
+                    break;
+                case ViewModels.VMStatusOfRoom:
+                    viewModel = new VMStatusOfRoom();
                     break;
             }
             return viewModel;

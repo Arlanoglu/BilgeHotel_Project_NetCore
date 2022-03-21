@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Business.Services.Abstract
     public interface IWebReservationService : IService<WebReservation>
     {
         public decimal DiscountPrice(decimal reservationPrice, DateTime checkInDate, DateTime reservationDate, string servicePackName);
+        public IResult ReservationCreate(WebReservation webReservation, StatusOfRoom statusOfRoom);
     }
 }

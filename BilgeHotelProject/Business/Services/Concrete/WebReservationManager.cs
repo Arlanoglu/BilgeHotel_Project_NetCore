@@ -146,5 +146,27 @@ namespace Business.Services.Concrete
 
             return reservationPrice;
         }
+
+        public IResult ReservationCreate(WebReservation webReservation, StatusOfRoom statusOfRoom)
+        {
+            try
+            {
+                unitOfWork.WebReservationDal.Create(webReservation);
+                unitOfWork.StatusOfRoomDal.Create(statusOfRoom);
+                //throw new InvalidOperationException("Logfile cannot be read-only");
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Rezervasyon Oluşturma işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }

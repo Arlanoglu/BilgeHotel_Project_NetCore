@@ -15,7 +15,7 @@
         <div class="nav-menu mr-auto">
             <ul>
                 <li class="drop-down">
-                    @if (signInManager.IsSignedIn(User))
+                    @if (signInManager.IsSignedIn(User) && user!=null)
                     {
                         <a href="#" class="twitter"><i class="icofont-ui-user"></i>@user.FirstName @user.LastName</a>
                         <ul>
