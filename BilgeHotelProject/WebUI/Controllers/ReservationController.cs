@@ -188,7 +188,7 @@ namespace WebUI.Controllers
                         if (user.Email!=vMWebReservation.Email)
                         {
                             //Rezervasyona gönderilen mail.
-                            MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
+                            var a = MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
                         }                       
                         
                     }
