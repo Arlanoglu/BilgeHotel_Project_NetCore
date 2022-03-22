@@ -35,6 +35,7 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Business": "1.0.0",
+          "Common": "1.0.0",
           "Entities": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "5.0.10",
           "Microsoft.EntityFrameworkCore.Proxies": "5.0.10",
@@ -2365,6 +2366,17 @@
         },
         "compile": {
           "Business.dll": {}
+        }
+      },
+      "Common/1.0.0": {
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "runtime": {
+          "Common.dll": {}
+        },
+        "compile": {
+          "Common.dll": {}
         }
       },
       "Core/1.0.0": {
@@ -5237,6 +5249,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

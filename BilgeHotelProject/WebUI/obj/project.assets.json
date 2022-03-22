@@ -2825,6 +2825,19 @@
           "bin/placeholder/Business.dll": {}
         }
       },
+      "Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.dll": {}
+        }
+      },
       "Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -9265,6 +9278,11 @@
       "path": "../Business/Business.csproj",
       "msbuildProject": "../Business/Business.csproj"
     },
+    "Common/1.0.0": {
+      "type": "project",
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
+    },
     "Core/1.0.0": {
       "type": "project",
       "path": "../Core/Core.csproj",
@@ -9285,6 +9303,7 @@
     "net5.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "Business >= 1.0.0",
+      "Common >= 1.0.0",
       "Entities >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.10",
       "Microsoft.EntityFrameworkCore.Proxies >= 5.0.10",
@@ -9330,6 +9349,9 @@
           "projectReferences": {
             "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Business\\Business.csproj": {
               "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Business\\Business.csproj"
+            },
+            "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Common\\Common.csproj"
             },
             "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Users\\arlan\\source\\repos\\Repositories\\BilgeHotel_Project_NetCore\\BilgeHotelProject\\Entities\\Entities.csproj"

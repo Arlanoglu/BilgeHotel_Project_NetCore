@@ -1,6 +1,7 @@
 ﻿@model VMRegister
 @{
     Layout = null;
+    @using Microsoft.AspNetCore.Identity
 }
 
 <!DOCTYPE html>
@@ -39,11 +40,15 @@
 
     <section id="contact" class="contact mt-5">
         <div class="container">
-            
+
             <div class="row justify-content-center" data-aos="fade-up">
-                @if (ViewBag.RegisterSuccess != null)
+                @if (ViewBag.RegisterSuccess != null && ViewBag.AppUser != null)
                 {
-                    <div class="col-10 text-center alert-success"><h6 class="mt-2">@ViewBag.RegisterSuccess Giriş yapmak için <a href="/Account/Login">tıklayın</a></h6></div>
+                    <div class="col-10 text-center alert-success"><h6 class="mt-2">@ViewBag.RegisterSuccess Aktivasyon linkini almadıysanız tekrar göndermek için @Html.ActionLink("tıklayın", "SendActivationAgain", "Account", new { email = ViewBag.AppUser.Email, activationKey = ViewBag.AppUser.ActivationKey })</h6></div>
+                }
+                else if (ViewBag.RegisterSuccess != null && ViewBag.AppUser == null)
+                {
+                    <div class="col-10 text-center alert-success"><h6 class="mt-2">@ViewBag.RegisterSuccess</h6></div>
                 }
                 @if (ViewBag.RegisterError != null)
                 {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Services.Abstract;
+using Common;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +22,19 @@ namespace WebUI.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IWebReservationService webReservationService;
+        private readonly ISettingService settingService;
 
-        public AccountController(IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebReservationService webReservationService)
+        public AccountController(IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebReservationService webReservationService, ISettingService settingService)
         {
             this.mapper = mapper;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.webReservationService = webReservationService;
+            this.settingService = settingService;
         }
         public IActionResult Login()
         {
+            ViewBag.LoginSuccess = TempData["LoginSuccess"];
             return View();
         }
         [HttpPost]
@@ -41,17 +45,22 @@ namespace WebUI.Controllers
                 var user = await userManager.FindByEmailAsync(vMLogin.Email);
                 if (user!=null)
                 {
-                    var result = await signInManager.PasswordSignInAsync(user, vMLogin.Password, false, false);
-                    if (result.Succeeded)
+                    if (user.EmailConfirmed)
                     {
-                        //Session İşlemleri yapılacak.
-                        var vmUser = mapper.Map<VMUserSession>(user);
-                        //HttpContext.Session.SetObject("user", vmUser);
-                        return RedirectToAction("Index", "Home");
+                        var result = await signInManager.PasswordSignInAsync(user, vMLogin.Password, false, false);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            ViewBag.LoginError = "Giriş bilgileri hatalı.";
+                            return View(vMLogin);
+                        }
                     }
                     else
                     {
-                        ViewBag.LoginError = "Giriş bilgileri hatalı.";
+                        ViewBag.LoginError = "Eposta adresiniz doğrulanmammış. Lütfen mail adresinize gönderilen aktivasyon linkine tıklayın.";
                         return View(vMLogin);
                     }
                 }
@@ -89,14 +98,26 @@ namespace WebUI.Controllers
                 {
                     var appUser = mapper.Map<AppUser>(vMRegister);
                     appUser.UserName = vMRegister.Email;
+                    appUser.ActivationKey = Guid.NewGuid();
 
                     var result = await userManager.CreateAsync(appUser, vMRegister.Password);
                     var roleResult = await userManager.AddToRoleAsync(appUser, "user");
 
                     if (result.Succeeded && roleResult.Succeeded)
                     {
-                        ViewBag.RegisterSuccess = "Kullanıcı kayıt işlemi başarıyla gerçekleştirildi.";
-                        //Todo: Mail gönderme ve aktivasyon işlemi gerçekleştirilecek.
+                        
+                        ViewBag.AppUser = appUser;
+                        var setting = await settingService.GetActive();
+                        var message = MailSender.RegisterActivationMessage(appUser.ActivationKey, "Account", "AccountActivation");
+                        var mailResult = MailSender.SendMail(appUser.Email, "Üyelik", message, setting.FirstOrDefault());
+                        if (mailResult==1)
+                        {
+                            ViewBag.RegisterSuccess = "Kullanıcı kayıt işlemi başarıyla gerçekleştirildi. Lütfen girmiş olduğunuz mail adresine gönderilen aktivasyon linkine tıklayarak üyelik işleminizi onaylayınız.";
+                        }
+                        else
+                        {
+                            ViewBag.RegisterSuccess = "Kullanıcı kayıt işleminiz bayarıyla gerçekleştirildi. Ancak aktivasyon mail gönderimi sırasında bir hata meydana geldi. Sorun çözümü için lütfen iletişim bölümünden iletişime geçmenizi rica ederiz.";
+                        }
                         return View();
                     }
                     else
@@ -121,6 +142,43 @@ namespace WebUI.Controllers
             {
                 ViewBag.RegisterError = "Kayıt gerçekleştirilemedi.";
                 return View(vMRegister);
+            }
+        }
+
+        public async Task<IActionResult> SendActivationAgain(string email, string activationKey)
+        {
+            var setting = await settingService.GetActive();
+            var message = MailSender.RegisterActivationMessage(Guid.Parse(activationKey), "Account", "AccountActivation");
+            MailSender.SendMail(email, "Üyelik", message, setting.FirstOrDefault());
+
+            ViewBag.RegisterSuccess = "Aktivasyon linki gönderildi. Lütfen girmiş olduğunuz mail adresine gönderilen aktivasyon linkine tıklayarak üyelik işleminizi onaylayınız.";
+
+            return RedirectToAction("Register");
+        }
+        public async Task<IActionResult> AccountActivation(Guid id)
+        {
+            var result = userManager.Users.Any(x => x.ActivationKey == id);
+            if (result)
+            {
+                var appUser = userManager.Users.Where(x => x.ActivationKey == id).FirstOrDefault();
+                if (appUser.EmailConfirmed)
+                {
+                    TempData["LoginSuccess"] = "Hesabınız zaten aktif. Giriş yapabilirsiniz.";
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    appUser.EmailConfirmed = true;
+                    await userManager.UpdateAsync(appUser);
+
+                    TempData["LoginSuccess"] = "Aktivasyon işlemi gerçekleştirildi. Giriş yapabilirsiniz.";
+                    return RedirectToAction("Login");
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
             }
         }
 
