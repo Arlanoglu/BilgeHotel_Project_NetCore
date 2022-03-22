@@ -179,16 +179,16 @@ namespace WebUI.Controllers
                     {
                         var user = await userManager.GetUserAsync(User);
                         var setting = (await settingService.GetActive()).FirstOrDefault();
-                        var reservationID = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).FirstOrDefault().ID;
-                        var reservationDate = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).FirstOrDefault().ReservationDate;
+                        var reservationID = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
+                        var reservationDate = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).OrderByDescending(x => x.ID).FirstOrDefault().ReservationDate;
                         var message = MailSender.ReservationCompleteMessage(reservationID, reservationDate, vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate);
 
                         //Kullanıcıya gönderilen mail.
                         MailSender.SendMail(user.Email, "Rezervasyon", message, setting);
                         if (user.Email!=vMWebReservation.Email)
                         {
-                            //Rezervasyona gönderilen mail.
-                            var a = MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
+                            //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
+                            MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
                         }                       
                         
                     }
@@ -222,8 +222,21 @@ namespace WebUI.Controllers
         public async Task<IActionResult> CancelWebReservation(int id)
         {
             var webReservation = await webReservationService.GetById(id);
+            var setting = (await settingService.GetActive()).FirstOrDefault();
             var cancelResult = webReservationService.CancelReservation(webReservation);
 
+            //Rezervasyon iptal mail gönderimi.
+            if (cancelResult.ResultStatus==ResultStatus.Success)
+            {
+                var message = MailSender.CancelReservationMessage(webReservation.ID, webReservation.CheckInDate, webReservation.CheckOutDate);
+                //Kullanıcıya gönderilen mail.
+                MailSender.SendMail(webReservation.AppUser.Email, "Rezervasyon İptal", message, setting);
+                if (webReservation.AppUser.Email!=webReservation.Email)
+                {
+                    //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
+                    MailSender.SendMail(webReservation.Email, "Rezervasyon İptal", message, setting);
+                }
+            }
             var user = await userManager.GetUserAsync(User);
 
             if (user != null)

@@ -130,16 +130,16 @@ namespace Business.Services.Concrete
 
         public decimal DiscountPrice(decimal reservationPrice, DateTime checkInDate, DateTime reservationDate, string servicePackName)
         {
-            var result = (checkInDate.Date - reservationDate.Date).TotalDays;
-            if (result > 30 && servicePackName == "Her Şey Dahil")
+            var resultDays = (checkInDate.Date - reservationDate.Date).TotalDays;
+            if (resultDays > 30 && resultDays <= 90 && servicePackName == "Her Şey Dahil")
             {
                 reservationPrice = reservationPrice - (reservationPrice * 18 / 100);
             }
-            else if (result > 30 && servicePackName == "Tam Pansiyon")
+            else if (resultDays > 30 && resultDays <= 90 && servicePackName == "Tam Pansiyon")
             {
                 reservationPrice = reservationPrice - (reservationPrice * 16 / 100);
             }
-            else if (result > 90)
+            else if (resultDays > 90)
             {
                 reservationPrice = reservationPrice - (reservationPrice * 23 / 100);
             }
