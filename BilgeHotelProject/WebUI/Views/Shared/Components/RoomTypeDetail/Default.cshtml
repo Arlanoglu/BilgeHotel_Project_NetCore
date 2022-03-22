@@ -30,12 +30,15 @@
         <div class="room-details-title">
             <h2>@Model.RoomTypeName</h2>
             <ul>
-                <li>
-                    Tam Pansiyon : ??????/Gecelik/Oda
-                </li>
-                <li>
-                    Her Şey Dahil : ?????/Gecelik/Oda
-                </li>
+                @if (ViewBag.ServicePacks != null && ViewBag.ServicePacks.Count > 0)
+                {
+                    foreach (var item in ViewBag.ServicePacks as List<VMServicePack>)
+                    {
+                        <li>
+                            <b>@item.PackName :</b> @((item.PackPrice+Model.Price).ToString("C2")) /Gecelik/Oda
+                        </li>
+                    }
+                }
             </ul>
         </div>
         <div class="room-details-content">

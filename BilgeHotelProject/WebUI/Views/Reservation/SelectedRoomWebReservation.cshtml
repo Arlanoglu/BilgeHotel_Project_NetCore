@@ -14,15 +14,60 @@
         <div class="container">
 
             <div class="row justify-content-center" data-aos="fade-up">
-                <div class="col-lg-10">
-
-                    <div class="info-wrap">
-                        @if (ViewBag.RoomTypeName != null)
+                <div class="col-lg-10 info-wrap d-flex justify-content-between">
+                    <div class="d-flex align-self-center">
+                        @if (ViewBag.RoomType.RoomTypeName != null)
                         {
-                            <h2>@ViewBag.RoomTypeName</h2>
+                            <h2>@ViewBag.RoomType.RoomTypeName</h2>
                         }
                     </div>
 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-8 pl-0 d-flex justify-content-end"><span>Oda Fiyatı :</span></div>
+                                <div class="col-4 pl-0">@(((decimal)ViewBag.RoomType.Price).ToString("C2"))</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 pl-0 d-flex justify-content-end">@ViewBag.ServicePack.PackName :</div>
+                                <div class="col-4 pl-0">@(((decimal)ViewBag.ServicePack.PackPrice).ToString("C2"))</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 pl-0 d-flex justify-content-end">Gece/Gün :</div>
+                                <div class="col-4 pl-0">@((Model.CheckOutDate.Date-Model.CheckInDate.Date).TotalDays)/Gece</div>
+                            </div>
+                            @if (Model.Price != Model.DiscountedPrice)
+                            {
+                                <div class="row">
+                                    <div class="col-8 pl-0 d-flex justify-content-end text-success">İndirim Tutarı :</div>
+                                    <div class="col-4 pl-0 text-success">@((Model.Price-Model.DiscountedPrice).ToString("C2"))</div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-12"><hr /></div>
+                                <div class="col-8 pl-0 d-flex justify-content-end font-weight-bold">Toplam Tutar :</div>
+                                <div class="col-4 pl-0 font-weight-bold">@Model.DiscountedPrice.ToString("C2")</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    @*<div class="col border" style="font-size:15px;">
+                            <div class="col-6 d-flex justify-content-end">Oda Fiyatı :</div>
+                            <div class="col">@(((decimal)ViewBag.RoomType.Price).ToString("C2"))</div>
+
+                            <div class="col-6 d-flex justify-content-end">@ViewBag.ServicePack.PackName :</div>
+                            <div class="col">@(((decimal)ViewBag.ServicePack.PackPrice).ToString("C2"))</div>
+
+                            @if (Model.Price != Model.DiscountedPrice)
+                            {
+                                <div class="col-6 d-flex justify-content-end">İndirim Tutarı :</div>
+                                <div class="col">@((Model.Price-Model.DiscountedPrice).ToString("C2"))</div>
+                            }
+                            <div class="col-6 d-flex justify-content-end">Ödenecek Tutar :</div>
+                            <div class="col">@Model.DiscountedPrice</div>
+                        </div>*@
                 </div>
 
             </div>

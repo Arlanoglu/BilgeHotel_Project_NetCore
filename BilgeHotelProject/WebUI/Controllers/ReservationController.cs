@@ -65,25 +65,66 @@ namespace WebUI.Controllers
                 var numberOfDays = (vMReservation.CheckOutDate.Date - vMReservation.CheckInDate.Date).TotalDays;
 
                 var roomTypes = await roomTypeService.AvaibleRoomTypes(vMReservation.CheckInDate, vMReservation.CheckOutDate, vMReservation.NumberOfPeople);
-                var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
 
-                for (int i = 0; i < roomTypes.Count; i++)
+                
+
+                if (vMReservation.RoomTypeID!=0)
                 {
-                    vmRoomTypes[i].TotalPrice = (vmRoomTypes[i].Price + selectedServicePack.PackPrice) * decimal.Parse(numberOfDays.ToString());
+                    var roomResult = roomTypes.Any(x => x.ID == vMReservation.RoomTypeID);
+                    if (roomResult)
+                    {
+                        var roomType = await roomTypeService.GetById(vMReservation.RoomTypeID);
+                        var vmRoomType = mapper.Map<VMRoomType>(roomType);
+                        vmRoomType.TotalPrice = (vmRoomType.Price + selectedServicePack.PackPrice) * decimal.Parse(numberOfDays.ToString());
+                        vmRoomType.DiscountedPrice = webReservationService.DiscountPrice(vmRoomType.TotalPrice, vMReservation.CheckInDate, DateTime.Now, selectedServicePack.PackName);
+                        vmRoomType.VMRoomPictures = mapper.Map<List<VMRoomPicture>>(roomType.RoomPictures);
 
-                    vmRoomTypes[i].DiscountedPrice = webReservationService.DiscountPrice(vmRoomTypes[i].TotalPrice, vMReservation.CheckInDate, DateTime.Now, selectedServicePack.PackName);
+                        List<VMRoomType> vmRoomTypes = new List<VMRoomType>();
+                        vmRoomTypes.Add(vmRoomType);
 
-                    vmRoomTypes[i].VMRoomPictures = mapper.Map<List<VMRoomPicture>>(roomTypes[i].RoomPictures);
+                        vMReservation.VMRoomTypes = vmRoomTypes;
+                    }
+                    else
+                    {
+                        TempData["FormError"] = "Girmiş olduğunuz kriterlere uygun müsait oda bulunamadı.";
+                        return RedirectToAction("RoomDetail", "Room", new { id = vMReservation.RoomTypeID });
+                    }
                 }
-                vMReservation.VMRoomTypes = vmRoomTypes;
+                else if (roomTypes.Count > 0)
+                {
+                    var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
+
+                    for (int i = 0; i < roomTypes.Count; i++)
+                    {
+                        vmRoomTypes[i].TotalPrice = (vmRoomTypes[i].Price + selectedServicePack.PackPrice) * decimal.Parse(numberOfDays.ToString());
+
+                        vmRoomTypes[i].DiscountedPrice = webReservationService.DiscountPrice(vmRoomTypes[i].TotalPrice, vMReservation.CheckInDate, DateTime.Now, selectedServicePack.PackName);
+
+                        vmRoomTypes[i].VMRoomPictures = mapper.Map<List<VMRoomPicture>>(roomTypes[i].RoomPictures);
+                    }
+                    vMReservation.VMRoomTypes = vmRoomTypes;
+                }
+                else
+                {
+                    TempData["FormError"] = "Girmiş olduğunuz kriterlere uygun müsait oda bulunamadı.";
+                }
+                
 
             }
             else
             {
-                TempData["FormError"] = "Tarih bilgilerinde hata gözlemlendi. Lütfen giriş ve çıkış tarihlerini kontrol ediniz.";
+                TempData["FormError"] = "Tarih bilgilerinde hata gözlemlendi. Lütfen giriş ve çıkış tarihlerini kontrol ediniz.";                
             }
 
-            return View(vMReservation);
+            if (vMReservation.RoomTypeID != 0)
+            {
+                return RedirectToAction("RoomDetail", "Room", new { id = vMReservation.RoomTypeID });
+            }
+            else
+            {
+                return View(vMReservation);
+            }
+            
         }
 
         [HttpPost]
@@ -92,8 +133,13 @@ namespace WebUI.Controllers
             var vmWebReservation = mapper.Map<VMWebReservation>(vMReservation);
 
             var roomType = await roomTypeService.GetById(vMReservation.RoomTypeID);
+            var vmRoomType = mapper.Map<VMRoomType>(roomType);
+            var servicePacks = JsonConvert.DeserializeObject<List<VMServicePack>>(TempData["VMServicePacks"].ToString());
+            TempData.Keep("VMServicePacks");
+            var selectedServicePack = servicePacks.Where(x => x.ID == vmWebReservation.ServicePackID).FirstOrDefault();
 
-            ViewBag.RoomTypeName = roomType.RoomTypeName;
+            ViewBag.RoomType = vmRoomType;
+            ViewBag.ServicePack = mapper.Map<VMServicePack>(selectedServicePack);
 
             return View(vmWebReservation);
         }
@@ -102,30 +148,40 @@ namespace WebUI.Controllers
         public async Task<IActionResult> WebReservationComplete(VMWebReservation vMWebReservation)
         {
             var avaibleRooms = await roomService.AvaibleRooms(vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate, vMWebReservation.NumberOfPeople);
-            var filterRooms = avaibleRooms.Where(x => x.RoomTypeID == vMWebReservation.RoomTypeID).ToList();
 
-            if (filterRooms.Count>0)
+            if (avaibleRooms.Count>0)
             {
-                vMWebReservation.RoomID = filterRooms.Select(x => x.ID).FirstOrDefault();
+                var filterRooms = avaibleRooms.Where(x => x.RoomTypeID == vMWebReservation.RoomTypeID).ToList();
 
-                var webReservation = mapper.Map<WebReservation>(vMWebReservation);
+                if (filterRooms.Count > 0)
+                {
+                    vMWebReservation.RoomID = filterRooms.Select(x => x.ID).FirstOrDefault();
 
-                ObjectCreator creator = new ObjectCreator();
-                var vmStatusOfRoom = (VMStatusOfRoom)creator.FactoryMethod(ViewModels.VMStatusOfRoom);
-                vmStatusOfRoom.StatusStartDate = vMWebReservation.CheckInDate;
-                vmStatusOfRoom.StatusEndDate = vMWebReservation.CheckOutDate;
-                vmStatusOfRoom.RoomStatus = Entities.Enum.RoomStatus.Rezerve;
-                vmStatusOfRoom.RoomID = vMWebReservation.RoomID;
-                var statusOfRoom = mapper.Map<StatusOfRoom>(vmStatusOfRoom);
+                    var webReservation = mapper.Map<WebReservation>(vMWebReservation);
 
-                var createResult = (Result)webReservationService.ReservationCreate(webReservation, statusOfRoom);
+                    ObjectCreator creator = new ObjectCreator();
+                    var vmStatusOfRoom = (VMStatusOfRoom)creator.FactoryMethod(ViewModels.VMStatusOfRoom);
+                    vmStatusOfRoom.StatusStartDate = vMWebReservation.CheckInDate;
+                    vmStatusOfRoom.StatusEndDate = vMWebReservation.CheckOutDate;
+                    vmStatusOfRoom.RoomStatus = Entities.Enum.RoomStatus.Rezerve;
+                    vmStatusOfRoom.RoomID = vMWebReservation.RoomID;
+                    var statusOfRoom = mapper.Map<StatusOfRoom>(vmStatusOfRoom);
 
-                TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);                                
+                    var createResult = (Result)webReservationService.ReservationCreate(webReservation, statusOfRoom);
+
+                    TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);
+                }
+                else
+                {
+                    TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
+                }
             }
             else
             {
                 TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
             }
+
+            
             //Todo: Reservasyon kayıt işlemi yapılacak. success gelirse mail gönderilecek vs.
             return RedirectToAction("WebReservationResult",vMWebReservation);
         }

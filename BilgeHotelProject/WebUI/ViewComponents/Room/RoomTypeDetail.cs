@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models.RoomFacility;
 using WebUI.Models.RoomType;
+using WebUI.Models.ServicePack;
 
 namespace WebUI.ViewComponents.Room
 {
@@ -14,11 +15,13 @@ namespace WebUI.ViewComponents.Room
     {
         private readonly IMapper mapper;
         private readonly IRoomTypeService roomTypeService;
+        private readonly IServicePackService servicePackService;
 
-        public RoomTypeDetail(IMapper mapper, IRoomTypeService roomTypeService)
+        public RoomTypeDetail(IMapper mapper, IRoomTypeService roomTypeService, IServicePackService servicePackService)
         {
             this.mapper = mapper;
             this.roomTypeService = roomTypeService;
+            this.servicePackService = servicePackService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
@@ -37,6 +40,10 @@ namespace WebUI.ViewComponents.Room
             var vmRoomPictures = mapper.Map<List<VMRoomPicture>>(roomType.RoomPictures);
             vmRoomType.VMRoomFacilities = vMRoomFacilities;
             vmRoomType.VMRoomPictures = vmRoomPictures;
+
+            var servicePacks = await servicePackService.GetActive();
+            ViewBag.ServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
+
             return View(vmRoomType);
         }
     }

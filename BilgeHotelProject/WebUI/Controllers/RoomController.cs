@@ -10,6 +10,7 @@ using WebUI.Models.Reservation;
 using WebUI.Models.RoomType;
 using WebUI.Models.ServicePack;
 using WebUI.Utilities;
+using WebUI.Utilities.Enums;
 
 namespace WebUI.Controllers
 {
@@ -17,11 +18,13 @@ namespace WebUI.Controllers
     {
         private readonly IMapper mapper;
         private readonly IRoomTypeService roomTypeService;
+        private readonly IServicePackService servicePackService;
 
-        public RoomController(IMapper mapper, IRoomTypeService roomTypeService)
+        public RoomController(IMapper mapper, IRoomTypeService roomTypeService, IServicePackService servicePackService)
         {
             this.mapper = mapper;
             this.roomTypeService = roomTypeService;
+            this.servicePackService = servicePackService;
         }
         public IActionResult Index()
         {
@@ -30,17 +33,26 @@ namespace WebUI.Controllers
         
         public async Task<IActionResult> RoomDetail(int id)
         {
-            var roomType = await roomTypeService.GetById(id);            
-            var vmRoomType = mapper.Map<VMRoomTypeName>(roomType);
+            var roomType = await roomTypeService.GetById(id);
+            var vmRoomType = mapper.Map<VMRoomType>(roomType);
 
-            TempData["RoomTypeName"] = JsonConvert.SerializeObject(vmRoomType);
+            List<VMRoomType> vMRoomTypes = new List<VMRoomType>();
+            vMRoomTypes.Add(vmRoomType);
 
-            ViewBag.RoomTypeName = vmRoomType;
+            var servicePacks = await servicePackService.GetActive();
+            var vmServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
 
-            //ObjectCreator creator = new ObjectCreator();
-            //var vmWebReservation = (VMWebReservation)creator.FactoryMethod(Utilities.Enums.ViewModels.VMWebReservation);
-            //vmWebReservation.RoomTypeID = id;
-            return View();
+            ObjectCreator creator = new ObjectCreator();            
+
+            var vmReservation = (VMReservation)creator.FactoryMethod(ViewModels.VMReservation);
+            vmReservation.RoomTypeID = id;
+            vmReservation.VMServicePacks = vmServicePacks;
+            vmReservation.VMRoomTypes = vMRoomTypes;
+
+
+            ViewBag.RoomTypeName = roomType.RoomTypeName;
+
+            return View(vmReservation);
         }
 
         [HttpPost]

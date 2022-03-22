@@ -1,6 +1,6 @@
-﻿@model VMWebReservation
+﻿@model VMReservation
 @{
-    ViewData["Title"] = ViewBag.RoomTypeName.RoomTypeName + " Oda";
+    ViewData["Title"] = Model.VMRoomTypes.FirstOrDefault().RoomTypeName + " Oda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
                         <a href="/Home/Index">Ana Sayfa</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
-                    <li>@ViewBag.RoomTypeName.RoomTypeName Oda</li>
+                    <li>@Model.VMRoomTypes.FirstOrDefault().RoomTypeName Oda</li>
                 </ul>
                 <h3>Oda Detayları</h3>
             </div>
@@ -24,22 +24,29 @@
     <div class="room-details-area pt-100 pb-70">
         <div class="container">
             <div class="row">
+                @if (TempData["FormError"] != null)
+                {
+                    <div class="col-12 d-flex justify-content-center"><h6>@TempData["FormError"]</h6></div>
+                }
                 <div class="col-lg-4">
-                    @if (TempData["FormError"] != null)
-                    {
-                        <div class="text-center"><h6>@TempData["FormError"]</h6></div>
-                    }
                     <div class="room-details-side">
                         <div class="side-bar-form">
                             <h3>Rezervasyon</h3>
-                            <form asp-controller="Room" asp-action="RoomDetailReservation" method="post">
+                            <form asp-controller="Reservation" asp-action="WebReservation" method="post">
                                 <div class="row align-items-center">
-                                    <input asp-for="RoomTypeID" type="hidden" value="@ViewBag.RoomTypeName.ID" />
+                                    <input asp-for="RoomTypeID" type="hidden" value="@Model.RoomTypeID" />
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label asp-for="CheckInDate">Giriş Tarihi</label>
                                             <div class="input-group">
-                                                <input asp-for="CheckInDate" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                                @if (Model.CheckInDate != DateTime.Parse("01-01-0001"))
+                                                {
+                                                    <input class="form-control" asp-for="CheckInDate" type="date" id="checkinDate" value="@Model.CheckInDate.ToString("yyyy-MM-dd")">
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-control" asp-for="CheckInDate" type="date" id="checkinDate" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -55,9 +62,9 @@
                                         <div class="form-group">
                                             <label asp-for="NumberOfPeople">Kişi Sayısı</label>
                                             <select asp-for="NumberOfPeople" class="form-control">
-                                                @for (int i = 1; i <= ViewBag.RoomTypeName.NumberOfPeople; i++)
+                                                @for (int i = 1; i <= Model.VMRoomTypes.FirstOrDefault().NumberOfPeople; i++)
                                                 {
-                                                    if (ViewBag.RoomTypeName.NumberOfPeople == i)
+                                                    if (Model.VMRoomTypes.FirstOrDefault().NumberOfPeople == i)
                                                     {
                                                         <option selected>@i</option>
                                                     }
@@ -68,6 +75,18 @@
                                                 }
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-form-label" asp-for="ServicePackID">Hizmet Paketi</label>
+                                        <select asp-for="ServicePackID" class="form-control">
+                                            @if (Model.VMServicePacks.Count > 0)
+                                            {
+                                                @foreach (var item in Model.VMServicePacks)
+                                                {
+                                                    <option value="@item.ID">@item.PackName</option>
+                                                }
+                                            }
+                                        </select>
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <button type="submit" class="default-btn btn-bg-three border-radius-5">
@@ -80,7 +99,7 @@
 
                     </div>
                 </div>
-                @await Component.InvokeAsync("RoomTypeDetail", new { id = ViewBag.RoomTypeName.ID })
+                @await Component.InvokeAsync("RoomTypeDetail", new { id = Model.RoomTypeID })
             </div>
         </div>
     </div>
