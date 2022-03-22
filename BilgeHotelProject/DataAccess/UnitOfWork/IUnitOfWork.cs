@@ -36,6 +36,7 @@ namespace DataAccess.UnitOfWork
         ISettingDal SettingDal { get; }
         IEmployeeShiftDal EmployeeShiftDal { get; }
         IRoomPictureDal RoomPictureDal { get; }
+        IMessageDal MessageDal { get; }
 
         int SaveChange();
 

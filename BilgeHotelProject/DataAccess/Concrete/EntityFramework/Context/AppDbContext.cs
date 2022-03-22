@@ -46,6 +46,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<HomePageSlide> HomePageSlides { get; set; }
         public DbSet<HotelService> HotelServices { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public override int SaveChanges()
         {
@@ -89,6 +90,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.ApplyConfiguration(new SettingMap());
             builder.ApplyConfiguration(new PictureMap());
             builder.ApplyConfiguration(new AboutusMap());
+            builder.ApplyConfiguration(new MessageMap());
 
             builder.ApplyConfiguration(new DepartmentMap());
             builder.ApplyConfiguration(new EmployeeMap());

@@ -14,3 +14,4 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Common\obj\Debug\net5.0\Common.dll
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Common\obj\Debug\net5.0\ref\Common.dll
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Common\obj\Debug\net5.0\Common.pdb
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\Common\obj\Debug\net5.0\Common.csproj.CopyComplete
