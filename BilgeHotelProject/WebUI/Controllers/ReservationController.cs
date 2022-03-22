@@ -17,6 +17,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using WebUI.Utilities.Enums;
 using Microsoft.AspNetCore.Identity;
+using Common;
 
 namespace WebUI.Controllers
 {
@@ -29,8 +30,10 @@ namespace WebUI.Controllers
         private readonly IWebReservationService webReservationService;
         private readonly IRoomService roomService;
         private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+        private readonly ISettingService settingService;
 
-        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService, IWebReservationService webReservationService, IRoomService roomService, UserManager<AppUser> userManager)
+        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService, IWebReservationService webReservationService, IRoomService roomService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ISettingService settingService)
         {
             this.mapper = mapper;
             this.servicePackService = servicePackService;
@@ -38,6 +41,8 @@ namespace WebUI.Controllers
             this.webReservationService = webReservationService;
             this.roomService = roomService;
             this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.settingService = settingService;
         }
         public async Task<IActionResult> WebReservation()
         {
@@ -168,6 +173,25 @@ namespace WebUI.Controllers
                     var statusOfRoom = mapper.Map<StatusOfRoom>(vmStatusOfRoom);
 
                     var createResult = (Result)webReservationService.ReservationCreate(webReservation, statusOfRoom);
+
+                    //Rezervasyon sonunda mail gönderim işlemi
+                    if (createResult.ResultStatus==ResultStatus.Success && signInManager.IsSignedIn(User))
+                    {
+                        var user = await userManager.GetUserAsync(User);
+                        var setting = (await settingService.GetActive()).FirstOrDefault();
+                        var reservationID = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).FirstOrDefault().ID;
+                        var reservationDate = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).FirstOrDefault().ReservationDate;
+                        var message = MailSender.ReservationCompleteMessage(reservationID, reservationDate, vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate);
+
+                        //Kullanıcıya gönderilen mail.
+                        MailSender.SendMail(user.Email, "Rezervasyon", message, setting);
+                        if (user.Email!=vMWebReservation.Email)
+                        {
+                            //Rezervasyona gönderilen mail.
+                            MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
+                        }                       
+                        
+                    }
 
                     TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);
                 }

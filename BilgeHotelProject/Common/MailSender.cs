@@ -50,5 +50,18 @@ namespace Common
         {
             return $"Marhaba,\n\nÜyelik işleminizi onaylamak için lütfen linki tıklayın.\n\n https://localhost:44321/{controllerName}/{actionName}/" + uniqueKey+ "\n\nSaygılarımızla,\nBilge Hotel";
         }
+
+        /// <summary>
+        /// Register işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
+        /// Kullanılacak Bilgisayarda linkteki 44389 bölümü değiştirilmelidir.
+        /// </summary>
+        /// <param name="uniqueKey">Kullanıcıya Guid tipinde bir activasyon kodu oluşturup kullanıcının ActivationKey propertysine eklenecektir.</param>
+        /// <param name="controllerName">Activasyon Linki tıklandığında yönlendirilecek Controller ismi.</param>
+        /// <param name="actionName">Activasyon Linki tıklandığında yönlendirilecek Action ismi.</param>
+        /// <returns>Geriye string tipte bir mesage dönecektir. SenMail metodunun message parametresine gönderilir.</returns>
+        public static string ReservationCompleteMessage(int reservationId, DateTime reservationDate ,DateTime checkInDate, DateTime checkOutDate)
+        {
+            return $"Marhaba,\n\nBLGHTL-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon talebiniz tarafımıza ulaşmış, {reservationDate} tarihinde rezervasyonunuz oluşturulmuştur.\n\nRezervasyon tarihinize 2 gün kala ödeme işlemi gerçekleştirilmediği takdirde rezervasyonunuz iptal edilecektir.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+        }
     }
 }
