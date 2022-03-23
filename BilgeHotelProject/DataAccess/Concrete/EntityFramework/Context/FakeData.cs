@@ -459,7 +459,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole { Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1", Name = "user", NormalizedName = "user".ToUpper() },
                 new IdentityRole { Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b", Name = "admin", NormalizedName = "admin".ToUpper() },
-                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "reseption", NormalizedName = "reseption".ToUpper() },
+                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "resepsiyon", NormalizedName = "resepsiyon".ToUpper() },
                 new IdentityRole { Id = "75d8b242-e230-4fe8-ad20-b8e818d97957", Name = "insankaynaklari", NormalizedName = "insankaynaklari".ToUpper() },
                 new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimcihizmetler", NormalizedName = "yardimcihizmetler".ToUpper() }
                 );

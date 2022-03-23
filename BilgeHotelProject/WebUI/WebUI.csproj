@@ -73,6 +73,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\" />
+    <Folder Include="Areas\Administrator\Controllers\" />
+    <Folder Include="Areas\Administrator\Views\" />
+    <Folder Include="Areas\AncillaryServices\Controllers\" />
+    <Folder Include="Areas\AncillaryServices\Views\" />
+    <Folder Include="Areas\HumanResources\Controllers\" />
+    <Folder Include="Areas\HumanResources\Views\" />
+    <Folder Include="Areas\Reception\Controllers\" />
+    <Folder Include="Areas\Reception\Views\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
