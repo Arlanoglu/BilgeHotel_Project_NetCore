@@ -68,6 +68,9 @@ namespace WebUI.Utilities
                 case ViewModels.VMStatusOfRoom:
                     viewModel = new VMStatusOfRoom();
                     break;
+                case ViewModels.VMMessage:
+                    viewModel = new VMMessage();
+                    break;
             }
             return viewModel;
         }

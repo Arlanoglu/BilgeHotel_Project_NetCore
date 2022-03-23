@@ -1,0 +1,34 @@
+﻿@model VMMessage
+
+
+
+
+<div class="form-row">
+    <div class="col-md-6 form-group">
+        <input asp-for="FirstName" type="text" class="form-control" placeholder="İsim" />
+        <div class="validate"></div>
+    </div>
+    <div class="col-md-6 form-group">
+        <input asp-for="LastName" type="text" class="form-control" placeholder="Soyisim" />
+        <div class="validate"></div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-6 form-group">
+        <input asp-for="Email" type="email" class="form-control" placeholder="E-Posta" />
+        <div class="validate"></div>
+    </div>
+    <div class="col-md-6 form-group">
+        <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="05555555555" />
+        <div class="validate"></div>
+    </div>
+</div>
+<div class="form-group">
+    <input asp-for="Subject" type="text" class="form-control" placeholder="Konu" />
+    <div class="validate"></div>
+</div>
+<div class="form-group">
+    <textarea asp-for="MessageContent" class="form-control" rows="5" placeholder="Mesaj İçeriği"></textarea>
+    <div class="validate"></div>
+</div>
+<div class="text-center"><button type="submit">Send Message</button></div>

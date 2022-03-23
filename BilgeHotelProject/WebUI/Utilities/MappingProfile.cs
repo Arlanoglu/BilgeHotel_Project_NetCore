@@ -75,6 +75,9 @@ namespace WebUI.Utilities
 
             CreateMap<VMMyReservation, WebReservation>();
             CreateMap<WebReservation, VMMyReservation>();
+
+            CreateMap<Message, VMMessage>();
+            CreateMap<VMMessage, Message>();
         }
     }
 }

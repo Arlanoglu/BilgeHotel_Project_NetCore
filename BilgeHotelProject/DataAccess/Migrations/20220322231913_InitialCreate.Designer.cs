@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220322130405_InitialCreate")]
+    [Migration("20220322231913_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -289,8 +289,8 @@ namespace DataAccess.Migrations
                         new
                         {
                             ID = 1,
-                            Adress = "250 Ortiz Port, Botsfordfort, Puerto Rico",
-                            Email = "Carol.Bauch@hotmail.com",
+                            Adress = "78065 Kuvalis Plaza, Marquardtmouth, Antigua and Barbuda",
+                            Email = "Sidney52@hotmail.com",
                             Facebook = "https://www.facebook.com/bilgehotel",
                             Fax = "05454526235",
                             Instagram = "https://www.instagram.com/bilgehotel",
@@ -524,15 +524,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 1,
                             DepartmentID = 4,
-                            Email = "Robert36@yahoo.com",
+                            Email = "Dale_Cole1@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Robert",
-                            HourlyRate = 194.713707060885480m,
-                            IdentificationNumber = "5575",
+                            FirstName = "Dale",
+                            HourlyRate = 191.784881018933320m,
+                            IdentificationNumber = "9180",
                             IsActive = true,
-                            LastName = "Hahn",
+                            LastName = "Cole",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 3, 17, 23, 20, 17, 292, DateTimeKind.Unspecified).AddTicks(6500),
+                            StartDateOfWork = new DateTime(2021, 10, 24, 6, 7, 47, 604, DateTimeKind.Unspecified).AddTicks(3439),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -541,15 +541,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 2,
                             DepartmentID = 4,
-                            Email = "Leticia_Roberts58@gmail.com",
+                            Email = "Benjamin.Cronin@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Leticia",
-                            HourlyRate = 192.907942595383130m,
-                            IdentificationNumber = "2308",
+                            FirstName = "Benjamin",
+                            HourlyRate = 199.182420880153040m,
+                            IdentificationNumber = "7656",
                             IsActive = true,
-                            LastName = "Roberts",
+                            LastName = "Cronin",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 6, 28, 21, 20, 16, 300, DateTimeKind.Unspecified).AddTicks(5567),
+                            StartDateOfWork = new DateTime(2019, 10, 18, 22, 21, 35, 480, DateTimeKind.Unspecified).AddTicks(484),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -558,15 +558,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 3,
                             DepartmentID = 4,
-                            Email = "Arlene_Gulgowski48@yahoo.com",
+                            Email = "Albert_Rosenbaum50@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Arlene",
-                            HourlyRate = 193.057080694966520m,
-                            IdentificationNumber = "8709",
+                            FirstName = "Albert",
+                            HourlyRate = 193.86799526115320m,
+                            IdentificationNumber = "3369",
                             IsActive = true,
-                            LastName = "Gulgowski",
+                            LastName = "Rosenbaum",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 4, 28, 10, 53, 21, 737, DateTimeKind.Unspecified).AddTicks(3059),
+                            StartDateOfWork = new DateTime(2021, 11, 15, 21, 47, 23, 257, DateTimeKind.Unspecified).AddTicks(6881),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -575,15 +575,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 4,
                             DepartmentID = 4,
-                            Email = "Agnes.Wiegand@gmail.com",
+                            Email = "Gloria31@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Agnes",
-                            HourlyRate = 198.980820434624710m,
-                            IdentificationNumber = "2418",
+                            FirstName = "Gloria",
+                            HourlyRate = 197.583909541174730m,
+                            IdentificationNumber = "7287",
                             IsActive = true,
-                            LastName = "Wiegand",
+                            LastName = "Crooks",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 11, 27, 23, 56, 35, 839, DateTimeKind.Unspecified).AddTicks(5704),
+                            StartDateOfWork = new DateTime(2019, 5, 28, 1, 44, 34, 66, DateTimeKind.Unspecified).AddTicks(9020),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -592,15 +592,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 5,
                             DepartmentID = 4,
-                            Email = "Sherry.Carroll@yahoo.com",
+                            Email = "Laverne_Kohler90@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Sherry",
-                            HourlyRate = 193.484199239632210m,
-                            IdentificationNumber = "9029",
+                            FirstName = "Laverne",
+                            HourlyRate = 196.459068491337390m,
+                            IdentificationNumber = "6915",
                             IsActive = true,
-                            LastName = "Carroll",
+                            LastName = "Kohler",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 5, 6, 18, 54, 45, 936, DateTimeKind.Unspecified).AddTicks(6312),
+                            StartDateOfWork = new DateTime(2021, 7, 12, 22, 14, 58, 364, DateTimeKind.Unspecified).AddTicks(2269),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -609,15 +609,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 6,
                             DepartmentID = 4,
-                            Email = "Desiree_Carroll@gmail.com",
+                            Email = "Penny.Prohaska@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Desiree",
-                            HourlyRate = 191.682719756701360m,
-                            IdentificationNumber = "7884",
+                            FirstName = "Penny",
+                            HourlyRate = 192.861988610989410m,
+                            IdentificationNumber = "9393",
                             IsActive = true,
-                            LastName = "Carroll",
+                            LastName = "Prohaska",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 2, 11, 14, 7, 12, 86, DateTimeKind.Unspecified).AddTicks(941),
+                            StartDateOfWork = new DateTime(2021, 2, 9, 11, 19, 32, 678, DateTimeKind.Unspecified).AddTicks(7014),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -626,15 +626,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 7,
                             DepartmentID = 4,
-                            Email = "Dorothy_Sipes97@gmail.com",
+                            Email = "Nick3@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Dorothy",
-                            HourlyRate = 193.419713468020650m,
-                            IdentificationNumber = "5254",
+                            FirstName = "Nick",
+                            HourlyRate = 194.439752537030610m,
+                            IdentificationNumber = "8410",
                             IsActive = true,
-                            LastName = "Sipes",
+                            LastName = "Mueller",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 8, 15, 11, 2, 20, 853, DateTimeKind.Unspecified).AddTicks(3311),
+                            StartDateOfWork = new DateTime(2021, 12, 14, 23, 12, 22, 883, DateTimeKind.Unspecified).AddTicks(4750),
                             Status = 0,
                             Title = "Resepsiyonist",
                             UserID = 0
@@ -643,15 +643,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 8,
                             DepartmentID = 1,
-                            Email = "Emilio_Farrell75@yahoo.com",
+                            Email = "Neal95@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Emilio",
-                            HourlyRate = 190.3810993676917160m,
-                            IdentificationNumber = "1724",
+                            FirstName = "Neal",
+                            HourlyRate = 198.168452497650150m,
+                            IdentificationNumber = "9822",
                             IsActive = true,
-                            LastName = "Farrell",
+                            LastName = "Walsh",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 2, 6, 19, 7, 53, 908, DateTimeKind.Unspecified).AddTicks(6383),
+                            StartDateOfWork = new DateTime(2020, 5, 26, 8, 30, 8, 152, DateTimeKind.Unspecified).AddTicks(1726),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -660,15 +660,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 9,
                             DepartmentID = 1,
-                            Email = "Leticia27@yahoo.com",
+                            Email = "Clint_Kohler33@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Leticia",
-                            HourlyRate = 192.546623797410460m,
-                            IdentificationNumber = "8867",
+                            FirstName = "Clint",
+                            HourlyRate = 192.543005525387360m,
+                            IdentificationNumber = "6373",
                             IsActive = true,
-                            LastName = "Bartell",
+                            LastName = "Kohler",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 12, 22, 6, 21, 5, 982, DateTimeKind.Unspecified).AddTicks(4938),
+                            StartDateOfWork = new DateTime(2020, 4, 29, 10, 38, 59, 531, DateTimeKind.Unspecified).AddTicks(1600),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -677,15 +677,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 10,
                             DepartmentID = 1,
-                            Email = "Dean_Gaylord89@yahoo.com",
+                            Email = "Dominick_DuBuque@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Dean",
-                            HourlyRate = 197.054159644550720m,
-                            IdentificationNumber = "5266",
+                            FirstName = "Dominick",
+                            HourlyRate = 193.108186765158640m,
+                            IdentificationNumber = "3257",
                             IsActive = true,
-                            LastName = "Gaylord",
+                            LastName = "DuBuque",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 7, 15, 4, 43, 10, 217, DateTimeKind.Unspecified).AddTicks(9771),
+                            StartDateOfWork = new DateTime(2020, 3, 22, 18, 59, 43, 502, DateTimeKind.Unspecified).AddTicks(9311),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -694,15 +694,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 11,
                             DepartmentID = 1,
-                            Email = "Thomas_Gleichner@hotmail.com",
+                            Email = "Evelyn_Hoeger78@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Thomas",
-                            HourlyRate = 193.485615860431280m,
-                            IdentificationNumber = "2616",
+                            FirstName = "Evelyn",
+                            HourlyRate = 192.076206874137840m,
+                            IdentificationNumber = "9375",
                             IsActive = true,
-                            LastName = "Gleichner",
+                            LastName = "Hoeger",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 11, 16, 14, 35, 27, 91, DateTimeKind.Unspecified).AddTicks(4026),
+                            StartDateOfWork = new DateTime(2020, 11, 20, 16, 30, 19, 333, DateTimeKind.Unspecified).AddTicks(7000),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -711,15 +711,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 12,
                             DepartmentID = 1,
-                            Email = "Erin_Will93@hotmail.com",
+                            Email = "Bradford_Denesik65@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Erin",
-                            HourlyRate = 191.158566279876310m,
-                            IdentificationNumber = "3012",
+                            FirstName = "Bradford",
+                            HourlyRate = 196.536884939548040m,
+                            IdentificationNumber = "7025",
                             IsActive = true,
-                            LastName = "Will",
+                            LastName = "Denesik",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 7, 13, 8, 29, 41, 760, DateTimeKind.Unspecified).AddTicks(830),
+                            StartDateOfWork = new DateTime(2021, 4, 1, 7, 42, 36, 301, DateTimeKind.Unspecified).AddTicks(563),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -728,15 +728,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 13,
                             DepartmentID = 1,
-                            Email = "Lillie39@yahoo.com",
+                            Email = "Jamie.Welch@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Lillie",
-                            HourlyRate = 194.738456134096930m,
-                            IdentificationNumber = "6301",
+                            FirstName = "Jamie",
+                            HourlyRate = 195.716272064352540m,
+                            IdentificationNumber = "1886",
                             IsActive = true,
-                            LastName = "Sauer",
+                            LastName = "Welch",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 4, 14, 12, 2, 47, 290, DateTimeKind.Unspecified).AddTicks(3589),
+                            StartDateOfWork = new DateTime(2020, 12, 28, 5, 32, 29, 76, DateTimeKind.Unspecified).AddTicks(3007),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -745,15 +745,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 14,
                             DepartmentID = 1,
-                            Email = "Margaret.Moen56@hotmail.com",
+                            Email = "Morris_Pfeffer@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Margaret",
-                            HourlyRate = 197.755496449654690m,
-                            IdentificationNumber = "3956",
+                            FirstName = "Morris",
+                            HourlyRate = 193.608697691750110m,
+                            IdentificationNumber = "4521",
                             IsActive = true,
-                            LastName = "Moen",
+                            LastName = "Pfeffer",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 2, 2, 6, 54, 24, 898, DateTimeKind.Unspecified).AddTicks(1629),
+                            StartDateOfWork = new DateTime(2021, 3, 16, 20, 56, 44, 496, DateTimeKind.Unspecified).AddTicks(4228),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -762,15 +762,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 15,
                             DepartmentID = 1,
-                            Email = "Tasha.Osinski62@gmail.com",
+                            Email = "Lionel.Hoppe@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Tasha",
-                            HourlyRate = 191.026497441821960m,
-                            IdentificationNumber = "1489",
+                            FirstName = "Lionel",
+                            HourlyRate = 191.717183749059770m,
+                            IdentificationNumber = "8151",
                             IsActive = true,
-                            LastName = "Osinski",
+                            LastName = "Hoppe",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 3, 18, 17, 21, 41, 495, DateTimeKind.Unspecified).AddTicks(5250),
+                            StartDateOfWork = new DateTime(2022, 2, 4, 23, 42, 27, 89, DateTimeKind.Unspecified).AddTicks(8825),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -779,15 +779,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 16,
                             DepartmentID = 1,
-                            Email = "Emily.Collins@hotmail.com",
+                            Email = "Carmen16@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Emily",
-                            HourlyRate = 197.385943554055850m,
-                            IdentificationNumber = "4756",
+                            FirstName = "Carmen",
+                            HourlyRate = 198.914037844591790m,
+                            IdentificationNumber = "6571",
                             IsActive = true,
-                            LastName = "Collins",
+                            LastName = "Ullrich",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 9, 11, 4, 55, 13, 932, DateTimeKind.Unspecified).AddTicks(1504),
+                            StartDateOfWork = new DateTime(2022, 1, 11, 16, 4, 50, 566, DateTimeKind.Unspecified).AddTicks(5862),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -796,15 +796,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 17,
                             DepartmentID = 1,
-                            Email = "Molly_Veum@hotmail.com",
+                            Email = "Jermaine_Davis45@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Molly",
-                            HourlyRate = 192.338880683453230m,
-                            IdentificationNumber = "2589",
+                            FirstName = "Jermaine",
+                            HourlyRate = 199.295587772175480m,
+                            IdentificationNumber = "8813",
                             IsActive = true,
-                            LastName = "Veum",
+                            LastName = "Davis",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 11, 28, 11, 26, 51, 890, DateTimeKind.Unspecified).AddTicks(9508),
+                            StartDateOfWork = new DateTime(2020, 7, 28, 9, 14, 33, 543, DateTimeKind.Unspecified).AddTicks(8394),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -813,15 +813,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 18,
                             DepartmentID = 1,
-                            Email = "Tabitha.Gleichner@gmail.com",
+                            Email = "Joanna_Funk@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Tabitha",
-                            HourlyRate = 192.953776834976760m,
-                            IdentificationNumber = "5403",
+                            FirstName = "Joanna",
+                            HourlyRate = 193.780336214127180m,
+                            IdentificationNumber = "7053",
                             IsActive = true,
-                            LastName = "Gleichner",
+                            LastName = "Funk",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 1, 11, 7, 14, 51, 701, DateTimeKind.Unspecified).AddTicks(4944),
+                            StartDateOfWork = new DateTime(2021, 6, 17, 19, 41, 11, 210, DateTimeKind.Unspecified).AddTicks(9649),
                             Status = 0,
                             Title = "Temizlik Görevlisi",
                             UserID = 0
@@ -830,15 +830,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 19,
                             DepartmentID = 3,
-                            Email = "Melvin10@gmail.com",
+                            Email = "Stuart_Spencer64@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Melvin",
-                            HourlyRate = 196.909133906899550m,
-                            IdentificationNumber = "2345",
+                            FirstName = "Stuart",
+                            HourlyRate = 191.941915360252330m,
+                            IdentificationNumber = "8962",
                             IsActive = true,
-                            LastName = "Cole",
+                            LastName = "Spencer",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 7, 5, 22, 29, 39, 79, DateTimeKind.Unspecified).AddTicks(9665),
+                            StartDateOfWork = new DateTime(2019, 9, 4, 1, 19, 49, 407, DateTimeKind.Unspecified).AddTicks(3028),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -847,15 +847,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 20,
                             DepartmentID = 3,
-                            Email = "Marvin_Beer@gmail.com",
+                            Email = "Moses11@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Marvin",
-                            HourlyRate = 199.728255173996210m,
-                            IdentificationNumber = "3725",
+                            FirstName = "Moses",
+                            HourlyRate = 199.667127663114630m,
+                            IdentificationNumber = "4537",
                             IsActive = true,
-                            LastName = "Beer",
+                            LastName = "Swaniawski",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 12, 4, 3, 5, 5, 973, DateTimeKind.Unspecified).AddTicks(4197),
+                            StartDateOfWork = new DateTime(2020, 10, 28, 15, 29, 37, 397, DateTimeKind.Unspecified).AddTicks(4019),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -864,15 +864,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 21,
                             DepartmentID = 3,
-                            Email = "Amanda_Gutmann54@hotmail.com",
+                            Email = "Lee.Balistreri92@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Amanda",
-                            HourlyRate = 193.89075023768970m,
-                            IdentificationNumber = "7722",
+                            FirstName = "Lee",
+                            HourlyRate = 194.364094303159090m,
+                            IdentificationNumber = "4557",
                             IsActive = true,
-                            LastName = "Gutmann",
+                            LastName = "Balistreri",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 11, 28, 17, 22, 15, 852, DateTimeKind.Unspecified).AddTicks(2576),
+                            StartDateOfWork = new DateTime(2021, 8, 27, 11, 0, 5, 817, DateTimeKind.Unspecified).AddTicks(7334),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -881,15 +881,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 22,
                             DepartmentID = 3,
-                            Email = "Elena25@hotmail.com",
+                            Email = "Annie79@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Elena",
-                            HourlyRate = 198.122768457104810m,
-                            IdentificationNumber = "7903",
+                            FirstName = "Annie",
+                            HourlyRate = 195.176044784102610m,
+                            IdentificationNumber = "4956",
                             IsActive = true,
-                            LastName = "Zieme",
+                            LastName = "Emmerich",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2022, 1, 28, 7, 14, 56, 197, DateTimeKind.Unspecified).AddTicks(5399),
+                            StartDateOfWork = new DateTime(2019, 4, 5, 14, 2, 42, 859, DateTimeKind.Unspecified).AddTicks(3616),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -898,15 +898,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 23,
                             DepartmentID = 3,
-                            Email = "Pam72@gmail.com",
+                            Email = "Wilbur95@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Pam",
-                            HourlyRate = 196.205539585186880m,
-                            IdentificationNumber = "3044",
+                            FirstName = "Wilbur",
+                            HourlyRate = 193.082674831656120m,
+                            IdentificationNumber = "9048",
                             IsActive = true,
-                            LastName = "Leffler",
+                            LastName = "Gerhold",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 11, 10, 21, 14, 41, 143, DateTimeKind.Unspecified).AddTicks(8905),
+                            StartDateOfWork = new DateTime(2020, 12, 15, 4, 19, 39, 757, DateTimeKind.Unspecified).AddTicks(80),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -915,15 +915,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 24,
                             DepartmentID = 3,
-                            Email = "Timothy_Murray19@hotmail.com",
+                            Email = "Jordan.Kessler@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Timothy",
-                            HourlyRate = 192.491903585610870m,
-                            IdentificationNumber = "6687",
+                            FirstName = "Jordan",
+                            HourlyRate = 190.7487186373903970m,
+                            IdentificationNumber = "5353",
                             IsActive = true,
-                            LastName = "Murray",
+                            LastName = "Kessler",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 11, 16, 15, 51, 40, 218, DateTimeKind.Unspecified).AddTicks(8256),
+                            StartDateOfWork = new DateTime(2022, 2, 23, 0, 5, 38, 164, DateTimeKind.Unspecified).AddTicks(7738),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -932,15 +932,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 25,
                             DepartmentID = 3,
-                            Email = "Marta2@yahoo.com",
+                            Email = "Florence.Steuber@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Marta",
-                            HourlyRate = 192.684237897714710m,
-                            IdentificationNumber = "3253",
+                            FirstName = "Florence",
+                            HourlyRate = 199.46374829833570m,
+                            IdentificationNumber = "3124",
                             IsActive = true,
-                            LastName = "Dach",
+                            LastName = "Steuber",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 7, 12, 17, 52, 24, 381, DateTimeKind.Unspecified).AddTicks(8083),
+                            StartDateOfWork = new DateTime(2020, 3, 15, 6, 20, 5, 257, DateTimeKind.Unspecified).AddTicks(8192),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -949,15 +949,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 26,
                             DepartmentID = 3,
-                            Email = "Geoffrey27@yahoo.com",
+                            Email = "Rosemarie51@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Geoffrey",
-                            HourlyRate = 192.229341264920930m,
-                            IdentificationNumber = "9055",
+                            FirstName = "Rosemarie",
+                            HourlyRate = 194.353367502034350m,
+                            IdentificationNumber = "2880",
                             IsActive = true,
-                            LastName = "Tillman",
+                            LastName = "King",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 6, 22, 2, 9, 50, 83, DateTimeKind.Unspecified).AddTicks(8106),
+                            StartDateOfWork = new DateTime(2020, 12, 12, 14, 23, 50, 99, DateTimeKind.Unspecified).AddTicks(5853),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -966,15 +966,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 27,
                             DepartmentID = 3,
-                            Email = "Lindsay.Haley@yahoo.com",
+                            Email = "Audrey51@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Lindsay",
-                            HourlyRate = 194.521969801058050m,
-                            IdentificationNumber = "4310",
+                            FirstName = "Audrey",
+                            HourlyRate = 197.362219848373080m,
+                            IdentificationNumber = "7963",
                             IsActive = true,
-                            LastName = "Haley",
+                            LastName = "Schaden",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 8, 18, 8, 2, 29, 914, DateTimeKind.Unspecified).AddTicks(8665),
+                            StartDateOfWork = new DateTime(2021, 6, 28, 14, 41, 49, 200, DateTimeKind.Unspecified).AddTicks(1567),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -983,15 +983,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 28,
                             DepartmentID = 3,
-                            Email = "Jill80@hotmail.com",
+                            Email = "Jeremiah11@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Jill",
-                            HourlyRate = 192.425477585022090m,
-                            IdentificationNumber = "1772",
+                            FirstName = "Jeremiah",
+                            HourlyRate = 196.500808594981580m,
+                            IdentificationNumber = "9109",
                             IsActive = true,
-                            LastName = "Dietrich",
+                            LastName = "Lindgren",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 4, 19, 21, 46, 18, 232, DateTimeKind.Unspecified).AddTicks(2158),
+                            StartDateOfWork = new DateTime(2021, 4, 28, 9, 25, 4, 617, DateTimeKind.Unspecified).AddTicks(7186),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -1000,15 +1000,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 29,
                             DepartmentID = 3,
-                            Email = "Kenneth63@yahoo.com",
+                            Email = "Marcia_Steuber@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Kenneth",
-                            HourlyRate = 193.628914502276530m,
-                            IdentificationNumber = "5783",
+                            FirstName = "Marcia",
+                            HourlyRate = 194.492809448620680m,
+                            IdentificationNumber = "2285",
                             IsActive = true,
-                            LastName = "Pfannerstill",
+                            LastName = "Steuber",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 10, 8, 12, 48, 37, 224, DateTimeKind.Unspecified).AddTicks(9524),
+                            StartDateOfWork = new DateTime(2019, 9, 9, 10, 5, 23, 634, DateTimeKind.Unspecified).AddTicks(3134),
                             Status = 0,
                             Title = "Aşçı",
                             UserID = 0
@@ -1017,15 +1017,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 30,
                             DepartmentID = 3,
-                            Email = "Alfredo_Tremblay@yahoo.com",
+                            Email = "Clifford_Prosacco@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Alfredo",
-                            HourlyRate = 195.859928199024840m,
-                            IdentificationNumber = "1354",
+                            FirstName = "Clifford",
+                            HourlyRate = 198.525885165913910m,
+                            IdentificationNumber = "6532",
                             IsActive = true,
-                            LastName = "Tremblay",
+                            LastName = "Prosacco",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 7, 29, 8, 27, 22, 247, DateTimeKind.Unspecified).AddTicks(1523),
+                            StartDateOfWork = new DateTime(2020, 11, 29, 6, 9, 31, 114, DateTimeKind.Unspecified).AddTicks(6578),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1034,15 +1034,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 31,
                             DepartmentID = 3,
-                            Email = "Caleb_Shanahan@yahoo.com",
+                            Email = "Doreen6@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Caleb",
-                            HourlyRate = 194.886160686093460m,
-                            IdentificationNumber = "7053",
+                            FirstName = "Doreen",
+                            HourlyRate = 195.350305654737310m,
+                            IdentificationNumber = "3269",
                             IsActive = true,
-                            LastName = "Shanahan",
+                            LastName = "Ledner",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 9, 19, 7, 32, 54, 256, DateTimeKind.Unspecified).AddTicks(2632),
+                            StartDateOfWork = new DateTime(2019, 4, 19, 8, 35, 56, 337, DateTimeKind.Unspecified).AddTicks(1536),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1051,15 +1051,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 32,
                             DepartmentID = 3,
-                            Email = "Geraldine8@yahoo.com",
+                            Email = "Earl.Rempel42@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Geraldine",
-                            HourlyRate = 198.503626370105720m,
-                            IdentificationNumber = "9118",
+                            FirstName = "Earl",
+                            HourlyRate = 193.782319237376710m,
+                            IdentificationNumber = "9844",
                             IsActive = true,
-                            LastName = "Kunze",
+                            LastName = "Rempel",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 1, 29, 3, 41, 28, 508, DateTimeKind.Unspecified).AddTicks(7073),
+                            StartDateOfWork = new DateTime(2021, 2, 10, 16, 18, 17, 8, DateTimeKind.Unspecified).AddTicks(809),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1068,15 +1068,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 33,
                             DepartmentID = 3,
-                            Email = "Opal.Labadie@gmail.com",
+                            Email = "Luke.Jacobs70@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Opal",
-                            HourlyRate = 194.69417534521510m,
-                            IdentificationNumber = "7366",
+                            FirstName = "Luke",
+                            HourlyRate = 197.341808293639590m,
+                            IdentificationNumber = "3136",
                             IsActive = true,
-                            LastName = "Labadie",
+                            LastName = "Jacobs",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 10, 27, 4, 27, 5, 231, DateTimeKind.Unspecified).AddTicks(6799),
+                            StartDateOfWork = new DateTime(2019, 9, 6, 16, 6, 16, 729, DateTimeKind.Unspecified).AddTicks(3231),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1085,15 +1085,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 34,
                             DepartmentID = 3,
-                            Email = "Rhonda.Stroman@gmail.com",
+                            Email = "Clyde.Schumm@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Rhonda",
-                            HourlyRate = 198.878102022632070m,
-                            IdentificationNumber = "7039",
+                            FirstName = "Clyde",
+                            HourlyRate = 199.77105454065420m,
+                            IdentificationNumber = "7122",
                             IsActive = true,
-                            LastName = "Stroman",
+                            LastName = "Schumm",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 7, 29, 23, 34, 48, 919, DateTimeKind.Unspecified).AddTicks(6977),
+                            StartDateOfWork = new DateTime(2021, 8, 11, 15, 56, 30, 603, DateTimeKind.Unspecified).AddTicks(7045),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1102,15 +1102,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 35,
                             DepartmentID = 3,
-                            Email = "Mercedes41@yahoo.com",
+                            Email = "Evan18@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Mercedes",
-                            HourlyRate = 192.855905025664670m,
-                            IdentificationNumber = "8616",
+                            FirstName = "Evan",
+                            HourlyRate = 196.352761893697440m,
+                            IdentificationNumber = "5785",
                             IsActive = true,
-                            LastName = "Collins",
+                            LastName = "Hayes",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 10, 29, 2, 14, 41, 537, DateTimeKind.Unspecified).AddTicks(165),
+                            StartDateOfWork = new DateTime(2021, 1, 15, 19, 4, 11, 187, DateTimeKind.Unspecified).AddTicks(3452),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1119,15 +1119,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 36,
                             DepartmentID = 3,
-                            Email = "Josefina.Hodkiewicz@yahoo.com",
+                            Email = "Stacey9@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Josefina",
-                            HourlyRate = 193.533072980834670m,
-                            IdentificationNumber = "4064",
+                            FirstName = "Stacey",
+                            HourlyRate = 197.778999906861690m,
+                            IdentificationNumber = "5543",
                             IsActive = true,
-                            LastName = "Hodkiewicz",
+                            LastName = "Runolfsdottir",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 1, 18, 8, 34, 17, 134, DateTimeKind.Unspecified).AddTicks(8764),
+                            StartDateOfWork = new DateTime(2019, 7, 2, 18, 26, 43, 160, DateTimeKind.Unspecified).AddTicks(6228),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1136,15 +1136,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 37,
                             DepartmentID = 3,
-                            Email = "Nick5@yahoo.com",
+                            Email = "Kelly18@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Nick",
-                            HourlyRate = 195.329525724672490m,
-                            IdentificationNumber = "4178",
+                            FirstName = "Kelly",
+                            HourlyRate = 190.7172353988127950m,
+                            IdentificationNumber = "1434",
                             IsActive = true,
-                            LastName = "Schamberger",
+                            LastName = "Borer",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2022, 2, 26, 6, 34, 27, 368, DateTimeKind.Unspecified).AddTicks(9152),
+                            StartDateOfWork = new DateTime(2021, 10, 20, 17, 6, 34, 640, DateTimeKind.Unspecified).AddTicks(1007),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1153,15 +1153,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 38,
                             DepartmentID = 3,
-                            Email = "Ivan.Schimmel73@yahoo.com",
+                            Email = "Brenda_Glover@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Ivan",
-                            HourlyRate = 192.692588187145340m,
-                            IdentificationNumber = "5614",
+                            FirstName = "Brenda",
+                            HourlyRate = 198.751314035035350m,
+                            IdentificationNumber = "6875",
                             IsActive = true,
-                            LastName = "Schimmel",
+                            LastName = "Glover",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 12, 31, 21, 40, 47, 817, DateTimeKind.Unspecified).AddTicks(5402),
+                            StartDateOfWork = new DateTime(2019, 3, 6, 7, 35, 27, 962, DateTimeKind.Unspecified).AddTicks(6811),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1170,15 +1170,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 39,
                             DepartmentID = 3,
-                            Email = "Elbert.White51@hotmail.com",
+                            Email = "Austin_Altenwerth45@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Elbert",
-                            HourlyRate = 190.07109247151347460m,
-                            IdentificationNumber = "8020",
+                            FirstName = "Austin",
+                            HourlyRate = 191.478772457446330m,
+                            IdentificationNumber = "6427",
                             IsActive = true,
-                            LastName = "White",
+                            LastName = "Altenwerth",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 6, 21, 12, 41, 47, 448, DateTimeKind.Unspecified).AddTicks(5510),
+                            StartDateOfWork = new DateTime(2019, 11, 25, 23, 32, 35, 362, DateTimeKind.Unspecified).AddTicks(9530),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1187,15 +1187,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 40,
                             DepartmentID = 3,
-                            Email = "Caroline_Roberts77@yahoo.com",
+                            Email = "Felix50@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Caroline",
-                            HourlyRate = 198.129493472226660m,
-                            IdentificationNumber = "5976",
+                            FirstName = "Felix",
+                            HourlyRate = 190.9836804917937520m,
+                            IdentificationNumber = "2075",
                             IsActive = true,
                             LastName = "Roberts",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 6, 6, 6, 30, 50, 360, DateTimeKind.Unspecified).AddTicks(4765),
+                            StartDateOfWork = new DateTime(2021, 3, 6, 20, 42, 53, 116, DateTimeKind.Unspecified).AddTicks(3530),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1204,15 +1204,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 41,
                             DepartmentID = 3,
-                            Email = "Lowell.Schowalter@gmail.com",
+                            Email = "Jessica47@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Lowell",
-                            HourlyRate = 195.449842300941160m,
-                            IdentificationNumber = "7955",
+                            FirstName = "Jessica",
+                            HourlyRate = 196.636993939353620m,
+                            IdentificationNumber = "3991",
                             IsActive = true,
-                            LastName = "Schowalter",
+                            LastName = "Rice",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 8, 4, 12, 18, 5, 916, DateTimeKind.Unspecified).AddTicks(3521),
+                            StartDateOfWork = new DateTime(2021, 9, 19, 15, 35, 57, 191, DateTimeKind.Unspecified).AddTicks(9633),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1221,15 +1221,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 42,
                             DepartmentID = 3,
-                            Email = "Kate.Connelly@hotmail.com",
+                            Email = "Genevieve.VonRueden11@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Kate",
-                            HourlyRate = 197.855081794715990m,
-                            IdentificationNumber = "5452",
+                            FirstName = "Genevieve",
+                            HourlyRate = 199.241765304115490m,
+                            IdentificationNumber = "2459",
                             IsActive = true,
-                            LastName = "Connelly",
+                            LastName = "VonRueden",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 1, 22, 8, 27, 54, 944, DateTimeKind.Unspecified).AddTicks(347),
+                            StartDateOfWork = new DateTime(2021, 7, 18, 0, 36, 50, 877, DateTimeKind.Unspecified).AddTicks(9998),
                             Status = 0,
                             Title = "Garson",
                             UserID = 0
@@ -1238,15 +1238,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 43,
                             DepartmentID = 1,
-                            Email = "Alberto_Farrell@gmail.com",
+                            Email = "Philip74@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Alberto",
-                            HourlyRate = 198.347090309647420m,
-                            IdentificationNumber = "9261",
+                            FirstName = "Philip",
+                            HourlyRate = 198.897688122884220m,
+                            IdentificationNumber = "3933",
                             IsActive = true,
-                            LastName = "Farrell",
+                            LastName = "Vandervort",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2020, 11, 1, 0, 36, 28, 432, DateTimeKind.Unspecified).AddTicks(8196),
+                            StartDateOfWork = new DateTime(2019, 12, 18, 4, 44, 42, 27, DateTimeKind.Unspecified).AddTicks(1269),
                             Status = 0,
                             Title = "Elektirikçi",
                             UserID = 0
@@ -1255,15 +1255,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 44,
                             DepartmentID = 2,
-                            Email = "Shawna_Runolfsdottir@gmail.com",
+                            Email = "Ismael.McClure88@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Shawna",
-                            HourlyRate = 191.572583774837010m,
-                            IdentificationNumber = "6799",
+                            FirstName = "Ismael",
+                            HourlyRate = 196.409414171431870m,
+                            IdentificationNumber = "6693",
                             IsActive = true,
-                            LastName = "Runolfsdottir",
+                            LastName = "McClure",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2022, 1, 20, 0, 41, 38, 889, DateTimeKind.Unspecified).AddTicks(3516),
+                            StartDateOfWork = new DateTime(2020, 8, 24, 21, 5, 29, 138, DateTimeKind.Unspecified).AddTicks(8496),
                             Status = 0,
                             Title = "Bilgi İşlem Sorumlusu",
                             UserID = 0
@@ -1272,15 +1272,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 45,
                             DepartmentID = 5,
-                            Email = "Kristina.Cummings@gmail.com",
+                            Email = "Kari10@yahoo.com",
                             EmployeeStatus = 0,
-                            FirstName = "Kristina",
-                            HourlyRate = 197.718454635570970m,
-                            IdentificationNumber = "9731",
+                            FirstName = "Kari",
+                            HourlyRate = 198.118339436183840m,
+                            IdentificationNumber = "2245",
                             IsActive = true,
-                            LastName = "Cummings",
+                            LastName = "Mann",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2021, 2, 12, 12, 25, 25, 746, DateTimeKind.Unspecified).AddTicks(8771),
+                            StartDateOfWork = new DateTime(2022, 2, 11, 4, 23, 58, 647, DateTimeKind.Unspecified).AddTicks(7800),
                             Status = 0,
                             Title = "Müdür",
                             UserID = 0
@@ -1289,15 +1289,15 @@ namespace DataAccess.Migrations
                         {
                             ID = 46,
                             DepartmentID = 6,
-                            Email = "Marta_Cummings@hotmail.com",
+                            Email = "Jody57@gmail.com",
                             EmployeeStatus = 1,
-                            FirstName = "Marta",
-                            HourlyRate = 199.646446867681320m,
-                            IdentificationNumber = "8274",
+                            FirstName = "Jody",
+                            HourlyRate = 193.078494464549470m,
+                            IdentificationNumber = "8126",
                             IsActive = true,
-                            LastName = "Cummings",
+                            LastName = "Senger",
                             PhoneNumber = "05454526235",
-                            StartDateOfWork = new DateTime(2019, 5, 16, 4, 21, 14, 310, DateTimeKind.Unspecified).AddTicks(7841),
+                            StartDateOfWork = new DateTime(2019, 7, 21, 2, 31, 16, 753, DateTimeKind.Unspecified).AddTicks(1734),
                             Status = 0,
                             Title = "İnsan Kaynakları Müdürü",
                             UserID = 0
@@ -2544,6 +2544,96 @@ namespace DataAccess.Migrations
                     b.HasIndex("RegistrationID");
 
                     b.ToTable("Incomes");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Message", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CreatedComputerName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedIP")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CreatedUserName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("MessageContent")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ModifiedComputerName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ModifiedIP")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ModifiedUsername")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AppUserID");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Picture", b =>
@@ -4316,9 +4406,9 @@ namespace DataAccess.Migrations
                             AboutusID = 1,
                             ContactID = 1,
                             HomePageID = 1,
-                            SmtpEmail = "yzl3153ba@gmail.com",
+                            SmtpEmail = "the.mstfa@gmail.com",
                             SmtpHost = "smtp.gmail.com",
-                            SmtpPassword = "Yzl3153--",
+                            SmtpPassword = "Mustafa.2525774",
                             SmtpPort = 587,
                             Status = 0
                         });
@@ -4820,35 +4910,35 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1",
-                            ConcurrencyStamp = "0d0355f1-62d0-4258-89fc-ece09f8baca5",
+                            ConcurrencyStamp = "f684d015-55fc-4046-b77c-c93e8a2a4639",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b",
-                            ConcurrencyStamp = "4dbf7326-e65a-4770-8326-9062079155ac",
+                            ConcurrencyStamp = "1b41247e-cfa2-4451-9af1-37f68f472d3d",
                             Name = "admin",
                             NormalizedName = "ADMİN"
                         },
                         new
                         {
                             Id = "3920b0ec-725e-4b34-ab67-27c7f816936d",
-                            ConcurrencyStamp = "89f89577-0de3-490c-a179-01b10e716787",
+                            ConcurrencyStamp = "7dc4feb5-3d02-4eee-b007-9bf4f9ceef82",
                             Name = "reseption",
                             NormalizedName = "RESEPTİON"
                         },
                         new
                         {
                             Id = "75d8b242-e230-4fe8-ad20-b8e818d97957",
-                            ConcurrencyStamp = "86d69606-32ec-4d5e-a788-42fd99b7e84c",
+                            ConcurrencyStamp = "d3490680-6fa1-4eef-bb9c-01563a866a62",
                             Name = "insankaynaklari",
                             NormalizedName = "İNSANKAYNAKLARİ"
                         },
                         new
                         {
                             Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329",
-                            ConcurrencyStamp = "2a1fd32e-367c-4b74-a4cd-9fc26f0016ca",
+                            ConcurrencyStamp = "6a90540d-6279-476b-bed8-2a488bba3f71",
                             Name = "yardimcihizmetler",
                             NormalizedName = "YARDİMCİHİZMETLER"
                         });
@@ -5055,6 +5145,15 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Registration");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Message", b =>
+                {
+                    b.HasOne("Entities.Concrete.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserID");
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Picture", b =>
