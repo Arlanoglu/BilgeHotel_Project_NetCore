@@ -71,9 +71,39 @@ namespace WebUI.Areas.Administrator.Controllers
         {
             if (await roomTypeService.Any(x => x.ID == id))
             {
-                var deleteResult = roomTypeService.RemoveForce(id);
+                if ((await roomTypeService.GetById(id)).RoomPictures.Count>0)
+                {
+                    var value = false;
+                    foreach (var item in (await roomTypeService.GetById(id)).RoomPictures)
+                    {
+                        var roomPictureResult = roomPictureService.RemoveForce(item.ID);
+                        if (roomPictureResult.ResultStatus == ResultStatus.Success)
+                            value = true;
+                        else
+                            value = false;
+                    }
+                    if (value)
+                    {
+                        var deleteResult = roomTypeService.RemoveForce(id);
 
-                TempData["RoomTypeResult"] = JsonConvert.SerializeObject(deleteResult);
+                        TempData["RoomTypeResult"] = JsonConvert.SerializeObject(deleteResult);
+                    }
+                    else
+                    {
+                        result.ResultStatus = ResultStatus.Error;
+                        result.Message = "Oda tipine ait kayıtlı görseller olduğu için veri silinemedi. Önce ilgili oda tipine ait görselleri silmeyi deneyebilirsiniz.";
+                        TempData["RoomTypeResult"] = JsonConvert.SerializeObject(result);
+                    }
+                }
+                else
+                {
+                    var deleteResult = roomTypeService.RemoveForce(id);
+
+                    TempData["RoomTypeResult"] = JsonConvert.SerializeObject(deleteResult);
+                }
+                
+
+                
             }
 
             return RedirectToAction("Index");
@@ -92,18 +122,50 @@ namespace WebUI.Areas.Administrator.Controllers
                 var vmRoomType = mapper.Map<VMRoomType>(roomType);
                 return View(vmRoomType);
             }
-
-            return RedirectToAction("Index");
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
         [HttpPost]
         public IActionResult Update(VMRoomType vMRoomType)
         {
-            var roomType = mapper.Map<RoomType>(vMRoomType);
-            var updateResult = roomTypeService.Update(roomType);
+            if (ModelState.IsValid)
+            {
+                var roomType = mapper.Map<RoomType>(vMRoomType);
+                var updateResult = roomTypeService.Update(roomType);
 
-            TempData["RoomTypeResult"] = JsonConvert.SerializeObject(updateResult);
+                TempData["RoomTypeResult"] = JsonConvert.SerializeObject(updateResult);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(vMRoomType);
+            }
+            
+        }
+        public IActionResult RoomTypeCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RoomTypeCreate(VMRoomType vMRoomType)
+        {
+            if (ModelState.IsValid)
+            {
+                var roomType = mapper.Map<RoomType>(vMRoomType);
+                var createResult = roomTypeService.Create(roomType);
+
+                TempData["RoomTypeResult"] = JsonConvert.SerializeObject(createResult);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(vMRoomType);
+            }
         }
         public async Task<IActionResult> Pictures(int id)
         {
@@ -116,6 +178,7 @@ namespace WebUI.Areas.Administrator.Controllers
             {
                 var pictures = await roomPictureService.GetDefault(x => x.RoomTypeID == id);
                 var vmRoomPictures = mapper.Map<List<VMRoomPicture>>(pictures);
+                ViewBag.RoomTypeId = id;
                 return View(vmRoomPictures);
             }
             else

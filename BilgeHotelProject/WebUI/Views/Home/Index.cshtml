@@ -113,22 +113,32 @@
 
 
             <div class="row pt-35">
-                @foreach (var item in Model.VMRoomTypes)
+                @if (Model.VMRoomTypes.Count>0)
                 {
-                    <div class="col-lg-4 col-md-6">
-                        <div class="room-card">
-                            <a href="/Room/RoomDetail/@item.ID">
-                                <img style="height:14rem" src="@item.VMRoomPictures.FirstOrDefault().PictureUrl" alt="Images" class="img-fluid">
-                            </a>
-                            <div class="content">
-                                <h3><a href="/Room/RoomDetail/@item.ID">@item.RoomTypeName</a></h3>
-                                <ul>
-                                    <li>@item.Price.ToString("C2")</li>
-                                    <li>Gecelik</li>
-                                </ul>
+                    @foreach (var item in Model.VMRoomTypes)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="room-card">
+                                <a href="/Room/RoomDetail/@item.ID">
+                                    @if (item.VMRoomPictures.Count > 0)
+                                    {
+                                        <img style="height:14rem" src="@item.VMRoomPictures.FirstOrDefault().PictureUrl" alt="Images" class="img-fluid">
+                                    }
+                                    else
+                                    {
+                                        <img style="height:14rem" src="https://www.natro.com/hosting-sozlugu/wp-content/uploads/2015/12/404-not-found.png" alt="Images" class="img-fluid">
+                                    }
+                                </a>
+                                <div class="content">
+                                    <h3><a href="/Room/RoomDetail/@item.ID">@item.RoomTypeName</a></h3>
+                                    <ul>
+                                        <li>@item.Price.ToString("C2")</li>
+                                        <li>Gecelik</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
             </div>
 
