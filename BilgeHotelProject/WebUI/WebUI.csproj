@@ -75,10 +75,6 @@
   <ItemGroup>
     <Folder Include="Areas\AncillaryServices\Controllers\" />
     <Folder Include="Areas\AncillaryServices\Views\" />
-    <Folder Include="Areas\HumanResources\Controllers\" />
-    <Folder Include="Areas\HumanResources\Views\" />
-    <Folder Include="Areas\Reception\Controllers\" />
-    <Folder Include="Areas\Reception\Views\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

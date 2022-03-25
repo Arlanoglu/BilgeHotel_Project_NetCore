@@ -1,0 +1,190 @@
+﻿@model VMReservationDetail
+@{
+    ViewData["Title"] = "ReservationDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Rezervasyon Detay</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Rezervasyon Detay</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.ReservationResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!--Rezervasyon Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Rezervasyon Bilgileri</h3>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Reservation" class="btn btn-primary mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
+    @if (Model != null)
+    {
+        @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi)
+        {
+            <a asp-action="CancelReservation" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Rezervasyonu İptal Et</a>
+        }
+        @if (Model.Payment)
+        {
+            <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alınmadı</a>
+        }
+        else
+        {
+            <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alındı</a>
+
+        }
+    }
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Rezerv. No</th>
+                <th scope="col">Rezerv. Tarihi</th>
+                <th scope="col">Giriş Tarihi</th>
+                <th scope="col">Çıkış Tarihi</th>
+                <th scope="col">Fiyat</th>
+                @if (Model.DiscountedPrice != 0)
+                {
+                    <th scope="col" class="text-success">İndrml. Fiyat</th>
+                }
+                <th scope="col">Ödeme</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    @if (Model.ReservationType == Entities.Enum.ReservationType.Reception)
+                    {
+                        <th scope="row">BLGHTLR-@Model.ID</th>
+                    }
+                    else
+                    {
+                        <th scope="row">BLGHTLW-@Model.ID</th>
+                    }
+                    <td>@Model.ReservationDate</td>
+                    <td>@Model.CheckInDate.Date.ToShortDateString()</td>
+                    <td>@Model.CheckOutDate.Date.ToShortDateString()</td>
+                    <td>@Model.Price.ToString("C2")</td>
+                    @if (Model.DiscountedPrice != 0)
+                    {
+                        <td class="text-success">@Model.DiscountedPrice.ToString("C2")</td>
+                    }
+                    @if (Model.Payment)
+                    {
+                        <td class="text-success font-weight-bold">Ödendi</td>
+                    }
+                    else
+                    {
+                        <td class="text-danger font-weight-bold">Ödenmedi</td>
+                    }
+                </tr>
+            }
+        </tbody>
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Rezerv. Durumu</th>
+                <th scope="col">Rezerv. Tipi</th>
+                <th scope="col">Oda Tipi</th>
+                <th scope="col">Oda Num</th>
+                <th scope="col">Hizmet Paketi</th>
+                <th scope="col">Kişi Say.</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <td>@Model.ReservationStatus</td>
+                    <td>@Model.ReservationType</td>
+                    <td>@Model.RoomTypeName</td>
+                    <td>@Model.RoomNumber</td>
+                    <td>@Model.ServicePackName</td>
+                    <td>@Model.NumberOfPeople</td>
+                </tr>
+                @if (Model.Description != null)
+                {
+                    @if (Model.Description != null)
+                    {
+                        <tr class="bg-gradient-gray"><th colspan="7" class="text-center">Açıklama</th></tr>
+                    }
+                    <tr><td colspan="7" class="text-center">@Model.Description</td></tr>
+                }
+            }
+        </tbody>
+    </table>
+    <!--Kişi Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Kişi Bilgileri</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">İsim Soyisim</th>
+                <th scope="col">Telefon No</th>
+                <th scope="col">E-Posta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <td>@Model.FullName</td>
+                    <td>@Model.PhoneNumber</td>
+                    <td>@Model.Email</td>
+                </tr>
+            }
+        </tbody>
+        @if (Model != null && Model.AppUserID != null)
+        {
+            <thead>
+                <tr class="bg-gradient-gray">
+                    <th scope="col">İsim Soyisim</th>
+                    <th scope="col">Hesap Id</th>
+                    <th scope="col">E-Posta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.AppUserFullName</td>
+                    <td>@Model.AppUserID</td>
+                    <td>@Model.AppUserEmail</td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>
+

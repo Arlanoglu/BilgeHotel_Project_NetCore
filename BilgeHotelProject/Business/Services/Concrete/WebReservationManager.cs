@@ -172,7 +172,7 @@ namespace Business.Services.Concrete
         public IResult CancelReservation(WebReservation webReservation)
         {
             webReservation.ReservationStatus = Entities.Enum.ReservationStatus.RezervasyonIptalEdildi;
-            webReservation.Status = Core.Entities.Enum.Status.Modified;
+            webReservation.Status = Core.Entities.Enum.Status.Deleted;
 
             var statusOfRoomId = webReservation.Room.StatusOfRooms.Where(x => x.StatusStartDate == webReservation.CheckInDate && x.StatusEndDate == webReservation.CheckOutDate).Select(x=>x.ID).FirstOrDefault();
             try

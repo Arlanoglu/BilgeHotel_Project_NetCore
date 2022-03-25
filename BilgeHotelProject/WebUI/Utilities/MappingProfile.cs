@@ -78,6 +78,24 @@ namespace WebUI.Utilities
 
             CreateMap<Message, VMMessage>();
             CreateMap<VMMessage, Message>();
+
+            CreateMap<VMReservationList, WebReservation>();
+            CreateMap<WebReservation, VMReservationList>().ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName));
+            CreateMap<ReceptionReservation, VMReservationList>().ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName));
+            CreateMap<VMReservationList, ReceptionReservation>();
+
+            CreateMap<VMReservationDetail, WebReservation>();
+            CreateMap<WebReservation, VMReservationDetail>()
+                .ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName))
+                .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName))
+                .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber))
+                .ForMember(x => x.AppUserEmail, w => w.MapFrom(y => y.AppUser.Email))
+                .ForMember(x => x.AppUserFullName, w => w.MapFrom(y => y.AppUser.FirstName +" "+ y.AppUser.LastName));
+            CreateMap<ReceptionReservation, VMReservationDetail>()
+                .ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName))
+                .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName))
+                .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber));
+            CreateMap<VMReservationDetail, ReceptionReservation>();
         }
     }
 }

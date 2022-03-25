@@ -46,7 +46,7 @@ namespace Entities.Concrete
         public ReservationStatus ReservationStatus { get; set; }       
         public ReservationType ReservationType { get; set; }       
 
-        public int RoomID { get; set; } //Rondom atanacak
+        public int RoomID { get; set; }
         public int? RoomTypeID { get; set; }
         public int ServicePackID { get; set; }
         public string AppUserID { get; set; }

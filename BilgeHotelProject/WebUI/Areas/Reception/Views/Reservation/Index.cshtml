@@ -1,0 +1,106 @@
+﻿@model List<VMReservationList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Rezervasyonlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Rezervasyonlar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/Reception/Reservation/ReservationCreate">Rezervasyon Oluştur</a>
+    <a class="btn btn-danger mb-3" href="/Reception/Reservation/ReservationCreate">Ödemesi Alınmayanlar</a>
+    @if (ViewBag.ReservationResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Rezerv. No</th>
+                <th scope="col">İsim Soyisim</th>
+                <th scope="col">Rezerv. T.</th>
+                <th scope="col">Oda Tipi</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Ödeme</th>
+                <th scope="col">Rezerv. Tipi</th>
+                <th scope="col">Rezerv. Durumu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count > 0)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @if (item.ReservationType == Entities.Enum.ReservationType.Reception)
+                        {
+                            <th scope="row">BLGHTLR-@item.ID</th>
+                        }
+                        else
+                        {
+                            <th scope="row">BLGHTLW-@item.ID</th>
+                        }
+                        <td>@item.FullName</td>
+                        <td>@item.ReservationDate.Date.ToShortDateString()</td>
+                        <td>@item.RoomTypeName</td>
+                        @if (item.DiscountedPrice != 0)
+                        {
+                            <td>@item.DiscountedPrice.ToString("C2")</td>
+                        }
+                        else
+                        {
+                            <td>@item.Price.ToString("C2")</td>
+                        }
+                        @if (item.Payment)
+                        {
+                            <td class="text-success">Ödendi</td>
+                        }
+                        else
+                        {
+                            <td class="text-danger">Ödenmedi</td>
+                        }
+                        <td>@item.ReservationType</td>
+                        <td>@item.ReservationStatus</td>
+                        <td>
+                            <a asp-action="ReservationDetail" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-primary" >Detay</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+

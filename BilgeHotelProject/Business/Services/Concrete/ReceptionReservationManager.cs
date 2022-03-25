@@ -127,5 +127,53 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.ReceptionReservationDal.GetFirstOrDefault();
         }
+
+        public IResult CancelReservation(ReceptionReservation receptionReservation)
+        {
+            receptionReservation.ReservationStatus = Entities.Enum.ReservationStatus.RezervasyonIptalEdildi;
+            receptionReservation.Status = Core.Entities.Enum.Status.Deleted;
+
+            var statusOfRoomId = receptionReservation.Room.StatusOfRooms.Where(x => x.StatusStartDate == receptionReservation.CheckInDate && x.StatusEndDate == receptionReservation.CheckOutDate).Select(x => x.ID).FirstOrDefault();
+            try
+            {
+                unitOfWork.ReceptionReservationDal.Update(receptionReservation);
+                unitOfWork.StatusOfRoomDal.Delete(statusOfRoomId);
+
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Rezervasyon başarıyla iptal edildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
+
+        public IResult ReservationCreate(ReceptionReservation receptionReservation, StatusOfRoom statusOfRoom)
+        {
+            try
+            {
+                unitOfWork.ReceptionReservationDal.Create(receptionReservation);
+                unitOfWork.StatusOfRoomDal.Create(statusOfRoom);
+                //throw new InvalidOperationException("Logfile cannot be read-only");
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Rezervasyon Oluşturma işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }
