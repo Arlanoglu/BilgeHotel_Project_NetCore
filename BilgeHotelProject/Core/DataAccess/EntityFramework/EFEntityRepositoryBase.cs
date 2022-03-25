@@ -46,7 +46,7 @@ namespace Core.DataAccess.EntityFramework
             entity.Add(model);
         }
 
-        public async Task Delete(int id)
+        public void Delete(int id)
         {
             #region OldMetot
             //try
@@ -66,7 +66,7 @@ namespace Core.DataAccess.EntityFramework
             //    return result;
             //}
             #endregion
-            TEntity model = await GetById(id);
+            TEntity model = entity.Find(id);
             model.Status = Entities.Enum.Status.Deleted;
             Update(model);
         }
@@ -90,7 +90,7 @@ namespace Core.DataAccess.EntityFramework
             return await entity.Where(x => x.Status == Entities.Enum.Status.Active).ToListAsync();
         }
 
-        public async Task RemoveForce(int id)
+        public void RemoveForce(int id)
         {
             #region OldMetot
             //try
@@ -110,12 +110,12 @@ namespace Core.DataAccess.EntityFramework
             //    return result;
             //}
             #endregion
-            TEntity model = await GetById(id);
+            TEntity model = entity.Find(id);
             entity.Remove(model);
 
         }
 
-        public async Task Update(TEntity model)
+        public void Update(TEntity model)
         {
             #region OldMetot
             //try
@@ -135,8 +135,8 @@ namespace Core.DataAccess.EntityFramework
             //    return result;
             //}
             #endregion
-            TEntity entity = await GetById(model.ID);
-            db.Entry(entity).CurrentValues.SetValues(model);
+            TEntity entityModel = entity.Find(model.ID);
+            db.Entry(entityModel).CurrentValues.SetValues(model);
 
         }
 
