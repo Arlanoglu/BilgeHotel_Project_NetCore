@@ -133,6 +133,7 @@ namespace Business.Services.Concrete
             }
             catch (Exception ex)
             {
+                unitOfWork.Dispose();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
                 result.Message = "İşlem sırasında bir hata meydana geldi.";
                 result.Exception = ex;

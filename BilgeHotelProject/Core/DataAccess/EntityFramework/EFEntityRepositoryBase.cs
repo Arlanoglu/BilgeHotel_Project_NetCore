@@ -46,7 +46,7 @@ namespace Core.DataAccess.EntityFramework
             entity.Add(model);
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             #region OldMetot
             //try
@@ -68,6 +68,7 @@ namespace Core.DataAccess.EntityFramework
             #endregion
             TEntity model = await GetById(id);
             model.Status = Entities.Enum.Status.Deleted;
+            Update(model);
         }
 
         public async Task<TEntity> GetById(int id)
@@ -89,7 +90,7 @@ namespace Core.DataAccess.EntityFramework
             return await entity.Where(x => x.Status == Entities.Enum.Status.Active).ToListAsync();
         }
 
-        public async void RemoveForce(int id)
+        public async Task RemoveForce(int id)
         {
             #region OldMetot
             //try
@@ -114,7 +115,7 @@ namespace Core.DataAccess.EntityFramework
 
         }
 
-        public async void Update(TEntity model)
+        public async Task Update(TEntity model)
         {
             #region OldMetot
             //try

@@ -1,0 +1,38 @@
+﻿@model VMRoomType
+@{
+    ViewData["Title"] = "RoomTypeUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <form asp-action="Update" asp-controller="RoomType" method="post">
+        <input asp-for="Status" type="hidden" value="@Model.Status" />
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <label class="col-form-label">Oda Tip Adı</label>
+                <input asp-for="RoomTypeName" class="form-control" type="text" />
+            </div>
+            <div class="col-md-6 form-group">
+                <label class="col-form-label">Oda Tip Fiyatı</label>
+                @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @type = "currency" })
+            </div>
+            <div class="col-md-6 form-group">
+                <label class="col-form-label">Kişi Sayısı</label>
+                <input asp-for="NumberOfPeople" class="form-control" type="number" min="1" />
+            </div>
+            <div class="col-md-6 form-group">
+                <label class="col-form-label">Yatak Sayısı</label>
+                <input asp-for="NumberOfBed" class="form-control" type="number" min="1" />
+            </div>
+            <div class="col-12 form-group">
+                <label class="col-form-label">Açıklama</label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="col-12 form-group d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit">Güncelle</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

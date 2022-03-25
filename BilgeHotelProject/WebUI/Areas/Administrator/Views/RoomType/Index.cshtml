@@ -1,0 +1,75 @@
+﻿@model List<VMRoomType>
+@{
+    ViewData["Title"] = "RoomTypes";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    @if (ViewBag.RoomTypeResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.RoomTypeResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.RoomTypeResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.RoomTypeResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Görsel</th>
+                <th scope="col">Oda Tip Adı</th>
+                <th scope="col">Kisi Sayısı</th>
+                <th scope="col">Yatak Sayısı</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Durum</th>
+                <th scope="col">İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <td class="text-center"><a class="btn btn-light" href="/Administrator/RoomType/Pictures/@item.ID"><i class="fas ion-eye"></i></a></td>
+                    <td>@item.RoomTypeName</td>
+                    <td>@item.NumberOfPeople</td>
+                    <td>@item.NumberOfBed</td>
+                    <td>@item.Price.ToString("C2")</td>
+                    @if (item.Status == Core.Entities.Enum.Status.Active)
+                    {
+                        <td class="text-success">@item.Status</td>
+                    }
+                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                    {
+                        <td class="text-danger">@item.Status</td>
+                    }
+                    <td>
+                        <a class="btn btn-primary" href="/Administrator/RoomType/Update/@item.ID">Düzenle</a>
+                        @if (item.Status == Core.Entities.Enum.Status.Active)
+                        {
+                            <a class="btn btn-warning" href="/Administrator/RoomType/Deactivate/@item.ID">Pasif Yap</a>
+                        }
+                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                        {
+                            <a class="btn btn-success" href="/Administrator/RoomType/Activate/@item.ID">Aktif Yap</a>
+                        }
+                        <a class="btn btn-danger" href="/Administrator/RoomType/RemoveForce/@item.ID">Kalıcı Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -11,11 +11,12 @@ namespace Entities.Concrete
         public bool TurkeyCitizen { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public bool IsActive { get; set; } //Müşteri kalıyorsa true çıktıysa false olacak buna göre api de bu müşteriler çekilecek.
         public string IdCardFrontSideImage { get; set; }
         public string IdCardBackSideImage { get; set; }
         public int RegistrationID { get; set; }
         public virtual Registration Registration { get; set; }
 
-        //Todo: Müşteri kalıyorsa aktif çıktıysa pasif gibi bir bilgi tutacak IsActive propertysi eklenebilir.
+        
     }
 }

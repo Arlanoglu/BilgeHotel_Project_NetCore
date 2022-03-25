@@ -11,6 +11,7 @@ namespace Entities.Concrete
         {
             ReservationDate = DateTime.Now;
             ReservationStatus = ReservationStatus.RezervasyonAlindi;
+            ReservationType = ReservationType.Web;
         }
         public DateTime ReservationDate { get; set; }
         public DateTime CheckInDate { get; set; }
@@ -43,6 +44,7 @@ namespace Entities.Concrete
         public string Email { get; set; }
         public string Description { get; set; }
         public ReservationStatus ReservationStatus { get; set; }       
+        public ReservationType ReservationType { get; set; }       
 
         public int RoomID { get; set; } //Rondom atanacak
         public int? RoomTypeID { get; set; }
