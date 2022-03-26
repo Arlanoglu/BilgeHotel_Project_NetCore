@@ -178,7 +178,7 @@ namespace Business.Services.Concrete
             try
             {
                 unitOfWork.WebReservationDal.Update(webReservation);
-                unitOfWork.StatusOfRoomDal.Delete(statusOfRoomId);
+                unitOfWork.StatusOfRoomDal.RemoveForce(statusOfRoomId);
 
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;

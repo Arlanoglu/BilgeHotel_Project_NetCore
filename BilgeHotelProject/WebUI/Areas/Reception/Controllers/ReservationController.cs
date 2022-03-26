@@ -17,6 +17,7 @@ using WebUI.Utilities.Enums;
 using WebUI.Models.RoomType;
 using Entities.Concrete;
 using WebUI.Models.StatusOfRoom;
+using Core.Entities.Enum;
 
 namespace WebUI.Areas.Reception.Controllers
 {
@@ -288,10 +289,23 @@ namespace WebUI.Areas.Reception.Controllers
                     if (createResult.ResultStatus == ResultStatus.Success && receptionReservation.Email!=null)
                     {
                         var setting = (await settingService.GetActive()).FirstOrDefault();
-                        //Id veritabanına kayıt edildikten sonra oluştuğu için bazı kriterler ile rezervasyon id ve tarihi bulma işlemi.
-                        var reservationID = (await receptionReservationService.GetDefault(x => x.CheckInDate == receptionReservation.CheckInDate && x.CheckOutDate== receptionReservation.CheckOutDate && x.RoomID== receptionReservation.RoomID && x.ServicePackID== receptionReservation.ServicePackID)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
 
-                        var reservationDate = (await webReservationService.GetDefault(x => x.CheckInDate == receptionReservation.CheckInDate && x.CheckOutDate == receptionReservation.CheckOutDate && x.RoomID == receptionReservation.RoomID && x.ServicePackID == receptionReservation.ServicePackID)).OrderByDescending(x => x.ID).FirstOrDefault().ReservationDate;
+                        //Id veritabanına kayıt edildikten sonra oluştuğu için bazı kriterler ile rezervasyon id ve tarihi bulma işlemi.
+                        var reservationID = (await receptionReservationService.GetDefault(x =>
+                        x.CheckInDate == receptionReservation.CheckInDate.Date &&
+                        x.CheckOutDate == receptionReservation.CheckOutDate.Date &&
+                        x.RoomID == receptionReservation.RoomID &&
+                        x.ServicePackID == receptionReservation.ServicePackID &&
+                        x.ReservationStatus == ReservationStatus.RezervasyonAlindi &&
+                        x.Status == Status.Active)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
+
+                        var reservationDate = (await receptionReservationService.GetDefault(x => 
+                        x.CheckInDate == receptionReservation.CheckInDate.Date && 
+                        x.CheckOutDate == receptionReservation.CheckOutDate.Date && 
+                        x.RoomID == receptionReservation.RoomID && 
+                        x.ServicePackID == receptionReservation.ServicePackID && 
+                        x.ReservationStatus==ReservationStatus.RezervasyonAlindi && 
+                        x.Status == Status.Active)).OrderByDescending(x => x.ID).FirstOrDefault().ReservationDate;
 
                         var message = MailSender.ReservationCompleteMessage(reservationID, reservationDate, receptionReservation.CheckInDate, receptionReservation.CheckOutDate);
 

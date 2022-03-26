@@ -137,7 +137,7 @@ namespace Business.Services.Concrete
             try
             {
                 unitOfWork.ReceptionReservationDal.Update(receptionReservation);
-                unitOfWork.StatusOfRoomDal.Delete(statusOfRoomId);
+                unitOfWork.StatusOfRoomDal.RemoveForce(statusOfRoomId);
 
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;

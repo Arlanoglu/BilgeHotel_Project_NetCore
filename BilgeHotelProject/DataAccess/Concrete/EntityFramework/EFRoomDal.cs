@@ -20,11 +20,22 @@ namespace DataAccess.Concrete.EntityFramework
 
         public async Task<List<Room>> AvaibleRooms(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
         {
-            var rooms = await db.Rooms.Where(x => (x.StatusOfRooms.Any(x => (!(x.StatusStartDate <= checkinDate && x.StatusEndDate > checkinDate) && !(x.StatusStartDate < checkoutDate && x.StatusEndDate >= checkoutDate)) && x.Status == Core.Entities.Enum.Status.Active) || x.StatusOfRooms.Count == 0) && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat).ToListAsync();
-            //statusofroom içinde pasif olanıda eliyor kontrol edilecek.
+            var rooms = await db.Rooms.Where(x => (x.StatusOfRooms.Any(x => 
+            (x.StatusStartDate <= checkinDate.Date && x.StatusEndDate > checkinDate.Date) && (x.StatusStartDate < checkoutDate.Date && x.StatusEndDate >= checkoutDate.Date)) == false || x.StatusOfRooms.Count == 0)
+            && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat && x.Status == Core.Entities.Enum.Status.Active)
+                .ToListAsync();
+
             var roomsByNumberOfPeople = rooms.Where(x => x.RoomType.NumberOfPeople >= numberOfPeople).ToList();
-             //&& (x.Status != Core.Entities.Enum.Status.Active)
+
             return roomsByNumberOfPeople;
+
+            //var rooms = await db.Rooms.Where(x => (x.StatusOfRooms.Any(x => (!(x.StatusStartDate <= checkinDate.Date && x.StatusEndDate > checkinDate.Date) && !(x.StatusStartDate < checkoutDate.Date && x.StatusEndDate >= checkoutDate.Date)) && x.Status == Core.Entities.Enum.Status.Active) || x.StatusOfRooms.Count == 0) && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat).ToListAsync();
+            ////statusofroom içinde pasif olanıda eliyor kontrol edilecek.
+            //var roomsByNumberOfPeople = rooms.Where(x => x.RoomType.NumberOfPeople >= numberOfPeople).ToList();
+            ////&& (x.Status != Core.Entities.Enum.Status.Active)
+            //return roomsByNumberOfPeople;
+
+
         }
     }
 }
