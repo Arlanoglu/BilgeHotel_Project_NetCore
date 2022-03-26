@@ -72,7 +72,7 @@ namespace WebUI.Controllers
                 var roomTypes = await roomTypeService.AvaibleRoomTypes(vMReservation.CheckInDate, vMReservation.CheckOutDate, vMReservation.NumberOfPeople);
 
                 
-
+                //RoomDetail tarafından gelen rezervasyon isteğinin kontrolü
                 if (vMReservation.RoomTypeID!=0)
                 {
                     var roomResult = roomTypes.Any(x => x.ID == vMReservation.RoomTypeID);
@@ -95,6 +95,7 @@ namespace WebUI.Controllers
                         return RedirectToAction("RoomDetail", "Room", new { id = vMReservation.RoomTypeID });
                     }
                 }
+                //Rezervasyon tarafından gelen isteğin kontrolü
                 else if (roomTypes.Count > 0)
                 {
                     var vmRoomTypes = mapper.Map<List<VMRoomType>>(roomTypes);
@@ -204,9 +205,7 @@ namespace WebUI.Controllers
             {
                 TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
             }
-
-            
-            //Todo: Reservasyon kayıt işlemi yapılacak. success gelirse mail gönderilecek vs.
+                        //Todo: hata alırsa nereye gidecek incele.
             return RedirectToAction("WebReservationResult",vMWebReservation);
         }
 

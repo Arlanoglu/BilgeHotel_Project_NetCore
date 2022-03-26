@@ -96,6 +96,12 @@ namespace WebUI.Utilities
                 .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName))
                 .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber));
             CreateMap<VMReservationDetail, ReceptionReservation>();
+
+            CreateMap<VMReceptionReservationCreate, ReceptionReservation>();
+            CreateMap<ReceptionReservation, VMReceptionReservationCreate>();
+
+            CreateMap<VMReservation, VMReceptionReservationCreate>();
+            CreateMap<VMReceptionReservationCreate, VMReservation>();
         }
     }
 }

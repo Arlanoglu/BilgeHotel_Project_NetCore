@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.Reservation
 {
-    public class VMReservationDetail
+    public class VMReservationDetail : BaseVM
     {
         public int ID { get; set; }
         public DateTime ReservationDate { get; set; }
