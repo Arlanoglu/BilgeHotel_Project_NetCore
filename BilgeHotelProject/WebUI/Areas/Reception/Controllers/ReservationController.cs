@@ -328,5 +328,18 @@ namespace WebUI.Areas.Reception.Controllers
 
             return RedirectToAction("ReceptionReservation");
         }
+        public async Task<IActionResult> NotPaidReservatinsWarning()
+        {
+            //Tarih time siz yakalanacak.
+            var date = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime format = DateTime.Parse(date);
+            var webReservations = await webReservationService.GetDefault(x => (x.Payment == false) && (format - x.CheckInDate.Date).TotalDays <= 2);
+            var receptionReservations = await receptionReservationService.GetDefault(x => x.Payment == false && (DateTime.Now.Date - x.CheckInDate.Date).TotalDays <= 2);
+            var vmReservations = mapper.Map<List<VMReservationList>>(webReservations);
+            var vmReceptionReservations = mapper.Map<List<VMReservationList>>(receptionReservations);
+
+            vmReservations.AddRange(vmReceptionReservations);
+            return View(vmReservations);
+        }
     }
 }
