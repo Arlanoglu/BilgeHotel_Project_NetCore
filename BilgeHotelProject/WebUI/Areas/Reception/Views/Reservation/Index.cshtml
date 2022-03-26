@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -44,63 +45,101 @@
             }
         </div>
     }
+    <!-- /.card -->
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Rezerv. No</th>
-                <th scope="col">İsim Soyisim</th>
-                <th scope="col">Rezerv. T.</th>
-                <th scope="col">Oda Tipi</th>
-                <th scope="col">Fiyat</th>
-                <th scope="col">Ödeme</th>
-                <th scope="col">Rezerv. Tipi</th>
-                <th scope="col">Rezerv. Durumu</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Count > 0)
-            {
-                @foreach (var item in Model)
-                {
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">DataTable with default features</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
                     <tr>
-                        @if (item.ReservationType == Entities.Enum.ReservationType.Reception)
-                        {
-                            <th scope="row">BLGHTLR-@item.ID</th>
-                        }
-                        else
-                        {
-                            <th scope="row">BLGHTLW-@item.ID</th>
-                        }
-                        <td>@item.FullName</td>
-                        <td>@item.ReservationDate.Date.ToShortDateString()</td>
-                        <td>@item.RoomTypeName</td>
-                        @if (item.DiscountedPrice != 0)
-                        {
-                            <td>@item.DiscountedPrice.ToString("C2")</td>
-                        }
-                        else
-                        {
-                            <td>@item.Price.ToString("C2")</td>
-                        }
-                        @if (item.Payment)
-                        {
-                            <td class="text-success">Ödendi</td>
-                        }
-                        else
-                        {
-                            <td class="text-danger">Ödenmedi</td>
-                        }
-                        <td>@item.ReservationType</td>
-                        <td>@item.ReservationStatus</td>
-                        <td>
-                            <a asp-action="ReservationDetail" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-primary" >Detay</a>
-                        </td>
+                        <th scope="col">Rezerv. No</th>
+                        <th scope="col">İsim Soyisim</th>
+                        <th scope="col">Rezerv. T.</th>
+                        <th scope="col">Oda Tipi</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col">Ödeme</th>
+                        <th scope="col">Rezerv. Tipi</th>
+                        <th scope="col">Rezerv. Durumu</th>
+                        <th scope="col">İşlem</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (item.ReservationType == Entities.Enum.ReservationType.Reception)
+                                {
+                                    <th scope="row">BLGHTLR-@item.ID</th>
+                                }
+                                else
+                                {
+                                    <th scope="row">BLGHTLW-@item.ID</th>
+                                }
+                                <td>@item.FullName</td>
+                                <td>@item.ReservationDate</td>
+                                <td>@item.RoomTypeName</td>
+                                @if (item.DiscountedPrice != 0)
+                                {
+                                    <td>@item.DiscountedPrice.ToString("C2")</td>
+                                }
+                                else
+                                {
+                                    <td>@item.Price.ToString("C2")</td>
+                                }
+                                @if (item.Payment)
+                                {
+                                    <td class="text-success">Ödendi</td>
+                                }
+                                else
+                                {
+                                    <td class="text-danger">Ödenmedi</td>
+                                }
+                                <td>@item.ReservationType</td>
+                                @if (item.ReservationStatus == ReservationStatus.RezervasyonIptalEdildi)
+                                {
+                                    <td class="font-weight-bold text-danger">@item.ReservationStatus</td>
+                                }
+                                else if (item.ReservationStatus == ReservationStatus.RezervasyonTamamlandi)
+                                {
+                                    <td class="font-weight-bold text-success">@item.ReservationStatus</td>
+                                }
+                                else
+                                {
+                                    <td>@item.ReservationStatus</td>
+                                }
+                                <td>
+                                    <a asp-action="ReservationDetail" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
 </div>
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}
 
 
