@@ -1,0 +1,119 @@
+﻿@model List<VMRegistrationList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Kayıtlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Kayıtlar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/Reception/Registration/RegistrationCreate">Kayıt Oluştur</a>
+    @if (ViewBag.ReservationResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!-- /.card -->
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Rezervasyonlar neticesinde veya resepsiyondan rezervasyonsuz yapılan kayıtların listesi.</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Giriş T.</th>
+                        <th scope="col">Çıkış T.</th>
+                        <th scope="col">Oda Num.</th>
+                        <th scope="col">Kişi Say.</th>
+                        <th scope="col">Hizmet Paket</th>
+                        <th scope="col">Kayıt Türü</th>
+                        <th scope="col">Durumu</th>
+                        <th scope="col">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <th scope="row">@item.ID</th>
+                        <td>@item.CheckInDate.Date.ToShortDateString()</td>
+                        <td>@item.CheckOutDate.Date.ToShortDateString()</td>
+                        <td>@item.RoomNumber</td>
+                        <td>@item.NumberOfPeople</td>
+                        <td>@item.ServicePackName</td>
+                        <td>@item.RegistrationType</td>
+                        @if (item.RegistrationStatus == RegistrationStatus.GirisYapildi)
+                        {
+                            <td class="text-success font-weight-bold">@item.RegistrationStatus</td>
+                        }
+                        else
+                        {
+                            <td class="text-danger font-weight-bold">@item.RegistrationStatus</td>
+                        }
+                        <td>
+                            <a asp-action="ReservationDetail" asp-controller="Reservation" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                //{
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"responsive": true,
+                //}
+            );
+        });
+    </script>
+}
+

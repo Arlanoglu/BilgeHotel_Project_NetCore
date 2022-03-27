@@ -77,41 +77,48 @@ using WebUI.Models.Account;
 #nullable disable
 #nullable restore
 #line 10 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Reception\Views\_ViewImports.cshtml"
-using Entities.Concrete;
+using WebUI.Models.Registration;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Reception\Views\_ViewImports.cshtml"
-using Core.Utilities.Results.Concrete;
+using Entities.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Reception\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Core.Utilities.Results.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Reception\Views\_ViewImports.cshtml"
-using Core.Entities.Enum;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Reception\Views\_ViewImports.cshtml"
+using Core.Entities.Enum;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Reception\Views\_ViewImports.cshtml"
 using Entities.Enum;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7305efbd5f57354f266ce30e7f66560ae7c6aef8", @"/Areas/Reception/Views/Reservation/PaidReservations.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8037bf83013c5e375cea47507f40cd6da603b21", @"/Areas/Reception/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"94f46e074140965e866e18ef361269f7d61f8778", @"/Areas/Reception/Views/_ViewImports.cshtml")]
     public class Areas_Reception_Views_Reservation_PaidReservations : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<VMReservationList>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -179,7 +186,7 @@ using Entities.Enum;
 <div class=""container"">
     <div class=""row d-flex justify-content-between"">
         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7305efbd5f57354f266ce30e7f66560ae7c6aef89852", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7305efbd5f57354f266ce30e7f66560ae7c6aef810101", async() => {
                 WriteLiteral("<i class=\"nav-icon far ion-arrow-left-b\"></i> Rezervasyonlar");
             }
             );
@@ -513,7 +520,7 @@ using Entities.Enum;
 #line hidden
 #nullable disable
             WriteLiteral("                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7305efbd5f57354f266ce30e7f66560ae7c6aef825111", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7305efbd5f57354f266ce30e7f66560ae7c6aef825361", async() => {
                 WriteLiteral("Detay");
             }
             );
@@ -558,7 +565,7 @@ using Entities.Enum;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </td>\r\n                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7305efbd5f57354f266ce30e7f66560ae7c6aef828757", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7305efbd5f57354f266ce30e7f66560ae7c6aef829007", async() => {
                 WriteLiteral("İade");
             }
             );
