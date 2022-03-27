@@ -11,7 +11,8 @@ namespace Entities.Enum
         RezervasyonAlindi,
         RezervasyonGuncellendi,
         RezervasyonIptalEdildi,
-        RezervasyonTamamlandi
+        RezervasyonTamamlandi,
+        GirisYapildi
 
     }
 }

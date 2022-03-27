@@ -97,6 +97,9 @@ namespace WebUI.Utilities
                 .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber));
             CreateMap<VMReservationDetail, ReceptionReservation>();
 
+            CreateMap<VMReservationDetail, VMReservationList>();
+            CreateMap<VMReservationList, VMReservationDetail>();
+
             CreateMap<VMReceptionReservationCreate, ReceptionReservation>();
             CreateMap<ReceptionReservation, VMReceptionReservationCreate>();
 

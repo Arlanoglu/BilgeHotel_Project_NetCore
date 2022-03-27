@@ -32,8 +32,9 @@ namespace WebUI.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly ISettingService settingService;
+        private readonly IResult result;
 
-        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService, IWebReservationService webReservationService, IRoomService roomService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ISettingService settingService)
+        public ReservationController(IMapper mapper, IServicePackService servicePackService, IRoomTypeService roomTypeService, IWebReservationService webReservationService, IRoomService roomService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ISettingService settingService, IResult result)
         {
             this.mapper = mapper;
             this.servicePackService = servicePackService;
@@ -43,6 +44,7 @@ namespace WebUI.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.settingService = settingService;
+            this.result = result;
         }
         public async Task<IActionResult> WebReservation()
         {
@@ -221,32 +223,43 @@ namespace WebUI.Controllers
         public async Task<IActionResult> CancelWebReservation(int id)
         {
             var webReservation = await webReservationService.GetById(id);
-            var setting = (await settingService.GetActive()).FirstOrDefault();
-            var cancelResult = webReservationService.CancelReservation(webReservation);
-
-            //Rezervasyon iptal mail gönderimi.
-            if (cancelResult.ResultStatus==ResultStatus.Success)
-            {
-                var message = MailSender.CancelReservationMessage(webReservation.ID, webReservation.CheckInDate, webReservation.CheckOutDate);
-                //Kullanıcıya gönderilen mail.
-                MailSender.SendMail(webReservation.AppUser.Email, "Rezervasyon İptal", message, setting);
-                if (webReservation.AppUser.Email!=webReservation.Email)
-                {
-                    //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
-                    MailSender.SendMail(webReservation.Email, "Rezervasyon İptal", message, setting);
-                }
-            }
             var user = await userManager.GetUserAsync(User);
+            if ((webReservation.CheckInDate - DateTime.Now.Date).TotalDays > 2)
+            {
+                var setting = (await settingService.GetActive()).FirstOrDefault();
+                var cancelResult = webReservationService.CancelReservation(webReservation);
+
+                //Rezervasyon iptal mail gönderimi.
+                if (cancelResult.ResultStatus == ResultStatus.Success)
+                {
+                    var message = MailSender.CancelReservationMessage(webReservation.ID, webReservation.CheckInDate, webReservation.CheckOutDate);
+                    //Kullanıcıya gönderilen mail.
+                    MailSender.SendMail(webReservation.AppUser.Email, "Rezervasyon İptal", message, setting);
+                    if (webReservation.AppUser.Email != webReservation.Email)
+                    {
+                        //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
+                        MailSender.SendMail(webReservation.Email, "Rezervasyon İptal", message, setting);
+                    }
+                }
+                TempData["CancelReservationResult"] = cancelResult.Message;
+
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Rezervasyon iptal süreniz dolmuştur. Gerekli işlemler için iletişim bölümünden iletişime geçebilirsiniz.";
+                TempData["CancelReservationResult"] = JsonConvert.SerializeObject(result);
+            }
 
             if (user != null)
-            {
-                TempData["CancelReservationResult"] = cancelResult.Message;
+            {                
                 return RedirectToAction("MyReservations", "Account", new { id = user.Id });
             }
             else
             {
                 return RedirectToAction("Index");
             }
+
         }
     }
 }

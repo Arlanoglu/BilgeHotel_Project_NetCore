@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Enum;
 
 namespace Business.Services.Concrete
 {
@@ -193,6 +194,27 @@ namespace Business.Services.Concrete
                 result.Exception = ex;
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Rezervasyon tarihine 2 gün veya daha az kalmış ve ödemeleri yapılmamış rezervasyonları listeler.
+        /// </summary>
+        /// <returns>Geriye List tipinde WebReservation dönecektir.</returns>
+        public async Task<List<WebReservation>> NotPaidReservatins()
+        {
+            //Döngüden kurulup get default içinde sorgu tekrar denenecek o şekilde hata alıyor. Geçici çözüm.
+            var date = DateTime.Now.Date;
+            List<WebReservation> webReservationList = new List<WebReservation>();
+            var webReservations = await this.GetDefault(x => x.Payment == false && x.ReservationStatus==ReservationStatus.RezervasyonAlindi);
+            foreach (var item in webReservations)
+            {
+                if ((item.CheckInDate - date).TotalDays <= 2)
+                {
+                    webReservationList.Add(item);
+                }
+            }
+
+            return webReservationList;
         }
     }
 }

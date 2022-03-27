@@ -3,7 +3,26 @@
     ViewData["Title"] = "ReceptionReservation";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Rezervasyon</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Rezervasyon</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
 
+<!-- /.content-header -->
 <section id="contact" class="contact">
     <div class="container">
         <div class="row justify-content-center" data-aos="fade-up">
@@ -12,6 +31,7 @@
                 {
                     <div class="text-center alert-warning"><h6>@TempData["ReservationResult"]</h6></div>
                 }
+                <a asp-action="Index" asp-controller="Reservation" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Rezervasyonlar</a>
                 @if (Model != null)
                 {
                     <form class="php-email-form" asp-controller="Reservation" asp-action="ReceptionReservation">

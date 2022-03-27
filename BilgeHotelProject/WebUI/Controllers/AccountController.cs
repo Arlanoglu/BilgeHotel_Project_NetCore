@@ -184,7 +184,7 @@ namespace WebUI.Controllers
 
         public async Task<IActionResult> MyReservations(string id)
         {
-            var reservations = await webReservationService.GetDefault(x => x.AppUserID == id && x.Status!=Core.Entities.Enum.Status.Deleted);
+            var reservations = await webReservationService.GetDefault(x => x.AppUserID == id);
             var vmMyReservations = mapper.Map<List<VMMyReservation>>(reservations);
 
             for (int i = 0; i < vmMyReservations.Count; i++)

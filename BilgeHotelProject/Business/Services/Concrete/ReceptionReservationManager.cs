@@ -2,6 +2,7 @@
 using Core.Utilities.Results.Abstract;
 using DataAccess.UnitOfWork;
 using Entities.Concrete;
+using Entities.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -174,6 +175,23 @@ namespace Business.Services.Concrete
                 result.Exception = ex;
                 return result;
             }
+        }
+
+        public async Task<List<ReceptionReservation>> NotPaidReservatins()
+        {
+            //Döngüden kurulup get default içinde sorgu tekrar denenecek o şekilde hata alıyor. Geçici çözüm.
+            var date = DateTime.Now.Date;
+            List<ReceptionReservation> receptionReservationList = new List<ReceptionReservation>();
+            var receptionReservations = await this.GetDefault(x => x.Payment == false && x.ReservationStatus == ReservationStatus.RezervasyonAlindi);
+            foreach (var item in receptionReservations)
+            {
+                if ((item.CheckInDate - date).TotalDays <= 2)
+                {
+                    receptionReservationList.Add(item);
+                }
+            }
+
+            return receptionReservationList;
         }
     }
 }

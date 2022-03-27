@@ -26,10 +26,10 @@
                             <div class="col-md-2 col-12 d-flex justify-content-center">
                                 <div class="row mb-4 mb-md-0">
                                     <div class="col-12 d-flex justify-content-center">
-                                        <b class="text-danger">Rezerv. No.</b>
+                                        <b class="">Rezerv. No.</b>
                                     </div>
                                     <div class="col-12 d-flex justify-content-center">
-                                        <span class="text-danger">BLGHTL-@Model[i].ID</span>
+                                        <span class="">BLGHTL-@Model[i].ID</span>
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +138,14 @@
                                                 <b>Durum</b>
                                             </div>
                                             <div class="col-12">
-                                                @Model[i].ReservationStatus
+                                                @if (Model[i].ReservationStatus == Entities.Enum.ReservationStatus.RezervasyonIptalEdildi)
+                                                {
+                                                    <span class="text-danger">@Model[i].ReservationStatus</span>
+                                                }
+                                                else
+                                                {
+                                                    @Model[i].ReservationStatus
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -150,9 +157,13 @@
                                 {
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            @Html.ActionLink("İptal Et", "CancelWebReservation", "Reservation", new { id = Model[i].ID }, new { @class = "btn btn-danger w-100" })
+                                            <a asp-action="CancelWebReservation" asp-controller="Reservation" asp-route-id="@Model[i].ID" class="btn btn-danger w-100">İptal Et</a>
                                         </div>
                                     </div>
+                                }
+                                else if (Model[i].ReservationStatus == Entities.Enum.ReservationStatus.RezervasyonAlindi && (Model[i].CheckInDate.Date - DateTime.Now.Date).TotalDays <= 2)
+                                {
+                                    <h6 class="text-danger text-center">Rezervasyon iptal süreniz dolmuştur.</h6>
                                 }
                             </div>
                         </div>

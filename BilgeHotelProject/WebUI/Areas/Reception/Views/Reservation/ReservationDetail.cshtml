@@ -45,10 +45,10 @@
     <!--Rezervasyon Bilgileri-->
     <div class="row">
         <div class="col-12">
-            <h3 class="text-center font-weight-bold">Rezervasyon Bilgileri</h3>
+            <h3 class="text-center font-weight-bold">Rezervasyon Detayları</h3>
         </div>
     </div>
-    <a asp-action="Index" asp-controller="Reservation" class="btn btn-primary mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
+    <a asp-action="Index" asp-controller="Reservation" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Rezervasyonlar</a>
     @if (Model != null)
     {
         @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi)
@@ -124,14 +124,25 @@
         <tbody>
             @if (Model != null)
             {
-                <tr>
+            <tr>
+                @if (Model.ReservationStatus == ReservationStatus.RezervasyonIptalEdildi)
+                {
+                    <td class="text-danger font-weight-bold">@Model.ReservationStatus</td>
+                }
+                else if (Model.ReservationStatus == ReservationStatus.RezervasyonTamamlandi)
+                {
+                    <td class="text-success font-weight-bold">@Model.ReservationStatus</td>
+                }
+                else
+                {
                     <td>@Model.ReservationStatus</td>
-                    <td>@Model.ReservationType</td>
-                    <td>@Model.RoomTypeName</td>
-                    <td>@Model.RoomNumber</td>
-                    <td>@Model.ServicePackName</td>
-                    <td>@Model.NumberOfPeople</td>
-                </tr>
+                }
+                <td>@Model.ReservationType</td>
+                <td>@Model.RoomTypeName</td>
+                <td>@Model.RoomNumber</td>
+                <td>@Model.ServicePackName</td>
+                <td>@Model.NumberOfPeople</td>
+            </tr>
                 @if (Model.Description != null)
                 {
                     @if (Model.Description != null)

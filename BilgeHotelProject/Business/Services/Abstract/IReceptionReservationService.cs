@@ -12,5 +12,6 @@ namespace Business.Services.Abstract
     {
         public IResult CancelReservation(ReceptionReservation receptionReservation);
         public IResult ReservationCreate(ReceptionReservation receptionReservation, StatusOfRoom statusOfRoom);
+        public Task<List<ReceptionReservation>> NotPaidReservatins();
     }
 }

@@ -13,5 +13,6 @@ namespace Business.Services.Abstract
         public decimal DiscountPrice(decimal reservationPrice, DateTime checkInDate, DateTime reservationDate, string servicePackName);
         public IResult ReservationCreate(WebReservation webReservation, StatusOfRoom statusOfRoom);
         public IResult CancelReservation(WebReservation webReservation);
+        public Task<List<WebReservation>> NotPaidReservatins();
     }
 }
