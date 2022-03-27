@@ -15,6 +15,7 @@ using WebUI.Models.Reservation;
 using WebUI.Models.ServicePack;
 using WebUI.Models.Account;
 using WebUI.Models.StatusOfRoom;
+using WebUI.Models.Registration;
 
 namespace WebUI.Utilities
 {
@@ -105,6 +106,11 @@ namespace WebUI.Utilities
 
             CreateMap<VMReservation, VMReceptionReservationCreate>();
             CreateMap<VMReceptionReservationCreate, VMReservation>();
+
+            CreateMap<Registration, VMRegistrationList>()
+                .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber))
+                .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName));
+            CreateMap<VMRegistrationList, Registration>();
         }
     }
 }
