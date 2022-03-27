@@ -61,11 +61,23 @@ namespace Common
         /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
         public static string ReservationCompleteMessage(int reservationId, DateTime reservationDate ,DateTime checkInDate, DateTime checkOutDate)
         {
-            return $"Marhaba,\n\nBLGHTL-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon talebiniz tarafımıza ulaşmış, {reservationDate} tarihinde rezervasyonunuz oluşturulmuştur.\n\nRezervasyonunuz ile ilgili tüm detayları web sayfanızdaki Rezervasyonlarım bölümünden görüntüleyebilirsiniz.\n\nRezervasyon tarihinize 2 gün kala ödeme işlemi gerçekleştirilmediği takdirde rezervasyonunuz iptal edilecektir.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+            return $"Marhaba,\n\nBLGHTLW-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon talebiniz tarafımıza ulaşmış, {reservationDate} tarihinde rezervasyonunuz oluşturulmuştur.\n\nRezervasyonunuz ile ilgili tüm detayları web sayfanızdaki Rezervasyonlarım bölümünden görüntüleyebilirsiniz.\n\nRezervasyon tarihinize 2 gün kala ödeme işlemi gerçekleştirilmediği takdirde rezervasyonunuz iptal edilecektir.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+        }
+        /// <summary>
+        /// Resepsiyon için rezervasyon tamamlama işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
+        /// </summary>
+        /// <param name="reservationId">Kullanıcının oluşturduğu rezervasyona ait id bilgisini içerir.</param>
+        /// <param name="reservationDate">Rezervasyon oluşturma tarihi.</param>
+        /// <param name="checkInDate">Rezervasyonun giriş tarihi.</param>
+        /// <param name="checkOutDate">Rezervasyonun çıkış tarihi.</param>
+        /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
+        public static string ReceptionReservationCompleteMessage(int reservationId, DateTime reservationDate, DateTime checkInDate, DateTime checkOutDate)
+        {
+            return $"Marhaba,\n\nBLGHTLR-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon talebiniz tarafımıza ulaşmış, {reservationDate} tarihinde rezervasyonunuz oluşturulmuştur.\n\nRezervasyon tarihinize 2 gün kala ödeme işlemi gerçekleştirilmediği takdirde rezervasyonunuz iptal edilecektir.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
         }
 
         /// <summary>
-        /// Rezervasyon tamamlama işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
+        /// Web rezervasyon iptal işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
         /// </summary>
         /// <param name="reservationId">Kullanıcının iptal ettiği rezervasyona ait id bilgisini içerir.</param>
         /// <param name="checkInDate">Rezervasyonun giriş tarihi.</param>
@@ -73,7 +85,40 @@ namespace Common
         /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
         public static string CancelReservationMessage(int reservationId, DateTime checkInDate, DateTime checkOutDate)
         {
-            return $"Marhaba,\n\nBLGHTL-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon iptal talebiniz tarafımıza ulaşmış, Rezervasyonunuz iptal edilmiştir.\n\nİptal edilen ve diğer aktif olan rezervasyonlarınız ile ilgili tüm detayları web sayfanızdaki Rezervasyonlarım bölümünden görüntüleyebilirsiniz.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+            return $"Marhaba,\n\nBLGHTLW-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon iptal talebiniz tarafımıza ulaşmış, Rezervasyonunuz iptal edilmiştir.\n\nİptal edilen ve diğer aktif olan rezervasyonlarınız ile ilgili tüm detayları web sayfanızdaki Rezervasyonlarım bölümünden görüntüleyebilirsiniz.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+        }
+        /// <summary>
+        /// Reseptiyon rezervasyon iptal işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
+        /// </summary>
+        /// <param name="reservationId">Kullanıcının iptal ettiği rezervasyona ait id bilgisini içerir.</param>
+        /// <param name="checkInDate">Rezervasyonun giriş tarihi.</param>
+        /// <param name="checkOutDate">Rezervasyonun çıkış tarihi.</param>
+        /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
+        public static string CancelReceptionReservationMessage(int reservationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            return $"Marhaba,\n\nBLGHTLR-{reservationId} rezervasyon numaralı, giriş tarihi {checkInDate.Date.ToShortDateString()}, çıkış tarihi {checkOutDate.Date.ToShortDateString()} olan rezervasyon iptal talebiniz tarafımıza ulaşmış, Rezervasyonunuz iptal edilmiştir.\n\nBilgilerinize sunar, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+        }
+        /// <summary>
+        /// Web rezervasyonda ödeme yapılmayan rezervasyonun iptal işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
+        /// </summary>
+        /// <param name="reservationId">Kullanıcının iptal ettiği rezervasyona ait id bilgisini içerir.</param>
+        /// <param name="checkInDate">Rezervasyonun giriş tarihi.</param>
+        /// <param name="checkOutDate">Rezervasyonun çıkış tarihi.</param>
+        /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
+        public static string UnPaidCancelWebReservationMessage(int reservationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            return $"Marhaba,\n\nBLGHTLW-{reservationId} rezervasyon numaralı, giriş tarihi {checkOutDate.Date.ToShortDateString()}, çıkış tarihi {checkInDate.Date.ToShortDateString()} olan rezervasyonunuza dair ödeme süresi içerisinde herhangi bir ödeme yapılmadığı gözlemlenerek, rezervasyonunuz tarafımızca iptal edilmiştir.\n\nİptal edilen ve diğer aktif olan rezervasyonlarınız ile ilgili tüm detayları web sayfanızdaki Rezervasyonlarım bölümünden görüntüleyebilirsiniz.\n\nBizi tercih ettiğiniz için teşekkür eder, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
+        }
+        /// <summary>
+        /// Resepsiyon rezervasyonda ödeme yapılmayan rezervasyonun iptal işleminde gönderilecek maile message oluşturmak için kullanılacak metotdur.
+        /// </summary>
+        /// <param name="reservationId">Kullanıcının iptal ettiği rezervasyona ait id bilgisini içerir.</param>
+        /// <param name="checkInDate">Rezervasyonun giriş tarihi.</param>
+        /// <param name="checkOutDate">Rezervasyonun çıkış tarihi.</param>
+        /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
+        public static string UnPaidCancelReceptionReservationMessage(int reservationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            return $"Marhaba,\n\nBLGHTLR-{reservationId} rezervasyon numaralı, giriş tarihi {checkOutDate.Date.ToShortDateString()}, çıkış tarihi {checkInDate.Date.ToShortDateString()} olan rezervasyonunuza dair ödeme süresi içerisinde herhangi bir ödeme yapılmadığı gözlemlenerek, rezervasyonunuz tarafımızca iptal edilmiştir.\n\nBilgilerinize sunar, iyi günler dileriz.\n\nSaygılarımızla,\nBilge Hotel";
         }
     }
 }

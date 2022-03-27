@@ -177,7 +177,7 @@ namespace WebUI.Areas.Reception.Controllers
                 //Rezervasyon iptal mail gönderimi.
                 if (cancelResult.ResultStatus == ResultStatus.Success && receptionReservation.Email != null)
                 {
-                    var message = MailSender.CancelReservationMessage(receptionReservation.ID, receptionReservation.CheckInDate, receptionReservation.CheckOutDate);
+                    var message = MailSender.CancelReceptionReservationMessage(receptionReservation.ID, receptionReservation.CheckInDate, receptionReservation.CheckOutDate);
                     //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
                     MailSender.SendMail(receptionReservation.Email, "Rezervasyon İptal", message, setting);
                 }
@@ -310,7 +310,7 @@ namespace WebUI.Areas.Reception.Controllers
                             x.ReservationStatus == ReservationStatus.RezervasyonAlindi &&
                             x.Status == Status.Active)).OrderByDescending(x => x.ID).FirstOrDefault().ReservationDate;
 
-                            var message = MailSender.ReservationCompleteMessage(reservationID, reservationDate, receptionReservation.CheckInDate, receptionReservation.CheckOutDate);
+                            var message = MailSender.ReceptionReservationCompleteMessage(reservationID, reservationDate, receptionReservation.CheckInDate, receptionReservation.CheckOutDate);
 
                             //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
                             MailSender.SendMail(receptionReservation.Email, "Rezervasyon", message, setting);
@@ -358,6 +358,55 @@ namespace WebUI.Areas.Reception.Controllers
             vmReservations.AddRange(vmReceptionReservations);
 
             return View(vmReservations);
+        }
+        public async Task<IActionResult> UnPaidCancelReservation(ReservationType reservationType, int id)
+        {
+            
+            if (reservationType == ReservationType.Web)
+            {
+                var webReservation = await webReservationService.GetById(id);
+                var setting = (await settingService.GetActive()).FirstOrDefault();
+                var cancelResult = webReservationService.CancelReservation(webReservation);
+
+                //Rezervasyon iptal mail gönderimi.
+                if (cancelResult.ResultStatus == ResultStatus.Success)
+                {
+                    var message = MailSender.UnPaidCancelWebReservationMessage(webReservation.ID, webReservation.CheckInDate, webReservation.CheckOutDate);
+                    //Kullanıcıya gönderilen mail.
+                    MailSender.SendMail(webReservation.AppUser.Email, "Rezervasyon İptal", message, setting);
+                    if (webReservation.AppUser.Email != webReservation.Email)
+                    {
+                        //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
+                        MailSender.SendMail(webReservation.Email, "Rezervasyon İptal", message, setting);
+                    }
+                }
+                TempData["ReservationResult"] = JsonConvert.SerializeObject(cancelResult);
+            }
+            else if (reservationType == ReservationType.Reception)
+            {
+                var receptionReservation = await receptionReservationService.GetById(id);
+                var setting = (await settingService.GetActive()).FirstOrDefault();
+                var cancelResult = receptionReservationService.CancelReservation(receptionReservation);
+
+                //Rezervasyon iptal mail gönderimi.
+                if (cancelResult.ResultStatus == ResultStatus.Success && receptionReservation.Email != null)
+                {
+                    var message = MailSender.UnPaidCancelReceptionReservationMessage(receptionReservation.ID, receptionReservation.CheckInDate, receptionReservation.CheckOutDate);
+                    //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
+                    MailSender.SendMail(receptionReservation.Email, "Rezervasyon İptal", message, setting);
+                }
+
+                TempData["ReservationResult"] = JsonConvert.SerializeObject(cancelResult);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "İlgili rezervasyon kaydı bulunmamaktadır.";
+                TempData["ReservationResult"] = JsonConvert.SerializeObject(result);
+            }
+
+            return RedirectToAction("ReservationDetail", new { reservationType = reservationType, id = id });
+
         }
     }
 }

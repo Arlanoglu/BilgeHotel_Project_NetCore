@@ -116,7 +116,7 @@
                                     <a asp-action="ReservationDetail" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
                                 </td>
                                 <td>
-                                    <a asp-action="CancelReservation" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-danger mb-3">İptal</a>
+                                    <a asp-action="UnPaidCancelReservation" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-danger mb-3">İptal</a>
                                 </td>
                             </tr>
                         }
