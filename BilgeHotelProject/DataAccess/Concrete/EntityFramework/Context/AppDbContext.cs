@@ -112,6 +112,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             builder.ApplyConfiguration(new WebReservationMap());
             builder.ApplyConfiguration(new WorkScheduleMap());
             builder.ApplyConfiguration(new EmployeeShiftMap());
+            builder.ApplyConfiguration(new GuestRegistrationMap());
 
             builder.Seed();
             base.OnModelCreating(builder);

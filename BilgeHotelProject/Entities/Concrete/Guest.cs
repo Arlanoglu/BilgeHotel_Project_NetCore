@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using System.Collections.Generic;
 
 namespace Entities.Concrete
 {
@@ -15,8 +16,8 @@ namespace Entities.Concrete
         public string IdCardFrontSideImage { get; set; }
         public string IdCardBackSideImage { get; set; }
         public int RegistrationID { get; set; }
-        public virtual Registration Registration { get; set; }
+        public virtual ICollection<GuestRegistration> GuestRegistrations { get; set; }
 
-        
+
     }
 }

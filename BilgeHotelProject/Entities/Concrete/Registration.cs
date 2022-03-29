@@ -28,6 +28,7 @@ namespace Entities.Concrete
         public int ServicePackID { get; set; }
         public virtual Room Room { get; set; }
         public virtual ServicePack ServicePack { get; set; }
+        public virtual ICollection<GuestRegistration> GuestRegistrations { get; set; }
         public virtual ICollection<UseOfExtraService> UseOfExtraServices { get; set; } //Unutulmuş yeni eklendi.
     }
 }

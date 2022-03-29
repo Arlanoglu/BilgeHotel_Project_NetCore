@@ -37,6 +37,7 @@ namespace DataAccess.UnitOfWork
         IEmployeeShiftDal EmployeeShiftDal { get; }
         IRoomPictureDal RoomPictureDal { get; }
         IMessageDal MessageDal { get; }
+        IGuestRegistrationDal GuestRegistrationDal { get; }
 
         int SaveChange();
 
