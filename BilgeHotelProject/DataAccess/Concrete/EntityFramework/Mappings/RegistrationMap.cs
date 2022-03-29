@@ -22,6 +22,10 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.Description).HasMaxLength(200);
             builder.Property(x => x.CheckInTime).IsRequired();
             builder.Property(x => x.CheckOutTime).HasDefaultValue(TimeSpan.FromHours(14));
+            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.PhoneNumber).HasMaxLength(20);
+            builder.Property(x => x.Email).HasMaxLength(100);
 
         }
     }

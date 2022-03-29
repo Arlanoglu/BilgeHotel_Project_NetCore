@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Business.Services.Abstract
 {
     public interface IRegistrationService : IService<Registration>
     {
+        public IResult CreateRegistrationWithoutReservation(Registration registration, StatusOfRoom statusOfRoom);
     }
 }

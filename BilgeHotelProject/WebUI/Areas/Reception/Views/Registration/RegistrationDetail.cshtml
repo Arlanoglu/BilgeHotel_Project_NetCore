@@ -170,6 +170,7 @@
                 <th scope="col">Hizmet Fiyatı</th>
                 <th scope="col">Adet</th>
                 <th scope="col">Toplam Fiyat</th>
+                <th scope="col">İşlem</th>
             </tr>
         </thead>
         <tbody>
@@ -180,7 +181,9 @@
                     <tr>
                         <td>@item.ServiceName</td>
                         <td>@item.Price</td>
-                        <td>@item.TotalPrice</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.TotalPrice.ToString("C2")</td>
+                        <td><a asp-action="DeleteUseOfExtraService" asp-controller="Registration" asp-route-registrationId="@Model.ID" asp-route-extraServiceId="@item.ID" class="btn btn-danger">Sil</a></td>
                     </tr>
                 }
             }

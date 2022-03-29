@@ -149,5 +149,18 @@ namespace Core.DataAccess.EntityFramework
         {
             return await entity.FirstOrDefaultAsync();
         }
+
+        public void RemoveForce(TEntity model)
+        {
+            entity.Remove(model);
+        }
+
+        public void RemoveForceList(List<TEntity> modelList)
+        {
+            foreach (var item in modelList)
+            {
+                entity.Remove(item);
+            }
+        }
     }
 }

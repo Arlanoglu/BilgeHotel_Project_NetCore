@@ -11,6 +11,10 @@ namespace Entities.Concrete
         {
             RegistrationStatus = RegistrationStatus.GirisYapildi;
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int NumberOfPeople { get; set; }

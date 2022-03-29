@@ -32,13 +32,23 @@ namespace WebUI.Models.Registration
                 return _extraServiceTotalPrice;
             } 
         }
+        private decimal _totalPrice;
+        public decimal TotalPrice
+        {
+            get
+            {
+                _totalPrice = 0;
+                _totalPrice = _totalPrice + Price;
+                return _totalPrice;
+            }
+        }
         public string Description { get; set; }
         public TimeSpan CheckInTime { get; set; }
-        public TimeSpan? CheckOutTime { get; set; }
+        public TimeSpan CheckOutTime { get; set; }
         public RegistrationType RegistrationType { get; set; }
         public RegistrationStatus RegistrationStatus { get; set; }
         public Status Status { get; set; }
-        public int? ReservationID { get; set; }
+        public int ReservationID { get; set; }
 
         public int RoomID { get; set; }
         public int ServicePackID { get; set; }

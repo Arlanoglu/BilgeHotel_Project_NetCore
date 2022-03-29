@@ -130,6 +130,9 @@ namespace WebUI.Utilities
                 .ForMember(x => x.VMExtraServices, w => w.MapFrom(y => y.UseOfExtraServices.Select(q => q.ExtraService)))
                 .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName));
             CreateMap<VMRegistrationDetail, Registration>();
+
+            CreateMap<Registration, VMRegistrationCreate>();
+            CreateMap<VMRegistrationCreate, Registration>();
         }
     }
 }

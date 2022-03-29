@@ -127,5 +127,26 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.RegistrationDal.GetFirstOrDefault();
         }
+
+        public IResult CreateRegistrationWithoutReservation(Registration registration, StatusOfRoom statusOfRoom)
+        {
+            try
+            {
+                unitOfWork.RegistrationDal.Create(registration);
+                unitOfWork.StatusOfRoomDal.Create(statusOfRoom);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Kayıt Oluşturma işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ using WebUI.Models.ExtraService;
 using WebUI.Models.HomePage;
 using WebUI.Models.HotelService;
 using WebUI.Models.Picture;
+using WebUI.Models.Registration;
 using WebUI.Models.Reservation;
 using WebUI.Models.RoomFacility;
 using WebUI.Models.RoomType;
@@ -77,6 +78,9 @@ namespace WebUI.Utilities
                     break;
                 case ViewModels.VMExtraService:
                     viewModel = new VMExtraService();
+                    break;
+                case ViewModels.VMRegistrationCreate:
+                    viewModel = new VMRegistrationCreate();
                     break;
             }
             return viewModel;

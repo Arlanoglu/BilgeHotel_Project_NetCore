@@ -25,6 +25,7 @@ namespace WebUI.Utilities.Enums
         VMMyReservation,
         VMMessage,
         VMUseOfExtraServiceCreate,
-        VMExtraService
+        VMExtraService,
+        VMRegistrationCreate
     }
 }

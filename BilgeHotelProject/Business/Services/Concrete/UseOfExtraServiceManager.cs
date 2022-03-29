@@ -127,5 +127,43 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.UseOfExtraServiceDal.GetFirstOrDefault();
         }
+
+        public IResult RemoveForce(UseOfExtraService model)
+        {
+            try
+            {
+                unitOfWork.UseOfExtraServiceDal.RemoveForce(model);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
+
+        public IResult RemoveForceList(List<UseOfExtraService> modelList)
+        {
+            try
+            {
+                unitOfWork.UseOfExtraServiceDal.RemoveForceList(modelList);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }
