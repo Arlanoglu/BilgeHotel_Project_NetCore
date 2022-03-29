@@ -15,7 +15,6 @@ namespace Entities.Concrete
         public bool IsActive { get; set; } //Müşteri kalıyorsa true çıktıysa false olacak buna göre api de bu müşteriler çekilecek.
         public string IdCardFrontSideImage { get; set; }
         public string IdCardBackSideImage { get; set; }
-        public int RegistrationID { get; set; }
         public virtual ICollection<GuestRegistration> GuestRegistrations { get; set; }
 
 

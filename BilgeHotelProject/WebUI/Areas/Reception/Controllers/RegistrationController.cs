@@ -34,5 +34,12 @@ namespace WebUI.Areas.Reception.Controllers
 
             return View(vmRegistrations);
         }
+        public async Task<IActionResult> RegistrationDetail(int id)
+        {
+            var registrations = await registrationService.GetById(id);
+            var vmRegistrationDetails = mapper.Map<VMRegistrationDetail>(registrations);
+
+            return View(vmRegistrationDetails);
+        }
     }
 }

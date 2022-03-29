@@ -16,6 +16,8 @@ using WebUI.Models.ServicePack;
 using WebUI.Models.Account;
 using WebUI.Models.StatusOfRoom;
 using WebUI.Models.Registration;
+using WebUI.Models.Guest;
+using WebUI.Models.ExtraService;
 
 namespace WebUI.Utilities
 {
@@ -107,10 +109,24 @@ namespace WebUI.Utilities
             CreateMap<VMReservation, VMReceptionReservationCreate>();
             CreateMap<VMReceptionReservationCreate, VMReservation>();
 
+            CreateMap<VMGuestRegistrationList, Guest>();
+            CreateMap<Guest, VMGuestRegistrationList>();
+
+            CreateMap<VMExtraService, ExtraService>();
+            CreateMap<ExtraService, VMExtraService>();
+
             CreateMap<Registration, VMRegistrationList>()
                 .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber))
                 .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName));
             CreateMap<VMRegistrationList, Registration>();
+
+            CreateMap<Registration, VMRegistrationDetail>()
+                .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber))
+                .ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.Room.RoomType.RoomTypeName))
+                .ForMember(x => x.VMGuests, w => w.MapFrom(y => y.GuestRegistrations.Select(q => q.Guest)))
+                .ForMember(x => x.VMExtraServices, w => w.MapFrom(y => y.UseOfExtraServices.Select(q => q.ExtraService)))
+                .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName));
+            CreateMap<VMRegistrationDetail, Registration>();
         }
     }
 }
