@@ -133,6 +133,11 @@ namespace WebUI.Utilities
 
             CreateMap<Registration, VMRegistrationCreate>();
             CreateMap<VMRegistrationCreate, Registration>();
+
+            CreateMap<ReceptionReservation, Registration>().ForMember(x => x.ReservationID, w => w.MapFrom(y => y.ID));
+            CreateMap<Registration, ReceptionReservation>();
+            CreateMap<WebReservation, Registration>();
+            CreateMap<Registration, WebReservation>();
         }
     }
 }

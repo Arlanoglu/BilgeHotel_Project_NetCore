@@ -32,8 +32,11 @@ namespace WebUI.Areas.Reception.Controllers
         private readonly IServicePackService servicePackService;
         private readonly IRoomTypeService roomTypeService;
         private readonly IRoomService roomService;
+        private readonly IWebReservationService webReservationService;
+        private readonly IReceptionReservationService receptionReservationService;
+        private readonly IStatusOfRoomService statusOfRoomService;
 
-        public RegistrationController(IMapper mapper, IRegistrationService registrationService, IUseOfExtraServiceService useOfExtraServiceService, IResult result, IServicePackService servicePackService, IRoomTypeService roomTypeService, IRoomService roomService)
+        public RegistrationController(IMapper mapper, IRegistrationService registrationService, IUseOfExtraServiceService useOfExtraServiceService, IResult result, IServicePackService servicePackService, IRoomTypeService roomTypeService, IRoomService roomService, IWebReservationService webReservationService, IReceptionReservationService receptionReservationService, IStatusOfRoomService statusOfRoomService)
         {
             this.mapper = mapper;
             this.registrationService = registrationService;
@@ -42,6 +45,9 @@ namespace WebUI.Areas.Reception.Controllers
             this.servicePackService = servicePackService;
             this.roomTypeService = roomTypeService;
             this.roomService = roomService;
+            this.webReservationService = webReservationService;
+            this.receptionReservationService = receptionReservationService;
+            this.statusOfRoomService = statusOfRoomService;
         }
         public async Task<IActionResult> Index()
         {
@@ -229,6 +235,79 @@ namespace WebUI.Areas.Reception.Controllers
                 
             }
             return RedirectToAction("RoomQuery");
+        }
+        public async Task<IActionResult> RegistrationToReservation(ReservationType reservationType, int id)
+        {
+            IResult createResult = null;
+            Registration registration = null;
+
+            if (reservationType==ReservationType.Reception)
+            {
+                var receptionReservation = await receptionReservationService.GetById(id);
+                registration = mapper.Map<Registration>(receptionReservation);
+                registration.RegistrationType = RegistrationType.ResepsiyonRezervasyon;
+                registration.ID = 0;
+                createResult = registrationService.Create(registration);
+                if (createResult.ResultStatus == ResultStatus.Success)
+                {
+                    receptionReservation.ReservationStatus = ReservationStatus.GirisYapildi;
+                    receptionReservationService.Update(receptionReservation);
+                }
+            }
+            else if(reservationType == ReservationType.Web)
+            {
+                var webReservation = await webReservationService.GetById(id);
+                registration = mapper.Map<Registration>(webReservation);
+                registration.RegistrationType = RegistrationType.WebRezervasyon;
+                registration.ID = 0;
+                createResult = registrationService.Create(registration);
+                if (createResult.ResultStatus == ResultStatus.Success)
+                {
+                    webReservation.ReservationStatus = ReservationStatus.GirisYapildi;
+                    webReservationService.Update(webReservation);
+                }
+            }
+
+            var statusOfRoom = (await statusOfRoomService.GetDefault(x => x.RoomID == registration.RoomID && x.StatusStartDate == registration.CheckInDate.Date && x.StatusEndDate == registration.CheckOutDate.Date && x.RoomStatus == RoomStatus.Rezerve)).FirstOrDefault();
+            statusOfRoom.RoomStatus = RoomStatus.Dolu;
+
+            if (registration!=null)
+            {
+                
+
+                if (createResult.ResultStatus == ResultStatus.Success)
+                {
+                    TempData["RegistrationResult"] = JsonConvert.SerializeObject(createResult);
+                    if (statusOfRoom != null)
+                    {
+                        statusOfRoomService.Update(statusOfRoom);
+                    }
+                    var registrationId = (await registrationService.GetDefault(x =>
+                            x.CheckInDate == registration.CheckInDate.Date &&
+                            x.CheckOutDate == registration.CheckOutDate.Date &&
+                            x.RoomID == registration.RoomID &&
+                            x.ServicePackID == registration.ServicePackID &&
+                            x.RegistrationStatus == RegistrationStatus.GirisYapildi &&
+                            x.Status == Status.Active)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
+
+                    return RedirectToAction("RegistrationDetail", new { id = registrationId });
+                }
+                else
+                {
+                    TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);
+                    return RedirectToAction("ReservationDetail", "Reservation", new { id = id });
+                }
+
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Rezervasyon bulunamadı.";
+                TempData["ReservationResult"] = JsonConvert.SerializeObject(result);
+                return RedirectToAction("Index", "Reservation", new { id = id });
+            }
+            
+
         }
     }
 }

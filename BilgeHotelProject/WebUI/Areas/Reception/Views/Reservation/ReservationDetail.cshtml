@@ -53,6 +53,7 @@
     {
         @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi)
         {
+            <a asp-action="RegistrationToReservation" asp-controller="Registration" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-success mb-3">Kayıt Oluştur</a>
             <a asp-action="CancelReservation" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Rezervasyonu İptal Et</a>
         }
         @if (Model.Payment)
@@ -124,25 +125,25 @@
         <tbody>
             @if (Model != null)
             {
-            <tr>
-                @if (Model.ReservationStatus == ReservationStatus.RezervasyonIptalEdildi)
-                {
-                    <td class="text-danger font-weight-bold">@Model.ReservationStatus</td>
-                }
-                else if (Model.ReservationStatus == ReservationStatus.RezervasyonTamamlandi)
-                {
-                    <td class="text-success font-weight-bold">@Model.ReservationStatus</td>
-                }
-                else
-                {
-                    <td>@Model.ReservationStatus</td>
-                }
-                <td>@Model.ReservationType</td>
-                <td>@Model.RoomTypeName</td>
-                <td>@Model.RoomNumber</td>
-                <td>@Model.ServicePackName</td>
-                <td>@Model.NumberOfPeople</td>
-            </tr>
+                <tr>
+                    @if (Model.ReservationStatus == ReservationStatus.RezervasyonIptalEdildi)
+                    {
+                        <td class="text-danger font-weight-bold">@Model.ReservationStatus</td>
+                    }
+                    else if (Model.ReservationStatus == ReservationStatus.RezervasyonTamamlandi)
+                    {
+                        <td class="text-success font-weight-bold">@Model.ReservationStatus</td>
+                    }
+                    else
+                    {
+                        <td>@Model.ReservationStatus</td>
+                    }
+                    <td>@Model.ReservationType</td>
+                    <td>@Model.RoomTypeName</td>
+                    <td>@Model.RoomNumber</td>
+                    <td>@Model.ServicePackName</td>
+                    <td>@Model.NumberOfPeople</td>
+                </tr>
                 @if (Model.Description != null)
                 {
                     @if (Model.Description != null)

@@ -98,6 +98,7 @@ namespace Business.Services.Concrete
             }
             catch (Exception ex)
             {
+                unitOfWork.Dispose();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
                 result.Message = "İşlem sırasında bir hata meydana geldi.";
                 result.Exception = ex;
@@ -117,6 +118,7 @@ namespace Business.Services.Concrete
             }
             catch (Exception ex)
             {
+                unitOfWork.Dispose();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
                 result.Message = "İşlem sırasında bir hata meydana geldi.";
                 result.Exception = ex;
@@ -137,6 +139,28 @@ namespace Business.Services.Concrete
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
                 result.Message = "Kayıt Oluşturma işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
+
+        public async Task<IResult> RegistrationToReservation(Registration registration)
+        {
+            var statusOfRoom = (await unitOfWork.StatusOfRoomDal.GetDefault(x => x.RoomID == registration.RoomID && x.StatusStartDate == registration.CheckInDate.Date && x.StatusEndDate == registration.CheckOutDate.Date && x.RoomStatus == Entities.Enum.RoomStatus.Rezerve)).FirstOrDefault();
+            statusOfRoom.RoomStatus = Entities.Enum.RoomStatus.Dolu;
+            try
+            {
+                unitOfWork.RegistrationDal.Create(registration);
+                unitOfWork.StatusOfRoomDal.Update(statusOfRoom);                
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Kayıt işlemi başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
