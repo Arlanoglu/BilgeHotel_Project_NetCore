@@ -1,0 +1,189 @@
+﻿@model VMRegistrationDetail
+@{
+    ViewData["Title"] = "RegistrationDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Kayıtlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Kayıtlar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.RegistrationResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.RegistrationResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.RegistrationResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.RegistrationResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!--Rezervasyon Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Rezervasyon Detayları</h3>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Registration" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Kayıtlar</a>
+    @*@if (Model != null)
+    {
+        @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi)
+        {
+            <a asp-action="CancelReservation" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Rezervasyonu İptal Et</a>
+        }
+        @if (Model.Payment)
+        {
+            <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alınmadı</a>
+        }
+        else
+        {
+            <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alındı</a>
+
+        }
+    }*@
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">#</th>
+                <th scope="col">Giriş Tarihi</th>
+                <th scope="col">Çıkış Tarihi</th>
+                <th scope="col">Giriş Saati</th>
+                <th scope="col">Çıkış Saati</th>
+                <th scope="col">Kişi Sayısı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <th>@Model.ID</th>
+                    <td>@Model.CheckInDate.Date.ToShortDateString()</td>
+                    <td>@Model.CheckOutDate.Date.ToShortDateString()</td>
+                    <td>@Model.CheckInTime</td>
+                    <td>@Model.CheckOutTime</td>
+                    <td>@Model.NumberOfPeople</td>
+                </tr>
+            }
+        </tbody>
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Oda Num</th>
+                <th scope="col">Oda Tipi</th>
+                <th scope="col">Hizmet Paketi</th>
+                <th scope="col">Kayıt Türü</th>
+                <th scope="col">Durumu</th>
+                <th scope="col">Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+            <tr>
+                <td>@Model.RoomNumber</td>
+                <td>@Model.RoomTypeName</td>
+                <td>@Model.ServicePackName</td>
+                <td>@Model.RegistrationType</td>
+                <td>@Model.RegistrationStatus</td>
+                <td class="font-weight-bold">@Model.Price.ToString("C2")</td>
+            </tr>
+                @if (Model.Description != null)
+                {
+                    @if (Model.Description != null)
+                    {
+                        <tr class="bg-gradient-gray"><th colspan="7" class="text-center">Açıklama</th></tr>
+                    }
+                    <tr><td colspan="7" class="text-center">@Model.Description</td></tr>
+                }
+            }
+        </tbody>
+    </table>
+    <!--Kişi Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Müşteri Bilgileri</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Kimlik No</th>
+                <th scope="col">İsim Soyisim</th>
+                <th scope="col">Telefon No</th>
+                <th scope="col" colspan="2">E-Posta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.VMGuests.Count > 0)
+            {
+                foreach (var item in Model.VMGuests)
+                {
+                    <tr>
+                        <td>@item.IdentificationNumber</td>
+                        <td>@item.FullName</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <a asp-action="GuestDetail" asp-controller="Guest" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <!--Ekstra Hizmetler-->
+    <div class="row">
+        <div class="col-12">
+            
+            <h3 class="text-center font-weight-bold">Kullanılan Ekstra Hizmetler</h3>
+            @await Component.InvokeAsync("UseOfExtraService", new { id = Model.ID })  
+        </div>
+    </div>
+    <b>Toplam Ekstra Hizmet Tutarı :</b><b class="text-success">@Model.ExtraServiceTotalPrice.ToString("C2")</b>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Hizmet Adı</th>
+                <th scope="col">Hizmet Fiyatı</th>
+                <th scope="col">Adet</th>
+                <th scope="col">Toplam Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.VMExtraServices.Count > 0)
+            {
+                foreach (var item in Model.VMExtraServices)
+                {
+                    <tr>
+                        <td>@item.ServiceName</td>
+                        <td>@item.Price</td>
+                        <td>@item.TotalPrice</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -93,7 +93,7 @@ namespace WebUI.Utilities
                 .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName))
                 .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber))
                 .ForMember(x => x.AppUserEmail, w => w.MapFrom(y => y.AppUser.Email))
-                .ForMember(x => x.AppUserFullName, w => w.MapFrom(y => y.AppUser.FirstName +" "+ y.AppUser.LastName));
+                .ForMember(x => x.AppUserFullName, w => w.MapFrom(y => y.AppUser.FirstName + " " + y.AppUser.LastName));
             CreateMap<ReceptionReservation, VMReservationDetail>()
                 .ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName))
                 .ForMember(x => x.ServicePackName, w => w.MapFrom(y => y.ServicePack.PackName))
@@ -114,6 +114,9 @@ namespace WebUI.Utilities
 
             CreateMap<VMExtraService, ExtraService>();
             CreateMap<ExtraService, VMExtraService>();
+
+            CreateMap<UseOfExtraService, VMUseOfExtraServiceCreate>();
+            CreateMap<VMUseOfExtraServiceCreate, UseOfExtraService>();
 
             CreateMap<Registration, VMRegistrationList>()
                 .ForMember(x => x.RoomNumber, w => w.MapFrom(y => y.Room.RoomNumber))

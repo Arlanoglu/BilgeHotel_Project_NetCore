@@ -1,0 +1,28 @@
+﻿@model VMUseOfExtraServiceCreate
+
+<form asp-action="AddUseOfExtraService" asp-controller="Registration" method="post">
+    <input type="hidden" asp-for="RegistrationID" value="@Model.RegistrationID" />
+    <div class="form-row">
+        <div class="col-md-6 form-group">
+            <label class="col-form-label">Ekstra Hizmetler</label>
+            <select asp-for="ExtraServiceID" class="form-control" style="height:44px">
+                @if (ViewBag.ExtraServices.Count > 0)
+                {
+                    foreach (var item in ViewBag.ExtraServices as List<VMExtraService>)
+                    {
+                        <option value="@item.ID">@item.ServiceName</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-3 form-group">
+            <label class="col-form-label">Adet</label>
+            <input class="form-control" type="number" asp-for="Quantity" min="1" max="100" style="height:44px" />
+        </div>
+        <div class="col-md-3 form-group">
+            <div class="row"><label class="col-form-label"><br /></label></div>
+            <button type="submit" class="btn btn-primary">Ekstra Hizmet Ekle</button>
+        </div>
+        
+    </div>
+</form>

@@ -1,4 +1,5 @@
-﻿using Entities.Enum;
+﻿using Core.Entities.Enum;
+using Entities.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,33 @@ namespace WebUI.Models.Registration
 {
     public class VMRegistrationDetail
     {
+        public int ID { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int NumberOfPeople { get; set; }
         public decimal Price { get; set; }
+        private decimal _extraServiceTotalPrice;
+        public decimal ExtraServiceTotalPrice 
+        {
+            get 
+            {
+                _extraServiceTotalPrice = 0;
+                if (VMExtraServices.Count>0)
+                {
+                    foreach (var item in VMExtraServices)
+                    {
+                        _extraServiceTotalPrice += item.TotalPrice;
+                    }
+                }
+                return _extraServiceTotalPrice;
+            } 
+        }
         public string Description { get; set; }
         public TimeSpan CheckInTime { get; set; }
         public TimeSpan? CheckOutTime { get; set; }
         public RegistrationType RegistrationType { get; set; }
         public RegistrationStatus RegistrationStatus { get; set; }
+        public Status Status { get; set; }
         public int? ReservationID { get; set; }
 
         public int RoomID { get; set; }

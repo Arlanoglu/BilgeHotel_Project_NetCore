@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebUI.Models;
 using WebUI.Models.Aboutus;
 using WebUI.Models.Contact;
+using WebUI.Models.ExtraService;
 using WebUI.Models.HomePage;
 using WebUI.Models.HotelService;
 using WebUI.Models.Picture;
@@ -70,6 +71,12 @@ namespace WebUI.Utilities
                     break;
                 case ViewModels.VMMessage:
                     viewModel = new VMMessage();
+                    break;
+                case ViewModels.VMUseOfExtraServiceCreate:
+                    viewModel = new VMUseOfExtraServiceCreate();
+                    break;
+                case ViewModels.VMExtraService:
+                    viewModel = new VMExtraService();
                     break;
             }
             return viewModel;
