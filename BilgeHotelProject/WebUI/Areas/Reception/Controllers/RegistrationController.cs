@@ -346,8 +346,13 @@ namespace WebUI.Areas.Reception.Controllers
                     webReservation.ReservationStatus = ReservationStatus.RezervasyonTamamlandi;
                     webReservationService.Update(webReservation);
                 }
-                else if (updateResult.ResultStatus == ResultStatus.Success && registration.RegistrationType == RegistrationType.ResepsiyonKayit)
+                else if (updateResult.ResultStatus == ResultStatus.Success)
                 {
+                    //Çıkış yapıldığında odanın kirli olarak güncellenmesi.
+                    var room = await roomService.GetById(registration.RoomID);
+                    room.RoomStatus = RoomStatus.Kirli;
+                    roomService.Update(room);
+                    //Gelir kaydı.
                     Income income = new Income();
                     income.TotalPrice = incomeService.CalculateIncome(registration);
                     income.RegistrationID = registration.ID;
