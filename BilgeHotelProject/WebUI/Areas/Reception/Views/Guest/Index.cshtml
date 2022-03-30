@@ -25,20 +25,20 @@
 <!-- /.content-header -->
 
 <div class="container">
-    <a class="btn btn-primary mb-3" href="/Reception/Guest/CreateGuest">Misafir Oluştur</a>
-    @if (ViewBag.ReservationResult != null)
+    <a class="btn btn-primary mb-3" href="/Reception/Guest/AddGuest">Misafir Oluştur</a>
+    @if (ViewBag.GuestResult != null)
     {
         <div class="row">
-            @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+            @if (ViewBag.GuestResult.ResultStatus == ResultStatus.Success)
             {
                 <div class="col alert-success">
-                    <span>@ViewBag.ReservationResult.Message</span>
+                    <span>@ViewBag.GuestResult.Message</span>
                 </div>
             }
             else
             {
                 <div class="col alert-danger">
-                    <span>@ViewBag.ReservationResult.Message</span>
+                    <span>@ViewBag.GuestResult.Message</span>
                 </div>
             }
         </div>
@@ -95,7 +95,7 @@
                                     <td class="text-danger font-weight-bold">Otelde Değil</td>
                                 }
                                 <td>
-                                    <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
+                                    <a asp-action="GuestDetail" asp-controller="Guest" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
                                 </td>
                                 @if (Model.RegistrationID != 0)
                                 {

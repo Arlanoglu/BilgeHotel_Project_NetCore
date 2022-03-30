@@ -18,6 +18,7 @@ using WebUI.Models.StatusOfRoom;
 using WebUI.Models.Registration;
 using WebUI.Models.Guest;
 using WebUI.Models.ExtraService;
+using WebUI.Models.Room;
 
 namespace WebUI.Utilities
 {
@@ -144,6 +145,15 @@ namespace WebUI.Utilities
 
             CreateMap<Guest, VMGuestRegistrationSelection>();//Hata alınabilir.
             CreateMap<VMGuestRegistrationSelection, Guest>();
+
+            CreateMap<Guest, VMGuestDetail>();
+            CreateMap<VMGuestDetail, Guest>();
+
+            CreateMap<VMGuestCreate, Guest>();
+            CreateMap<Guest, VMGuestCreate>();
+
+            CreateMap<Room, VMRoomList>().ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName));
+            CreateMap<VMRoomList, Room>();
         }
     }
 }

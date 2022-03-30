@@ -55,7 +55,8 @@ namespace WebUI.Areas.Reception.Controllers
             this.guestRegistrationService = guestRegistrationService;
             this.guestService = guestService;
         }
-        public async Task<IActionResult> Index()
+        //Misafir detay bölümünden kayıt görmek
+        public async Task<IActionResult> Index(int id)
         {
             if (TempData["RegistrationResult"] != null)
             {
@@ -63,6 +64,26 @@ namespace WebUI.Areas.Reception.Controllers
                 ViewBag.RegistrationResult = registrationResult;
             }
             var registrations = await registrationService.GetAll();
+            if (id!=0)
+            {
+                if (registrations.Any(x => x.GuestRegistrations.Any(x => x.GuestID == id)))
+                {
+                    var filterRegistrations = registrations.Where(x => x.GuestRegistrations.Any(x => x.GuestID == id)).ToList();
+                    var filterVmRegistrations = mapper.Map<List<VMRegistrationList>>(filterRegistrations);
+
+                    result.ResultStatus = ResultStatus.Success;
+                    result.Message = $"{id} nolu idye ait misafir kayıtları.";
+                    ViewBag.RegistrationResult = result;
+                    return View(filterVmRegistrations);
+                }
+                else
+                {
+                    result.ResultStatus = ResultStatus.Error;
+                    result.Message = "Misafire ait kayıt bulunamadı.";
+                    TempData["GuestResult"] = JsonConvert.SerializeObject(result);
+                    return RedirectToAction("GuestDetail", "Guest", new { id = id });
+                }
+            }
             var vmRegistrations = mapper.Map<List<VMRegistrationList>>(registrations);
 
             return View(vmRegistrations);

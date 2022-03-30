@@ -1,0 +1,144 @@
+﻿@model VMGuestDetail
+@{
+    ViewData["Title"] = "GuestDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Misafir Detay</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Misafir Detay</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.RegistrationResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.RegistrationResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.RegistrationResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.RegistrationResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!--Rezervasyon Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Misafir Detayları</h3>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Guest" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Misafirler</a>
+    <a asp-action="Index" asp-controller="Registration" asp-route-id="@Model.ID" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Kayıtları Gör</a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Kimlik/Pasaport No</th>
+                <th scope="col">FullName</th>
+                @if (Model.Email == null)
+                {
+                    <th scope="col">Ülke</th>
+                }
+                else
+                {
+                    <th scope="col" colspan="2">Ülke</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <th>@Model.IdentificationNumber</th>
+                    <td>@Model.FullName</td>
+
+                    @if (Model.Email == null)
+                    {
+                        <td>@Model.Country</td>
+                    }
+                    else
+                    {
+                        <td colspan="2">@Model.Country</td>
+                    }
+                </tr>
+            }
+        </tbody>
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Telefon</th>
+                <th scope="col">Adress</th>
+                <th scope="col">Durumu</th>
+                @if (Model.Email != null)
+                {
+                    <th scope="col">EPosta</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <td>@Model.PhoneNumber</td>
+                    <td>@Model.Adress</td>
+                    @if (Model.IsActive)
+                    {
+                        <td class="text-success">Hotelde</td>
+                    }
+                    else
+                    {
+                        <td class="text-danger">Hotelde Değil</td>
+                    }
+                    @if (Model.Email != null)
+                    {
+                        <td>@Model.Email</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!--Kimlik Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Kimlik Bilgileri</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <a target="_blank" href="@Model.IdCardFrontSideImage">
+                    <img src="@Model.IdCardFrontSideImage" style="width:400px; height:220px" />
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a target="_blank" href="@Model.IdCardFrontSideImage">
+                    <img src="@Model.IdCardBackSideImage" style="width:400px; height:220px" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

@@ -26,19 +26,19 @@
 
 <div class="container">
     <a class="btn btn-primary mb-3" href="/Reception/Registration/RoomQuery">Kayıt Oluştur</a>
-    @if (ViewBag.ReservationResult != null)
+    @if (ViewBag.RegistrationResult != null)
     {
         <div class="row">
-            @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+            @if (ViewBag.RegistrationResult.ResultStatus == ResultStatus.Success)
             {
                 <div class="col alert-success">
-                    <span>@ViewBag.ReservationResult.Message</span>
+                    <span>@ViewBag.RegistrationResult.Message</span>
                 </div>
             }
             else
             {
                 <div class="col alert-danger">
-                    <span>@ViewBag.ReservationResult.Message</span>
+                    <span>@ViewBag.RegistrationResult.Message</span>
                 </div>
             }
         </div>
@@ -54,7 +54,7 @@
             <table class="table table-bordered table-hover" id="example2">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Giriş T.</th>
                         <th scope="col">Çıkış T.</th>
                         <th scope="col">Oda Num.</th>
