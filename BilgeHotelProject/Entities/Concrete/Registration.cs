@@ -19,7 +19,6 @@ namespace Entities.Concrete
         public DateTime CheckOutDate { get; set; }
         public int NumberOfPeople { get; set; }
         public decimal Price { get; set; }
-        //public string RegistrationType { get; set; }
         public string Description { get; set; }
         public TimeSpan CheckInTime { get; set; }
         public TimeSpan? CheckOutTime { get; set; }

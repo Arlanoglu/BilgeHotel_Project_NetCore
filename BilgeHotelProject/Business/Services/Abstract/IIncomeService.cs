@@ -9,5 +9,6 @@ namespace Business.Services.Abstract
 {
     public interface IIncomeService : IService<Income>
     {
+        public decimal CalculateIncome(Registration registration);
     }
 }

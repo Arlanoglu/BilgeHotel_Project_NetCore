@@ -127,5 +127,15 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.IncomeDal.GetFirstOrDefault();
         }
+
+        public decimal CalculateIncome(Registration registration)
+        {
+            decimal extraServicesPrice = 0;
+            foreach (var item in registration.UseOfExtraServices)
+            {
+                extraServicesPrice += item.ExtraService.Price * item.Quantity;
+            }
+            return extraServicesPrice + registration.Price;
+        }
     }
 }

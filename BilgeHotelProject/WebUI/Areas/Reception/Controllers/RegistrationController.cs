@@ -35,8 +35,9 @@ namespace WebUI.Areas.Reception.Controllers
         private readonly IWebReservationService webReservationService;
         private readonly IReceptionReservationService receptionReservationService;
         private readonly IStatusOfRoomService statusOfRoomService;
+        private readonly IIncomeService incomeService;
 
-        public RegistrationController(IMapper mapper, IRegistrationService registrationService, IUseOfExtraServiceService useOfExtraServiceService, IResult result, IServicePackService servicePackService, IRoomTypeService roomTypeService, IRoomService roomService, IWebReservationService webReservationService, IReceptionReservationService receptionReservationService, IStatusOfRoomService statusOfRoomService)
+        public RegistrationController(IMapper mapper, IRegistrationService registrationService, IUseOfExtraServiceService useOfExtraServiceService, IResult result, IServicePackService servicePackService, IRoomTypeService roomTypeService, IRoomService roomService, IWebReservationService webReservationService, IReceptionReservationService receptionReservationService, IStatusOfRoomService statusOfRoomService, IIncomeService incomeService)
         {
             this.mapper = mapper;
             this.registrationService = registrationService;
@@ -48,6 +49,7 @@ namespace WebUI.Areas.Reception.Controllers
             this.webReservationService = webReservationService;
             this.receptionReservationService = receptionReservationService;
             this.statusOfRoomService = statusOfRoomService;
+            this.incomeService = incomeService;
         }
         public async Task<IActionResult> Index()
         {
@@ -215,6 +217,7 @@ namespace WebUI.Areas.Reception.Controllers
                             x.RegistrationStatus == RegistrationStatus.GirisYapildi &&
                             x.Status == Status.Active)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
 
+                            TempData["RegistrationCreateResult"] = JsonConvert.SerializeObject(createResult);
                             return RedirectToAction("RegistrationDetail", new { id=registrationId });
                         }
                     }
@@ -238,42 +241,53 @@ namespace WebUI.Areas.Reception.Controllers
         }
         public async Task<IActionResult> RegistrationToReservation(ReservationType reservationType, int id)
         {
+            bool boolResult;
             IResult createResult = null;
             Registration registration = null;
 
             if (reservationType==ReservationType.Reception)
             {
                 var receptionReservation = await receptionReservationService.GetById(id);
-                registration = mapper.Map<Registration>(receptionReservation);
-                registration.RegistrationType = RegistrationType.ResepsiyonRezervasyon;
-                registration.ID = 0;
-                createResult = registrationService.Create(registration);
-                if (createResult.ResultStatus == ResultStatus.Success)
+                boolResult = await registrationService.Any(x => x.CheckInDate == receptionReservation.CheckInDate.Date && x.CheckOutDate == receptionReservation.CheckOutDate.Date && x.RoomID == receptionReservation.RoomID);
+                if (boolResult==false)
                 {
-                    receptionReservation.ReservationStatus = ReservationStatus.GirisYapildi;
-                    receptionReservationService.Update(receptionReservation);
+                    registration = mapper.Map<Registration>(receptionReservation);
+                    registration.RegistrationType = RegistrationType.ResepsiyonRezervasyon;
+                    registration.ID = 0;
+                    createResult = registrationService.Create(registration);
+                    if (createResult.ResultStatus == ResultStatus.Success)
+                    {
+                        receptionReservation.ReservationStatus = ReservationStatus.GirisYapildi;
+                        receptionReservationService.Update(receptionReservation);
+                    }
                 }
             }
             else if(reservationType == ReservationType.Web)
             {
                 var webReservation = await webReservationService.GetById(id);
-                registration = mapper.Map<Registration>(webReservation);
-                registration.RegistrationType = RegistrationType.WebRezervasyon;
-                registration.ID = 0;
-                createResult = registrationService.Create(registration);
-                if (createResult.ResultStatus == ResultStatus.Success)
+                boolResult = await registrationService.Any(x => x.CheckInDate == webReservation.CheckInDate.Date && x.CheckOutDate == webReservation.CheckOutDate.Date && x.RoomID == webReservation.RoomID);
+                if (boolResult == false)
                 {
-                    webReservation.ReservationStatus = ReservationStatus.GirisYapildi;
-                    webReservationService.Update(webReservation);
+                    registration = mapper.Map<Registration>(webReservation);
+                    registration.RegistrationType = RegistrationType.WebRezervasyon;
+                    registration.ID = 0;
+                    createResult = registrationService.Create(registration);
+                    if (createResult.ResultStatus == ResultStatus.Success)
+                    {
+                        webReservation.ReservationStatus = ReservationStatus.GirisYapildi;
+                        webReservationService.Update(webReservation);
+                    }
                 }
             }
-
-            var statusOfRoom = (await statusOfRoomService.GetDefault(x => x.RoomID == registration.RoomID && x.StatusStartDate == registration.CheckInDate.Date && x.StatusEndDate == registration.CheckOutDate.Date && x.RoomStatus == RoomStatus.Rezerve)).FirstOrDefault();
-            statusOfRoom.RoomStatus = RoomStatus.Dolu;
-
-            if (registration!=null)
+            else
             {
-                
+                boolResult = true;
+            }
+
+            if (boolResult == false)
+            {
+                var statusOfRoom = (await statusOfRoomService.GetDefault(x => x.RoomID == registration.RoomID && x.StatusStartDate == registration.CheckInDate.Date && x.StatusEndDate == registration.CheckOutDate.Date && x.RoomStatus == RoomStatus.Rezerve)).FirstOrDefault();
+                statusOfRoom.RoomStatus = RoomStatus.Dolu;
 
                 if (createResult.ResultStatus == ResultStatus.Success)
                 {
@@ -297,17 +311,59 @@ namespace WebUI.Areas.Reception.Controllers
                     TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);
                     return RedirectToAction("ReservationDetail", "Reservation", new { id = id });
                 }
-
             }
             else
             {
                 result.ResultStatus = ResultStatus.Error;
-                result.Message = "Rezervasyon bulunamadı.";
+                result.Message = "Rezervasyon zaten kayıtlı.";
                 TempData["ReservationResult"] = JsonConvert.SerializeObject(result);
                 return RedirectToAction("Index", "Reservation", new { id = id });
             }
             
 
+        }
+        public async Task<IActionResult> CheckOutProcess(int id)
+        {
+            var registration = await registrationService.GetById(id);
+            var useOfExtraServices = registration.UseOfExtraServices.ToList();
+            if (registration!=null)
+            {
+                registration.CheckOutTime = TimeSpan.FromHours(10); //Todo: anlık saat bilgisi alınacak geçici yapıldı.
+                registration.RegistrationStatus = RegistrationStatus.CikisYapildi;
+                var updateResult = registrationService.Update(registration);
+                TempData["RegistrationResult"] = JsonConvert.SerializeObject(updateResult);
+                if (updateResult.ResultStatus==ResultStatus.Success && registration.RegistrationType==RegistrationType.ResepsiyonRezervasyon)
+                {
+                    var reservationId = registration.ReservationID.ToString();
+                    var receptionReservation = await receptionReservationService.GetById(int.Parse(reservationId));
+                    receptionReservation.ReservationStatus = ReservationStatus.RezervasyonTamamlandi;
+                    receptionReservationService.Update(receptionReservation);
+                }
+                else if (updateResult.ResultStatus == ResultStatus.Success && registration.RegistrationType == RegistrationType.WebRezervasyon)
+                {
+                    var reservationId = registration.ReservationID.ToString();
+                    var webReservation = await webReservationService.GetById(int.Parse(reservationId));
+                    webReservation.ReservationStatus = ReservationStatus.RezervasyonTamamlandi;
+                    webReservationService.Update(webReservation);
+                }
+                else if (updateResult.ResultStatus == ResultStatus.Success && registration.RegistrationType == RegistrationType.ResepsiyonKayit)
+                {
+                    Income income = new Income();
+                    income.TotalPrice = incomeService.CalculateIncome(registration);
+                    income.RegistrationID = registration.ID;
+                    var re = incomeService.Create(income);
+                }
+
+
+                return RedirectToAction("RegistrationDetail", new { id = id });
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Kayıt bulunamadı.";
+                TempData["RegistrationResult"] = JsonConvert.SerializeObject(result);
+                return RedirectToAction("RegistrationDetail", new { id = id });
+            }
         }
     }
 }

@@ -12,6 +12,5 @@ namespace Business.Services.Abstract
     public interface IRegistrationService : IService<Registration>
     {
         public IResult CreateRegistrationWithoutReservation(Registration registration, StatusOfRoom statusOfRoom);
-        public Task<IResult> RegistrationToReservation(Registration registration);
     }
 }

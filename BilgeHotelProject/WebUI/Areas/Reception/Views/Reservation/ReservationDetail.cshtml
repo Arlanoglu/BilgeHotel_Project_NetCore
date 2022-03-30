@@ -51,16 +51,16 @@
     <a asp-action="Index" asp-controller="Reservation" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Rezervasyonlar</a>
     @if (Model != null)
     {
-        @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi)
+        @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi && Model.ReservationStatus != ReservationStatus.GirisYapildi)
         {
             <a asp-action="RegistrationToReservation" asp-controller="Registration" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-success mb-3">Kayıt Oluştur</a>
             <a asp-action="CancelReservation" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Rezervasyonu İptal Et</a>
         }
-        @if (Model.Payment)
+        @if (Model.Payment && Model.ReservationStatus != ReservationStatus.GirisYapildi)
         {
             <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alınmadı</a>
         }
-        else
+        else if(Model.Payment==false && Model.ReservationStatus!=ReservationStatus.RezervasyonIptalEdildi)
         {
             <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alındı</a>
 

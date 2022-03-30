@@ -45,26 +45,14 @@
     <!--Rezervasyon Bilgileri-->
     <div class="row">
         <div class="col-12">
-            <h3 class="text-center font-weight-bold">Rezervasyon Detayları</h3>
+            <h3 class="text-center font-weight-bold">Kayıt Detayları</h3>
         </div>
     </div>
     <a asp-action="Index" asp-controller="Registration" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Kayıtlar</a>
-    @*@if (Model != null)
+    @if (Model.RegistrationStatus != RegistrationStatus.CikisYapildi)
     {
-        @if (Model.ReservationStatus != ReservationStatus.RezervasyonIptalEdildi && Model.ReservationStatus != ReservationStatus.RezervasyonTamamlandi)
-        {
-            <a asp-action="CancelReservation" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Rezervasyonu İptal Et</a>
-        }
-        @if (Model.Payment)
-        {
-            <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alınmadı</a>
-        }
-        else
-        {
-            <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@Model.ReservationType" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Ödeme Alındı</a>
-
-        }
-    }*@
+        <a asp-action="CheckOutProcess" asp-controller="Registration" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Çıkış İşlemi</a>
+    }
     <table class="table table-bordered">
         <thead>
             <tr class="bg-gradient-gray">
@@ -102,14 +90,22 @@
         <tbody>
             @if (Model != null)
             {
-            <tr>
-                <td>@Model.RoomNumber</td>
-                <td>@Model.RoomTypeName</td>
-                <td>@Model.ServicePackName</td>
-                <td>@Model.RegistrationType</td>
-                <td>@Model.RegistrationStatus</td>
-                <td class="font-weight-bold">@Model.Price.ToString("C2")</td>
-            </tr>
+                <tr>
+                    <td>@Model.RoomNumber</td>
+                    <td>@Model.RoomTypeName</td>
+                    <td>@Model.ServicePackName</td>
+                    <td>@Model.RegistrationType</td>
+                    @if (Model.RegistrationStatus == RegistrationStatus.CikisYapildi)
+                    {
+                        <td class="font-weight-bold text-danger">@Model.RegistrationStatus</td>
+                    }
+                    else
+                    {
+                        <td class="font-weight-bold text-success">@Model.RegistrationStatus</td>
+                    }
+
+                    <td class="font-weight-bold">@Model.Price.ToString("C2")</td>
+                </tr>
                 @if (Model.Description != null)
                 {
                     @if (Model.Description != null)
@@ -157,9 +153,13 @@
     <!--Ekstra Hizmetler-->
     <div class="row">
         <div class="col-12">
-            
+
             <h3 class="text-center font-weight-bold">Kullanılan Ekstra Hizmetler</h3>
-            @await Component.InvokeAsync("UseOfExtraService", new { id = Model.ID })  
+            @if (Model.RegistrationStatus != RegistrationStatus.CikisYapildi)
+            {
+                @await Component.InvokeAsync("UseOfExtraService", new { id = Model.ID })
+            }
+
         </div>
     </div>
     <b>Toplam Ekstra Hizmet Tutarı :</b><b class="text-success">@Model.ExtraServiceTotalPrice.ToString("C2")</b>
@@ -171,6 +171,7 @@
                 <th scope="col">Adet</th>
                 <th scope="col">Toplam Fiyat</th>
                 <th scope="col">İşlem</th>
+
             </tr>
         </thead>
         <tbody>
@@ -183,7 +184,11 @@
                         <td>@item.Price</td>
                         <td>@item.Quantity</td>
                         <td>@item.TotalPrice.ToString("C2")</td>
-                        <td><a asp-action="DeleteUseOfExtraService" asp-controller="Registration" asp-route-registrationId="@Model.ID" asp-route-extraServiceId="@item.ID" class="btn btn-danger">Sil</a></td>
+                        @if (Model.RegistrationStatus != RegistrationStatus.CikisYapildi)
+                        {
+                            <td><a asp-action="DeleteUseOfExtraService" asp-controller="Registration" asp-route-registrationId="@Model.ID" asp-route-extraServiceId="@item.ID" class="btn btn-danger">Sil</a></td>
+                        }
+
                     </tr>
                 }
             }
