@@ -52,7 +52,9 @@
     @if (Model.RegistrationStatus != RegistrationStatus.CikisYapildi)
     {
         <a asp-action="CheckOutProcess" asp-controller="Registration" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Çıkış İşlemi</a>
+        <a asp-action="Index" asp-controller="Guest" asp-route-id="@Model.ID" class="btn btn-success mb-3">Listeden Müşteri Ekle</a>
     }
+
     <table class="table table-bordered">
         <thead>
             <tr class="bg-gradient-gray">

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities.Enum;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,8 +22,8 @@ namespace DataAccess.Concrete.EntityFramework
         public async Task<List<Room>> AvaibleRooms(DateTime checkinDate, DateTime checkoutDate, int numberOfPeople)
         {
             var rooms = await db.Rooms.Where(x => (x.StatusOfRooms.Any(x => 
-            (x.StatusStartDate <= checkinDate.Date && x.StatusEndDate > checkinDate.Date) && (x.StatusStartDate < checkoutDate.Date && x.StatusEndDate >= checkoutDate.Date)) == false || x.StatusOfRooms.Count == 0)
-            && x.RoomStatus != Entities.Enum.RoomStatus.Tadilat && x.Status == Core.Entities.Enum.Status.Active)
+            (x.StatusStartDate <= checkinDate.Date && x.StatusEndDate > checkinDate.Date) && (x.StatusStartDate < checkoutDate.Date && x.StatusEndDate >= checkoutDate.Date)&&(x.RoomStatus==RoomStatus.Dolu|| x.RoomStatus == RoomStatus.Rezerve|| x.RoomStatus == RoomStatus.Tadilat)) == false || x.StatusOfRooms.Count == 0)
+            && x.RoomStatus != RoomStatus.Tadilat && x.Status == Core.Entities.Enum.Status.Active)
                 .ToListAsync();
 
             var roomsByNumberOfPeople = rooms.Where(x => x.RoomType.NumberOfPeople >= numberOfPeople).ToList();

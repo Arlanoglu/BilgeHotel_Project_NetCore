@@ -6,6 +6,7 @@ using WebUI.Models;
 using WebUI.Models.Aboutus;
 using WebUI.Models.Contact;
 using WebUI.Models.ExtraService;
+using WebUI.Models.Guest;
 using WebUI.Models.HomePage;
 using WebUI.Models.HotelService;
 using WebUI.Models.Picture;
@@ -81,6 +82,9 @@ namespace WebUI.Utilities
                     break;
                 case ViewModels.VMRegistrationCreate:
                     viewModel = new VMRegistrationCreate();
+                    break;
+                case ViewModels.VMGuestRegistrationSelection:
+                    viewModel = new VMGuestRegistrationSelection();
                     break;
             }
             return viewModel;

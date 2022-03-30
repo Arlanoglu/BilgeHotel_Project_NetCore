@@ -9,7 +9,7 @@ namespace Entities.Concrete
         public string LastName { get; set; }
         public string IdentificationNumber { get; set; }
         public string Adress { get; set; }
-        public bool TurkeyCitizen { get; set; }
+        public string Country { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; } //Müşteri kalıyorsa true çıktıysa false olacak buna göre api de bu müşteriler çekilecek.

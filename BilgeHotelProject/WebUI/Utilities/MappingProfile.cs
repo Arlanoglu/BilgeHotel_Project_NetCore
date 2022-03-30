@@ -138,6 +138,12 @@ namespace WebUI.Utilities
             CreateMap<Registration, ReceptionReservation>();
             CreateMap<WebReservation, Registration>();
             CreateMap<Registration, WebReservation>();
+
+            CreateMap<Guest, VMGuestList>();
+            CreateMap<VMGuestList, Guest>();
+
+            CreateMap<Guest, VMGuestRegistrationSelection>();//Hata alınabilir.
+            CreateMap<VMGuestRegistrationSelection, Guest>();
         }
     }
 }

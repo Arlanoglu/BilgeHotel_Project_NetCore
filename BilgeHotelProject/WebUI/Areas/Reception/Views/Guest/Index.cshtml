@@ -1,0 +1,133 @@
+﻿@model VMGuestRegistrationSelection
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Misafirler</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Misafirler</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/Reception/Guest/CreateGuest">Misafir Oluştur</a>
+    @if (ViewBag.ReservationResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ReservationResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!-- /.card -->
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Aktif hotelde kalan ve daha önce kalmış misafirlerin listesi.</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
+                    <tr>
+                        <th scope="col">Kimlik/Pasaport No</th>
+                        <th scope="col">İsim Soyisim</th>
+                        <th scope="col">Telefon No</th>
+                        <th scope="col">E-Posta</th>
+                        <th scope="col">Ülke</th>
+                        <th scope="col">Durumu</th>
+                        <th scope="col">İşlem</th>
+                        @if (Model.RegistrationID != 0)
+                        {
+                            <th scope="col">Kayıt</th>
+                        }
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.VMGuestLists.Count > 0)
+                    {
+                        @foreach (var item in Model.VMGuestLists)
+                        {
+                            <tr>
+                                <th scope="row">@item.IdentificationNumber</th>
+                                <td>@item.FullName</td>
+                                <td>@item.PhoneNumber</td>
+                                @if (item.Email != null)
+                                {
+                                    <td>@item.Email</td>
+                                }
+                                else
+                                {
+                                    <td> -- </td>
+                                }
+                                <td>@item.Country</td>
+                                @if (item.IsActive)
+                                {
+                                    <td class="text-success font-weight-bold">Otelde</td>
+                                }
+                                else
+                                {
+                                    <td class="text-danger font-weight-bold">Otelde Değil</td>
+                                }
+                                <td>
+                                    <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
+                                </td>
+                                @if (Model.RegistrationID != 0)
+                                {
+                                    <td>
+                                        <a asp-action="AddGuestToRegistration" asp-controller="Registration" asp-route-registrationId="@Model.RegistrationID" asp-route-guestId="@item.ID" class="btn btn-primary">Kayıta Ekle</a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                //{
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"responsive": true,
+                //}
+            );
+        });
+    </script>
+}
+
