@@ -86,7 +86,14 @@
                 <th scope="col">Hizmet Paketi</th>
                 <th scope="col">Kayıt Türü</th>
                 <th scope="col">Durumu</th>
-                <th scope="col">Fiyat</th>
+                @if (Model.RegistrationStatus == RegistrationStatus.GirisYapildi)
+                {
+                    <th scope="col">Fiyat</th>
+                }
+                else
+                {
+                    <th scope="col">Toplam Fiyat (Ekstra Hizmet Dahil)</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -117,6 +124,34 @@
                     <tr><td colspan="7" class="text-center">@Model.Description</td></tr>
                 }
             }
+        </tbody>
+    </table>
+    <!--Rezervasyon Kayıt Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Rezervasyon/Kayıt Bilgileri</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">İsim Soyisim</th>
+                <th scope="col">Telefon No</th>
+                @if (Model.Email != null)
+                {
+                    <th scope="col">EPosta</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.FullName</td>
+                <td>@Model.PhoneNumber</td>
+                @if (Model.Email != null)
+                {
+                    <td>@Model.Email</td>
+                }
+            </tr>
         </tbody>
     </table>
     <!--Kişi Bilgileri-->
@@ -164,7 +199,15 @@
 
         </div>
     </div>
-    <b>Toplam Ekstra Hizmet Tutarı :</b><b class="text-success">@Model.ExtraServiceTotalPrice.ToString("C2")</b>
+    <b>Toplam Ekstra Hizmet Tutarı :</b>
+    @if (Model.ServicePackName == "Tam Pansiyon")
+    {
+        <b class="text-success">@Model.ExtraServiceTotalPrice.ToString("C2")</b>
+    }
+    else
+    {
+        <b class="text-success">0</b>
+    }
     <table class="table table-bordered">
         <thead>
             <tr class="bg-gradient-gray">

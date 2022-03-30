@@ -12,6 +12,19 @@ namespace WebUI.Models.Registration
     public class VMRegistrationDetail
     {
         public int ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        private string _fullName;
+        public string FullName
+        {
+            get
+            {
+                _fullName = FirstName + " " + LastName;
+                return _fullName;
+            }
+        }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int NumberOfPeople { get; set; }

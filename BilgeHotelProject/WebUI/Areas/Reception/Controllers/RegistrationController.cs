@@ -366,6 +366,10 @@ namespace WebUI.Areas.Reception.Controllers
             {
                 registration.CheckOutTime = TimeSpan.FromHours(10); //Todo: anlık saat bilgisi alınacak geçici yapıldı.
                 registration.RegistrationStatus = RegistrationStatus.CikisYapildi;
+                if (registration.ServicePack.PackName=="Tam Pansiyon")
+                {
+                    registration.Price = incomeService.CalculateIncome(registration); //Ekstra harcama varsa fiyat güncellemesi
+                }
                 var updateResult = registrationService.Update(registration);
                  
                 TempData["RegistrationResult"] = JsonConvert.SerializeObject(updateResult);
@@ -401,7 +405,7 @@ namespace WebUI.Areas.Reception.Controllers
                     statusOfRoomService.Update(statusofRoom);
                     //Gelir kaydı.
                     Income income = new Income();
-                    income.TotalPrice = incomeService.CalculateIncome(registration);
+                    income.TotalPrice = registration.Price;
                     income.RegistrationID = registration.ID;
                     incomeService.Create(income);
                 }
