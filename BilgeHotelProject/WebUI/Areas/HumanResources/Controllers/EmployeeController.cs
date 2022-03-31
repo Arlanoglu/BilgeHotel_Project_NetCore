@@ -2,6 +2,7 @@
 using Business.Services.Abstract;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -73,9 +74,22 @@ namespace WebUI.Areas.HumanResources.Controllers
             return RedirectToAction("Index", "Shift");
         }
         [HttpPost]
-        public IActionResult AddShiftToEmployee(VMAddShiftToEmployeeCombine vMAddShiftToEmployeeCombine)
+        public async Task<IActionResult> AddShiftToEmployee(VMAddShiftToEmployeeCombine vMAddShiftToEmployeeCombine)
         {
-            
+            var filterList = vMAddShiftToEmployeeCombine.Employees.Where(x => x.Selected == true).ToList();
+            var employees = await employeeService.GetActive();
+
+            var query = from f in filterList
+                        join e in employees on f.ID equals e.ID
+                        select e;
+            foreach (var item in query.ToList())
+            {
+                item.ShiftID = vMAddShiftToEmployeeCombine.ShiftID;
+            }
+            var updateResult = employeeService.ListUpdate(query.ToList());
+
+            TempData["ShiftResult"] = JsonConvert.SerializeObject(updateResult);
+            return RedirectToAction("Index", "Shift");
         }
     }
 }
