@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using WebUI.Models.Employee;
 using WebUI.Utilities;
 using WebUI.Utilities.Enums;
+using Core.Entities.Enum;
 
 namespace WebUI.Areas.HumanResources.Controllers
 {
@@ -60,7 +61,7 @@ namespace WebUI.Areas.HumanResources.Controllers
         }
         public async Task<IActionResult> AddShiftToEmployee(int shiftId, string shiftName)
         {
-            if (await shiftService.Any(x=>x.ID==shiftId))
+            if (await shiftService.Any(x=>x.ID==shiftId && x.Status==Status.Active))
             {
                 ObjectCreator creator = new ObjectCreator();
                 var vmAddshiftToEmployee = (VMAddShiftToEmployeeCombine)creator.FactoryMethod(ViewModels.VMAddShiftToEmployeeCombine);

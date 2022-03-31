@@ -173,6 +173,9 @@ namespace WebUI.Utilities
 
             CreateMap<Shift, VMShiftList>();
             CreateMap<VMShiftList, Shift>();
+
+            CreateMap<Shift, VMShiftCreate>();
+            CreateMap<VMShiftCreate, Shift>();
         }
     }
 }

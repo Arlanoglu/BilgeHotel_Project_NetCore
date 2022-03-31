@@ -59,7 +59,6 @@
                         <th scope="col">Başlangıç saati</th>
                         <th scope="col">Bitiş Saati</th>
                         <th scope="col">Durumu</th>
-                        <th scope="col">Açıklama</th>
                         <th scope="col">İşlem</th>
                     </tr>
                 </thead>
@@ -81,19 +80,19 @@
                                 {
                                     <td class="text-danger font-weight-bold">@item.Status</td>
                                 }
-                                <td>@item.Description</td>
-                                <td>
+                            <td>
+
+                                @if (item.Status == Core.Entities.Enum.Status.Active)
+                                {
                                     <a asp-action="AddShiftToEmployee" asp-controller="Employee" asp-route-shiftId="@item.ID" asp-route-shiftName="@item.ShiftName" class="btn btn-primary">Çalışan Ekle</a>
-                                    @if (item.Status == Core.Entities.Enum.Status.Active)
-                                    {
-                                        <a class="btn btn-warning" href="/HumanResources/Shift/ChangeStatus/@item.ID">Pasif Yap</a>
-                                    }
-                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                                    {
-                                        <a class="btn btn-success" href="/HumanResources/Shift/ChangeStatus/@item.ID">Aktif Yap</a>
-                                    }
-                                    <a class="btn btn-danger" href="/Administrator/Shift/RemoveForce/@item.ID">Kalıcı Sil</a>
-                                </td>
+                                    <a class="btn btn-warning" href="/HumanResources/Shift/ChangeStatus/@item.ID">Pasif Yap</a>
+                                }
+                                else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                {
+                                    <a class="btn btn-success" href="/HumanResources/Shift/ChangeStatus/@item.ID">Aktif Yap</a>
+                                }
+                                <a class="btn btn-danger" href="/HumanResources/Shift/RemoveForce/@item.ID">Kalıcı Sil</a>
+                            </td>
                             </tr>
                         }
                     }
