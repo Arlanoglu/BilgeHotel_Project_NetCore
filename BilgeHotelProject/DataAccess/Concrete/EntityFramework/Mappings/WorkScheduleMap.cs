@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.TotalWorkTime).IsRequired();
             builder.Property(x => x.TimesWorked).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(200);
+            builder.Property(x => x.ShiftName).IsRequired().HasMaxLength(50);
         }
     }
 }

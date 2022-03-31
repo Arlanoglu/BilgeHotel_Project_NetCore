@@ -9,9 +9,9 @@ namespace Entities.Concrete
 {
     public class EmployeeShift : BaseEntity
     {
-        public int EmployeeID { get; set; }
-        public int ShiftID { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual Shift Shift { get; set; }
+        public string EmployeeID { get; set; }
+        public string ShiftID { get; set; }
+        //public virtual Employee Employee { get; set; }
+        //public virtual Shift Shift { get; set; }
     }
 }

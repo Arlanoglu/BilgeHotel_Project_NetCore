@@ -21,6 +21,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(x => x.Paragraph3).HasMaxLength(500);
             builder.Property(x => x.Paragraph4).HasMaxLength(500);
             builder.Property(x => x.Paragraph5).HasMaxLength(500);
+            builder.Property(x => x.PictureUrl).HasMaxLength(500);
         }
     }
 }

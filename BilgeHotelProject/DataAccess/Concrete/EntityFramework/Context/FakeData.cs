@@ -130,7 +130,15 @@ namespace DataAccess.Concrete.EntityFramework.Context
                     .RuleFor(x => x.Email, x => x.Person.Email)
                     .RuleFor(x => x.PhoneNumber, x => x.Phone.PhoneNumber("05454526235"));
                 Employee emp = employee;
-                emp.ID = employees.Count + 1; emp.Title = title; emp.EmployeeStatus = status; emp.DepartmentID = departmentId; emp.IsActive = true;
+                emp.ID = employees.Count + 1; emp.Title = title; emp.EmployeeStatus = status; emp.DepartmentID = departmentId; emp.IsActive = true; emp.ShiftID = 1;
+                if (status!=EmployeeStatus.Worker)
+                {
+                    emp.MonthlySalary = 10000;
+                }
+                else
+                {
+                    emp.OvertimePay = 12;
+                }
                 employees.Add(emp);
             }
 
@@ -178,62 +186,62 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region WorkScheduleData
             builder.Entity<WorkSchedule>().HasData(
-                new WorkSchedule { ID = 1, EmployeeID = 1, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, IsHoliday = true, Holiday=Holiday.Off, ShiftID = 1 },
-                new WorkSchedule { ID = 2, EmployeeID = 2, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, IsHoliday = false, ShiftID = 1 }
+                new WorkSchedule { ID = 1, EmployeeID = 1, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, IsHoliday = true, Holiday=Holiday.Off, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" },
+                new WorkSchedule { ID = 2, EmployeeID = 2, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, IsHoliday = false, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" }
                 );
             #endregion
 
             #region EmployeeShift
-            builder.Entity<EmployeeShift>().HasData(
-                new EmployeeShift { EmployeeID = 1, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 2, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 3, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 4, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 5, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 6, ShiftID = 3 },
-                new EmployeeShift { EmployeeID = 7, ShiftID = 3 },
+            //builder.Entity<EmployeeShift>().HasData(
+            //    new EmployeeShift { EmployeeID = 1, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 2, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 3, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 4, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 5, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 6, ShiftID = 3 },
+            //    new EmployeeShift { EmployeeID = 7, ShiftID = 3 },
 
-                new EmployeeShift { EmployeeID = 8, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 9, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 10, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 11, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 12, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 13, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 14, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 15, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 16, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 17, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 18, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 8, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 9, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 10, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 11, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 12, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 13, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 14, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 15, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 16, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 17, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 18, ShiftID = 2 },
 
-                new EmployeeShift { EmployeeID = 19, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 20, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 21, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 22, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 23, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 24, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 25, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 26, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 27, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 28, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 29, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 19, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 20, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 21, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 22, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 23, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 24, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 25, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 26, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 27, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 28, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 29, ShiftID = 2 },
 
-                new EmployeeShift { EmployeeID = 30, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 31, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 32, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 33, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 34, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 35, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 36, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 37, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 38, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 39, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 40, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 41, ShiftID = 2 },
-                new EmployeeShift { EmployeeID = 42, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 30, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 31, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 32, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 33, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 34, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 35, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 36, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 37, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 38, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 39, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 40, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 41, ShiftID = 2 },
+            //    new EmployeeShift { EmployeeID = 42, ShiftID = 2 },
 
-                new EmployeeShift { EmployeeID = 43, ShiftID = 1 },
-                new EmployeeShift { EmployeeID = 44, ShiftID = 1 }
-                );
+            //    new EmployeeShift { EmployeeID = 43, ShiftID = 1 },
+            //    new EmployeeShift { EmployeeID = 44, ShiftID = 1 }
+            //    );
             #endregion
 
             //Hotel

@@ -27,6 +27,7 @@ namespace WebUI.Utilities.Enums
         VMUseOfExtraServiceCreate,
         VMExtraService,
         VMRegistrationCreate,
-        VMGuestRegistrationSelection
+        VMGuestRegistrationSelection,
+        VMAddShiftToEmployeeCombine
     }
 }

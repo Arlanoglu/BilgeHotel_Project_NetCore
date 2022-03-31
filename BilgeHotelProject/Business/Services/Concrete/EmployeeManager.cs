@@ -128,5 +128,31 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.EmployeeDal.GetFirstOrDefault();
         }
+
+        public IResult ListUpdate(List<Employee> employees)
+        {
+
+            try
+            {
+                foreach (var item in employees)
+                {
+                    unitOfWork.EmployeeDal.Update(item);
+                }                
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+
+            
+            
+        }
     }
 }

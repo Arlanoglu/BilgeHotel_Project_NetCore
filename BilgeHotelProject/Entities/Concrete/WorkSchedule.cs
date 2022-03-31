@@ -15,9 +15,13 @@ namespace Entities.Concrete
         public Holiday? Holiday { get; set; }
         public string Description { get; set; }
 
+        public string ShiftName { get; set; }
+        public TimeSpan ShiftStartTime { get; set; }
+        public TimeSpan ShiftEndTime { get; set; }
+
         public int EmployeeID { get; set; }
-        public int ShiftID { get; set; }
+        //public int ShiftID { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual Shift Shift { get; set; }
+        //public virtual Shift Shift { get; set; }
     }
 }

@@ -137,6 +137,31 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EmployeesShifts",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShiftID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    ModifiedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ModifiedUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ModifiedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeesShifts", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ExtraServices",
                 columns: table => new
                 {
@@ -506,57 +531,6 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    StartDateOfWork = table.Column<DateTime>(type: "date", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    HourlyRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    MonthlySalary = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    IdentificationNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LeavingWorkDate = table.Column<DateTime>(type: "date", nullable: true),
-                    ReasonForLeaving = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    EmployeeStatus = table.Column<int>(type: "int", nullable: false),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    ModifiedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ModifiedUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ModifiedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Employees_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employees_Departments_DepartmentID",
-                        column: x => x.DepartmentID,
-                        principalTable: "Departments",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "HomePageSlides",
                 columns: table => new
                 {
@@ -737,91 +711,29 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeesShifts",
-                columns: table => new
-                {
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    ShiftID = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    ModifiedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ModifiedUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ModifiedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmployeesShifts", x => new { x.EmployeeID, x.ShiftID });
-                    table.ForeignKey(
-                        name: "FK_EmployeesShifts_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employees",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeesShifts_Shifts_ShiftID",
-                        column: x => x.ShiftID,
-                        principalTable: "Shifts",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Salaries",
+                name: "Employees",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MonthlySalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    BeenPaid = table.Column<bool>(type: "bit", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    Month = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    ModifiedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ModifiedUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ModifiedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Salaries", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Salaries_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employees",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkSchedules",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
-                    TotalWorkTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    TimesWorked = table.Column<TimeSpan>(type: "time", nullable: false),
-                    HaveOverTime = table.Column<bool>(type: "bit", nullable: false),
-                    OverTimeHour = table.Column<TimeSpan>(type: "time", nullable: true),
-                    IsHoliday = table.Column<bool>(type: "bit", nullable: false),
-                    Holiday = table.Column<int>(type: "int", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    StartDateOfWork = table.Column<DateTime>(type: "date", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    HourlyRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    MonthlySalary = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    OvertimePay = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    IdentificationNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LeavingWorkDate = table.Column<DateTime>(type: "date", nullable: true),
+                    ReasonForLeaving = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    EmployeeStatus = table.Column<int>(type: "int", nullable: false),
                     ShiftID = table.Column<int>(type: "int", nullable: false),
+                    DepartmentID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -836,15 +748,21 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkSchedules", x => x.ID);
+                    table.PrimaryKey("PK_Employees", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_WorkSchedules_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employees",
+                        name: "FK_Employees_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Employees_Departments_DepartmentID",
+                        column: x => x.DepartmentID,
+                        principalTable: "Departments",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WorkSchedules_Shifts_ShiftID",
+                        name: "FK_Employees_Shifts_ShiftID",
                         column: x => x.ShiftID,
                         principalTable: "Shifts",
                         principalColumn: "ID",
@@ -1091,6 +1009,82 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Salaries",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MonthlySalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BeenPaid = table.Column<bool>(type: "bit", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Month = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    ModifiedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ModifiedUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ModifiedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Salaries", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Salaries_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "Employees",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkSchedules",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    TotalWorkTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    TimesWorked = table.Column<TimeSpan>(type: "time", nullable: false),
+                    HaveOverTime = table.Column<bool>(type: "bit", nullable: false),
+                    OverTimeHour = table.Column<TimeSpan>(type: "time", nullable: true),
+                    IsHoliday = table.Column<bool>(type: "bit", nullable: false),
+                    Holiday = table.Column<int>(type: "int", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    ShiftName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ShiftStartTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    ShiftEndTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    ModifiedComputerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ModifiedUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ModifiedIP = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkSchedules", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_WorkSchedules_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "Employees",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GuestRegistration",
                 columns: table => new
                 {
@@ -1202,17 +1196,17 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3920b0ec-725e-4b34-ab67-27c7f816936d", "d741d9f1-0749-445f-80d9-c94af12ae9e7", "resepsiyon", "RESEPSİYON" },
-                    { "bcf7061b-0a59-426a-9b49-f520e1b4849b", "a5397f79-6cac-4ddc-b9ad-dad5c387c841", "admin", "ADMİN" },
-                    { "c62f42df-2d75-4102-b281-a8637f2cb0a1", "e8ca41b4-e545-4527-af7f-2c590f1db437", "user", "USER" },
-                    { "75d8b242-e230-4fe8-ad20-b8e818d97957", "d17a3dfe-c266-4d30-9b20-3840a16c2ff0", "insankaynaklari", "İNSANKAYNAKLARİ" },
-                    { "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", "85cb250b-1805-4337-a74b-5217cbcc52ca", "yardimcihizmetler", "YARDİMCİHİZMETLER" }
+                    { "3920b0ec-725e-4b34-ab67-27c7f816936d", "62b3d374-3a27-4a4d-b7ec-f83fcafbd0d5", "resepsiyon", "RESEPSİYON" },
+                    { "bcf7061b-0a59-426a-9b49-f520e1b4849b", "0b3a8983-89b1-48d8-98b6-c543fd2c6a48", "admin", "ADMİN" },
+                    { "c62f42df-2d75-4102-b281-a8637f2cb0a1", "a824f953-6150-4c0a-b29d-8802ca5be5f3", "user", "USER" },
+                    { "75d8b242-e230-4fe8-ad20-b8e818d97957", "b3da652e-13a4-4fa4-be3c-d6c818062aee", "insankaynaklari", "İNSANKAYNAKLARİ" },
+                    { "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", "f6a18f0a-f75d-4ad2-b756-05c7e86f7d02", "yardimcihizmetler", "YARDİMCİHİZMETLER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ID", "Adress", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Email", "Facebook", "Fax", "Instagram", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "Phone1", "Phone2", "Twitter" },
-                values: new object[] { 1, "701 Pacocha Shoal, Gerhardport, Saint Lucia", null, null, null, null, null, "Toni.Hayes69@yahoo.com", "https://www.facebook.com/bilgehotel", "05454526235", "https://www.instagram.com/bilgehotel", null, null, null, null, null, "05454526235", null, "https://www.twitter.com/bilgehotel" });
+                values: new object[] { 1, "92980 Schuppe Hills, Port Verniceville, India", null, null, null, null, null, "Stephanie.Gibson@gmail.com", "https://www.facebook.com/bilgehotel", "05454526235", "https://www.instagram.com/bilgehotel", null, null, null, null, null, "05454526235", null, "https://www.twitter.com/bilgehotel" });
 
             migrationBuilder.InsertData(
                 table: "Departments",
@@ -1285,62 +1279,62 @@ namespace DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "ID", "AppUserId", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "DepartmentID", "Email", "EmployeeStatus", "FirstName", "HourlyRate", "IdentificationNumber", "IsActive", "LastName", "LeavingWorkDate", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "MonthlySalary", "PhoneNumber", "ReasonForLeaving", "StartDateOfWork", "Title", "UserID" },
+                columns: new[] { "ID", "AppUserId", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "DepartmentID", "Email", "EmployeeStatus", "FirstName", "HourlyRate", "IdentificationNumber", "IsActive", "LastName", "LeavingWorkDate", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "MonthlySalary", "OvertimePay", "PhoneNumber", "ReasonForLeaving", "ShiftID", "StartDateOfWork", "Title", "UserID" },
                 values: new object[,]
                 {
-                    { 5, null, null, null, null, null, null, 4, "Terrell36@hotmail.com", 3, "Terrell", 198.024257471796240m, "7174", true, "Kulas", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 10, 30, 14, 48, 47, 198, DateTimeKind.Unspecified).AddTicks(3812), "Resepsiyonist", 0 },
-                    { 27, null, null, null, null, null, null, 3, "Damon.OHara47@gmail.com", 3, "Damon", 190.1535706222772460m, "9655", true, "O'Hara", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 11, 16, 16, 59, 47, 86, DateTimeKind.Unspecified).AddTicks(4139), "Aşçı", 0 },
-                    { 28, null, null, null, null, null, null, 3, "Sally.Quitzon31@yahoo.com", 3, "Sally", 193.770521373381150m, "5104", true, "Quitzon", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 12, 21, 3, 34, 52, 137, DateTimeKind.Unspecified).AddTicks(8156), "Aşçı", 0 },
-                    { 29, null, null, null, null, null, null, 3, "Anita_Fahey@gmail.com", 3, "Anita", 191.809149539009270m, "5571", true, "Fahey", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 7, 3, 8, 55, 6, 61, DateTimeKind.Unspecified).AddTicks(7544), "Aşçı", 0 },
-                    { 30, null, null, null, null, null, null, 3, "Jerome.Price28@hotmail.com", 3, "Jerome", 195.166170422530810m, "8211", true, "Price", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 12, 30, 14, 25, 1, 32, DateTimeKind.Unspecified).AddTicks(9102), "Garson", 0 },
-                    { 31, null, null, null, null, null, null, 3, "Lynn_Windler90@yahoo.com", 3, "Lynn", 195.405343265927090m, "4704", true, "Windler", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 2, 3, 2, 18, 53, 110, DateTimeKind.Unspecified).AddTicks(574), "Garson", 0 },
-                    { 32, null, null, null, null, null, null, 3, "Carl_Schinner@hotmail.com", 3, "Carl", 190.1698781131626470m, "9501", true, "Schinner", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 3, 19, 12, 54, 29, 797, DateTimeKind.Unspecified).AddTicks(4218), "Garson", 0 },
-                    { 34, null, null, null, null, null, null, 3, "Yvette_Bogan58@yahoo.com", 3, "Yvette", 192.182844324122580m, "3891", true, "Bogan", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 11, 29, 0, 58, 27, 912, DateTimeKind.Unspecified).AddTicks(4908), "Garson", 0 },
-                    { 35, null, null, null, null, null, null, 3, "Nellie.Schoen38@yahoo.com", 3, "Nellie", 199.621865460473050m, "8218", true, "Schoen", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 6, 7, 21, 39, 5, 387, DateTimeKind.Unspecified).AddTicks(4784), "Garson", 0 },
-                    { 36, null, null, null, null, null, null, 3, "Henry_Yost63@gmail.com", 3, "Henry", 190.7856894195013160m, "6555", true, "Yost", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 9, 17, 14, 27, 54, 846, DateTimeKind.Unspecified).AddTicks(2494), "Garson", 0 },
-                    { 37, null, null, null, null, null, null, 3, "Gabriel_Stroman7@hotmail.com", 3, "Gabriel", 199.25808270892970m, "6329", true, "Stroman", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 12, 31, 5, 18, 42, 725, DateTimeKind.Unspecified).AddTicks(6590), "Garson", 0 },
-                    { 38, null, null, null, null, null, null, 3, "Arnold15@hotmail.com", 3, "Arnold", 196.000611300580490m, "4771", true, "Ullrich", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 5, 19, 4, 31, 23, 345, DateTimeKind.Unspecified).AddTicks(6108), "Garson", 0 },
-                    { 39, null, null, null, null, null, null, 3, "Rita_Walter89@hotmail.com", 3, "Rita", 196.401516625844650m, "6811", true, "Walter", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 9, 25, 4, 56, 12, 64, DateTimeKind.Unspecified).AddTicks(726), "Garson", 0 },
-                    { 40, null, null, null, null, null, null, 3, "Bob_Emmerich36@yahoo.com", 3, "Bob", 198.37136672268220m, "5366", true, "Emmerich", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 1, 25, 12, 20, 16, 621, DateTimeKind.Unspecified).AddTicks(6680), "Garson", 0 },
-                    { 41, null, null, null, null, null, null, 3, "Valerie.Kris@yahoo.com", 3, "Valerie", 191.347131850825220m, "5277", true, "Kris", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 11, 7, 20, 9, 44, 65, DateTimeKind.Unspecified).AddTicks(4968), "Garson", 0 },
-                    { 42, null, null, null, null, null, null, 3, "Shaun_Sawayn@hotmail.com", 3, "Shaun", 192.517399356010090m, "3591", true, "Sawayn", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 1, 12, 5, 10, 26, 241, DateTimeKind.Unspecified).AddTicks(3779), "Garson", 0 },
-                    { 1, null, null, null, null, null, null, 4, "Krista_OKon@hotmail.com", 3, "Krista", 190.3986852338531450m, "7902", true, "O'Kon", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 3, 4, 16, 23, 49, 550, DateTimeKind.Unspecified).AddTicks(3970), "Resepsiyonist", 0 },
-                    { 2, null, null, null, null, null, null, 4, "Joey.Maggio@hotmail.com", 3, "Joey", 195.848147797327560m, "2768", true, "Maggio", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 11, 14, 44, 41, 131, DateTimeKind.Unspecified).AddTicks(9521), "Resepsiyonist", 0 },
-                    { 3, null, null, null, null, null, null, 4, "Rickey14@yahoo.com", 3, "Rickey", 195.404236682413260m, "6071", true, "Borer", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 8, 2, 7, 59, 20, 886, DateTimeKind.Unspecified).AddTicks(8348), "Resepsiyonist", 0 },
-                    { 4, null, null, null, null, null, null, 4, "Santos_Bauch@hotmail.com", 3, "Santos", 197.224682917457390m, "6451", true, "Bauch", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 3, 28, 1, 44, 53, 321, DateTimeKind.Unspecified).AddTicks(5565), "Resepsiyonist", 0 },
-                    { 6, null, null, null, null, null, null, 4, "Verna42@gmail.com", 3, "Verna", 190.347900870418130m, "8123", true, "Champlin", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 3, 1, 14, 53, 39, 200, DateTimeKind.Unspecified).AddTicks(7734), "Resepsiyonist", 0 },
-                    { 7, null, null, null, null, null, null, 4, "Bill.Koepp65@hotmail.com", 3, "Bill", 195.273078687150530m, "5193", true, "Koepp", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 1, 13, 3, 14, 11, 103, DateTimeKind.Unspecified).AddTicks(1468), "Resepsiyonist", 0 },
-                    { 45, null, null, null, null, null, null, 5, "Leland_Hand@hotmail.com", 0, "Leland", 199.442897364237760m, "7230", true, "Hand", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 4, 5, 3, 30, 21, 506, DateTimeKind.Unspecified).AddTicks(3940), "Müdür", 0 },
-                    { 46, null, null, null, null, null, null, 6, "Roosevelt.Beier@hotmail.com", 1, "Roosevelt", 195.634146503002450m, "2874", true, "Beier", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 2, 21, 15, 50, 37, 597, DateTimeKind.Unspecified).AddTicks(6251), "İnsan Kaynakları Müdürü", 0 },
-                    { 26, null, null, null, null, null, null, 3, "Louis75@hotmail.com", 3, "Louis", 198.879284578784970m, "5873", true, "Quigley", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 2, 25, 1, 50, 55, 916, DateTimeKind.Unspecified).AddTicks(3374), "Aşçı", 0 },
-                    { 25, null, null, null, null, null, null, 3, "Vanessa_Bauch@gmail.com", 3, "Vanessa", 195.870663498468080m, "1450", true, "Bauch", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 11, 25, 16, 19, 24, 179, DateTimeKind.Unspecified).AddTicks(4536), "Aşçı", 0 },
-                    { 33, null, null, null, null, null, null, 3, "Michelle.Jenkins@hotmail.com", 3, "Michelle", 194.370815080763220m, "1979", true, "Jenkins", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 5, 25, 6, 5, 27, 186, DateTimeKind.Unspecified).AddTicks(9379), "Garson", 0 },
-                    { 23, null, null, null, null, null, null, 3, "Hilda.Mertz87@gmail.com", 3, "Hilda", 192.680213382784380m, "6136", true, "Mertz", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 3, 17, 4, 21, 45, 323, DateTimeKind.Unspecified).AddTicks(5681), "Aşçı", 0 },
-                    { 24, null, null, null, null, null, null, 3, "Beatrice97@gmail.com", 3, "Beatrice", 194.145601756938550m, "5743", true, "Fisher", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 5, 11, 8, 32, 40, 674, DateTimeKind.Unspecified).AddTicks(8672), "Aşçı", 0 },
-                    { 8, null, null, null, null, null, null, 1, "Traci.Olson60@gmail.com", 3, "Traci", 197.816420550372650m, "6373", true, "Olson", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 3, 12, 9, 15, 12, 563, DateTimeKind.Unspecified).AddTicks(2295), "Temizlik Görevlisi", 0 },
-                    { 9, null, null, null, null, null, null, 1, "Vicky6@hotmail.com", 3, "Vicky", 196.345612717022010m, "2290", true, "Larkin", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 10, 21, 21, 40, 36, 189, DateTimeKind.Unspecified).AddTicks(3726), "Temizlik Görevlisi", 0 },
-                    { 10, null, null, null, null, null, null, 1, "Juana.Davis49@gmail.com", 3, "Juana", 199.351237169164810m, "4277", true, "Davis", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 5, 21, 14, 16, 4, 920, DateTimeKind.Unspecified).AddTicks(7013), "Temizlik Görevlisi", 0 },
-                    { 11, null, null, null, null, null, null, 1, "Teresa61@hotmail.com", 3, "Teresa", 197.668263152087230m, "2171", true, "Emard", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 12, 23, 23, 37, 560, DateTimeKind.Unspecified).AddTicks(3843), "Temizlik Görevlisi", 0 },
-                    { 13, null, null, null, null, null, null, 1, "Aaron.Hahn41@yahoo.com", 3, "Aaron", 190.904794605870170m, "6138", true, "Hahn", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 3, 27, 19, 44, 31, 551, DateTimeKind.Unspecified).AddTicks(6403), "Temizlik Görevlisi", 0 },
-                    { 14, null, null, null, null, null, null, 1, "Shane37@gmail.com", 3, "Shane", 191.521682800502370m, "7916", true, "Stark", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 10, 11, 14, 38, 57, 815, DateTimeKind.Unspecified).AddTicks(553), "Temizlik Görevlisi", 0 },
-                    { 15, null, null, null, null, null, null, 1, "Lynette_Dach@yahoo.com", 3, "Lynette", 190.5565860497563080m, "2596", true, "Dach", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 4, 28, 16, 5, 15, 498, DateTimeKind.Unspecified).AddTicks(8164), "Temizlik Görevlisi", 0 },
-                    { 16, null, null, null, null, null, null, 1, "Flora.Treutel@gmail.com", 3, "Flora", 194.092970692595920m, "8088", true, "Treutel", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 2, 28, 7, 28, 9, 587, DateTimeKind.Unspecified).AddTicks(5884), "Temizlik Görevlisi", 0 },
-                    { 12, null, null, null, null, null, null, 1, "Pearl.Beatty92@hotmail.com", 3, "Pearl", 196.244880010487920m, "6688", true, "Beatty", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 12, 10, 0, 38, 0, 426, DateTimeKind.Unspecified).AddTicks(740), "Temizlik Görevlisi", 0 },
-                    { 18, null, null, null, null, null, null, 1, "Orlando57@yahoo.com", 3, "Orlando", 199.258762211193680m, "5308", true, "Metz", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2022, 2, 15, 10, 5, 40, 913, DateTimeKind.Unspecified).AddTicks(4646), "Temizlik Görevlisi", 0 },
-                    { 43, null, null, null, null, null, null, 1, "Delbert_Tillman20@yahoo.com", 3, "Delbert", 196.766186629778790m, "4763", true, "Tillman", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2021, 1, 18, 17, 44, 50, 939, DateTimeKind.Unspecified).AddTicks(6812), "Elektirikçi", 0 },
-                    { 44, null, null, null, null, null, null, 2, "Gail36@yahoo.com", 3, "Gail", 191.599017042479950m, "9029", true, "Heller", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 5, 26, 21, 45, 14, 769, DateTimeKind.Unspecified).AddTicks(8277), "Bilgi İşlem Sorumlusu", 0 },
-                    { 19, null, null, null, null, null, null, 3, "Lucille_OKon45@hotmail.com", 3, "Lucille", 191.618999508963430m, "6600", true, "O'Kon", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 10, 19, 5, 44, 59, 596, DateTimeKind.Unspecified).AddTicks(8966), "Aşçı", 0 }
+                    { 46, null, null, null, null, null, null, 6, "Saul.Bosco86@hotmail.com", 1, "Saul", 195.529171775807240m, "7898", true, "Bosco", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 7, 11, 21, 9, 9, 268, DateTimeKind.Unspecified).AddTicks(2610), "İnsan Kaynakları Müdürü", 0 },
+                    { 24, null, null, null, null, null, null, 3, "Johnny_Paucek85@yahoo.com", 3, "Johnny", 198.05813702198590m, "7700", true, "Paucek", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 4, 28, 8, 38, 53, 187, DateTimeKind.Unspecified).AddTicks(1181), "Aşçı", 0 },
+                    { 23, null, null, null, null, null, null, 3, "Desiree.Barrows@gmail.com", 3, "Desiree", 194.927768411546840m, "5122", true, "Barrows", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 1, 8, 23, 4, 5, 652, DateTimeKind.Unspecified).AddTicks(1639), "Aşçı", 0 },
+                    { 22, null, null, null, null, null, null, 3, "May.Koch@hotmail.com", 3, "May", 194.948927119816150m, "1388", true, "Koch", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 1, 31, 2, 27, 24, 644, DateTimeKind.Unspecified).AddTicks(4565), "Aşçı", 0 },
+                    { 21, null, null, null, null, null, null, 3, "Raquel.Schuster20@yahoo.com", 3, "Raquel", 191.443865104319460m, "2860", true, "Schuster", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 11, 17, 11, 42, 31, 40, DateTimeKind.Unspecified).AddTicks(1059), "Aşçı", 0 },
+                    { 20, null, null, null, null, null, null, 3, "Clifford_Kulas@hotmail.com", 3, "Clifford", 198.57176340584260m, "3867", true, "Kulas", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 2, 21, 8, 15, 5, 840, DateTimeKind.Unspecified).AddTicks(4634), "Aşçı", 0 },
+                    { 19, null, null, null, null, null, null, 3, "Ricardo.Purdy13@gmail.com", 3, "Ricardo", 196.419527081968040m, "4636", true, "Purdy", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 1, 15, 12, 58, 22, 560, DateTimeKind.Unspecified).AddTicks(4216), "Aşçı", 0 },
+                    { 18, null, null, null, null, null, null, 1, "Henry_Sipes@gmail.com", 3, "Henry", 198.611343250894610m, "9610", true, "Sipes", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 11, 28, 3, 15, 46, 480, DateTimeKind.Unspecified).AddTicks(7417), "Temizlik Görevlisi", 0 },
+                    { 17, null, null, null, null, null, null, 1, "Tommie_Langosh27@yahoo.com", 3, "Tommie", 190.5496191282522020m, "5927", true, "Langosh", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 11, 16, 2, 22, 42, 642, DateTimeKind.Unspecified).AddTicks(9995), "Temizlik Görevlisi", 0 },
+                    { 16, null, null, null, null, null, null, 1, "Wendell.Krajcik@yahoo.com", 3, "Wendell", 199.3101148676640m, "8340", true, "Krajcik", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 3, 14, 4, 53, 39, 768, DateTimeKind.Unspecified).AddTicks(7150), "Temizlik Görevlisi", 0 },
+                    { 15, null, null, null, null, null, null, 1, "Denise48@hotmail.com", 3, "Denise", 195.337967758689990m, "2632", true, "Zulauf", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 12, 6, 12, 13, 49, 297, DateTimeKind.Unspecified).AddTicks(4490), "Temizlik Görevlisi", 0 },
+                    { 13, null, null, null, null, null, null, 1, "Ricardo_Schneider@yahoo.com", 3, "Ricardo", 197.239394652303030m, "4278", true, "Schneider", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 6, 23, 2, 24, 52, 884, DateTimeKind.Unspecified).AddTicks(9177), "Temizlik Görevlisi", 0 },
+                    { 12, null, null, null, null, null, null, 1, "Mae_Monahan11@hotmail.com", 3, "Mae", 193.269193839872810m, "3804", true, "Monahan", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2022, 1, 31, 17, 34, 8, 256, DateTimeKind.Unspecified).AddTicks(9453), "Temizlik Görevlisi", 0 },
+                    { 11, null, null, null, null, null, null, 1, "Claire.Gerhold37@yahoo.com", 3, "Claire", 198.506102868591480m, "1834", true, "Gerhold", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 7, 27, 5, 16, 18, 322, DateTimeKind.Unspecified).AddTicks(8579), "Temizlik Görevlisi", 0 },
+                    { 10, null, null, null, null, null, null, 1, "Elisa83@hotmail.com", 3, "Elisa", 198.743382621902680m, "8869", true, "Waelchi", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 1, 22, 20, 1, 45, 417, DateTimeKind.Unspecified).AddTicks(1411), "Temizlik Görevlisi", 0 },
+                    { 9, null, null, null, null, null, null, 1, "Muriel89@hotmail.com", 3, "Muriel", 196.654850811071160m, "9853", true, "Parker", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 9, 20, 8, 13, 27, 319, DateTimeKind.Unspecified).AddTicks(4507), "Temizlik Görevlisi", 0 },
+                    { 8, null, null, null, null, null, null, 1, "Maryann_Schneider@hotmail.com", 3, "Maryann", 195.516881586758830m, "9742", true, "Schneider", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 3, 18, 21, 59, 51, 528, DateTimeKind.Unspecified).AddTicks(1466), "Temizlik Görevlisi", 0 },
+                    { 7, null, null, null, null, null, null, 4, "Tom99@hotmail.com", 3, "Tom", 196.390174681502480m, "7594", true, "Kautzer", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 10, 27, 6, 52, 20, 8, DateTimeKind.Unspecified).AddTicks(9921), "Resepsiyonist", 0 },
+                    { 6, null, null, null, null, null, null, 4, "Marie.Walter@hotmail.com", 3, "Marie", 191.731967684688030m, "8811", true, "Walter", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 3, 22, 10, 51, 27, 53, DateTimeKind.Unspecified).AddTicks(1152), "Resepsiyonist", 0 },
+                    { 5, null, null, null, null, null, null, 4, "Mindy.Harber98@hotmail.com", 3, "Mindy", 192.895174982443070m, "9891", true, "Harber", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 7, 10, 2, 44, 27, 679, DateTimeKind.Unspecified).AddTicks(7907), "Resepsiyonist", 0 },
+                    { 4, null, null, null, null, null, null, 4, "Sergio86@gmail.com", 3, "Sergio", 196.747865284210010m, "9924", true, "Fay", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 7, 26, 5, 23, 15, 487, DateTimeKind.Unspecified).AddTicks(8688), "Resepsiyonist", 0 },
+                    { 3, null, null, null, null, null, null, 4, "Nicole36@hotmail.com", 3, "Nicole", 199.01485858904890m, "6424", true, "Hansen", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 3, 28, 11, 4, 6, 577, DateTimeKind.Unspecified).AddTicks(3890), "Resepsiyonist", 0 },
+                    { 2, null, null, null, null, null, null, 4, "Alan_Leffler2@gmail.com", 3, "Alan", 198.149846865865330m, "6444", true, "Leffler", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 9, 13, 12, 21, 39, 677, DateTimeKind.Unspecified).AddTicks(5720), "Resepsiyonist", 0 },
+                    { 1, null, null, null, null, null, null, 4, "Desiree.Parisian55@gmail.com", 3, "Desiree", 198.681273911465550m, "7151", true, "Parisian", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 11, 25, 20, 38, 20, 872, DateTimeKind.Unspecified).AddTicks(259), "Resepsiyonist", 0 },
+                    { 25, null, null, null, null, null, null, 3, "Delores78@yahoo.com", 3, "Delores", 193.594218135622430m, "6323", true, "Yundt", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 9, 10, 6, 5, 50, 216, DateTimeKind.Unspecified).AddTicks(8423), "Aşçı", 0 },
+                    { 26, null, null, null, null, null, null, 3, "Jeanette_Kuhic69@hotmail.com", 3, "Jeanette", 197.1054680957950m, "8487", true, "Kuhic", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 9, 30, 6, 40, 55, 149, DateTimeKind.Unspecified).AddTicks(8548), "Aşçı", 0 },
+                    { 14, null, null, null, null, null, null, 1, "Candice.Nicolas@gmail.com", 3, "Candice", 196.972773814095540m, "6198", true, "Nicolas", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 4, 8, 15, 54, 45, 424, DateTimeKind.Unspecified).AddTicks(6270), "Temizlik Görevlisi", 0 },
+                    { 28, null, null, null, null, null, null, 3, "Harriet39@yahoo.com", 3, "Harriet", 195.251970791840910m, "9591", true, "Flatley", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2022, 3, 4, 16, 27, 14, 815, DateTimeKind.Unspecified).AddTicks(3177), "Aşçı", 0 },
+                    { 44, null, null, null, null, null, null, 2, "Erik74@hotmail.com", 3, "Erik", 194.25475825753750m, "2838", true, "Stoltenberg", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 4, 8, 22, 52, 0, 296, DateTimeKind.Unspecified).AddTicks(6796), "Bilgi İşlem Sorumlusu", 0 },
+                    { 43, null, null, null, null, null, null, 1, "Audrey.Murphy98@yahoo.com", 3, "Audrey", 196.58001500488260m, "1850", true, "Murphy", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 8, 21, 2, 32, 23, 109, DateTimeKind.Unspecified).AddTicks(6250), "Elektirikçi", 0 },
+                    { 42, null, null, null, null, null, null, 3, "Ray82@hotmail.com", 3, "Ray", 196.889805256803430m, "5531", true, "Bogisich", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 5, 21, 13, 17, 23, 51, DateTimeKind.Unspecified).AddTicks(4368), "Garson", 0 },
+                    { 41, null, null, null, null, null, null, 3, "Rex27@gmail.com", 3, "Rex", 196.140601106984820m, "4538", true, "Stiedemann", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 8, 9, 7, 16, 1, 331, DateTimeKind.Unspecified).AddTicks(1582), "Garson", 0 },
+                    { 40, null, null, null, null, null, null, 3, "Misty.Heathcote11@yahoo.com", 3, "Misty", 192.99200002243370m, "6277", true, "Heathcote", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 12, 22, 12, 53, 9, 491, DateTimeKind.Unspecified).AddTicks(9502), "Garson", 0 },
+                    { 27, null, null, null, null, null, null, 3, "Christopher_Goodwin19@hotmail.com", 3, "Christopher", 190.6220517776077860m, "9825", true, "Goodwin", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 6, 17, 18, 17, 20, 262, DateTimeKind.Unspecified).AddTicks(3057), "Aşçı", 0 },
+                    { 39, null, null, null, null, null, null, 3, "Jackie46@hotmail.com", 3, "Jackie", 196.967443454529830m, "5903", true, "Morar", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 1, 19, 10, 30, 48, 498, DateTimeKind.Unspecified).AddTicks(3884), "Garson", 0 },
+                    { 38, null, null, null, null, null, null, 3, "Oscar48@gmail.com", 3, "Oscar", 197.480972715411790m, "4065", true, "Kassulke", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 4, 4, 16, 29, 58, 452, DateTimeKind.Unspecified).AddTicks(7814), "Garson", 0 },
+                    { 37, null, null, null, null, null, null, 3, "Hope63@yahoo.com", 3, "Hope", 192.934124317455160m, "3301", true, "Stoltenberg", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 6, 3, 6, 17, 30, 714, DateTimeKind.Unspecified).AddTicks(1880), "Garson", 0 },
+                    { 45, null, null, null, null, null, null, 5, "Jorge_Sporer45@gmail.com", 0, "Jorge", 191.460118126804060m, "4919", true, "Sporer", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 10, 3, 19, 39, 6, 383, DateTimeKind.Unspecified).AddTicks(2961), "Müdür", 0 },
+                    { 29, null, null, null, null, null, null, 3, "Doug_Mertz@yahoo.com", 3, "Doug", 197.475005489529580m, "8751", true, "Mertz", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 8, 25, 22, 22, 35, 368, DateTimeKind.Unspecified).AddTicks(6137), "Aşçı", 0 },
+                    { 30, null, null, null, null, null, null, 3, "Alison_Gusikowski86@yahoo.com", 3, "Alison", 196.595709853151680m, "2362", true, "Gusikowski", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 8, 19, 0, 42, 15, 914, DateTimeKind.Unspecified).AddTicks(5202), "Garson", 0 },
+                    { 31, null, null, null, null, null, null, 3, "Doug_Bauch@yahoo.com", 3, "Doug", 195.258090978142850m, "4488", true, "Bauch", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 3, 17, 21, 58, 51, 726, DateTimeKind.Unspecified).AddTicks(4317), "Garson", 0 },
+                    { 32, null, null, null, null, null, null, 3, "Jo_Zemlak@hotmail.com", 3, "Jo", 192.460003403229640m, "2353", true, "Zemlak", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 10, 11, 13, 5, 32, 919, DateTimeKind.Unspecified).AddTicks(7986), "Garson", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "ID", "AppUserId", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "DepartmentID", "Email", "EmployeeStatus", "FirstName", "HourlyRate", "IdentificationNumber", "IsActive", "LastName", "LeavingWorkDate", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "MonthlySalary", "PhoneNumber", "ReasonForLeaving", "StartDateOfWork", "Title", "UserID" },
+                columns: new[] { "ID", "AppUserId", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "DepartmentID", "Email", "EmployeeStatus", "FirstName", "HourlyRate", "IdentificationNumber", "IsActive", "LastName", "LeavingWorkDate", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "MonthlySalary", "OvertimePay", "PhoneNumber", "ReasonForLeaving", "ShiftID", "StartDateOfWork", "Title", "UserID" },
                 values: new object[,]
                 {
-                    { 20, null, null, null, null, null, null, 3, "Kenneth_Rogahn@gmail.com", 3, "Kenneth", 196.829359380914530m, "5397", true, "Rogahn", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 4, 17, 17, 30, 1, 917, DateTimeKind.Unspecified).AddTicks(7500), "Aşçı", 0 },
-                    { 21, null, null, null, null, null, null, 3, "Geneva.Ebert43@yahoo.com", 3, "Geneva", 194.135311573806830m, "4235", true, "Ebert", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 5, 13, 10, 5, 44, 65, DateTimeKind.Unspecified).AddTicks(5174), "Aşçı", 0 },
-                    { 17, null, null, null, null, null, null, 1, "Naomi.Berge@gmail.com", 3, "Naomi", 194.597296521345760m, "8709", true, "Berge", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2019, 4, 1, 10, 31, 30, 465, DateTimeKind.Unspecified).AddTicks(922), "Temizlik Görevlisi", 0 },
-                    { 22, null, null, null, null, null, null, 3, "Amanda_Hermann68@yahoo.com", 3, "Amanda", 195.677401654272060m, "6310", true, "Hermann", null, null, null, null, null, null, null, "05454526235", null, new DateTime(2020, 6, 19, 8, 58, 5, 791, DateTimeKind.Unspecified).AddTicks(8534), "Aşçı", 0 }
+                    { 33, null, null, null, null, null, null, 3, "Christina_Von81@gmail.com", 3, "Christina", 196.038538243639540m, "8261", true, "Von", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 1, 16, 14, 51, 17, 177, DateTimeKind.Unspecified).AddTicks(3691), "Garson", 0 },
+                    { 34, null, null, null, null, null, null, 3, "Candace83@yahoo.com", 3, "Candace", 190.2928610193975550m, "8472", true, "Haley", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2020, 10, 10, 11, 57, 36, 473, DateTimeKind.Unspecified).AddTicks(8489), "Garson", 0 },
+                    { 36, null, null, null, null, null, null, 3, "Meredith.Robel@gmail.com", 3, "Meredith", 196.516034038046390m, "4193", true, "Robel", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2021, 7, 22, 19, 57, 26, 194, DateTimeKind.Unspecified).AddTicks(43), "Garson", 0 },
+                    { 35, null, null, null, null, null, null, 3, "Caroline_Kshlerin63@gmail.com", 3, "Caroline", 191.433734461401470m, "4869", true, "Kshlerin", null, null, null, null, null, null, null, 12m, "05454526235", null, 1, new DateTime(2019, 2, 24, 17, 57, 44, 15, DateTimeKind.Unspecified).AddTicks(2708), "Garson", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -1348,44 +1342,44 @@ namespace DataAccess.Migrations
                 columns: new[] { "RoomFacilityID", "RoomTypeID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername" },
                 values: new object[,]
                 {
-                    { 5, 4, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 5, null, null, null, null, null, null, null, null, null, null },
+                    { 4, 5, null, null, null, null, null, null, null, null, null, null },
+                    { 1, 7, null, null, null, null, null, null, null, null, null, null },
                     { 2, 5, null, null, null, null, null, null, null, null, null, null },
+                    { 5, 4, null, null, null, null, null, null, null, null, null, null },
+                    { 4, 4, null, null, null, null, null, null, null, null, null, null },
+                    { 3, 4, null, null, null, null, null, null, null, null, null, null },
+                    { 6, 6, null, null, null, null, null, null, null, null, null, null },
+                    { 2, 4, null, null, null, null, null, null, null, null, null, null },
                     { 3, 5, null, null, null, null, null, null, null, null, null, null },
+                    { 5, 6, null, null, null, null, null, null, null, null, null, null },
+                    { 3, 6, null, null, null, null, null, null, null, null, null, null },
+                    { 2, 6, null, null, null, null, null, null, null, null, null, null },
+                    { 2, 7, null, null, null, null, null, null, null, null, null, null },
+                    { 1, 6, null, null, null, null, null, null, null, null, null, null },
                     { 6, 5, null, null, null, null, null, null, null, null, null, null },
                     { 5, 5, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 6, null, null, null, null, null, null, null, null, null, null },
-                    { 4, 5, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 2, null, null, null, null, null, null, null, null, null, null },
                     { 1, 4, null, null, null, null, null, null, null, null, null, null },
+                    { 4, 6, null, null, null, null, null, null, null, null, null, null },
+                    { 3, 7, null, null, null, null, null, null, null, null, null, null },
+                    { 3, 2, null, null, null, null, null, null, null, null, null, null },
+                    { 5, 7, null, null, null, null, null, null, null, null, null, null },
                     { 4, 2, null, null, null, null, null, null, null, null, null, null },
                     { 5, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 4, 4, null, null, null, null, null, null, null, null, null, null },
+                    { 1, 2, null, null, null, null, null, null, null, null, null, null },
+                    { 4, 1, null, null, null, null, null, null, null, null, null, null },
+                    { 1, 5, null, null, null, null, null, null, null, null, null, null },
+                    { 3, 1, null, null, null, null, null, null, null, null, null, null },
+                    { 2, 1, null, null, null, null, null, null, null, null, null, null },
+                    { 1, 1, null, null, null, null, null, null, null, null, null, null },
+                    { 4, 7, null, null, null, null, null, null, null, null, null, null },
+                    { 5, 3, null, null, null, null, null, null, null, null, null, null },
+                    { 1, 3, null, null, null, null, null, null, null, null, null, null },
+                    { 2, 3, null, null, null, null, null, null, null, null, null, null },
                     { 3, 3, null, null, null, null, null, null, null, null, null, null },
                     { 4, 3, null, null, null, null, null, null, null, null, null, null },
-                    { 5, 3, null, null, null, null, null, null, null, null, null, null },
                     { 6, 3, null, null, null, null, null, null, null, null, null, null },
-                    { 3, 4, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 4, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 6, null, null, null, null, null, null, null, null, null, null },
-                    { 3, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 3, 6, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 3, null, null, null, null, null, null, null, null, null, null },
-                    { 5, 6, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 3, null, null, null, null, null, null, null, null, null, null },
-                    { 6, 7, null, null, null, null, null, null, null, null, null, null },
-                    { 4, 6, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 3, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 4, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 5, 7, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 3, 7, null, null, null, null, null, null, null, null, null, null },
-                    { 4, 7, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 7, null, null, null, null, null, null, null, null, null, null },
-                    { 6, 6, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 7, null, null, null, null, null, null, null, null, null, null }
+                    { 2, 2, null, null, null, null, null, null, null, null, null, null },
+                    { 6, 7, null, null, null, null, null, null, null, null, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1393,9 +1387,9 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "HomePageID", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "PictureName", "PictureUrl" },
                 values: new object[,]
                 {
-                    { 3, null, null, null, null, null, 1, null, null, null, null, null, "Slide3", "https://www.almira.com.tr/images/gallery/almira/07.jpg" },
+                    { 1, null, null, null, null, null, 1, null, null, null, null, null, "Slide1", "https://www.almira.com.tr/images/genel1.jpg" },
                     { 2, null, null, null, null, null, 1, null, null, null, null, null, "Slide2", "https://www.almira.com.tr/images/gallery/almira/04.jpg" },
-                    { 1, null, null, null, null, null, 1, null, null, null, null, null, "Slide1", "https://www.almira.com.tr/images/genel1.jpg" }
+                    { 3, null, null, null, null, null, 1, null, null, null, null, null, "Slide3", "https://www.almira.com.tr/images/gallery/almira/07.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -1403,13 +1397,13 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "AboutusID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "PictureName", "PictureUrl" },
                 values: new object[,]
                 {
-                    { 7, 1, null, null, null, null, null, null, null, null, null, null, "Görsel7", "/img/gallery/room-presidential-suite.jpg" },
-                    { 6, 1, null, null, null, null, null, null, null, null, null, null, "Görsel6", "/img/gallery/room-family.jpg" },
-                    { 5, 1, null, null, null, null, null, null, null, null, null, null, "Görsel5", "/img/gallery/room-triple-superrior.jpg" },
-                    { 4, 1, null, null, null, null, null, null, null, null, null, null, "Görsel4", "/img/gallery/room-triple.jpg" },
-                    { 3, 1, null, null, null, null, null, null, null, null, null, null, "Görsel3", "/img/gallery/room-double-superrior.jpg" },
+                    { 1, 1, null, null, null, null, null, null, null, null, null, null, "Görsel1", "/img/gallery/room-single.jpg" },
                     { 2, 1, null, null, null, null, null, null, null, null, null, null, "Görsel2", "/img/gallery/room-double.jpg" },
-                    { 1, 1, null, null, null, null, null, null, null, null, null, null, "Görsel1", "/img/gallery/room-single.jpg" }
+                    { 3, 1, null, null, null, null, null, null, null, null, null, null, "Görsel3", "/img/gallery/room-double-superrior.jpg" },
+                    { 4, 1, null, null, null, null, null, null, null, null, null, null, "Görsel4", "/img/gallery/room-triple.jpg" },
+                    { 5, 1, null, null, null, null, null, null, null, null, null, null, "Görsel5", "/img/gallery/room-triple-superrior.jpg" },
+                    { 6, 1, null, null, null, null, null, null, null, null, null, null, "Görsel6", "/img/gallery/room-family.jpg" },
+                    { 7, 1, null, null, null, null, null, null, null, null, null, null, "Görsel7", "/img/gallery/room-presidential-suite.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -1418,12 +1412,12 @@ namespace DataAccess.Migrations
                 values: new object[,]
                 {
                     { 5, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-triple-superrior.jpg", 5 },
-                    { 6, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-family.jpg", 6 },
+                    { 1, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-single.jpg", 1 },
+                    { 2, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-double.jpg", 2 },
+                    { 7, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-presidential-suite.jpg", 7 },
                     { 4, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-triple.jpg", 4 },
                     { 3, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-double-superrior.jpg", 3 },
-                    { 7, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-presidential-suite.jpg", 7 },
-                    { 2, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-double.jpg", 2 },
-                    { 1, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-single.jpg", 1 }
+                    { 6, null, null, null, null, null, null, null, null, null, null, "/img/roomtypes/room-family.jpg", 6 }
                 });
 
             migrationBuilder.InsertData(
@@ -1431,7 +1425,49 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Description", "FloorNumber", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "RoomNumber", "RoomStatus", "RoomTypeID" },
                 values: new object[,]
                 {
-                    { 58, null, null, null, null, null, null, 3, null, null, null, null, null, "157", 5, 5 },
+                    { 30, null, null, null, null, null, null, 2, null, null, null, null, null, "129", 5, 1 },
+                    { 34, null, null, null, null, null, null, 2, null, null, null, null, null, "133", 5, 2 },
+                    { 31, null, null, null, null, null, null, 2, null, null, null, null, null, "130", 5, 2 },
+                    { 32, null, null, null, null, null, null, 2, null, null, null, null, null, "131", 5, 2 },
+                    { 33, null, null, null, null, null, null, 2, null, null, null, null, null, "132", 5, 2 },
+                    { 39, null, null, null, null, null, null, 2, null, null, null, null, null, "138", 5, 2 },
+                    { 36, null, null, null, null, null, null, 2, null, null, null, null, null, "135", 5, 2 },
+                    { 37, null, null, null, null, null, null, 2, null, null, null, null, null, "136", 5, 2 },
+                    { 38, null, null, null, null, null, null, 2, null, null, null, null, null, "137", 5, 2 },
+                    { 29, null, null, null, null, null, null, 2, null, null, null, null, null, "128", 5, 1 },
+                    { 40, null, null, null, null, null, null, 2, null, null, null, null, null, "139", 5, 2 },
+                    { 41, null, null, null, null, null, null, 3, null, null, null, null, null, "140", 5, 3 },
+                    { 35, null, null, null, null, null, null, 2, null, null, null, null, null, "134", 5, 2 },
+                    { 28, null, null, null, null, null, null, 2, null, null, null, null, null, "127", 5, 1 },
+                    { 15, null, null, null, null, null, null, 1, null, null, null, null, null, "114", 5, 4 },
+                    { 26, null, null, null, null, null, null, 2, null, null, null, null, null, "125", 5, 1 },
+                    { 1, null, null, null, null, null, null, 1, null, null, null, null, null, "100", 5, 1 },
+                    { 2, null, null, null, null, null, null, 1, null, null, null, null, null, "101", 5, 1 },
+                    { 3, null, null, null, null, null, null, 1, null, null, null, null, null, "102", 5, 1 },
+                    { 4, null, null, null, null, null, null, 1, null, null, null, null, null, "103", 5, 1 },
+                    { 5, null, null, null, null, null, null, 1, null, null, null, null, null, "104", 5, 1 },
+                    { 6, null, null, null, null, null, null, 1, null, null, null, null, null, "105", 5, 1 },
+                    { 7, null, null, null, null, null, null, 1, null, null, null, null, null, "106", 5, 1 },
+                    { 27, null, null, null, null, null, null, 2, null, null, null, null, null, "126", 5, 1 },
+                    { 8, null, null, null, null, null, null, 1, null, null, null, null, null, "107", 5, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Description", "FloorNumber", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "RoomNumber", "RoomStatus", "RoomTypeID" },
+                values: new object[,]
+                {
+                    { 10, null, null, null, null, null, null, 1, null, null, null, null, null, "109", 5, 1 },
+                    { 21, null, null, null, null, null, null, 2, null, null, null, null, null, "120", 5, 1 },
+                    { 22, null, null, null, null, null, null, 2, null, null, null, null, null, "121", 5, 1 },
+                    { 23, null, null, null, null, null, null, 2, null, null, null, null, null, "122", 5, 1 },
+                    { 24, null, null, null, null, null, null, 2, null, null, null, null, null, "123", 5, 1 },
+                    { 42, null, null, null, null, null, null, 3, null, null, null, null, null, "141", 5, 3 },
+                    { 25, null, null, null, null, null, null, 2, null, null, null, null, null, "124", 5, 1 },
+                    { 9, null, null, null, null, null, null, 1, null, null, null, null, null, "108", 5, 1 },
+                    { 43, null, null, null, null, null, null, 3, null, null, null, null, null, "142", 5, 3 },
+                    { 45, null, null, null, null, null, null, 3, null, null, null, null, null, "144", 5, 3 },
+                    { 14, null, null, null, null, null, null, 1, null, null, null, null, null, "113", 5, 4 },
                     { 57, null, null, null, null, null, null, 3, null, null, null, null, null, "156", 5, 5 },
                     { 56, null, null, null, null, null, null, 3, null, null, null, null, null, "155", 5, 5 },
                     { 55, null, null, null, null, null, null, 3, null, null, null, null, null, "154", 5, 5 },
@@ -1439,23 +1475,30 @@ namespace DataAccess.Migrations
                     { 53, null, null, null, null, null, null, 3, null, null, null, null, null, "152", 5, 5 },
                     { 52, null, null, null, null, null, null, 3, null, null, null, null, null, "151", 5, 5 },
                     { 51, null, null, null, null, null, null, 3, null, null, null, null, null, "150", 5, 5 },
-                    { 24, null, null, null, null, null, null, 2, null, null, null, null, null, "123", 5, 1 },
-                    { 25, null, null, null, null, null, null, 2, null, null, null, null, null, "124", 5, 1 },
-                    { 26, null, null, null, null, null, null, 2, null, null, null, null, null, "125", 5, 1 },
-                    { 27, null, null, null, null, null, null, 2, null, null, null, null, null, "126", 5, 1 },
-                    { 28, null, null, null, null, null, null, 2, null, null, null, null, null, "127", 5, 1 },
-                    { 29, null, null, null, null, null, null, 2, null, null, null, null, null, "128", 5, 1 },
-                    { 30, null, null, null, null, null, null, 2, null, null, null, null, null, "129", 5, 1 },
+                    { 68, null, null, null, null, null, null, 4, null, null, null, null, null, "167", 5, 3 },
+                    { 69, null, null, null, null, null, null, 4, null, null, null, null, null, "168", 5, 3 },
+                    { 70, null, null, null, null, null, null, 4, null, null, null, null, null, "169", 5, 3 },
+                    { 11, null, null, null, null, null, null, 1, null, null, null, null, null, "110", 5, 4 },
+                    { 12, null, null, null, null, null, null, 1, null, null, null, null, null, "111", 5, 4 },
+                    { 20, null, null, null, null, null, null, 1, null, null, null, null, null, "119", 5, 4 },
+                    { 19, null, null, null, null, null, null, 1, null, null, null, null, null, "118", 5, 4 },
+                    { 18, null, null, null, null, null, null, 1, null, null, null, null, null, "117", 5, 4 },
+                    { 17, null, null, null, null, null, null, 1, null, null, null, null, null, "116", 5, 4 },
+                    { 13, null, null, null, null, null, null, 1, null, null, null, null, null, "112", 5, 4 },
+                    { 58, null, null, null, null, null, null, 3, null, null, null, null, null, "157", 5, 5 },
+                    { 44, null, null, null, null, null, null, 3, null, null, null, null, null, "143", 5, 3 },
                     { 59, null, null, null, null, null, null, 3, null, null, null, null, null, "158", 5, 5 },
+                    { 67, null, null, null, null, null, null, 4, null, null, null, null, null, "166", 5, 3 },
+                    { 77, null, null, null, null, null, null, 4, null, null, null, null, null, "176", 5, 7 },
+                    { 46, null, null, null, null, null, null, 3, null, null, null, null, null, "145", 5, 3 },
+                    { 47, null, null, null, null, null, null, 3, null, null, null, null, null, "146", 5, 3 },
+                    { 48, null, null, null, null, null, null, 3, null, null, null, null, null, "147", 5, 3 },
+                    { 49, null, null, null, null, null, null, 3, null, null, null, null, null, "148", 5, 3 },
+                    { 50, null, null, null, null, null, null, 3, null, null, null, null, null, "149", 5, 3 },
+                    { 61, null, null, null, null, null, null, 4, null, null, null, null, null, "160", 5, 3 },
+                    { 76, null, null, null, null, null, null, 4, null, null, null, null, null, "175", 5, 6 },
                     { 60, null, null, null, null, null, null, 3, null, null, null, null, null, "159", 5, 5 },
-                    { 23, null, null, null, null, null, null, 2, null, null, null, null, null, "122", 5, 1 },
-                    { 22, null, null, null, null, null, null, 2, null, null, null, null, null, "121", 5, 1 },
-                    { 1, null, null, null, null, null, null, 1, null, null, null, null, null, "100", 5, 1 },
-                    { 2, null, null, null, null, null, null, 1, null, null, null, null, null, "101", 5, 1 },
-                    { 3, null, null, null, null, null, null, 1, null, null, null, null, null, "102", 5, 1 },
-                    { 4, null, null, null, null, null, null, 1, null, null, null, null, null, "103", 5, 1 },
-                    { 5, null, null, null, null, null, null, 1, null, null, null, null, null, "104", 5, 1 },
-                    { 6, null, null, null, null, null, null, 1, null, null, null, null, null, "105", 5, 1 }
+                    { 75, null, null, null, null, null, null, 4, null, null, null, null, null, "174", 5, 6 }
                 });
 
             migrationBuilder.InsertData(
@@ -1463,65 +1506,16 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Description", "FloorNumber", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "RoomNumber", "RoomStatus", "RoomTypeID" },
                 values: new object[,]
                 {
-                    { 76, null, null, null, null, null, null, 4, null, null, null, null, null, "175", 5, 6 },
-                    { 75, null, null, null, null, null, null, 4, null, null, null, null, null, "174", 5, 6 },
-                    { 74, null, null, null, null, null, null, 4, null, null, null, null, null, "173", 5, 6 },
                     { 73, null, null, null, null, null, null, 4, null, null, null, null, null, "172", 5, 6 },
                     { 72, null, null, null, null, null, null, 4, null, null, null, null, null, "171", 5, 6 },
                     { 71, null, null, null, null, null, null, 4, null, null, null, null, null, "170", 5, 6 },
-                    { 7, null, null, null, null, null, null, 1, null, null, null, null, null, "106", 5, 1 },
-                    { 8, null, null, null, null, null, null, 1, null, null, null, null, null, "107", 5, 1 },
-                    { 9, null, null, null, null, null, null, 1, null, null, null, null, null, "108", 5, 1 },
-                    { 10, null, null, null, null, null, null, 1, null, null, null, null, null, "109", 5, 1 },
-                    { 21, null, null, null, null, null, null, 2, null, null, null, null, null, "120", 5, 1 },
-                    { 20, null, null, null, null, null, null, 1, null, null, null, null, null, "119", 5, 4 },
-                    { 40, null, null, null, null, null, null, 2, null, null, null, null, null, "139", 5, 2 },
-                    { 19, null, null, null, null, null, null, 1, null, null, null, null, null, "118", 5, 4 },
-                    { 17, null, null, null, null, null, null, 1, null, null, null, null, null, "116", 5, 4 },
-                    { 61, null, null, null, null, null, null, 4, null, null, null, null, null, "160", 5, 3 },
-                    { 50, null, null, null, null, null, null, 3, null, null, null, null, null, "149", 5, 3 },
-                    { 49, null, null, null, null, null, null, 3, null, null, null, null, null, "148", 5, 3 },
-                    { 48, null, null, null, null, null, null, 3, null, null, null, null, null, "147", 5, 3 },
-                    { 47, null, null, null, null, null, null, 3, null, null, null, null, null, "146", 5, 3 },
-                    { 46, null, null, null, null, null, null, 3, null, null, null, null, null, "145", 5, 3 },
-                    { 45, null, null, null, null, null, null, 3, null, null, null, null, null, "144", 5, 3 },
-                    { 44, null, null, null, null, null, null, 3, null, null, null, null, null, "143", 5, 3 },
-                    { 43, null, null, null, null, null, null, 3, null, null, null, null, null, "142", 5, 3 },
-                    { 42, null, null, null, null, null, null, 3, null, null, null, null, null, "141", 5, 3 },
-                    { 41, null, null, null, null, null, null, 3, null, null, null, null, null, "140", 5, 3 },
-                    { 36, null, null, null, null, null, null, 2, null, null, null, null, null, "135", 5, 2 },
-                    { 37, null, null, null, null, null, null, 2, null, null, null, null, null, "136", 5, 2 },
-                    { 38, null, null, null, null, null, null, 2, null, null, null, null, null, "137", 5, 2 },
-                    { 39, null, null, null, null, null, null, 2, null, null, null, null, null, "138", 5, 2 },
                     { 62, null, null, null, null, null, null, 4, null, null, null, null, null, "161", 5, 3 },
-                    { 18, null, null, null, null, null, null, 1, null, null, null, null, null, "117", 5, 4 },
                     { 63, null, null, null, null, null, null, 4, null, null, null, null, null, "162", 5, 3 },
+                    { 64, null, null, null, null, null, null, 4, null, null, null, null, null, "163", 5, 3 },
                     { 65, null, null, null, null, null, null, 4, null, null, null, null, null, "164", 5, 3 },
-                    { 16, null, null, null, null, null, null, 1, null, null, null, null, null, "115", 5, 4 },
-                    { 15, null, null, null, null, null, null, 1, null, null, null, null, null, "114", 5, 4 },
-                    { 14, null, null, null, null, null, null, 1, null, null, null, null, null, "113", 5, 4 },
-                    { 13, null, null, null, null, null, null, 1, null, null, null, null, null, "112", 5, 4 },
-                    { 12, null, null, null, null, null, null, 1, null, null, null, null, null, "111", 5, 4 },
-                    { 11, null, null, null, null, null, null, 1, null, null, null, null, null, "110", 5, 4 },
-                    { 31, null, null, null, null, null, null, 2, null, null, null, null, null, "130", 5, 2 },
-                    { 64, null, null, null, null, null, null, 4, null, null, null, null, null, "163", 5, 3 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Rooms",
-                columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Description", "FloorNumber", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "RoomNumber", "RoomStatus", "RoomTypeID" },
-                values: new object[,]
-                {
-                    { 32, null, null, null, null, null, null, 2, null, null, null, null, null, "131", 5, 2 },
-                    { 34, null, null, null, null, null, null, 2, null, null, null, null, null, "133", 5, 2 },
-                    { 35, null, null, null, null, null, null, 2, null, null, null, null, null, "134", 5, 2 },
-                    { 70, null, null, null, null, null, null, 4, null, null, null, null, null, "169", 5, 3 },
-                    { 69, null, null, null, null, null, null, 4, null, null, null, null, null, "168", 5, 3 },
-                    { 68, null, null, null, null, null, null, 4, null, null, null, null, null, "167", 5, 3 },
-                    { 67, null, null, null, null, null, null, 4, null, null, null, null, null, "166", 5, 3 },
                     { 66, null, null, null, null, null, null, 4, null, null, null, null, null, "165", 5, 3 },
-                    { 77, null, null, null, null, null, null, 4, null, null, null, null, null, "176", 5, 7 },
-                    { 33, null, null, null, null, null, null, 2, null, null, null, null, null, "132", 5, 2 }
+                    { 74, null, null, null, null, null, null, 4, null, null, null, null, null, "173", 5, 6 },
+                    { 16, null, null, null, null, null, null, 1, null, null, null, null, null, "115", 5, 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -1530,83 +1524,25 @@ namespace DataAccess.Migrations
                 values: new object[] { 1, 1, 1, null, null, null, null, null, 1, null, null, null, null, null, "the.mstfa@gmail.com", "smtp.gmail.com", "Mustafa.2525774", 587 });
 
             migrationBuilder.InsertData(
-                table: "EmployeesShifts",
-                columns: new[] { "EmployeeID", "ShiftID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername" },
-                values: new object[,]
-                {
-                    { 8, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 30, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 31, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 32, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 33, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 34, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 35, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 36, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 37, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 39, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 40, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 41, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 42, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 1, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 2, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 3, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 4, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 5, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 6, 3, null, null, null, null, null, null, null, null, null, null },
-                    { 7, 3, null, null, null, null, null, null, null, null, null, null },
-                    { 29, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 28, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 38, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 26, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 9, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 10, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 11, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 12, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 13, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 27, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 14, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 16, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 17, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 18, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 15, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 20, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 44, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 25, 2, null, null, null, null, null, null, null, null, null, null },
-                    { 24, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 23, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 19, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 22, 1, null, null, null, null, null, null, null, null, null, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "EmployeesShifts",
-                columns: new[] { "EmployeeID", "ShiftID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername" },
-                values: new object[,]
-                {
-                    { 43, 1, null, null, null, null, null, null, null, null, null, null },
-                    { 21, 1, null, null, null, null, null, null, null, null, null, null }
-                });
-
-            migrationBuilder.InsertData(
                 table: "HotelServices",
                 columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Description", "IconPicture", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "ServiceName", "SettingID" },
                 values: new object[,]
                 {
-                    { 7, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/hizli-c-in-c-out.jpg", null, null, null, null, null, "Hızlı C in / C out", 1 },
-                    { 13, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/ucretsiz-acik-kapali-otopark.jpg", null, null, null, null, null, "Ücretsiz Açık / Kapalı Otopark", 1 },
-                    { 9, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/bebek-karyolasi.jpg", null, null, null, null, null, "Bebek Karyolası", 1 },
-                    { 10, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/aile-odasi.jpg", null, null, null, null, null, "Aile Odası", 1 },
-                    { 11, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/sicak-kahvalti.jpg", null, null, null, null, null, "Sıcak Kahvaltı", 1 },
-                    { 12, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/merkezi-konum.jpg", null, null, null, null, null, "Merkezi Konum", 1 },
-                    { 6, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/bagaj-depolama.jpg", null, null, null, null, null, "Bagaj Depolama", 1 },
-                    { 8, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/kuru-temizleme.jpg", null, null, null, null, null, "Kuru Temizleme", 1 },
-                    { 5, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/toplanti-olanaklari-max-10.jpg", null, null, null, null, null, "Toplantı Olanakları", 1 },
+                    { 1, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/oda-servisi.jpg", null, null, null, null, null, "Oda Servisi", 1 },
                     { 15, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/cay-kahve-hizmeti.jpg", null, null, null, null, null, "Çay - Kahve Hizmeti", 1 },
+                    { 14, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/utu-hizmeti.jpg", null, null, null, null, null, "Ütü Hizmeti", 1 },
+                    { 13, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/ucretsiz-acik-kapali-otopark.jpg", null, null, null, null, null, "Ücretsiz Açık / Kapalı Otopark", 1 },
+                    { 12, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/merkezi-konum.jpg", null, null, null, null, null, "Merkezi Konum", 1 },
+                    { 10, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/aile-odasi.jpg", null, null, null, null, null, "Aile Odası", 1 },
+                    { 9, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/bebek-karyolasi.jpg", null, null, null, null, null, "Bebek Karyolası", 1 },
+                    { 11, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/sicak-kahvalti.jpg", null, null, null, null, null, "Sıcak Kahvaltı", 1 },
+                    { 7, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/hizli-c-in-c-out.jpg", null, null, null, null, null, "Hızlı C in / C out", 1 },
+                    { 6, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/bagaj-depolama.jpg", null, null, null, null, null, "Bagaj Depolama", 1 },
+                    { 5, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/toplanti-olanaklari-max-10.jpg", null, null, null, null, null, "Toplantı Olanakları", 1 },
+                    { 4, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/oda-ici-kasa.jpg", null, null, null, null, null, "Kasa", 1 },
                     { 3, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/camasir-yikama.jpg", null, null, null, null, null, "Çamaşır Yıkama", 1 },
                     { 2, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/ucretsiz-wi-fi.jpg", null, null, null, null, null, "Ücretsiz Wifi", 1 },
-                    { 1, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/oda-servisi.jpg", null, null, null, null, null, "Oda Servisi", 1 },
-                    { 14, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/utu-hizmeti.jpg", null, null, null, null, null, "Ütü Hizmeti", 1 },
-                    { 4, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/oda-ici-kasa.jpg", null, null, null, null, null, "Kasa", 1 }
+                    { 8, null, null, null, null, null, null, "https://roof264.com/media/image/mobil/kuru-temizleme.jpg", null, null, null, null, null, "Kuru Temizleme", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -1614,19 +1550,19 @@ namespace DataAccess.Migrations
                 columns: new[] { "ID", "BeenPaid", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Description", "EmployeeID", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "Month", "MonthlySalary", "PaymentDate" },
                 values: new object[,]
                 {
-                    { 2, true, null, null, null, null, null, null, 2, null, null, null, null, null, "Şubat", 5500m, new DateTime(2022, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, false, null, null, null, null, null, null, 1, null, null, null, null, null, "Mart", 5000m, null },
+                    { 4, false, null, null, null, null, null, null, 2, null, null, null, null, null, "Mart", 5500m, null },
                     { 1, true, null, null, null, null, null, null, 1, null, null, null, null, null, "Şubat", 5000m, new DateTime(2022, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, false, null, null, null, null, null, null, 2, null, null, null, null, null, "Mart", 5500m, null }
+                    { 3, false, null, null, null, null, null, null, 1, null, null, null, null, null, "Mart", 5000m, null },
+                    { 2, true, null, null, null, null, null, null, 2, null, null, null, null, null, "Şubat", 5500m, new DateTime(2022, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "WorkSchedules",
-                columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Date", "Description", "EmployeeID", "HaveOverTime", "Holiday", "IsHoliday", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "OverTimeHour", "ShiftID", "TimesWorked", "TotalWorkTime" },
+                columns: new[] { "ID", "CreatedBy", "CreatedComputerName", "CreatedDate", "CreatedIP", "CreatedUserName", "Date", "Description", "EmployeeID", "HaveOverTime", "Holiday", "IsHoliday", "ModifiedBy", "ModifiedComputerName", "ModifiedDate", "ModifiedIP", "ModifiedUsername", "OverTimeHour", "ShiftEndTime", "ShiftName", "ShiftStartTime", "TimesWorked", "TotalWorkTime" },
                 values: new object[,]
                 {
-                    { 2, null, null, null, null, null, new DateTime(2022, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, false, null, false, null, null, null, null, null, null, 1, new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0) },
-                    { 1, null, null, null, null, null, new DateTime(2022, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, false, 2, true, null, null, null, null, null, null, 1, new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0) }
+                    { 1, null, null, null, null, null, new DateTime(2022, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, false, 2, true, null, null, null, null, null, null, new TimeSpan(0, 16, 0, 0, 0), "Gündüz", new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0) },
+                    { 2, null, null, null, null, null, new DateTime(2022, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, false, null, false, null, null, null, null, null, null, new TimeSpan(0, 16, 0, 0, 0), "Gündüz", new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1679,8 +1615,8 @@ namespace DataAccess.Migrations
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeesShifts_ShiftID",
-                table: "EmployeesShifts",
+                name: "IX_Employees_ShiftID",
+                table: "Employees",
                 column: "ShiftID");
 
             migrationBuilder.CreateIndex(
@@ -1807,11 +1743,6 @@ namespace DataAccess.Migrations
                 name: "IX_WorkSchedules_EmployeeID",
                 table: "WorkSchedules",
                 column: "EmployeeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkSchedules_ShiftID",
-                table: "WorkSchedules",
-                column: "ShiftID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1898,9 +1829,6 @@ namespace DataAccess.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Shifts");
-
-            migrationBuilder.DropTable(
                 name: "Aboutus");
 
             migrationBuilder.DropTable(
@@ -1920,6 +1848,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "Shifts");
 
             migrationBuilder.DropTable(
                 name: "RoomTypes");

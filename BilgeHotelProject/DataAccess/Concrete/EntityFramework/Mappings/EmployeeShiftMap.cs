@@ -15,8 +15,8 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<EmployeeShift> builder)
         {
             CoreConfig(builder);
-            builder.Ignore(x => x.ID);
-            builder.HasKey(x => new { x.EmployeeID, x.ShiftID });
+            //builder.Ignore(x => x.ID);
+            //builder.HasKey(x => new { x.EmployeeID, x.ShiftID });
         }
     }
 }

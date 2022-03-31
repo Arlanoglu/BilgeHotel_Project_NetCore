@@ -1,0 +1,165 @@
+﻿@model VMEmployeeDetail
+@{
+    ViewData["Title"] = "EmployeeDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Misafir Detay</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Misafir Detay</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.GuestResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.GuestResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.GuestResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.GuestResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    
+    <a asp-action="Index" asp-controller="Employee" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Çalışanlar</a>
+    @*<a asp-action="Index" asp-controller="Registration" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Kayıtları Gör</a>*@
+
+    <!--Kişisel Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Kişisel Bilgiler</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">ID</th>
+                <th scope="col">Kimlik No</th>
+                <th scope="col">FullName</th>
+                @if (Model.Email != null)
+                {
+                    <th scope="col">EPosta</th>
+                }
+                <th scope="col">Telefon</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <th>@Model.ID</th>
+                    <td>@Model.IdentificationNumber</td>
+                    <td>@Model.FullName</td>
+
+                    @if (Model.Email != null)
+                    {
+                        <td>@Model.Email</td>
+                    }
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!--Çalışma Detayları-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Çalışma Detayları</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Görev</th>
+                <th scope="col">Departman</th>
+                <th scope="col">Statü</th>
+                <th scope="col">Vardiya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Title</td>
+                <td>@Model.DepartmentName</td>
+                <td>@Model.EmployeeStatus</td>
+                <td>@Model.ShiftName</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Başlama T.</th>
+                <th scope="col">Durumu</th>
+                @if (Model.EmployeeStatus == EmployeeStatus.Worker)
+                {
+                    <th>Saatlik Ücret</th>
+                    <th>Ek Mesai Ücreti</th>
+                }
+                else
+                {
+                    <th>Aylık Maaş</th>
+                }
+                @if (Model.IsActive == false)
+                {
+                    <th>Ayrılış Tarihi</th>
+                }
+                @if (Model.IsActive == false && Model.ReasonForLeaving != null)
+                {
+                    <th>Ayrılış Nedeni</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.StartDateOfWork.Date.ToShortDateString()</td>
+                @if (Model.IsActive)
+                {
+                    <td class="text-success font-weight-bold">Çalışıyor</td>
+                }
+                else
+                {
+                    <td class="text-danger font-weight-bold">Çalışıyor</td>
+                }
+                @if (Model.EmployeeStatus == EmployeeStatus.Worker)
+                {
+                    <th>@Model.HourlyRate.ToString("C2")</th>
+                    <th>@Model.OvertimePay.ToString("C2")</th>
+                }
+                else
+                {
+                    <th>@Model.MonthlySalary.ToString("C2")</th>
+                }
+                @if (Model.IsActive == false)
+                {
+                    <th>@Model.LeavingWorkDate.Date.ToShortDateString()</th>
+                }
+                @if (Model.IsActive == false && Model.ReasonForLeaving != null)
+                {
+                    <th>@Model.ReasonForLeaving</th>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebUI.Models;
 using WebUI.Models.Aboutus;
 using WebUI.Models.Contact;
+using WebUI.Models.Employee;
 using WebUI.Models.ExtraService;
 using WebUI.Models.Guest;
 using WebUI.Models.HomePage;
@@ -86,8 +87,12 @@ namespace WebUI.Utilities
                 case ViewModels.VMGuestRegistrationSelection:
                     viewModel = new VMGuestRegistrationSelection();
                     break;
+                case ViewModels.VMAddShiftToEmployeeCombine:
+                    viewModel = new VMAddShiftToEmployeeCombine();
+                    break;
             }
             return viewModel;
         }
     }
+    
 }

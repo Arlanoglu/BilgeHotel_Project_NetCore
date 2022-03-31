@@ -1,0 +1,124 @@
+﻿@model List<VMShiftList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Vardiyalar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Vardiyalar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/HumanResources/Shift/CreateShift">Vardiya Oluştur</a>
+    @if (ViewBag.ShiftResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.ShiftResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ShiftResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ShiftResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!-- /.card -->
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Vardiya Listesi</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Vardiya Adı</th>
+                        <th scope="col">Başlangıç saati</th>
+                        <th scope="col">Bitiş Saati</th>
+                        <th scope="col">Durumu</th>
+                        <th scope="col">Açıklama</th>
+                        <th scope="col">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.ID</th>
+                                <td>@item.ShiftName</td>
+                                <td>@item.StartTime</td>
+                                <td>@item.EndTime</td>
+                                @if (item.Status == Status.Active)
+                                {
+                                    <td class="text-success font-weight-bold">@item.Status</td>
+                                }
+                                else
+                                {
+                                    <td class="text-danger font-weight-bold">@item.Status</td>
+                                }
+                                <td>@item.Description</td>
+                                <td>
+                                    <a asp-action="AddShiftToEmployee" asp-controller="Employee" asp-route-shiftId="@item.ID" asp-route-shiftName="@item.ShiftName" class="btn btn-primary">Çalışan Ekle</a>
+                                    @if (item.Status == Core.Entities.Enum.Status.Active)
+                                    {
+                                        <a class="btn btn-warning" href="/HumanResources/Shift/ChangeStatus/@item.ID">Pasif Yap</a>
+                                    }
+                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                    {
+                                        <a class="btn btn-success" href="/HumanResources/Shift/ChangeStatus/@item.ID">Aktif Yap</a>
+                                    }
+                                    <a class="btn btn-danger" href="/Administrator/Shift/RemoveForce/@item.ID">Kalıcı Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@*@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                //{
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"responsive": true,
+                //}
+            );
+        });
+    </script>
+}*@
+

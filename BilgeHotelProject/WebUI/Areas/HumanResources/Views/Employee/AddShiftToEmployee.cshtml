@@ -1,0 +1,112 @@
+﻿@model VMAddShiftToEmployeeCombine
+@{
+    ViewData["Title"] = "AddShiftToEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@Model.ShiftName Vardiyasına Çalışan Ekle</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Vardiyalar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @*<a class="btn btn-primary mb-3" href="/HumanResources/Employee/AddEmployee">Çalışan Ekle</a>*@
+    @if (ViewBag.EmployeeResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.EmployeeResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.EmployeeResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.EmployeeResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!-- /.card -->
+
+<form asp-action="AddShiftToEmployee" asp-controller="Employee" method="post">
+    <input type="hidden" asp-for="ShiftID" />
+    <button class="btn btn-primary mb-3" type="submit">Vardiyaya Çalışanları Ekle</button>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-danger">@Model.ShiftName vardiyasına eklenmesi istenilen çalışanlar seçilip Vardiyaya Ekle butonuna tıklanacaktır.</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
+                    <tr>
+                        <th scope="col">Seçim</th>
+                        <th scope="col">Görev</th>
+                        <th scope="col">İsim Soyisim</th>
+                        <th scope="col">Departman</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Employees.Count > 0)
+                    {
+                        @for (int i = 0; i < Model.Employees.Count; i++)
+                        {
+                            <tr>
+                                <th scope="row">
+
+                                    <input type="hidden" asp-for="@Model.Employees[i].ID" />
+                                    <input type="hidden" asp-for="@Model.Employees[i].Title" />
+                                    <input type="hidden" asp-for="@Model.Employees[i].DepartmentName" />
+                                    <input type="hidden" asp-for="@Model.Employees[i].FirstName" />
+                                    <input type="hidden" asp-for="@Model.Employees[i].LastName" />
+                                    <input type="checkbox" asp-for="@Model.Employees[i].Selected" />
+                                </th>
+                                <td>@Model.Employees[i].Title</td>
+                                <td>@Model.Employees[i].FullName</td>
+                                <td>@Model.Employees[i].DepartmentName</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</form>
+</div>
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                //{
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"responsive": true,
+                //}
+            );
+        });
+    </script>
+}
+

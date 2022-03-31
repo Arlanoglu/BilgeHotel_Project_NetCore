@@ -12,8 +12,8 @@ namespace Entities.Concrete
         public TimeSpan EndTime { get; set; }
         public string Description { get; set; }
 
-        
-        public virtual ICollection<WorkSchedule> WorkSchedules { get; set; }
-        public virtual ICollection<EmployeeShift> EmployeesShifts { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+        //public virtual ICollection<WorkSchedule> WorkSchedules { get; set; }
+        //public virtual ICollection<EmployeeShift> EmployeesShifts { get; set; }
     }
 }
