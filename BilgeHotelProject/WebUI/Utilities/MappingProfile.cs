@@ -168,7 +168,8 @@ namespace WebUI.Utilities
             CreateMap<VMEmployeeDetail, Employee>();
 
             CreateMap<Employee, VMAddShiftToEmployee>()
-                .ForMember(x => x.DepartmentName, w => w.MapFrom(y => y.Department.DepartmentName));
+                .ForMember(x => x.DepartmentName, w => w.MapFrom(y => y.Department.DepartmentName))
+                .ForMember(x => x.ShiftName, w => w.MapFrom(y => y.Shift.ShiftName));
             CreateMap<VMAddShiftToEmployee, Employee>();
 
             CreateMap<Shift, VMShiftList>();

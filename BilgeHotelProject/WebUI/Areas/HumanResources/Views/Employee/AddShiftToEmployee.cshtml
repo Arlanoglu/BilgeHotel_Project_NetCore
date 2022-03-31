@@ -45,66 +45,68 @@
     }
     <!-- /.card -->
 
-<form asp-action="AddShiftToEmployee" asp-controller="Employee" method="post">
-    <input type="hidden" asp-for="ShiftID" />
-    <button class="btn btn-primary mb-3" type="submit">Vardiyaya Çalışanları Ekle</button>
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title text-danger">@Model.ShiftName vardiyasına eklenmesi istenilen çalışanlar seçilip Vardiyaya Ekle butonuna tıklanacaktır.</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            <table class="table table-bordered table-hover" id="example2">
-                <thead>
-                    <tr>
-                        <th scope="col">Seçim</th>
-                        <th scope="col">Görev</th>
-                        <th scope="col">İsim Soyisim</th>
-                        <th scope="col">Departman</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Employees.Count > 0)
-                    {
-                        @for (int i = 0; i < Model.Employees.Count; i++)
+    <form asp-action="AddShiftToEmployee" asp-controller="Employee" method="post">
+        <input type="hidden" asp-for="ShiftID" />
+        <button class="btn btn-primary mb-3" type="submit">Vardiyaya Çalışanları Ekle</button>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text-danger">@Model.ShiftName vardiyasına eklenmesi istenilen çalışanlar seçilip Vardiyaya Ekle butonuna tıklanacaktır.</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table class="table table-bordered table-hover" id="example2">
+                    <thead>
+                        <tr>
+                            <th scope="col">Seçim</th>
+                            <th scope="col">Görev</th>
+                            <th scope="col">İsim Soyisim</th>
+                            <th scope="col">Departman</th>
+                            <th scope="col">Vardiya</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Employees.Count > 0)
                         {
-                            <tr>
-                                <th scope="row">
+                            @for (int i = 0; i < Model.Employees.Count; i++)
+                            {
+                                <tr>
+                                    <th scope="row">
 
-                                    <input type="hidden" asp-for="@Model.Employees[i].ID" />
-                                    <input type="hidden" asp-for="@Model.Employees[i].Title" />
-                                    <input type="hidden" asp-for="@Model.Employees[i].DepartmentName" />
-                                    <input type="hidden" asp-for="@Model.Employees[i].FirstName" />
-                                    <input type="hidden" asp-for="@Model.Employees[i].LastName" />
-                                    <input type="checkbox" asp-for="@Model.Employees[i].Selected" />
-                                </th>
-                                <td>@Model.Employees[i].Title</td>
-                                <td>@Model.Employees[i].FullName</td>
-                                <td>@Model.Employees[i].DepartmentName</td>
-                            </tr>
+                                        <input type="hidden" asp-for="@Model.Employees[i].ID" />
+                                        <input type="hidden" asp-for="@Model.Employees[i].Title" />
+                                        <input type="hidden" asp-for="@Model.Employees[i].DepartmentName" />
+                                        <input type="hidden" asp-for="@Model.Employees[i].FirstName" />
+                                        <input type="hidden" asp-for="@Model.Employees[i].LastName" />
+                                        <input type="checkbox" asp-for="@Model.Employees[i].Selected" />
+                                    </th>
+                                    <td>@Model.Employees[i].Title</td>
+                                    <td>@Model.Employees[i].FullName</td>
+                                    <td>@Model.Employees[i].DepartmentName</td>
+                                    <td>@Model.Employees[i].ShiftName</td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 
 @section dataTable{
     <script>
         $(function () {
             $('#example2').DataTable(
-                //{
-                //"paging": true,
-                //"lengthChange": false,
-                //"searching": false,
-                //"ordering": true,
-                //"info": true,
-                //"autoWidth": false,
-                //"responsive": true,
-                //}
+                {
+                    "paging": false,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": false,
+                    "autoWidth": false,
+                    "responsive": true,
+                }
             );
         });
     </script>

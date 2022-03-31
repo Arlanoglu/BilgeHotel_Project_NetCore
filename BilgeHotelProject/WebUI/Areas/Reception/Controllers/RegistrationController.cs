@@ -285,6 +285,7 @@ namespace WebUI.Areas.Reception.Controllers
                     registration = mapper.Map<Registration>(receptionReservation);
                     registration.RegistrationType = RegistrationType.ResepsiyonRezervasyon;
                     registration.ID = 0;
+                    registration.ReservationID = id;
                     createResult = registrationService.Create(registration);
                     if (createResult.ResultStatus == ResultStatus.Success)
                     {
@@ -302,6 +303,7 @@ namespace WebUI.Areas.Reception.Controllers
                     registration = mapper.Map<Registration>(webReservation);
                     registration.RegistrationType = RegistrationType.WebRezervasyon;
                     registration.ID = 0;
+                    registration.ReservationID = id;
                     createResult = registrationService.Create(registration);
                     if (createResult.ResultStatus == ResultStatus.Success)
                     {

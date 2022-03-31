@@ -22,5 +22,6 @@ namespace WebUI.Models.Employee
             }
         }
         public bool Selected { get; set; }
+        public string ShiftName { get; set; }
     }
 }
