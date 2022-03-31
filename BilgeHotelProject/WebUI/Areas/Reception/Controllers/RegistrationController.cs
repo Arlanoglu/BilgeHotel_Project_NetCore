@@ -433,6 +433,12 @@ namespace WebUI.Areas.Reception.Controllers
                     result.Message = "İlgili kayıta ait müşteri zaten kayıtlı.";
                     TempData["RegistrationResult"] = JsonConvert.SerializeObject(result);
                 }
+                else if ((await guestService.GetById(guestId)).IsActive)
+                {
+                    result.ResultStatus = ResultStatus.Error;
+                    result.Message = "Eklemek istediğiniz müşterini farklı bir kayıtta gözüküyor.";
+                    TempData["RegistrationResult"] = JsonConvert.SerializeObject(result);
+                }
                 else
                 {
                     var guest = await guestService.GetById(guestId);
