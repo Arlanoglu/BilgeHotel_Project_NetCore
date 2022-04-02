@@ -28,7 +28,7 @@
     @if (ViewBag.EmployeeResult != null)
     {
         <div class="row">
-            @if (ViewBag.EmployeeResult.ShiftResult == ResultStatus.Success)
+            @if (ViewBag.EmployeeResult.ResultStatus == ResultStatus.Success)
             {
                 <div class="col alert-success">
                     <span>@ViewBag.EmployeeResult.Message</span>
@@ -133,7 +133,6 @@
                     <div class="col-md-6 form-group">
                         <label class="col-form-label">Rolü</label>
                         <select asp-for="UserRole" class="form-control" style="height:44px">
-                            <option value="admin">Admin(Yönetici)</option>
                             @if (((string[])ViewBag.Roles).Length > 0)
                             {
                                 @for (int i = 0; i < ViewBag.Roles.Length; i++)

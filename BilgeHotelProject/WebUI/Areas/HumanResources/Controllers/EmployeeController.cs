@@ -31,8 +31,9 @@ namespace WebUI.Areas.HumanResources.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IDepartmentService departmentService;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public EmployeeController(IMapper mapper, IEmployeeService employeeService, IResult result, IShiftService shiftService, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IDepartmentService departmentService)
+        public EmployeeController(IMapper mapper, IEmployeeService employeeService, IResult result, IShiftService shiftService, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IDepartmentService departmentService, SignInManager<AppUser> signInManager)
         {
             this.mapper = mapper;
             this.employeeService = employeeService;
@@ -41,6 +42,7 @@ namespace WebUI.Areas.HumanResources.Controllers
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.departmentService = departmentService;
+            this.signInManager = signInManager;
         }
         public async Task<IActionResult> Index()
         {
@@ -136,11 +138,12 @@ namespace WebUI.Areas.HumanResources.Controllers
             if (ModelState.IsValid)
             {
                 var employee = await employeeService.GetById(vMEmployeeDelete.ID);
+                var user = await userManager.FindByIdAsync(employee.UserID);
                 if (employee != null)
                 {
-                    if (employee.AppUser != null)
+                    if (user != null)
                     {
-                        await userManager.DeleteAsync(employee.AppUser); //Todo: Bu işlemle birlikte var olan rollerde siliniyor mu kontrol edilecek.
+                        await userManager.DeleteAsync(user); 
                     }
                     employee.IsActive = false;
                     employee.LeavingWorkDate = vMEmployeeDelete.LeavingWorkDate;
@@ -195,27 +198,36 @@ namespace WebUI.Areas.HumanResources.Controllers
                 {
                     result.ResultStatus = ResultStatus.Error;
                     result.Message = "Kaydetmek istediğiniz çalışan sistemde zaten kayıtlı. İşten ayrılan çalışanlar listeni kontrol edip, ilgili alandan çalışanı aktif hale getirebilirsiniz.";
-                    TempData["EmployeeResult"] = JsonConvert.SerializeObject(result);
-
-                    return View();
+                    ViewBag.EmployeeResult = result;
                 }
                 else
                 {
-                    var user = mapper.Map<AppUser>(vMEmployeeCreate);
-                    user.UserName = vMEmployeeCreate.Email;
-                    var result = await userManager.CreateAsync(user, $"{vMEmployeeCreate.FirstName}.123");
-                    if (result.Succeeded)
+                    //İşlem yapan kişi admin olmadığı sürece admin yetkisi atayamaz.
+                    if ((User.IsInRole("admin") && vMEmployeeCreate.UserRole=="admin") || vMEmployeeCreate.UserRole!="admin")
                     {
-                        var roleResult = await userManager.AddToRoleAsync(user, vMEmployeeCreate.UserRole);
-                        vMEmployeeCreate.UserID = (await userManager.FindByEmailAsync(vMEmployeeCreate.Email)).Id;
-                    }                    
+                        var user = mapper.Map<AppUser>(vMEmployeeCreate);
+                        user.UserName = vMEmployeeCreate.Email;
+                        user.EmailConfirmed = true;
+                        var result = await userManager.CreateAsync(user, $"{vMEmployeeCreate.FirstName}.123");
+                        if (result.Succeeded)
+                        {
+                            var roleResult = await userManager.AddToRoleAsync(user, vMEmployeeCreate.UserRole);
+                            vMEmployeeCreate.UserID = (await userManager.FindByEmailAsync(vMEmployeeCreate.Email)).Id;
+                        }
 
-                    var employee = mapper.Map<Employee>(vMEmployeeCreate);
-                    var createResult = employeeService.Create(employee);
+                        var employee = mapper.Map<Employee>(vMEmployeeCreate);
+                        var createResult = employeeService.Create(employee);
 
-                    TempData["EmployeeResult"] = JsonConvert.SerializeObject(createResult);
+                        TempData["EmployeeResult"] = JsonConvert.SerializeObject(createResult);
 
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        result.ResultStatus = ResultStatus.Error;
+                        result.Message = "Admin rolünü atamak için yetkiniz bulunmamaktadır.";
+                        ViewBag.EmployeeResult = result;
+                    }
                 }
 
                 
