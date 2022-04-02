@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.Employee
 {
-    public class VMEmployeeCreate : BaseVM
+    public class VMEmployeeActivate : BaseVM
     {
-        [Required(ErrorMessage ="Görev boş bırakılamaz.")]
+        public int EmployeeID { get; set; }
+        [Required(ErrorMessage = "Görev boş bırakılamaz.")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Kimlik no boş bırakılamaz.")]
         public string IdentificationNumber { get; set; }

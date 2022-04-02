@@ -57,6 +57,11 @@ namespace WebUI.Areas.HumanResources.Controllers
         }
         public async Task<IActionResult> EmployeeDetail(int id)
         {
+            if (TempData["EmployeeResult"] != null)
+            {
+                var employeeResultResult = JsonConvert.DeserializeObject<Result>(TempData["EmployeeResult"].ToString());
+                ViewBag.EmployeeResult = employeeResultResult;
+            }
             var employee = await employeeService.GetById(id);
             if (employee!=null)
             {
@@ -138,13 +143,18 @@ namespace WebUI.Areas.HumanResources.Controllers
             if (ModelState.IsValid)
             {
                 var employee = await employeeService.GetById(vMEmployeeDelete.ID);
-                var user = await userManager.FindByIdAsync(employee.UserID);
+                //var user = await userManager.FindByIdAsync(employee.AppUserId);
                 if (employee != null)
                 {
-                    if (user != null)
+                    if (employee.AppUser != null)
                     {
-                        await userManager.DeleteAsync(user); 
+                        var roles = (await userManager.GetRolesAsync(employee.AppUser)).Where(x => x.Contains("user") == false).ToArray();
+                        for (int i = 0; i < roles.Length; i++)
+                        {
+                            await userManager.RemoveFromRoleAsync(employee.AppUser, roles[i]);
+                        }
                     }
+
                     employee.IsActive = false;
                     employee.LeavingWorkDate = vMEmployeeDelete.LeavingWorkDate;
                     employee.ReasonForLeaving = vMEmployeeDelete.ReasonForLeaving;
@@ -211,8 +221,9 @@ namespace WebUI.Areas.HumanResources.Controllers
                         var result = await userManager.CreateAsync(user, $"{vMEmployeeCreate.FirstName}.123");
                         if (result.Succeeded)
                         {
-                            var roleResult = await userManager.AddToRoleAsync(user, vMEmployeeCreate.UserRole);
-                            vMEmployeeCreate.UserID = (await userManager.FindByEmailAsync(vMEmployeeCreate.Email)).Id;
+                            await userManager.AddToRoleAsync(user, vMEmployeeCreate.UserRole);
+                            await userManager.AddToRoleAsync(user, "user");
+                            vMEmployeeCreate.AppUserId = (await userManager.FindByEmailAsync(vMEmployeeCreate.Email)).Id;
                         }
 
                         var employee = mapper.Map<Employee>(vMEmployeeCreate);
@@ -240,9 +251,226 @@ namespace WebUI.Areas.HumanResources.Controllers
             ViewBag.Roles = TempData["Roles"];
             TempData.Keep("Roles");
             var test = Enum.GetValues(typeof(EmployeeStatus));
-            return View();
+            return View(vMEmployeeCreate);
         }
+        public async Task<IActionResult> ActivateEmployee(int id)
+        {
+            #region Dropdownlar için kullanılacak veriler
+            //Çalışan oluştururken dropdownlarda kullanılacak departman ve vardiya listeleri.
+            var departments = await departmentService.GetActive();
+            var vmDepartmets = mapper.Map<List<VMDepartmentSelectList>>(departments);
 
+            var shifts = await shiftService.GetActive();
+            var vmShifts = mapper.Map<List<VMShiftSelectList>>(shifts);
+            var roles = roleManager.Roles.Select(x => x.Name).ToArray();
+
+            TempData["Departments"] = JsonConvert.SerializeObject(vmDepartmets);
+            TempData["Shifts"] = JsonConvert.SerializeObject(vmShifts);
+            TempData["Roles"] = roles;
+            ViewBag.Departments = departments;
+            ViewBag.Shifts = shifts;
+            ViewBag.Roles = roles;
+            #endregion
+
+            if (TempData["EmployeeResult"] != null)
+            {
+                var employeeResultResult = JsonConvert.DeserializeObject<Result>(TempData["EmployeeResult"].ToString());
+                ViewBag.EmployeeResult = employeeResultResult;
+            }
+            var employee = await employeeService.GetById(id);
+            if (employee.IsActive==false && employee!=null)
+            {
+                var vmEmployee = mapper.Map<VMEmployeeActivate>(employee);
+                return View(vmEmployee);
+            }
+            else if (employee.IsActive && employee != null)
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Çalışan zaten aktif gözüküyor.";
+                TempData["EmployeeResult"] = JsonConvert.SerializeObject(result);
+                return RedirectToAction("EmployeeDetail",new { id=id});
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "İlgili idye ait çalışan kaydı bulunamadı.";
+                TempData["EmployeeResult"] = JsonConvert.SerializeObject(result);
+                return RedirectToAction("Index");
+            }
+            
+        }
+        [HttpPost]
+        public async Task<IActionResult> ActivateEmployee(VMEmployeeActivate vMEmployeeActivate)
+        {
+            if (ModelState.IsValid)
+            {
+                //İşlem yapan kişi admin olmadığı sürece admin yetkisi atayamaz.
+                if ((User.IsInRole("admin") && vMEmployeeActivate.UserRole == "admin") || vMEmployeeActivate.UserRole != "admin")
+                {
+                    var userQuery = await userManager.FindByEmailAsync(vMEmployeeActivate.Email);
+                    if (userQuery==null)
+                    {
+                        var user = mapper.Map<AppUser>(vMEmployeeActivate);
+                        user.UserName = vMEmployeeActivate.Email;
+                        user.EmailConfirmed = true;
+                        var result = await userManager.CreateAsync(user, $"{vMEmployeeActivate.FirstName}.123");
+                        if (result.Succeeded)
+                        {
+                            await userManager.AddToRoleAsync(user, vMEmployeeActivate.UserRole);
+                            await userManager.AddToRoleAsync(user, "user");
+                            vMEmployeeActivate.AppUserId = (await userManager.FindByEmailAsync(vMEmployeeActivate.Email)).Id;
+                        }
+                    }
+                    else
+                    {
+                        await userManager.AddToRoleAsync(userQuery, vMEmployeeActivate.UserRole);
+                        vMEmployeeActivate.AppUserId = userQuery.Id;
+                    }
+
+                    #region Entitynin propertylerinin güncellenmesi
+                    var employee = await employeeService.GetById(vMEmployeeActivate.EmployeeID);
+                    employee.Title = vMEmployeeActivate.Title;
+                    employee.IdentificationNumber = vMEmployeeActivate.IdentificationNumber;
+                    employee.FirstName = vMEmployeeActivate.FirstName;
+                    employee.LastName = vMEmployeeActivate.LastName;
+                    employee.Email = vMEmployeeActivate.Email;
+                    employee.PhoneNumber = vMEmployeeActivate.PhoneNumber;
+                    employee.StartDateOfWork = vMEmployeeActivate.StartDateOfWork;
+                    employee.HourlyRate = vMEmployeeActivate.HourlyRate;
+                    employee.MonthlySalary = vMEmployeeActivate.MonthlySalary;
+                    employee.OvertimePay = vMEmployeeActivate.OvertimePay;
+                    employee.EmployeeStatus = vMEmployeeActivate.EmployeeStatus;
+                    employee.ShiftID = vMEmployeeActivate.ShiftID;
+                    employee.DepartmentID = vMEmployeeActivate.DepartmentID;
+                    employee.AppUserId = vMEmployeeActivate.AppUserId;
+                    employee.Status = Status.Active;
+                    employee.IsActive = true;
+                    #endregion
+
+                    var updateResult = employeeService.Update(employee);
+
+                    TempData["EmployeeResult"] = JsonConvert.SerializeObject(updateResult);
+
+                    if (updateResult.ResultStatus==ResultStatus.Success)
+                    {
+                        return RedirectToAction("EmployeeDetail", new { id = vMEmployeeActivate.EmployeeID });
+                    }
+                }
+                else
+                {
+                    result.ResultStatus = ResultStatus.Error;
+                    result.Message = "Admin rolünü atamak için yetkiniz bulunmamaktadır.";
+                    ViewBag.EmployeeResult = result;
+                }
+            }
+            ViewBag.Departments = JsonConvert.DeserializeObject<List<VMDepartmentSelectList>>(TempData["Departments"].ToString());
+            TempData.Keep("Departments");
+            ViewBag.Shifts = JsonConvert.DeserializeObject<List<VMShiftSelectList>>(TempData["Shifts"].ToString());
+            TempData.Keep("Shifts");
+            ViewBag.Roles = TempData["Roles"];
+            TempData.Keep("Roles");
+
+            return View(vMEmployeeActivate);
+        }
+        public async Task<IActionResult> UpdateEmployee(int id)
+        {
+            #region Dropdownlar için kullanılacak veriler
+            //Çalışan oluştururken dropdownlarda kullanılacak departman ve vardiya listeleri.
+            var departments = await departmentService.GetActive();
+            var vmDepartmets = mapper.Map<List<VMDepartmentSelectList>>(departments);
+
+            var shifts = await shiftService.GetActive();
+            var vmShifts = mapper.Map<List<VMShiftSelectList>>(shifts);
+            var roles = roleManager.Roles.Select(x => x.Name).ToArray();
+
+            TempData["Departments"] = JsonConvert.SerializeObject(vmDepartmets);
+            TempData["Shifts"] = JsonConvert.SerializeObject(vmShifts);
+            TempData["Roles"] = roles;
+            ViewBag.Departments = departments;
+            ViewBag.Shifts = shifts;
+            ViewBag.Roles = roles;
+            #endregion
+
+            if (TempData["EmployeeResult"] != null)
+            {
+                var employeeResultResult = JsonConvert.DeserializeObject<Result>(TempData["EmployeeResult"].ToString());
+                ViewBag.EmployeeResult = employeeResultResult;
+            }
+            var employee = await employeeService.GetById(id);
+            if (employee != null && employee.IsActive)
+            {
+                var vmEmployee = mapper.Map<VMEmployeeUpdate>(employee);
+                return View(vmEmployee);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "İlgili idye ait çalışan kaydı bulunamadı. Id yanlış olabilir yada çalışan İşten Ayrılan Çalışanlar listesinde kayıtlı olabilir. Bu durumda öncelikle çalışanı tekrar aktifleştirmeniz gerekmektedir.";
+                TempData["EmployeeResult"] = JsonConvert.SerializeObject(result);
+                return RedirectToAction("Index");
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmployee(VMEmployeeUpdate vMEmployeeUpdate)
+        {
+            if (ModelState.IsValid)
+            {
+                var employee = await employeeService.GetById(vMEmployeeUpdate.EmployeeID);
+
+                IdentityResult identityResult = null;
+                var user = await userManager.FindByEmailAsync(employee.Email);
+                if (user != null && employee.Email != vMEmployeeUpdate.Email)
+                {
+                    user.Email = vMEmployeeUpdate.Email;
+                    user.UserName = vMEmployeeUpdate.Email;
+                    identityResult = await userManager.UpdateAsync(user);
+                }
+
+                #region Entitynin propertylerinin güncellenmesi
+
+                employee.Title = vMEmployeeUpdate.Title;
+                employee.IdentificationNumber = vMEmployeeUpdate.IdentificationNumber;
+                employee.FirstName = vMEmployeeUpdate.FirstName;
+                employee.LastName = vMEmployeeUpdate.LastName;
+                employee.Email = vMEmployeeUpdate.Email;
+                employee.PhoneNumber = vMEmployeeUpdate.PhoneNumber;
+                employee.StartDateOfWork = vMEmployeeUpdate.StartDateOfWork;
+                employee.HourlyRate = vMEmployeeUpdate.HourlyRate;
+                employee.MonthlySalary = vMEmployeeUpdate.MonthlySalary;
+                employee.OvertimePay = vMEmployeeUpdate.OvertimePay;
+                employee.EmployeeStatus = vMEmployeeUpdate.EmployeeStatus;
+                employee.ShiftID = vMEmployeeUpdate.ShiftID;
+                employee.DepartmentID = vMEmployeeUpdate.DepartmentID;
+                #endregion
+                
+                if (identityResult == null || identityResult.Succeeded)
+                {
+                    var updateResult = employeeService.Update(employee);
+                    TempData["EmployeeResult"] = JsonConvert.SerializeObject(updateResult);
+
+                    if (updateResult.ResultStatus == ResultStatus.Success)
+                    {
+                        return RedirectToAction("EmployeeDetail", new { id = vMEmployeeUpdate.EmployeeID });
+                    }
+                }
+                else
+                {
+                    result.ResultStatus = ResultStatus.Error;
+                    result.Message = "Kullanıcı hesabı mail adresi güncelleme sırasında bir hata meydana geldi mail adresiyle daha önce bir kayıt oluşturulmuş olabilir ya da hatalı giriş yaptınız.";
+                    ViewBag.EmployeeResult = JsonConvert.SerializeObject(result);
+                }
+
+
+            }
+            ViewBag.Departments = JsonConvert.DeserializeObject<List<VMDepartmentSelectList>>(TempData["Departments"].ToString());
+            TempData.Keep("Departments");
+            ViewBag.Shifts = JsonConvert.DeserializeObject<List<VMShiftSelectList>>(TempData["Shifts"].ToString());
+            TempData.Keep("Shifts");
+            ViewBag.Roles = TempData["Roles"];
+            TempData.Keep("Roles");
+
+            return View(vMEmployeeUpdate);
+        }
     }
 }
                                           

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models.Employee
 {
-    public class VMEmployeeCreate : BaseVM
+    public class VMEmployeeUpdate
     {
-        [Required(ErrorMessage ="Görev boş bırakılamaz.")]
+        public int EmployeeID { get; set; }
+        [Required(ErrorMessage = "Görev boş bırakılamaz.")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Kimlik no boş bırakılamaz.")]
         public string IdentificationNumber { get; set; }
@@ -26,9 +27,7 @@ namespace WebUI.Models.Employee
         public decimal MonthlySalary { get; set; }
         public decimal OvertimePay { get; set; }
         public EmployeeStatus EmployeeStatus { get; set; }
-        public string UserRole { get; set; }
         public int ShiftID { get; set; }
         public int DepartmentID { get; set; }
-        public string AppUserId { get; set; }
     }
 }

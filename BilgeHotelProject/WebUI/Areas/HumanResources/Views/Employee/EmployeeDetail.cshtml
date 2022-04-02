@@ -27,7 +27,7 @@
 <div class="container">
     @if (ViewBag.EmployeeResult != null)
     {
-        <div class="row">
+        <div class="row mb-3">
             @if (ViewBag.EmployeeResult.ResultStatus == ResultStatus.Success)
             {
                 <div class="col alert-success">
@@ -43,7 +43,7 @@
         </div>
     }
 
-    <a asp-action="Index" asp-controller="Employee" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Çalışanlar</a>
+    <a asp-action="Index" asp-controller="Employee" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışanlar</a>
     @if (Model.IsActive)
     {
         <a asp-action="DeleteEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Çıkış İşlemi</a>
@@ -52,6 +52,8 @@
     {
         <a asp-action="ActivateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-success mb-3">Giriş İşlemi</a>
     }
+    <a asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-warning mb-3">Çalışanı Güncelle</a>
+    <a asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Hesap ve Yetki İşlemleri</a>
 
     <!--Kişisel Bilgileri-->
     <div class="row">

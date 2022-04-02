@@ -29,7 +29,7 @@ namespace Entities.Concrete
 
         public int ShiftID { get; set; }
         public int DepartmentID { get; set; }
-        public string UserID { get; set; }
+        public string AppUserId { get; set; }
         public virtual Shift Shift { get; set; }
         public virtual Department Department { get; set; }
         public virtual AppUser AppUser { get; set; }

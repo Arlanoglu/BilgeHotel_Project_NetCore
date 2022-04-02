@@ -180,7 +180,15 @@ namespace WebUI.Utilities
             CreateMap<Employee, VMEmployeeCreate>();
             CreateMap<VMEmployeeCreate, Employee>();
 
+            CreateMap<Employee, VMEmployeeActivate>().ForMember(x => x.EmployeeID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMEmployeeActivate, Employee>();
+
+            CreateMap<Employee, VMEmployeeUpdate>().ForMember(x => x.EmployeeID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMEmployeeUpdate, Employee>();
+
             CreateMap<VMEmployeeCreate, AppUser>();
+            CreateMap<VMEmployeeActivate, AppUser>();
+            CreateMap<VMEmployeeUpdate, AppUser>();
 
             CreateMap<Shift, VMShiftList>();
             CreateMap<VMShiftList, Shift>();
