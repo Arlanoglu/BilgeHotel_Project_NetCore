@@ -1,0 +1,99 @@
+﻿@model VMEmployeeDelete
+@{
+    ViewData["Title"] = "DeleteEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Çalışan Çıkış</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Çalışan Çıkış</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.EmployeeResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.EmployeeResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.EmployeeResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.EmployeeResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Çalışan Çıkış</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form asp-action="DeleteEmployee" asp-controller="Employee" method="post">
+                <div asp-validation-summary="All">
+
+                </div>
+                <input type="hidden" asp-for="ID"/>
+                <input type="hidden" asp-for="FirstName"/>
+                <input type="hidden" asp-for="LastName"/>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">Kimlik Numarası</label>
+                        <input asp-for="IdentificationNumber" value="@Model.IdentificationNumber" class="form-control" type="text" readonly />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">İsim Soyisim</label>
+                        <input asp-for="FullName" class="form-control" type="text" readonly />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Görevi</label>
+                        <input asp-for="Title" value="@Model.Title" class="form-control" type="text" readonly />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Departman</label>
+                        <input asp-for="DepartmentName" value="@Model.DepartmentName" class="form-control" type="text" readonly />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Statü</label>
+                        <input asp-for="EmployeeStatus" value="@Model.EmployeeStatus" class="form-control" type="text" readonly />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">Ayrılış Tarihi</label>
+                        <input asp-for="LeavingWorkDate" class="form-control" type="date" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-form-label">Ayrılış Nedeni</label>
+                        <textarea asp-for="ReasonForLeaving" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="col-12 form-group d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">Çıkışı Kaydet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

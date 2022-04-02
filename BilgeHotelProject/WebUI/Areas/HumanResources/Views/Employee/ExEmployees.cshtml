@@ -1,6 +1,6 @@
 ﻿@model List<VMEmployeeList>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ExEmployees";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Çalışanlar</h1>
+                <h1 class="m-0">İşten Ayrılan Çalışanlar</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Çalışanlar</li>
+                    <li class="breadcrumb-item active">İşten Ayrılan Çalışanlar</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -25,8 +25,7 @@
 <!-- /.content-header -->
 
 <div class="container">
-    <a class="btn btn-primary mb-3" href="/HumanResources/Employee/CreateEmployee">Çalışan Ekle</a>
-    <a class="btn btn-primary mb-3" href="/HumanResources/Employee/ExEmployees">İşten Ayrılan Çalışanlar</a>
+    <a asp-action="Index" asp-controller="Employee" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Aktif Çalışanlar</a>
     @if (ViewBag.EmployeeResult != null)
     {
         <div class="row">
@@ -48,7 +47,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Halen çalışıyor durumda olan çalışanların listesi.</h3>
+            <h3 class="card-title">Çalışmıyor durumda olan işten çıkarılmış veya işten ayrılan çalışanların listesi.</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -75,7 +74,7 @@
                                 <td>@item.Title</td>
                                 <td>@item.DepartmentName</td>
                                 <td>@item.ShiftName</td>
-                                <td>@item.EmployeeStatus</td>                                
+                                <td>@item.EmployeeStatus</td>
                                 <td>
                                     <a asp-action="EmployeeDetail" asp-controller="Employee" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
                                 </td>

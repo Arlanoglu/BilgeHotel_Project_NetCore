@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Bogus;
 using Entities.Enum;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
@@ -465,11 +466,13 @@ namespace DataAccess.Concrete.EntityFramework.Context
             //User
             #region Role
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1", Name = "user", NormalizedName = "user".ToUpper() },
-                new IdentityRole { Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b", Name = "admin", NormalizedName = "admin".ToUpper() },
-                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "resepsiyon", NormalizedName = "resepsiyon".ToUpper() },
-                new IdentityRole { Id = "75d8b242-e230-4fe8-ad20-b8e818d97957", Name = "insankaynaklari", NormalizedName = "insankaynaklari".ToUpper() },
-                new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimcihizmetler", NormalizedName = "yardimcihizmetler".ToUpper() }
+                new IdentityRole { Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1", Name = "user", NormalizedName = "user".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b", Name = "admin", NormalizedName = "admin".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "resepsiyon", NormalizedName = "resepsiyon".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "75d8b242-e230-4fe8-ad20-b8e818d97957", Name = "insan kaynaklari", NormalizedName = "insan kaynaklari".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimci hizmetler", NormalizedName = "yardimci hizmetler".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1", Name = "bilgi islem", NormalizedName = "bilgi islem".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "a98546c7-b529-4836-8d88-6af9667d8008", Name = "mutfak", NormalizedName = "mutfak".ToUpper(new CultureInfo("en-US", false)) }
                 );
             #endregion
 

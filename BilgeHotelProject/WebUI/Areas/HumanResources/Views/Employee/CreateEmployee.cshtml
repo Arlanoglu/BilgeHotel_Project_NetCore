@@ -1,0 +1,155 @@
+﻿@model VMEmployeeCreate
+@{
+    ViewData["Title"] = "CreateEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Çalışanlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Çalışanlar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.EmployeeResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.EmployeeResult.ShiftResult == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.EmployeeResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.EmployeeResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Çalışan Oluştur</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form asp-action="CreateEmployee" asp-controller="Employee" method="post">
+                <div asp-validation-summary="All">
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">İsim</label>
+                        <input asp-for="FirstName" class="form-control" type="text" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Soyisim</label>
+                        <input asp-for="LastName" class="form-control" type="text" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Kimlik No</label>
+                        <input asp-for="IdentificationNumber" class="form-control" type="text" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Telefon No</label>
+                        <input asp-for="PhoneNumber" class="form-control" type="tel" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Eposta</label>
+                        <input asp-for="Email" class="form-control" type="text" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Görevi</label>
+                        <input asp-for="Title" class="form-control" type="text" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Giriş Tarihi</label>
+                        <input asp-for="StartDateOfWork" class="form-control" type="date" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Statüsü</label>
+                        <select asp-for="EmployeeStatus" class="form-control">
+                            @foreach (var item in Enum.GetValues(typeof(EmployeeStatus)))
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Departman</label>
+                        <select asp-for="DepartmentID" class="form-control">
+                            @if (ViewBag.Departments.Count > 0)
+                            {
+                                @foreach (var item in ViewBag.Departments)
+                                {
+                                    <option value="@item.ID">@item.DepartmentName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <span class="text-danger">Çalışan aylık maaş alacak ise aylık, saatlik maaş alacak ise saatlik ücret doldurulup diğer alan 0 değeri ile bırakılacaktır.</span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Saatlik Ücret</label>
+                        @Html.TextBoxFor(x => x.HourlyRate, new { @class = "form-control", @type = "currency" })
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Aylık Ücret</label>
+                        @Html.TextBoxFor(x => x.MonthlySalary, new { @class = "form-control", @type = "currency"})
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Mesai Saat Ücreti</label>
+                        @Html.TextBoxFor(x => x.OvertimePay, new { @class = "form-control", @type = "currency" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">Vardiya</label>
+                        <select asp-for="ShiftID" class="form-control" style="height:44px">
+                            @if (ViewBag.Shifts.Count > 0)
+                            {
+                                @foreach (var item in ViewBag.Shifts)
+                                {
+                                    <option value="@item.ID">@item.ShiftName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">Rolü</label>
+                        <select asp-for="UserRole" class="form-control" style="height:44px">
+                            <option value="admin">Admin(Yönetici)</option>
+                            @if (((string[])ViewBag.Roles).Length > 0)
+                            {
+                                @for (int i = 0; i < ViewBag.Roles.Length; i++)
+                                {
+                                    <option value="@ViewBag.Roles[i]">@ViewBag.Roles[i]</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 form-group d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">Oluştur</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

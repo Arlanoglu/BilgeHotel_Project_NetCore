@@ -21,6 +21,7 @@ using WebUI.Models.ExtraService;
 using WebUI.Models.Room;
 using WebUI.Models.Employee;
 using WebUI.Models.Shift;
+using WebUI.Models.Department;
 
 namespace WebUI.Utilities
 {
@@ -172,11 +173,27 @@ namespace WebUI.Utilities
                 .ForMember(x => x.ShiftName, w => w.MapFrom(y => y.Shift.ShiftName));
             CreateMap<VMAddShiftToEmployee, Employee>();
 
+            CreateMap<Employee, VMEmployeeDelete>()
+                .ForMember(x => x.DepartmentName, w => w.MapFrom(y => y.Department.DepartmentName));
+            CreateMap<VMEmployeeDelete, VMEmployeeDelete>();
+
+            CreateMap<Employee, VMEmployeeCreate>();
+            CreateMap<VMEmployeeCreate, Employee>();
+
+            CreateMap<VMEmployeeCreate, AppUser>();
+
             CreateMap<Shift, VMShiftList>();
             CreateMap<VMShiftList, Shift>();
 
             CreateMap<Shift, VMShiftCreate>();
             CreateMap<VMShiftCreate, Shift>();
+
+            CreateMap<Shift, VMShiftSelectList>();
+            CreateMap<VMShiftSelectList, Shift>();
+
+            CreateMap<Department, VMDepartmentSelectList>();
+            CreateMap<VMDepartmentSelectList, Department>();
+
         }
     }
 }

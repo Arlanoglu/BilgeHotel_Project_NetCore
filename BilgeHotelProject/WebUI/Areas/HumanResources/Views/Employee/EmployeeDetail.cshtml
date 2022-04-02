@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Misafir Detay</h1>
+                <h1 class="m-0">Çalışan Detay</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Misafir Detay</li>
+                    <li class="breadcrumb-item active">Çalışan Detay</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -25,26 +25,33 @@
 <!-- /.content-header -->
 
 <div class="container">
-    @if (ViewBag.GuestResult != null)
+    @if (ViewBag.EmployeeResult != null)
     {
         <div class="row">
-            @if (ViewBag.GuestResult.ResultStatus == ResultStatus.Success)
+            @if (ViewBag.EmployeeResult.ResultStatus == ResultStatus.Success)
             {
                 <div class="col alert-success">
-                    <span>@ViewBag.GuestResult.Message</span>
+                    <span>@ViewBag.EmployeeResult.Message</span>
                 </div>
             }
             else
             {
                 <div class="col alert-danger">
-                    <span>@ViewBag.GuestResult.Message</span>
+                    <span>@ViewBag.EmployeeResult.Message</span>
                 </div>
             }
         </div>
     }
-    
+
     <a asp-action="Index" asp-controller="Employee" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i>Çalışanlar</a>
-    @*<a asp-action="Index" asp-controller="Registration" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Kayıtları Gör</a>*@
+    @if (Model.IsActive)
+    {
+        <a asp-action="DeleteEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-danger mb-3">Çıkış İşlemi</a>
+    }
+    else
+    {
+        <a asp-action="ActivateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-success mb-3">Giriş İşlemi</a>
+    }
 
     <!--Kişisel Bilgileri-->
     <div class="row">
@@ -137,7 +144,7 @@
                 }
                 else
                 {
-                    <td class="text-danger font-weight-bold">Çalışıyor</td>
+                    <td class="text-danger font-weight-bold">Çalışmıyor</td>
                 }
                 @if (Model.EmployeeStatus == EmployeeStatus.Worker)
                 {

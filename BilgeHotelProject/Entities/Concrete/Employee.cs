@@ -7,6 +7,10 @@ namespace Entities.Concrete
 {
     public class Employee : BaseEntity
     {
+        public Employee()
+        {
+            IsActive = true;
+        }
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -24,7 +28,7 @@ namespace Entities.Concrete
 
         public int ShiftID { get; set; }
         public int DepartmentID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public virtual Shift Shift { get; set; }
         public virtual Department Department { get; set; }
         public virtual AppUser AppUser { get; set; }
