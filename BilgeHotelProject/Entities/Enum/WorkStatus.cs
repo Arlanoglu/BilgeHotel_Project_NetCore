@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Enum
 {
-    public enum Holiday
+    public enum WorkStatus
     {
-        AnnualLeave,
-        PublicHoliday,
-        Off,
-        UnpaidLeave
+        UcretsizIzin,
+        HaftalikIzin,
+        ResmiTatil,
+        YillikIzin,
+        Calisti
     }
 }

@@ -1,0 +1,123 @@
+﻿@model List<VMWorkScheduleList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Çalışma Çizelgesi</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Çalışma Çizelgesi</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/HumanResources/WorkSchedule/CreateWorkSchedule">Kayıt Oluştur</a>
+    @if (ViewBag.WorkScheduleResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.WorkScheduleResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!-- /.card -->
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Çalışanların günlük olarak çalışma kayıtlarını tutan liste. (Aktif ve Pasifler dahil)</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tarih</th>
+                        <th scope="col">İsim Soyisim</th>
+                        <th scope="col">Çalışma Durumu</th>
+                        <th scope="col">Vardiya Adı</th>
+                        <th scope="col">Durumu</th>
+                        <th scope="col">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.WorkScheduleID</th>
+                                <td>@item.Date.Date.ToShortDateString()</td>
+                                <td>@item.EmployeeFullName</td>
+                                <td>@item.WorkStatus</td>
+                                <td>@item.ShiftName</td>
+                                @if (item.Status == Status.Active)
+                                {
+                                    <td class="text-success font-weight-bold">@item.Status</td>
+                                }
+                                else
+                                {
+                                    <td class="text-danger font-weight-bold">@item.Status</td>
+                                }
+                                <td>
+                                    <a asp-action="WorkScheduleDetail" asp-controller="WorkSchedule" asp-route-id="@item.WorkScheduleID" class="btn btn-primary">Detay</a>
+                                    @if (item.Status == Status.Active)
+                                    {
+                                        <a asp-action="ChangeStatus" asp-controller="WorkSchedule" asp-route-id="@item.WorkScheduleID" class="btn btn-danger">Pasif Yap</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="ChangeStatus" asp-controller="WorkSchedule" asp-route-id="@item.WorkScheduleID" class="btn btn-success">Aktif Yap</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                //{
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"responsive": true,
+                //}
+            );
+        });
+    </script>
+}
+

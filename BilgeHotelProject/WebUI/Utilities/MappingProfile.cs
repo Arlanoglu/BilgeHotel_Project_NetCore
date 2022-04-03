@@ -23,6 +23,7 @@ using WebUI.Models.Employee;
 using WebUI.Models.Shift;
 using WebUI.Models.Department;
 using Microsoft.AspNetCore.Identity;
+using WebUI.Models.WorkSchedule;
 
 namespace WebUI.Utilities
 {
@@ -214,6 +215,21 @@ namespace WebUI.Utilities
 
             CreateMap<Department, VMDepartmentUpdate>();
             CreateMap<VMDepartmentUpdate, Department>();
+
+            CreateMap<WorkSchedule, VMWorkScheduleList>()
+                .ForMember(x => x.EmployeeFullName, w => w.MapFrom(y => y.Employee.FirstName + " " + y.Employee.LastName))
+                .ForMember(x => x.WorkScheduleID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMWorkScheduleList, WorkSchedule>();
+
+            CreateMap<WorkSchedule, VMWorkScheduleDetail>()
+                .ForMember(x => x.EmployeeFullName, w => w.MapFrom(y => y.Employee.FirstName + " " + y.Employee.LastName))
+                .ForMember(x => x.EmployeeDepartment, w => w.MapFrom(y => y.Employee.Department.DepartmentName))
+                .ForMember(x => x.EmployeeTitle, w => w.MapFrom(y => y.Employee.Title))
+                .ForMember(x => x.WorkScheduleID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMWorkScheduleDetail, WorkSchedule>();
+
+            CreateMap<WorkSchedule, VMWorkScheduleCreate>();
+            CreateMap<VMWorkScheduleCreate, WorkSchedule>();
 
         }
     }

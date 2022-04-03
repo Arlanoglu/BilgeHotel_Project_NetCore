@@ -187,8 +187,8 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region WorkScheduleData
             builder.Entity<WorkSchedule>().HasData(
-                new WorkSchedule { ID = 1, EmployeeID = 1, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, IsHoliday = true, Holiday=Holiday.Off, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" },
-                new WorkSchedule { ID = 2, EmployeeID = 2, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, IsHoliday = false, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" }
+                new WorkSchedule { ID = 1, EmployeeID = 1, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, WorkStatus = WorkStatus.HaftalikIzin, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" },
+                new WorkSchedule { ID = 2, EmployeeID = 2, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" }
                 );
             #endregion
 
