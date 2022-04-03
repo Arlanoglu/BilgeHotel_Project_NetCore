@@ -117,21 +117,37 @@ namespace WebUI.Areas.HumanResources.Controllers
             return View(vmWorkScheduleCreateList);
         }
         [HttpPost]
-        public IActionResult CreateWorkSchedule(List<VMWorkScheduleCreate> vMWorkScheduleCreateList)
+        public async Task<IActionResult> CreateWorkSchedule(List<VMWorkScheduleCreate> vMWorkScheduleCreateList)
         {
             var workScheduleList = mapper.Map<List<WorkSchedule>>(vMWorkScheduleCreateList);
+            var workschedules = await workScheduleService.GetActive();
 
-            var createResult = workScheduleService.CreateList(workScheduleList);
+            var query = workScheduleList.Where(x => workschedules.Any(w => x.Date == w.Date && x.EmployeeID == w.EmployeeID)==false).ToList();
 
-            ViewBag.WorkScheduleResult = createResult;
-            
-            if (createResult.ResultStatus == ResultStatus.Success)
+            if (query.Count > 0)
             {
-                TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(createResult);
-                return RedirectToAction("Index");
-            }
+                var createResult = workScheduleService.CreateList(query);
 
-            return View(vMWorkScheduleCreateList);
+                ViewBag.WorkScheduleResult = createResult;
+
+                if (createResult.ResultStatus == ResultStatus.Success)
+                {
+                    TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(createResult);
+                    return RedirectToAction("Index");
+                }
+
+                return View(vMWorkScheduleCreateList);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Bir çalışan için aynı tarihe iki veya daha fazla kayıt yapılamaz. Kaydetmek istediğiniz çalışanlara ait ilgili tarihlerde kayıt gözüküyor. Lütfen var olan kayıtları kontrol ediniz.";
+                TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(result);
+
+                return RedirectToAction("Index");
+            }           
+
+            
         }
         public async Task<IActionResult> SingularCreateWorkSchedule()
         {
@@ -178,9 +194,9 @@ namespace WebUI.Areas.HumanResources.Controllers
             ViewBag.Employees = vmEmployees;
             return View(vMWorkScheduleCreate);
         }
-        public async Task<IActionResult> UpdateWorkSchedule(int id)
-        {
-            var workSchedule = await workScheduleService.GetById(id);
-        }
+        //public async Task<IActionResult> UpdateWorkSchedule(int id)
+        //{
+        //    var workSchedule = await workScheduleService.GetById(id);
+        //}
     }
 }
