@@ -1,0 +1,114 @@
+﻿@model VMWorkScheduleCreate
+@{
+    ViewData["Title"] = "SingularCreateWorkSchedule";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Çalışma Çizelgesi</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Çalışma Çizelgesi</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.WorkScheduleResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.WorkScheduleResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Bireysel Çalışma Çizelgesi Oluştur</h3>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışma Çizelgesi</a>
+    <div class="row">
+        <div class="col">
+            <form asp-action="SingularCreateWorkSchedule" asp-controller="WorkSchedule" method="post">
+                <div asp-validation-summary="All">
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 form-group">
+                        <label class="col-form-label">Çalışan</label>
+                        <select asp-for="EmployeeID" class="form-control">
+                            @foreach (var item in (List<VMEmployeeList>)ViewBag.Employees)
+                            {
+                                <option value="@item.ID">@item.FullName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Tarih</label>
+                        @if (Model != null)
+                        {
+                            <input class="form-control" type="date" asp-for="Date" value="@Model.Date.ToString("yyyy-MM-dd"))" />
+                        }
+                        else
+                        {
+                            <input class="form-control" type="date" asp-for="Date" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                        }
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Çalışma Saati</label>
+                        <input asp-for="TotalWorkTime" class="form-control" type="time" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Çalıştığı Saat</label>
+                        <input asp-for="TimesWorked" class="form-control" type="time" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Mesai</label>
+                        <input asp-for="HaveOverTime" class="form-control" type="checkbox" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Yapılan Mesai S.</label>
+                        <input asp-for="OverTimeHour" class="form-control" type="time" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="col-form-label">Çalışma Durumu</label>
+                        <select asp-for="WorkStatus" class="form-control">
+                            @foreach (var item in Enum.GetValues(typeof(WorkStatus)))
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-form-label">Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="col-12 form-group d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">Oluştur</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

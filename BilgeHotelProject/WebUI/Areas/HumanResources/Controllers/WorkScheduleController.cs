@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WebUI.Models.WorkSchedule;
 using Core.Entities.Enum;
 using Entities.Concrete;
+using WebUI.Models.Employee;
 
 namespace WebUI.Areas.HumanResources.Controllers
 {
@@ -122,13 +123,64 @@ namespace WebUI.Areas.HumanResources.Controllers
 
             var createResult = workScheduleService.CreateList(workScheduleList);
 
-            TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(createResult);
+            ViewBag.WorkScheduleResult = createResult;
+            
             if (createResult.ResultStatus == ResultStatus.Success)
             {
+                TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(createResult);
                 return RedirectToAction("Index");
             }
 
             return View(vMWorkScheduleCreateList);
+        }
+        public async Task<IActionResult> SingularCreateWorkSchedule()
+        {
+            if (TempData["WorkScheduleResult"] != null)
+            {
+                var workScheduleResult = JsonConvert.DeserializeObject<Result>(TempData["WorkScheduleResult"].ToString());
+                ViewBag.WorkScheduleResult = workScheduleResult;
+            }
+            var employees = await employeeService.GetActive();
+            var vmEmployees = mapper.Map<List<VMEmployeeList>>(employees);
+            ViewBag.Employees = vmEmployees;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SingularCreateWorkSchedule(VMWorkScheduleCreate vMWorkScheduleCreate)
+        {
+
+            var employee = await employeeService.GetById(vMWorkScheduleCreate.EmployeeID);
+            vMWorkScheduleCreate.ShiftName = employee.Shift.ShiftName;
+            vMWorkScheduleCreate.ShiftStartTime = employee.Shift.StartTime;
+            vMWorkScheduleCreate.ShiftEndTime = employee.Shift.EndTime;
+            var workSchedule = mapper.Map<WorkSchedule>(vMWorkScheduleCreate);
+
+            if (await workScheduleService.Any(x=>x.EmployeeID==vMWorkScheduleCreate.EmployeeID && x.Date==vMWorkScheduleCreate.Date.Date && x.Status==Status.Active))
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Bir çalışan için aynı tarihe iki veya daha fazla kayıt yapılamaz. Kaydetmek istediğiniz çalışana ait ilgili tarihte kayıt gözüküyor. Lütfen var olan kayıtları kontrol ediniz.";
+                TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(result);
+
+                return RedirectToAction("Index");
+            }
+
+            var createResult = workScheduleService.Create(workSchedule);
+            ViewBag.WorkScheduleResult = createResult;
+
+            if (createResult.ResultStatus == ResultStatus.Success)
+            {
+                TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(createResult);
+                return RedirectToAction("Index");
+            }
+
+            var employees = await employeeService.GetActive();
+            var vmEmployees = mapper.Map<VMEmployeeList>(employees);
+            ViewBag.Employees = vmEmployees;
+            return View(vMWorkScheduleCreate);
+        }
+        public async Task<IActionResult> UpdateWorkSchedule(int id)
+        {
+            var workSchedule = await workScheduleService.GetById(id);
         }
     }
 }
