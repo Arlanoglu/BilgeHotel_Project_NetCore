@@ -53,7 +53,7 @@
         <a asp-action="ActivateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-success mb-3">Giriş İşlemi</a>
     }
     <a asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-warning mb-3">Çalışanı Güncelle</a>
-    <a asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Hesap ve Yetki İşlemleri</a>
+    @*<a asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@Model.ID" class="btn btn-primary mb-3">Hesap ve Yetki İşlemleri</a>*@
 
     <!--Kişisel Bilgileri-->
     <div class="row">
@@ -94,7 +94,7 @@
     <!--Çalışma Detayları-->
     <div class="row">
         <div class="col-12">
-            <h3 class="text-center font-weight-bold">Çalışma Detayları</h3>
+            <h3 class="text-center font-weight-bold">Çalışan Detayları</h3>
         </div>
     </div>
     <table class="table table-bordered">
@@ -168,6 +168,48 @@
             </tr>
         </tbody>
     </table>
+    <!--Hesap yetki Detayları-->
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 mb-3">
+                <h3 class="text-center font-weight-bold">Çalışan Hesap Yetkileri</h3>
+            </div>
+            <div class="col-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" colspan="2">Çalışana Ait Roller</th>
+                        </tr>
+                        <tr>
+                            <th>Roller</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Roles != null)
+                        {
+                            @for (int i = 0; i < Model.Roles.Length; i++)
+                            {
+                                <tr>
+                                    <td>@Model.Roles[i]</td>
+                                    <td class="text-center">
+                                        <a asp-action="DeleteEmployeeRole" asp-controller="Employee" asp-route-employeeId="@Model.ID" asp-route-roleName="@Model.Roles[i]" class="text-danger font-weight-bold">Sil</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-3">
+                @if (Model.IsActive)
+                {
+                    @await Component.InvokeAsync("EmployeeAccountRole", new { id = Model.ID })
+                }
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

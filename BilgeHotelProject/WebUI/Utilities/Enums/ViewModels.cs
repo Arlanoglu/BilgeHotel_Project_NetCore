@@ -28,6 +28,8 @@ namespace WebUI.Utilities.Enums
         VMExtraService,
         VMRegistrationCreate,
         VMGuestRegistrationSelection,
-        VMAddShiftToEmployeeCombine
+        VMAddShiftToEmployeeCombine,
+        VMEmployeeRoleSelection,
+        VMEmployeeRoleSelectionCombine,
     }
 }

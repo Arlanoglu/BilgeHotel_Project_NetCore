@@ -35,5 +35,6 @@ namespace WebUI.Models.Employee
         public DateTime LeavingWorkDate { get; set; }
         public string ReasonForLeaving { get; set; }
         public string UserID { get; set; }
+        public string[] Roles { get; set; }
     }
 }

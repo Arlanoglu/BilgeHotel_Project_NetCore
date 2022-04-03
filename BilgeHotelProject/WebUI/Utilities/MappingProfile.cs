@@ -22,6 +22,7 @@ using WebUI.Models.Room;
 using WebUI.Models.Employee;
 using WebUI.Models.Shift;
 using WebUI.Models.Department;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebUI.Utilities
 {
@@ -201,6 +202,9 @@ namespace WebUI.Utilities
 
             CreateMap<Department, VMDepartmentSelectList>();
             CreateMap<VMDepartmentSelectList, Department>();
+
+            CreateMap<IdentityRole, VMEmployeeRoleSelection>()
+                .ForMember(x => x.RoleName, w => w.MapFrom(y => y.Name));
 
         }
     }

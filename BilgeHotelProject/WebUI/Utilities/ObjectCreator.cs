@@ -90,8 +90,14 @@ namespace WebUI.Utilities
                 case ViewModels.VMAddShiftToEmployeeCombine:
                     viewModel = new VMAddShiftToEmployeeCombine();
                     break;
+                case ViewModels.VMEmployeeRoleSelection:
+                    viewModel = new VMEmployeeRoleSelection();
+                    break;
+                case ViewModels.VMEmployeeRoleSelectionCombine:
+                    viewModel = new VMEmployeeRoleSelectionCombine();
+                    break;
             }
-            return viewModel;
+            return viewModel; 
         }
     }
     
