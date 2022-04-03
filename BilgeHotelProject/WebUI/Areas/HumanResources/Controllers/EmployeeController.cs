@@ -486,12 +486,25 @@ namespace WebUI.Areas.HumanResources.Controllers
             var userRoles = (await userManager.GetRolesAsync(user)).ToList();
 
             var selectedRoles = vMEmployeeRoleSelectionCombine.VMEmployeeRoleSelections.Where(x => x.Selected == true).ToList();
-            foreach (var item in selectedRoles)
+
+            if ((User.IsInRole("admin") && selectedRoles.Any(x => x.RoleName == "admin")) || selectedRoles.Any(x=>x.RoleName=="admin")==false)
             {
-                if (userRoles.Contains(item.RoleName) == false)
+
+                
+                foreach (var item in selectedRoles)
                 {
-                    await userManager.AddToRoleAsync(user, item.RoleName);
+                    if (userRoles.Contains(item.RoleName) == false)
+                    {
+                        await userManager.AddToRoleAsync(user, item.RoleName);
+                    }
                 }
+                
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Admin rolünü atamak için yetkiniz bulunmamaktadır.";
+                TempData["EmployeeResult"] = JsonConvert.SerializeObject(result);
             }
             return RedirectToAction("EmployeeDetail", new { id = vMEmployeeRoleSelectionCombine.EmployeeID });
         }

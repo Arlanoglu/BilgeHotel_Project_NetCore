@@ -225,3 +225,6 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\HumanResources\Views\Employee\ActivateEmployee.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\HumanResources\Views\Employee\UpdateEmployee.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Views\Shared\Components\EmployeeAccountRole\Default.cshtml.g.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\HumanResources\Views\Department\Index.cshtml.g.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\HumanResources\Views\Department\UpdateDepartment.cshtml.g.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\HumanResources\Views\Department\CreateDepartment.cshtml.g.cs

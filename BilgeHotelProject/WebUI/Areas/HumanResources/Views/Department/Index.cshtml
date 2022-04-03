@@ -1,0 +1,90 @@
+﻿@model List<VMDepartmentList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Departmanlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Departmanlar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/HumanResources/Department/CreateDepartment">Yeni Departman Ekle</a>
+    @if (ViewBag.DepartmentResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.DepartmentResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.DepartmentResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.DepartmentResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Departman Adı</th>
+                    <th scope="col">Durumu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.ID</th>
+                        <td>@item.DepartmentName</td>
+                        @if (item.Status == Core.Entities.Enum.Status.Active)
+                        {
+                            <td class="text-success">@item.Status</td>
+                        }
+                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                        {
+                            <td class="text-danger">@item.Status</td>
+                        }
+                        <td>
+                            <a class="btn btn-primary" href="/HumanResources/Department/UpdateDepartment/@item.ID">Düzenle</a>
+                            @if (item.Status == Core.Entities.Enum.Status.Active)
+                            {
+                                <a class="btn btn-warning" href="/HumanResources/Department/ChangeStatus/@item.ID">Pasif Yap</a>
+                            }
+                            else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                            {
+                                <a class="btn btn-success" href="/HumanResources/Department/ChangeStatus/@item.ID">Aktif Yap</a>
+                            }
+                            <a class="btn btn-danger" href="/HumanResources/Department/RemoveForce/@item.ID">Kalıcı Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+

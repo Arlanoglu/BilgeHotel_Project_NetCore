@@ -206,6 +206,15 @@ namespace WebUI.Utilities
             CreateMap<IdentityRole, VMEmployeeRoleSelection>()
                 .ForMember(x => x.RoleName, w => w.MapFrom(y => y.Name));
 
+            CreateMap<Department, VMDepartmentList>();
+            CreateMap<VMDepartmentList, Department>();
+
+            CreateMap<Department, VMDepartmentCreate>();
+            CreateMap<VMDepartmentCreate, Department>();
+
+            CreateMap<Department, VMDepartmentUpdate>();
+            CreateMap<VMDepartmentUpdate, Department>();
+
         }
     }
 }
