@@ -1,8 +1,139 @@
-﻿
+﻿@model VMWorkScheduleDetail
 @{
     ViewData["Title"] = "WorkScheduleDetail";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>WorkScheduleDetail</h1>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Çalışma Çizelgesi</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Çalışma Çizelgesi</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışma Çizelge Listesi</a>
+    @if (ViewBag.WorkScheduleResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.WorkScheduleResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!--çalışma Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Çalışma Detayları</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Tarih</th>
+                <th scope="col">Çalışma Saati</th>
+                <th scope="col">Çalıştığı Saat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <th>@Model.Date.Date.ToShortDateString()</th>
+                    <td>@Model.TotalWorkTime.TotalHours</td>
+                    <td>@Model.TimesWorked.TotalHours</td>
+                </tr>
+            }
+        </tbody>
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">Çalışma Durumu</th>
+                <th scope="col">Mesai</th>
+                @if (Model.HaveOverTime)
+                {
+                    <th scope="col">Yapılan Mesai Saati</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <td>@Model.WorkStatus</td>
+                    @if (Model.HaveOverTime)
+                    {
+                        <td>Var</td>
+                    }
+                    else
+                    {
+                        <td>Yok</td>
+                    }
+                    @if (Model.HaveOverTime)
+                    {
+                        <td>@Model.OverTimeHour.TotalHours</td>
+                    }
+                </tr>
+                @if (Model.Description != null)
+                {
+                    @if (Model.Description != null)
+                    {
+                        <tr class="bg-gradient-gray"><th colspan="3" class="text-center">Açıklama</th></tr>
+                    }
+                    <tr><td colspan="3" class="text-center">@Model.Description</td></tr>
+                }
+            }
+        </tbody>
+    </table>
+    <!--Çalışan Bilgileri-->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Çalışan Bilgileri</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">İsim Soyisim</th>
+                <th scope="col">Departman</th>
+                <th scope="col">Görevi</th>
+                <th scope="col">Vardiya</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.EmployeeFullName</td>
+                <td>@Model.EmployeeDepartment</td>
+                <td>@Model.EmployeeTitle</td>
+                <td>@Model.ShiftName</td>
+                <td>
+                    <a asp-action="EmployeeDetail" asp-controller="Employee" asp-route-id="@Model.EmployeeID" class="btn btn-primary mb-3">Çalışan Detay</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 

@@ -14,7 +14,7 @@ namespace WebUI.Models.WorkSchedule
         public TimeSpan TotalWorkTime { get; set; }
         public TimeSpan TimesWorked { get; set; }
         public bool HaveOverTime { get; set; }
-        public TimeSpan? OverTimeHour { get; set; }
+        public TimeSpan OverTimeHour { get; set; }
         public WorkStatus WorkStatus { get; set; }
         public string Description { get; set; }
         public string EmployeeFullName { get; set; }

@@ -1,6 +1,6 @@
 ﻿@model List<VMWorkScheduleList>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ActiveWorkSchedules";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -25,9 +25,7 @@
 <!-- /.content-header -->
 
 <div class="container">
-    <a class="btn btn-primary mb-3" href="/HumanResources/WorkSchedule/CreateWorkSchedule">Toplu Kayıt Oluştur</a>
-    <a class="btn btn-primary mb-3" href="/HumanResources/WorkSchedule/SingularCreateWorkSchedule">Tekil Kayıt Oluştur</a>
-    <a class="btn btn-success mb-3" href="/HumanResources/WorkSchedule/ActiveWorkSchedules">Aktif Çalışma Çizelgesi</a>
+    <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Tüm Çalışma Çizelgesi</a>
     @if (ViewBag.WorkScheduleResult != null)
     {
         <div class="row">
@@ -49,7 +47,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Çalışanların günlük olarak çalışma kayıtlarını tutan liste. (Aktif ve Pasifler dahil)</h3>
+            <h3 class="card-title">Çalışanların günlük olarak çalışma kayıtlarını tutan liste. (Durumu Aktif Olanlar)</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -122,4 +120,6 @@
         });
     </script>
 }
+
+
 

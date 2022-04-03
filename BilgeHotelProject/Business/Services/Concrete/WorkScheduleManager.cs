@@ -127,5 +127,28 @@ namespace Business.Services.Concrete
         {
             return await unitOfWork.WorkScheduleDal.GetFirstOrDefault();
         }
+
+        public IResult CreateList(List<WorkSchedule> models)
+        {
+            try
+            {
+                foreach (var item in models)
+                {
+                    unitOfWork.WorkScheduleDal.Create(item);
+                }                
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Dispose();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }

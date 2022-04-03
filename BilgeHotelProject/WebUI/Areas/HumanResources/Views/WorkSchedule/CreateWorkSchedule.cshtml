@@ -1,0 +1,154 @@
+﻿@model List<VMWorkScheduleCreate>
+@{
+    ViewData["Title"] = "CreateWorkSchedule";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Çalışma Çizelgesi</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Çalışma Çizelgesi</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.WorkScheduleResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.WorkScheduleResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.WorkScheduleResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Çalışma Çizelgesi Oluştur</h3>
+        </div>
+    </div>
+
+    <form asp-action="CreateWorkSchedule" asp-controller="WorkSchedule" method="post">
+        <div asp-validation-summary="All">
+
+        </div>
+        <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışma Çizelgesi</a>
+        <button class="btn btn-success mb-3" type="submit">Çizelgeyi Ekle</button>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text-danger">Tüm bilgiler eksiksiz doldurulup Çizelgeyi Ekle butonuna tıklanacaktır.</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table class="table table-bordered table-hover" id="example2">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">İsim Soyisim</th>
+                            <th scope="col">Vardiya</th>
+                            <th scope="col">Tarih</th>
+                            <th scope="col">Çalışma Saati</th>
+                            <th scope="col">Çalıştığı S.</th>
+                            <th scope="col">Mesai</th>
+                            <th scope="col">Yapılan Mesai S.</th>
+                            <th scope="col">Çalışma Durumu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <th scope="row">
+                                        <input type="hidden" asp-for="@Model[i].EmployeeID" />
+                                        <input type="hidden" asp-for="@Model[i].ShiftName" />
+                                        <input type="hidden" asp-for="@Model[i].ShiftStartTime" />
+                                        <input type="hidden" asp-for="@Model[i].ShiftEndTime" />
+                                        @Model[i].EmployeeID
+                                    </th>
+                                    <td>@Model[i].EmployeeFullName</td>
+                                    <td>@Model[i].ShiftName</td>
+                                    <td>
+                                        @if (Model[i].Date != DateTime.Parse("01-01-0001"))
+                                        {
+                                            <input class="form-control" type="date" asp-for="@Model[i].Date" value="@Model[i].Date.ToString("yyyy-MM-dd"))" />
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="date" asp-for="@Model[i].Date" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                                        }
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="time" asp-for="@Model[i].TotalWorkTime" value="@Model[i].TotalWorkTime.TotalHours" />
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="time" asp-for="@Model[i].TimesWorked" value="@Model[i].TimesWorked.TotalHours" />
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="checkbox" asp-for="@Model[i].HaveOverTime" />
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="time" asp-for="@Model[i].OverTimeHour" value="@Model[i].OverTimeHour.TotalHours" />
+                                    </td>
+                                    <td>
+                                        <select asp-for="@Model[i].WorkStatus" class="form-control">
+                                            @foreach (var item in Enum.GetValues(typeof(WorkStatus)))
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                {
+                    "paging": false,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": false,
+                    "autoWidth": false,
+                    "responsive": false,
+                }
+            );
+        });
+    </script>
+}
+
+

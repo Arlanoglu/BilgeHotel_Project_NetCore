@@ -231,6 +231,13 @@ namespace WebUI.Utilities
             CreateMap<WorkSchedule, VMWorkScheduleCreate>();
             CreateMap<VMWorkScheduleCreate, WorkSchedule>();
 
+            CreateMap<Employee, VMWorkScheduleCreate>()
+                .ForMember(x => x.EmployeeID, w => w.MapFrom(y => y.ID))
+                .ForMember(x => x.EmployeeFullName, w => w.MapFrom(y => y.FirstName + " " + y.LastName))
+                .ForMember(x => x.ShiftName, w => w.MapFrom(y => y.Shift.ShiftName))
+                .ForMember(x => x.ShiftStartTime, w => w.MapFrom(y => y.Shift.StartTime))
+                .ForMember(x => x.ShiftEndTime, w => w.MapFrom(y => y.Shift.EndTime));
+
         }
     }
 }

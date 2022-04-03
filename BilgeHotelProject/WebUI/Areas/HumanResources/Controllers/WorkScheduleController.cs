@@ -110,28 +110,25 @@ namespace WebUI.Areas.HumanResources.Controllers
                 var workScheduleResult = JsonConvert.DeserializeObject<Result>(TempData["WorkScheduleResult"].ToString());
                 ViewBag.WorkScheduleResult = workScheduleResult;
             }
-            ViewBag.Employees = await employeeService.GetActive();
+            var employees = await employeeService.GetActive();
+            var vmWorkScheduleCreateList = mapper.Map<List<VMWorkScheduleCreate>>(employees);
 
-            return View();
+            return View(vmWorkScheduleCreateList);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateWorkSchedule(VMWorkScheduleCreate vMWorkScheduleCreate)
+        public IActionResult CreateWorkSchedule(List<VMWorkScheduleCreate> vMWorkScheduleCreateList)
         {
-            var workSchedule = mapper.Map<WorkSchedule>(vMWorkScheduleCreate);
-            var employee = await employeeService.GetById(vMWorkScheduleCreate.EmployeeID);
+            var workScheduleList = mapper.Map<List<WorkSchedule>>(vMWorkScheduleCreateList);
 
-            workSchedule.ShiftName = employee.Shift.ShiftName;
-            workSchedule.ShiftStartTime = employee.Shift.StartTime;
-            workSchedule.ShiftEndTime = employee.Shift.EndTime;
+            var createResult = workScheduleService.CreateList(workScheduleList);
 
-            var createResult = workScheduleService.Create(workSchedule);
             TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(createResult);
             if (createResult.ResultStatus == ResultStatus.Success)
             {
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(vMWorkScheduleCreateList);
         }
     }
 }
