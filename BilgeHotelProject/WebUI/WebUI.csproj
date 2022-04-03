@@ -73,8 +73,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\AncillaryServices\Controllers\" />
-    <Folder Include="Areas\AncillaryServices\Views\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
