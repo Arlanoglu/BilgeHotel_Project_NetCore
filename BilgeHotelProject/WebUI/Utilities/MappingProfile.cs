@@ -238,6 +238,10 @@ namespace WebUI.Utilities
                 .ForMember(x => x.ShiftStartTime, w => w.MapFrom(y => y.Shift.StartTime))
                 .ForMember(x => x.ShiftEndTime, w => w.MapFrom(y => y.Shift.EndTime));
 
+            CreateMap<WorkSchedule, VMWorkScheduleUpdate>()
+                .ForMember(x => x.WorkScheduleID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMWorkScheduleUpdate, WorkSchedule>();
+
         }
     }
 }

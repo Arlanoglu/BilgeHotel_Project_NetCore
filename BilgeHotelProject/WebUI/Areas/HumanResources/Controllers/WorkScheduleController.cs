@@ -194,9 +194,41 @@ namespace WebUI.Areas.HumanResources.Controllers
             ViewBag.Employees = vmEmployees;
             return View(vMWorkScheduleCreate);
         }
-        //public async Task<IActionResult> UpdateWorkSchedule(int id)
-        //{
-        //    var workSchedule = await workScheduleService.GetById(id);
-        //}
+        public async Task<IActionResult> UpdateWorkSchedule(int id)
+        {
+            var workSchedule = await workScheduleService.GetById(id);
+
+            if (workSchedule != null)
+            {
+                var vmWorkSchedule = mapper.Map<VMWorkScheduleUpdate>(workSchedule);
+                return View(vmWorkSchedule);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Kayıt bulunamadı.";
+                TempData["WorkScheduleResult"] = JsonConvert.SerializeObject(result);
+
+                return RedirectToAction("Index");
+            }
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateWorkSchedule(VMWorkScheduleUpdate vMWorkScheduleUpdate)
+        {
+            var workSchedule = await workScheduleService.GetById(vMWorkScheduleUpdate.WorkScheduleID);
+            workSchedule.Date = vMWorkScheduleUpdate.Date;
+            workSchedule.TotalWorkTime = vMWorkScheduleUpdate.TotalWorkTime;
+            workSchedule.TimesWorked = vMWorkScheduleUpdate.TimesWorked;
+            workSchedule.HaveOverTime = vMWorkScheduleUpdate.HaveOverTime;
+            workSchedule.OverTimeHour = vMWorkScheduleUpdate.OverTimeHour;
+            workSchedule.WorkStatus = vMWorkScheduleUpdate.WorkStatus;
+            workSchedule.Description = vMWorkScheduleUpdate.Description;
+
+            var updateResult = workScheduleService.Update(workSchedule);
+            ViewBag.WorkScheduleResult = updateResult;
+
+            return View(vMWorkScheduleUpdate);
+        }
     }
 }

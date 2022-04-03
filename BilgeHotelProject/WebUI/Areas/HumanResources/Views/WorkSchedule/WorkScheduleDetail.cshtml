@@ -26,6 +26,7 @@
 
 <div class="container">
     <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışma Çizelge Listesi</a>
+    <a asp-action="UpdateWorkSchedule" asp-controller="WorkSchedule" asp-route-id="@Model.WorkScheduleID" class="btn btn-warning mb-3">Güncelle</a>
     @if (ViewBag.WorkScheduleResult != null)
     {
         <div class="row">
@@ -62,8 +63,8 @@
             {
                 <tr>
                     <th>@Model.Date.Date.ToShortDateString()</th>
-                    <td>@Model.TotalWorkTime.TotalHours</td>
-                    <td>@Model.TimesWorked.TotalHours</td>
+                    <td>@Model.TotalWorkTime.TotalHours / Saat</td>
+                    <td>@Model.TimesWorked.TotalHours / Saat</td>
                 </tr>
             }
         </tbody>
@@ -81,7 +82,7 @@
             @if (Model != null)
             {
                 <tr>
-                    <td>@Model.WorkStatus</td>
+                    <td class="text-primary font-weight-bold">@Model.WorkStatus</td>
                     @if (Model.HaveOverTime)
                     {
                         <td>Var</td>
@@ -92,7 +93,7 @@
                     }
                     @if (Model.HaveOverTime)
                     {
-                        <td>@Model.OverTimeHour.TotalHours</td>
+                        <td>@Model.OverTimeHour.TotalHours / Saat</td>
                     }
                 </tr>
                 @if (Model.Description != null)
