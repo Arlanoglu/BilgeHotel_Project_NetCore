@@ -161,6 +161,9 @@ namespace WebUI.Utilities
             CreateMap<Room, VMRoomList>().ForMember(x => x.RoomTypeName, w => w.MapFrom(y => y.RoomType.RoomTypeName));
             CreateMap<VMRoomList, Room>();
 
+            CreateMap<Room, VMRoomUpdate>().ForMember(x => x.RoomID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMRoomUpdate, Room>();
+
             CreateMap<Employee, VMEmployeeList>()
                 .ForMember(x => x.DepartmentName, w => w.MapFrom(y => y.Department.DepartmentName))
                 .ForMember(x => x.ShiftName, w => w.MapFrom(y => y.Shift.ShiftName));
