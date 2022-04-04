@@ -72,6 +72,17 @@ namespace WebUI.Utilities
             CreateMap<ServicePack, VMServicePack>();
             CreateMap<VMServicePack, ServicePack>();
 
+            CreateMap<ServicePack, VMServicePackList>()
+                .ForMember(x => x.ServicePackID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMServicePackList, ServicePack>();
+
+            CreateMap<ServicePack, VMServicePackCreate>();
+            CreateMap<VMServicePackCreate, ServicePack>();
+
+            CreateMap<ServicePack, VMServicePackUpdate>()
+                .ForMember(x => x.ServicePackID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMServicePackUpdate, ServicePack>();
+
             CreateMap<AppUser, VMLogin>();
             CreateMap<VMLogin, AppUser>();
 
