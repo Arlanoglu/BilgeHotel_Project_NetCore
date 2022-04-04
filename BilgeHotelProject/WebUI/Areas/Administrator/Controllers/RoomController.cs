@@ -2,6 +2,7 @@
 using Business.Services.Abstract;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
+using Entities.Concrete;
 using Entities.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -10,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models.Room;
+using WebUI.Models.RoomType;
+using Core.Entities.Enum;
 
 namespace WebUI.Areas.Administrator.Controllers
 {
@@ -20,13 +23,15 @@ namespace WebUI.Areas.Administrator.Controllers
         private readonly IRoomService roomService;
         private readonly IRegistrationService registrationService;
         private readonly IResult result;
+        private readonly IRoomTypeService roomTypeService;
 
-        public RoomController(IMapper mapper, IRoomService roomService, IRegistrationService registrationService, IResult result)
+        public RoomController(IMapper mapper, IRoomService roomService, IRegistrationService registrationService, IResult result, IRoomTypeService roomTypeService)
         {
             this.mapper = mapper;
             this.roomService = roomService;
             this.registrationService = registrationService;
             this.result = result;
+            this.roomTypeService = roomTypeService;
         }
         public async Task<IActionResult> Index()
         {
@@ -96,6 +101,39 @@ namespace WebUI.Areas.Administrator.Controllers
             ViewBag.RoomResult = updateResult;
 
             return View(vMRoomUpdate);
+        }
+        public async Task<IActionResult> CreateRoom()
+        {
+            if (TempData["RoomResult"] != null)
+            {
+                var roomResult = JsonConvert.DeserializeObject<Result>(TempData["RoomResult"].ToString());
+                ViewBag.RoomResult = roomResult;
+            }
+            var roomTypes = await roomTypeService.GetActive();
+            ViewBag.RoomTypes = mapper.Map<List<VMRoomTypeName>>(roomTypes);
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateRoom(VMRoomCreate vMRoomCreate)
+        {
+            if (await roomService.Any(x=>x.RoomNumber==vMRoomCreate.RoomNumber && x.Status == Status.Active))
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Eklemek istediğiniz oda numarası zaten kayıtlı.";
+                TempData["RoomResult"] = JsonConvert.SerializeObject(result);
+            }
+            else
+            {
+                var room = mapper.Map<Room>(vMRoomCreate);
+                room.RoomStatus = RoomStatus.Bos;
+
+                var createResult = roomService.Create(room);
+                TempData["RoomResult"] = JsonConvert.SerializeObject(createResult);
+            }
+            
+
+            return RedirectToAction("Index");
         }
     }
 }

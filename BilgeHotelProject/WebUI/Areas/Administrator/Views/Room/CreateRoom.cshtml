@@ -1,0 +1,87 @@
+﻿@model VMRoomCreate
+@{
+    ViewData["Title"] = "CreateRoom";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Oda Ekle</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Oda Ekle</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.RoomResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.RoomResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.RoomResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.RoomResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <a asp-action="Index" asp-controller="Room" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Odalar</a>
+    <form asp-action="CreateRoom" asp-controller="Room" method="post">
+        <div asp-validation-summary="All">
+            
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">Oda Num</label>
+                        <input asp-for="RoomNumber" class="form-control" type="number" min="1" value="100" />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="col-form-label">Kat Num</label>
+                        <input asp-for="FloorNumber" class="form-control" type="number" min="1" value="1" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-form-label">Oda Tipi</label>
+                        <select asp-for="RoomTypeID" class="form-control">
+                            @if (ViewBag.RoomTypes.Count > 0)
+                            {
+                                @foreach (var item in (List<VMRoomTypeName>)ViewBag.RoomTypes)
+                                {
+                                    <option value="@item.ID">@item.RoomTypeName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-form-label">Açıklama</label>
+                        <textarea class="form-control" rows="4" asp-for="Description"></textarea>
+                    </div>
+                    <div class="col-12 form-group d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
