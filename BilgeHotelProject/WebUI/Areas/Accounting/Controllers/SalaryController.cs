@@ -12,10 +12,12 @@ using WebUI.Models.Employee;
 using WebUI.Models.Salary;
 using Core.Entities.Enum;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.Accounting.Controllers
 {
     [Area("Accounting")]
+    [Authorize(Roles = "muhasebe")]
     public class SalaryController : Controller
     {
         private readonly IMapper mapper;

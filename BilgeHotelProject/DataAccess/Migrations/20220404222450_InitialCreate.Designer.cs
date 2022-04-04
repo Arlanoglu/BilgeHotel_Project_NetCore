@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220404002709_InitialCreate")]
+    [Migration("20220404222450_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,974 @@ namespace DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3c0f0dda-f64e-4760-8c55-374f7b42089e",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "75eb149a-6e9f-4832-bb84-439c8b7191a3",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Irene10@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Irene",
+                            LastName = "Pollich",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "IRENE10@GMAIL.COM",
+                            NormalizedUserName = "IRENE10@GMAIL.COM",
+                            PasswordHash = "AD6sZTobtQinBMZbiWapj3TfczVSOVBgsv3hUKPZ44EU4DHn1eKioiSAQGBQT2/tCw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "31f4afd2-cf75-4962-9481-edb5c1b1a249",
+                            TwoFactorEnabled = false,
+                            UserName = "Irene10@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "a8ce5158-6ebb-4ede-8154-296c471e76dd",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "b98f9e11-eea3-4976-8e19-170b7082762d",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Samuel_Murray20@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Samuel",
+                            LastName = "Murray",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SAMUEL_MURRAY20@YAHOO.COM",
+                            NormalizedUserName = "SAMUEL_MURRAY20@YAHOO.COM",
+                            PasswordHash = "AMRqPpLPMDMjwVpL1hdQFiUQPJ8GU8FCrUbf0xj76KrQm1eOR7j1S11nUqoVPa85fA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e93c63e1-85f7-43cd-87de-147a2c8d21d8",
+                            TwoFactorEnabled = false,
+                            UserName = "Samuel_Murray20@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "0f6cfb56-f35d-46e4-9b2f-f0e5264a696f",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "e896795c-ebb7-4cf6-a0bb-7eb1301b708b",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Rosemary24@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Rosemary",
+                            LastName = "Ullrich",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ROSEMARY24@HOTMAIL.COM",
+                            NormalizedUserName = "ROSEMARY24@HOTMAIL.COM",
+                            PasswordHash = "AMGplRAFGLI3g/vJZQma8288e/QH38ysylJF4Qx5wWnOZEsy1dvlLdwtMV+lx75gOg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "096b7398-7212-4304-95ab-4c0cc6eb9e12",
+                            TwoFactorEnabled = false,
+                            UserName = "Rosemary24@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "7e7deb9d-2f0e-4496-83f6-3f7f1c02d3c5",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "428942ab-d697-49ae-b2e1-ce626cea7bcd",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Dawn.Schaefer@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Dawn",
+                            LastName = "Schaefer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DAWN.SCHAEFER@HOTMAIL.COM",
+                            NormalizedUserName = "DAWN.SCHAEFER@HOTMAIL.COM",
+                            PasswordHash = "ANiOHSyl7EsdzCjLevYzKwbOnsvXy2WMwNIpR7uHtyf92IZNklp8o9HpizAtbvHqBA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "adb20ea9-cc2c-4a1b-93a5-87c302b3efe0",
+                            TwoFactorEnabled = false,
+                            UserName = "Dawn.Schaefer@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "68a18ffe-ec3a-40f6-ac08-2b39dc044d6a",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "5572efab-dad2-4f8f-87f9-9c1eb4798156",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Rogelio.Yundt27@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Rogelio",
+                            LastName = "Yundt",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ROGELIO.YUNDT27@HOTMAIL.COM",
+                            NormalizedUserName = "ROGELIO.YUNDT27@HOTMAIL.COM",
+                            PasswordHash = "AA9AW1shRb1PT8maCZM/rEFyCgsKj9tCTsKMwOP1EkAQzqxphNCRNCbezi6qdoDAPA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7d828763-4c75-48d1-8ab7-5f0ca795ed96",
+                            TwoFactorEnabled = false,
+                            UserName = "Rogelio.Yundt27@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "2eff5e09-9423-413b-bc53-bc1005a69ab5",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "736341d1-7bfc-481b-9aa2-18dac361d947",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Lynne91@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Lynne",
+                            LastName = "Herman",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "LYNNE91@HOTMAIL.COM",
+                            NormalizedUserName = "LYNNE91@HOTMAIL.COM",
+                            PasswordHash = "AGPAngp2bi8+kGx0Ge0shTdO+7smOj9FjW6fiRxlU6w4ed6fctf7z4lh8iYPv47PDA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c01b7282-e492-4b0f-9b54-ac1417931605",
+                            TwoFactorEnabled = false,
+                            UserName = "Lynne91@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "b708da78-f5dd-4b9f-980a-8878435cfa7f",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "e1f62dc8-a130-4872-9764-93965b53adbd",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Damon36@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Damon",
+                            LastName = "Aufderhar",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DAMON36@YAHOO.COM",
+                            NormalizedUserName = "DAMON36@YAHOO.COM",
+                            PasswordHash = "AB5CqZMMr2Wkj3L1VLvQA3lqgO0qprcSa2LEE44U+wkCcJ10bU1pBkP9mVF7nJH1sQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "720b478a-a45d-4865-8cfc-64997af1096d",
+                            TwoFactorEnabled = false,
+                            UserName = "Damon36@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "186d7d00-399f-461b-8e74-0b185d04d390",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "78d9093d-a08e-47ad-b334-58a3f5275e5c",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Flora.McGlynn@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Flora",
+                            LastName = "McGlynn",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "FLORA.MCGLYNN@YAHOO.COM",
+                            NormalizedUserName = "FLORA.MCGLYNN@YAHOO.COM",
+                            PasswordHash = "AKDnC4nYyVodPS9ckCPDcUvulCG8gVy1kg0i8Jvz1OFFgUsxZratWEEqK9Uxxg4YKg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ed31075a-8938-4a05-bd94-4afabce8ea01",
+                            TwoFactorEnabled = false,
+                            UserName = "Flora.McGlynn@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "91568893-feb4-4c07-a523-6ce308888ddd",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "2de991b2-efee-4d09-bf2d-94eb51382d53",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Clayton.Howell67@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Clayton",
+                            LastName = "Howell",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CLAYTON.HOWELL67@HOTMAIL.COM",
+                            NormalizedUserName = "CLAYTON.HOWELL67@HOTMAIL.COM",
+                            PasswordHash = "AHFIa04ylPIVFdhYNb9lKNSIfoK+xAOqa1SrajACfR+QTS4Q8leStkvkmZ8EmlFscg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "505d489e-748f-4f28-ad8d-bc96d1f51386",
+                            TwoFactorEnabled = false,
+                            UserName = "Clayton.Howell67@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "bdc19aee-648f-4e35-bffd-0a151340f9ce",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "a82f979e-92a0-467a-b566-7bb130478055",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Cornelius85@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Cornelius",
+                            LastName = "Mueller",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CORNELIUS85@HOTMAIL.COM",
+                            NormalizedUserName = "CORNELIUS85@HOTMAIL.COM",
+                            PasswordHash = "AJVoATNo+/VCgP7q2cbp/N2ig+AoO+7XEM9/aR/EzIy9dUj6LepyhU9EHgNhkr4Erw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "82e7da04-b600-437e-974b-55adcd501cf7",
+                            TwoFactorEnabled = false,
+                            UserName = "Cornelius85@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "746bf451-2f0f-40bf-b10a-4c6faf62c132",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "f1c7b45e-2008-49c5-ab4e-a2276eb5992b",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Alfonso68@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Alfonso",
+                            LastName = "Murray",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ALFONSO68@GMAIL.COM",
+                            NormalizedUserName = "ALFONSO68@GMAIL.COM",
+                            PasswordHash = "AOzJ6eMl9CpG6TjjgASBOOKsNWYGiQ4H3xkT+3cdETHtXhGrQwnalhT4JdQwLd4OcQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7dda579c-57cc-4544-a544-44c504e936fc",
+                            TwoFactorEnabled = false,
+                            UserName = "Alfonso68@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "758cac08-c79e-4683-bd68-bc7b13feca19",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "759d48b0-568e-4274-a3d5-95cdd268c329",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Sergio.Deckow67@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Sergio",
+                            LastName = "Deckow",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SERGIO.DECKOW67@HOTMAIL.COM",
+                            NormalizedUserName = "SERGIO.DECKOW67@HOTMAIL.COM",
+                            PasswordHash = "AKwLG52l7pbLwf9XQLw5VmIlkEqaaZ1ROqux7+H98EkZSDuaK7jOVg6Y7dJSP6wAIA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b0563c51-aa8d-41e7-8c62-9555ae039c04",
+                            TwoFactorEnabled = false,
+                            UserName = "Sergio.Deckow67@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "4b0ba339-7c65-4d0d-b421-1f84ff78db57",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "8439968b-34bd-4423-9cf7-0d20df515cb7",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Sam_Powlowski83@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Sam",
+                            LastName = "Powlowski",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SAM_POWLOWSKI83@GMAIL.COM",
+                            NormalizedUserName = "SAM_POWLOWSKI83@GMAIL.COM",
+                            PasswordHash = "AITzhNtWNMMMeic6rqvyw2iOiUDAN9jmy0pgApDuZugv7v11frDMPqCaJMnF0FT2jg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "93c26763-21e1-466a-8a4b-a34ff1bd9aae",
+                            TwoFactorEnabled = false,
+                            UserName = "Sam_Powlowski83@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "16edb950-186f-42f4-9cec-6a33f8d69a1d",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "aa891fd7-24e6-44ec-9e08-328fc5b3bc12",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Edith21@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Edith",
+                            LastName = "Schneider",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "EDITH21@GMAIL.COM",
+                            NormalizedUserName = "EDITH21@GMAIL.COM",
+                            PasswordHash = "AL6DKK32IUqsdZW369zoLorX3S+JgcbwuQrVKzjvYcbuIc6gMNoUuFmovIO/FvPC5Q==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3f0e1b6f-1391-421a-a08b-38d44258828a",
+                            TwoFactorEnabled = false,
+                            UserName = "Edith21@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "3465ba99-caf2-4849-af96-6a55851a5b77",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "4bf7efeb-9dd3-4fe6-a062-40365ae1a2ff",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Paulette_Jerde30@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Paulette",
+                            LastName = "Jerde",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "PAULETTE_JERDE30@YAHOO.COM",
+                            NormalizedUserName = "PAULETTE_JERDE30@YAHOO.COM",
+                            PasswordHash = "AG4OYoX41WG/rEr8R9p958Eix4W5HwV4a4GrsVpj+bCCqEmTATVvZSPELZtukGpF+g==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6a73a8bd-18a5-475c-97ae-9c2f28ebea3a",
+                            TwoFactorEnabled = false,
+                            UserName = "Paulette_Jerde30@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "ed31056b-7fb0-4e77-b7e8-4085cbc926d7",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "4eec4a7f-7af7-41e1-886e-4b584e72c200",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Lee.Mayer99@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Lee",
+                            LastName = "Mayer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "LEE.MAYER99@GMAIL.COM",
+                            NormalizedUserName = "LEE.MAYER99@GMAIL.COM",
+                            PasswordHash = "AN/XwxjjJp2Tu3GkPoLztaxgtlbpWZM5gO34nS0uOOEeueYJTiWMtQxqz0Q48JS5Pg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "38cb8e1d-fba9-44f2-b627-f7f847c28ad8",
+                            TwoFactorEnabled = false,
+                            UserName = "Lee.Mayer99@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "0083f5f9-e6fd-475a-a2df-f43523008feb",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "8cbfd3aa-94d7-4672-93fe-5c3eec86eb7c",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Jodi70@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Jodi",
+                            LastName = "Volkman",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JODI70@YAHOO.COM",
+                            NormalizedUserName = "JODI70@YAHOO.COM",
+                            PasswordHash = "AFIH3XQZERGiDbXqi3tQ2pXNeQJtCU3fdCs+vRD8Ux6iKZMemMBnbbZcfCA9isjZkg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "096060c9-a0a4-46b7-8cb5-001d95c0427a",
+                            TwoFactorEnabled = false,
+                            UserName = "Jodi70@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "65ddf361-0344-465d-ab9e-b818daaf0be7",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "73bb9168-6c5d-41c2-984b-9b6f38bcfaa2",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Justin.Gerhold@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Justin",
+                            LastName = "Gerhold",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JUSTIN.GERHOLD@GMAIL.COM",
+                            NormalizedUserName = "JUSTIN.GERHOLD@GMAIL.COM",
+                            PasswordHash = "APQr7GNi0o9pQbPsKnONG3QU45SL2dbLJCemBa0kMQb2SZJZypB66ufjinXZOAdukA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5cf801e5-2e88-4edc-b03d-9b2a752399fb",
+                            TwoFactorEnabled = false,
+                            UserName = "Justin.Gerhold@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "5b1c893c-4baa-4e91-99f3-e837cd63585b",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "da534738-ba44-4d99-a918-9abc3c2df68c",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Tricia.Wiza@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Tricia",
+                            LastName = "Wiza",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TRICIA.WIZA@YAHOO.COM",
+                            NormalizedUserName = "TRICIA.WIZA@YAHOO.COM",
+                            PasswordHash = "ADG5Fru8avuHETYpEq0Lz/8Iw+RVAtyLEyO2sx85ZFrMsgeVZ6dyLb8gISDO2LmCfw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "294b0957-12e7-4b41-be4a-213e3ecac023",
+                            TwoFactorEnabled = false,
+                            UserName = "Tricia.Wiza@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "6e02fba6-cf2e-4ac4-b2c2-077e659740d4",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "e9e3451c-b525-446b-9ae9-5d3829725dea",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Janice85@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Janice",
+                            LastName = "Gaylord",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JANICE85@HOTMAIL.COM",
+                            NormalizedUserName = "JANICE85@HOTMAIL.COM",
+                            PasswordHash = "AMBahub2Jd1yw4NDIQjiYtKhEYcvlTjreJoPCbTp7nquRQPUORb1mbUXO/xIYVf/Aw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6aedc9e0-b88c-464d-ab36-c1d8ba6c9ff8",
+                            TwoFactorEnabled = false,
+                            UserName = "Janice85@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "4e66fd1d-0b73-4f78-a631-cfc3fd0f0bf6",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "9a9efa00-fead-43ab-9bd1-7e721834c07c",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Miriam.Bernier48@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Miriam",
+                            LastName = "Bernier",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MIRIAM.BERNIER48@HOTMAIL.COM",
+                            NormalizedUserName = "MIRIAM.BERNIER48@HOTMAIL.COM",
+                            PasswordHash = "AGLO9Hg4hsUrkxCDuS+mM8e6F2QDiz09iO8piblolTZFCHIR8bEtEfUHwe6l1YYLiw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "43a6c526-da7a-44ae-8f37-2905eaf1a2bb",
+                            TwoFactorEnabled = false,
+                            UserName = "Miriam.Bernier48@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "3fbe28a2-383a-4bc1-91c3-39c49600fdf7",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "b22a5d5f-a1ca-455d-b25a-69f533365199",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Mack_Hilpert@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Mack",
+                            LastName = "Hilpert",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MACK_HILPERT@YAHOO.COM",
+                            NormalizedUserName = "MACK_HILPERT@YAHOO.COM",
+                            PasswordHash = "AODtrWDBvE8QIlb51apuEbrEzMesm1DAmoHfnG4c6kVQxBoaSc9T5YTnSnY9YJNIVA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4a7babed-7176-4e5c-910b-c1c8df8374ce",
+                            TwoFactorEnabled = false,
+                            UserName = "Mack_Hilpert@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "8aefe060-1b14-446e-8780-16342e0d1fa6",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "d854bf41-644f-42fe-b42d-48ef837d363f",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Elbert28@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Elbert",
+                            LastName = "Volkman",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ELBERT28@YAHOO.COM",
+                            NormalizedUserName = "ELBERT28@YAHOO.COM",
+                            PasswordHash = "AKdx6ZBV5miS9EibDMfoWLuKIPVUbRNedjWFKYpaQHdBVkk2ZiIbtiixgSkjF7zDig==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "87953814-e532-4e8f-9578-3a088a7aac78",
+                            TwoFactorEnabled = false,
+                            UserName = "Elbert28@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "33c98c9f-d8f0-42a6-b105-80f246aa2c11",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "1224e130-4d08-4e54-9bda-3c51fab0a7ce",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Arlene_Hayes@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Arlene",
+                            LastName = "Hayes",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ARLENE_HAYES@GMAIL.COM",
+                            NormalizedUserName = "ARLENE_HAYES@GMAIL.COM",
+                            PasswordHash = "AJqCz2Upvs/n77Hk4Vef5I5DSL3vP2rDTmdAfbwqkZiqLo4BDejsp20p/wq4h3Swpw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8fc0dcff-c813-4124-b9c8-2919e020d4bc",
+                            TwoFactorEnabled = false,
+                            UserName = "Arlene_Hayes@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "f0773878-23d7-4835-a421-6e2ed4ab8038",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "d7a8cd7d-470a-4455-9e19-0540ee02285e",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Darren9@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Darren",
+                            LastName = "Oberbrunner",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DARREN9@YAHOO.COM",
+                            NormalizedUserName = "DARREN9@YAHOO.COM",
+                            PasswordHash = "AJLMRykom99Z8Bip620hEqaoEtrw1z/vAZhGUPc48UilIy2YZnwe1/Ekfi3lxKgbDw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e36951ce-e131-4769-a7b8-317b9056f6e1",
+                            TwoFactorEnabled = false,
+                            UserName = "Darren9@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "51b8feca-22c2-49aa-a83b-c79b81393563",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "45d3e12c-2b4e-4a90-9815-e4dfdc0bb2d2",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Johanna_Donnelly54@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Johanna",
+                            LastName = "Donnelly",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JOHANNA_DONNELLY54@HOTMAIL.COM",
+                            NormalizedUserName = "JOHANNA_DONNELLY54@HOTMAIL.COM",
+                            PasswordHash = "AK3Gh6Fla+DuDkt04y5cGlMemSV98u6Ocdhr3ArRKnlkIfdb6FEr0DLrxx+HaUa2qA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f8f9af44-1aeb-42bc-b55a-4668032aef07",
+                            TwoFactorEnabled = false,
+                            UserName = "Johanna_Donnelly54@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "e02a26ff-8714-4309-9b94-cd438dab006d",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "8ac4c178-208f-4c46-8fa4-74b7fcb65cdf",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Delbert_Lesch81@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Delbert",
+                            LastName = "Lesch",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DELBERT_LESCH81@HOTMAIL.COM",
+                            NormalizedUserName = "DELBERT_LESCH81@HOTMAIL.COM",
+                            PasswordHash = "AHVQ4Ftg5P/hJgp/zALMgCiBy/z0XJO+8Mr02xUl1xW3Rdxjhy0NQrWIsxyzrOv2NA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d7ea31e9-ff39-4ca6-aa95-c160bc47f0c1",
+                            TwoFactorEnabled = false,
+                            UserName = "Delbert_Lesch81@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "b7fccc7c-fff8-4ccc-840c-4e6ecec3ddc4",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "3ff60961-5295-44c8-856e-c691bcf7f1f5",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Hector20@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Hector",
+                            LastName = "Huels",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "HECTOR20@YAHOO.COM",
+                            NormalizedUserName = "HECTOR20@YAHOO.COM",
+                            PasswordHash = "AOvOIknD2FG6pqLmH/wZsnyhkp8rf8EjfXG/7F4++X94Yzfel4Dmu49iiQbNMSTXpA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ddaec124-668e-49e4-91c7-0ef656d4647f",
+                            TwoFactorEnabled = false,
+                            UserName = "Hector20@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "bfdb57ee-9ce1-4f57-a2af-cc89b606c643",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "2115fbed-86dd-4d36-a7c9-87a4f3ccb98c",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Donna.Huels@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Donna",
+                            LastName = "Huels",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DONNA.HUELS@HOTMAIL.COM",
+                            NormalizedUserName = "DONNA.HUELS@HOTMAIL.COM",
+                            PasswordHash = "AN3NnwItmEgOHwqdt6jySyhtZoh/oHItBELMmBggLJxoAco3pFqW5xnmThmOXpF+zQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "30ecfeda-ff0f-4f53-acce-e49689eb8f2a",
+                            TwoFactorEnabled = false,
+                            UserName = "Donna.Huels@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "a1f2c838-8c0f-42d6-a480-1da6bd1ff4a9",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "daa01998-d9ed-4baf-b44a-0379ede740d8",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Kristi.Moen1@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Kristi",
+                            LastName = "Moen",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "KRISTI.MOEN1@YAHOO.COM",
+                            NormalizedUserName = "KRISTI.MOEN1@YAHOO.COM",
+                            PasswordHash = "AKGofR+R3pI4gQyz+UJki4BLywWX2R78ixlA5EnLvbNbn0feELYaAvYcI8Tw6rSAVg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5d60fb5d-5831-49d4-83ae-d3714b89db84",
+                            TwoFactorEnabled = false,
+                            UserName = "Kristi.Moen1@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "7adeb4ea-e823-4699-ad3b-7eb2a3f0b749",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "f5fcd88b-296c-460e-9b14-d07df571b4d4",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Winifred25@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Winifred",
+                            LastName = "Corwin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "WINIFRED25@HOTMAIL.COM",
+                            NormalizedUserName = "WINIFRED25@HOTMAIL.COM",
+                            PasswordHash = "ABL9ZNindSQYdCVIu3J1ntZ8dhf4Kv9whq5OgwTfYguXetu3oUQm0b2UXDoDwfy5XA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "30b7a3f1-d7a4-488a-b472-f1c623cf895b",
+                            TwoFactorEnabled = false,
+                            UserName = "Winifred25@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "24a7031f-3180-41fc-a471-555024ca8d66",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "6074203e-e76b-48f8-b029-89f069b4a048",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Kayla.Reilly19@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Kayla",
+                            LastName = "Reilly",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "KAYLA.REILLY19@HOTMAIL.COM",
+                            NormalizedUserName = "KAYLA.REILLY19@HOTMAIL.COM",
+                            PasswordHash = "AE/L5DZuFbTMFC/HM8u9GwPHqQa7rdNT60kSSEVyQ5XnVlwUXn0wKR8uzw0JB6E+MQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "fe5dcecc-7ec6-4875-ba9c-5be824e4707a",
+                            TwoFactorEnabled = false,
+                            UserName = "Kayla.Reilly19@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "5342700a-8c50-47ad-9599-039c6540fc99",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "f7bd41c5-25dd-4b0f-97e4-476ae6584745",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Louise10@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Louise",
+                            LastName = "Dickens",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "LOUISE10@GMAIL.COM",
+                            NormalizedUserName = "LOUISE10@GMAIL.COM",
+                            PasswordHash = "AEgZjNN1n49Mr4j7jNyEUkc4CnMdqAEB7Hp5ZD/I5bknzd0P/Ii4N7CEvOOHzfr5LA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "697d85db-7a9e-46ef-848e-0cdcbcc090ce",
+                            TwoFactorEnabled = false,
+                            UserName = "Louise10@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "a7263790-59f1-4f6d-b0ec-3bd74899d1d0",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "701827cc-fb85-4184-99b5-440ee59aabe8",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Leland_Kessler77@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Leland",
+                            LastName = "Kessler",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "LELAND_KESSLER77@YAHOO.COM",
+                            NormalizedUserName = "LELAND_KESSLER77@YAHOO.COM",
+                            PasswordHash = "APfvQz21azfKVRi4N18TXoFihCQ8oZcyUKTOQC44x6G4onx0Y35HL9/u/OldJ7TI2w==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "72c633bc-80fa-48c5-9031-bce2ccbcbf94",
+                            TwoFactorEnabled = false,
+                            UserName = "Leland_Kessler77@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "bf58fa77-59af-4b38-af7f-6cc60249b8a5",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "6c0698e6-2662-487d-a94d-feaf78b33eff",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Otis_Sporer30@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Otis",
+                            LastName = "Sporer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "OTIS_SPORER30@GMAIL.COM",
+                            NormalizedUserName = "OTIS_SPORER30@GMAIL.COM",
+                            PasswordHash = "ALczKB8FhE/uXZSC1L+LRkR9leWlRaaBBV0Gk0O/K0zaMNdryEsCGr+3qBw1rtbioA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "29cd5c43-566a-4f82-8321-b8d288636b7b",
+                            TwoFactorEnabled = false,
+                            UserName = "Otis_Sporer30@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "8d796e71-5df5-4fbf-8518-05885e3d5b75",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "818346ac-7ddf-40f2-ac0b-cba8e7cc909a",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Wayne41@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Wayne",
+                            LastName = "Kassulke",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "WAYNE41@HOTMAIL.COM",
+                            NormalizedUserName = "WAYNE41@HOTMAIL.COM",
+                            PasswordHash = "AKE53Dp5q1/x1fzrww25Aef2220PjEwlsFSCPzblCf2A5wR35AYOpCzi15URYIUXWg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "33b9b1db-b4a1-48d7-89f5-79e6f22baf0b",
+                            TwoFactorEnabled = false,
+                            UserName = "Wayne41@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "04ec5159-4484-4f9b-9ef1-ac947433ecd3",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "6fb6aff7-81dc-4d9a-bb39-d8e2edccf7f7",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Robyn.Quitzon@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Robyn",
+                            LastName = "Quitzon",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ROBYN.QUITZON@HOTMAIL.COM",
+                            NormalizedUserName = "ROBYN.QUITZON@HOTMAIL.COM",
+                            PasswordHash = "AApn0pwbLxqTduYN7FpmSC4fZfPDEC1HGHXhbZNN91vYUw9tNrCHMHPZ8pHIj1bUFg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "44b407be-5c41-425f-9a25-7c0da96967d5",
+                            TwoFactorEnabled = false,
+                            UserName = "Robyn.Quitzon@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "4239338b-9d71-4d98-87ab-75cb6805d7db",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "53c23197-748f-4710-b435-d514af50bc71",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Estelle28@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Estelle",
+                            LastName = "Kris",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ESTELLE28@HOTMAIL.COM",
+                            NormalizedUserName = "ESTELLE28@HOTMAIL.COM",
+                            PasswordHash = "AJYpTIHgfWRxoapgYmyMSmmo7RUaUXwbotbbGklsVzUyBEUMqynSPW3fWxQn9SRMeA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "11c6b5e4-b1eb-4379-a174-53ca7b45c4db",
+                            TwoFactorEnabled = false,
+                            UserName = "Estelle28@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "8a644b3f-f1c5-4934-8cad-d6b6b0472b3f",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "bfffbee5-8412-44e3-82f1-fbbbbd2fb67b",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Ellis_Schowalter@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Ellis",
+                            LastName = "Schowalter",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ELLIS_SCHOWALTER@HOTMAIL.COM",
+                            NormalizedUserName = "ELLIS_SCHOWALTER@HOTMAIL.COM",
+                            PasswordHash = "AEQTtd/VUWI7lerROOXEVkDr61gmWJk47s9x4nlEOnF4wWYPH4tSx+hP9gPhTkEyHQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4a574392-1e01-445e-8faa-60647212c2c0",
+                            TwoFactorEnabled = false,
+                            UserName = "Ellis_Schowalter@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "0dbb3350-ac77-4695-94c2-c41095fcb649",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "9d993450-fab7-44be-92c7-0fdedd4bc154",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Stacy16@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Stacy",
+                            LastName = "Lebsack",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STACY16@HOTMAIL.COM",
+                            NormalizedUserName = "STACY16@HOTMAIL.COM",
+                            PasswordHash = "APaTDf8/fp2+EG5Q/nGjzO0QHqC03vsjhv+SnoDSRSjrC6GXKjGP9LbmFMx127zbmQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8275eeb5-7934-41e6-b8dc-7a165085e111",
+                            TwoFactorEnabled = false,
+                            UserName = "Stacy16@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "ead7f891-0ef9-49ee-a5c2-cb7302311447",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "624bb009-6273-4922-a569-ecd71d68fad5",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Kimberly.Braun68@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Kimberly",
+                            LastName = "Braun",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "KIMBERLY.BRAUN68@GMAIL.COM",
+                            NormalizedUserName = "KIMBERLY.BRAUN68@GMAIL.COM",
+                            PasswordHash = "AEGGtHrr1XS/EdSwcEjsBfEjbJgsNaAmJ58yORxxS46vghkFrQJcgZA+4mkbhgW7XA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "adee2c8e-2ce1-4a85-a0c5-855339612add",
+                            TwoFactorEnabled = false,
+                            UserName = "Kimberly.Braun68@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "498253b1-8809-4cc6-9889-2da6fedaf631",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "7dfd93fd-6b5f-4f3e-895c-aea8f90002fa",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Everett59@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Everett",
+                            LastName = "Olson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "EVERETT59@GMAIL.COM",
+                            NormalizedUserName = "EVERETT59@GMAIL.COM",
+                            PasswordHash = "ABHas8A2qZY/Seem+AEPr60WONA23AlLr4cu+aDxvpYOcMCoZcPS0zf86X2yEI/4Dg==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "36e75960-96f2-47d3-9c06-a9a8ec2bcf25",
+                            TwoFactorEnabled = false,
+                            UserName = "Everett59@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "f080f977-63eb-4b54-8047-9de9bf5798df",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "285709db-8271-4d2b-9c15-88bbdd9036ec",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Calvin_Little@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Calvin",
+                            LastName = "Little",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CALVIN_LITTLE@HOTMAIL.COM",
+                            NormalizedUserName = "CALVIN_LITTLE@HOTMAIL.COM",
+                            PasswordHash = "AHx5EdNokecnqd7Laoj7M48Etn+5EYTt5UO9yF3bgZx5vYHqdR3fvCqayP1CXwhsYQ==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d7a943ed-1110-490c-9ee3-af5dec7fed37",
+                            TwoFactorEnabled = false,
+                            UserName = "Calvin_Little@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "b51b9fee-6cc2-4cec-8fd4-fbf936cc4d5f",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "341b668e-079c-417a-b370-fbf0e76c4ff6",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Elisa51@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Elisa",
+                            LastName = "Hegmann",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ELISA51@YAHOO.COM",
+                            NormalizedUserName = "ELISA51@YAHOO.COM",
+                            PasswordHash = "AGUk4wBYuehecrnVhhoQBOM3cF74H+8ERrjQMWPuPwUS784BGpS2pU1X9r5EZ3szLw==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5c6a2f20-9d9c-42a1-a832-b89b4d60f100",
+                            TwoFactorEnabled = false,
+                            UserName = "Elisa51@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "34192c9c-0e49-4372-b3a5-33601c07eb0d",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Rafael_Weissnat27@yahoo.com",
+                            EmailConfirmed = true,
+                            FirstName = "Rafael",
+                            LastName = "Weissnat",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "RAFAEL_WEISSNAT27@YAHOO.COM",
+                            NormalizedUserName = "RAFAEL_WEISSNAT27@YAHOO.COM",
+                            PasswordHash = "AIDbMhgIRdRyG1IHpzqPzgr5UWNkngLE18/lkO0FIqYF/9RLTZEsxqv4AjYi+r338w==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3f3e662a-0ac9-4fbf-898b-fc66d629ee14",
+                            TwoFactorEnabled = false,
+                            UserName = "Rafael_Weissnat27@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "1c5463b5-5ce9-4b2a-974d-94026ee3e28d",
+                            AccessFailedCount = 0,
+                            ActivationKey = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "37ec58ed-4e60-4e33-99b8-1076660184aa",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Freda86@hotmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Freda",
+                            LastName = "Bauch",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "FREDA86@HOTMAIL.COM",
+                            NormalizedUserName = "FREDA86@HOTMAIL.COM",
+                            PasswordHash = "AG9vobQNcdldC7OOu4OGm26CBwuFHpDgbYdW+7rbZrIZFoj1u2kgpvIPVT39R/55fA==",
+                            PhoneNumber = "05111111111",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4ec7462b-f351-4d4a-bb9c-eb63edbfcadc",
+                            TwoFactorEnabled = false,
+                            UserName = "Freda86@hotmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Concrete.Contact", b =>
@@ -290,8 +1258,8 @@ namespace DataAccess.Migrations
                         new
                         {
                             ID = 1,
-                            Adress = "03768 Beahan Junctions, South Mallieport, Papua New Guinea",
-                            Email = "Barbara_Mraz64@hotmail.com",
+                            Adress = "93521 McDermott Divide, Gulgowskiland, Greenland",
+                            Email = "Mack23@yahoo.com",
                             Facebook = "https://www.facebook.com/bilgehotel",
                             Fax = "05454526235",
                             Instagram = "https://www.instagram.com/bilgehotel",
@@ -529,874 +1497,920 @@ namespace DataAccess.Migrations
                         new
                         {
                             ID = 1,
+                            AppUserId = "3c0f0dda-f64e-4760-8c55-374f7b42089e",
                             DepartmentID = 4,
-                            Email = "Brandon_Boyer92@gmail.com",
+                            Email = "Irene10@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Brandon",
-                            HourlyRate = 198.263550786424220m,
-                            IdentificationNumber = "5177",
+                            FirstName = "Irene",
+                            HourlyRate = 197.439600395709090m,
+                            IdentificationNumber = "2793",
                             IsActive = true,
-                            LastName = "Boyer",
+                            LastName = "Pollich",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 3, 15, 21, 18, 47, 169, DateTimeKind.Unspecified).AddTicks(3218),
+                            StartDateOfWork = new DateTime(2019, 5, 9, 1, 59, 40, 368, DateTimeKind.Unspecified).AddTicks(870),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 2,
+                            AppUserId = "a8ce5158-6ebb-4ede-8154-296c471e76dd",
                             DepartmentID = 4,
-                            Email = "Herbert.Barton52@hotmail.com",
+                            Email = "Samuel_Murray20@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Herbert",
-                            HourlyRate = 193.91792690563850m,
-                            IdentificationNumber = "6559",
+                            FirstName = "Samuel",
+                            HourlyRate = 191.163035054301390m,
+                            IdentificationNumber = "1568",
                             IsActive = true,
-                            LastName = "Barton",
+                            LastName = "Murray",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 2, 4, 23, 17, 43, 824, DateTimeKind.Unspecified).AddTicks(8050),
+                            StartDateOfWork = new DateTime(2019, 9, 13, 4, 54, 59, 720, DateTimeKind.Unspecified).AddTicks(7549),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 3,
+                            AppUserId = "0f6cfb56-f35d-46e4-9b2f-f0e5264a696f",
                             DepartmentID = 4,
-                            Email = "Kristen.Konopelski@gmail.com",
+                            Email = "Rosemary24@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Kristen",
-                            HourlyRate = 190.3901778023644250m,
-                            IdentificationNumber = "8932",
+                            FirstName = "Rosemary",
+                            HourlyRate = 191.620506407516310m,
+                            IdentificationNumber = "1847",
                             IsActive = true,
-                            LastName = "Konopelski",
+                            LastName = "Ullrich",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 7, 18, 9, 28, 3, 732, DateTimeKind.Unspecified).AddTicks(9154),
+                            StartDateOfWork = new DateTime(2021, 11, 24, 5, 25, 14, 633, DateTimeKind.Unspecified).AddTicks(4564),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 4,
+                            AppUserId = "7e7deb9d-2f0e-4496-83f6-3f7f1c02d3c5",
                             DepartmentID = 4,
-                            Email = "Tony_Mayert@yahoo.com",
+                            Email = "Dawn.Schaefer@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Tony",
-                            HourlyRate = 190.2270805324553890m,
-                            IdentificationNumber = "5294",
+                            FirstName = "Dawn",
+                            HourlyRate = 199.766172249692570m,
+                            IdentificationNumber = "3919",
                             IsActive = true,
-                            LastName = "Mayert",
+                            LastName = "Schaefer",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2022, 1, 13, 10, 43, 19, 336, DateTimeKind.Unspecified).AddTicks(6835),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 5, 7, 5, 30, 52, 25, DateTimeKind.Unspecified).AddTicks(6147),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 5,
+                            AppUserId = "68a18ffe-ec3a-40f6-ac08-2b39dc044d6a",
                             DepartmentID = 4,
-                            Email = "Angelina47@gmail.com",
+                            Email = "Rogelio.Yundt27@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Angelina",
-                            HourlyRate = 198.168171205636190m,
-                            IdentificationNumber = "6032",
+                            FirstName = "Rogelio",
+                            HourlyRate = 196.701255821018130m,
+                            IdentificationNumber = "5047",
                             IsActive = true,
-                            LastName = "Morissette",
+                            LastName = "Yundt",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 2, 25, 12, 16, 6, 971, DateTimeKind.Unspecified).AddTicks(5128),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2022, 3, 8, 19, 49, 31, 601, DateTimeKind.Unspecified).AddTicks(769),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 6,
+                            AppUserId = "2eff5e09-9423-413b-bc53-bc1005a69ab5",
                             DepartmentID = 4,
-                            Email = "Marilyn_Wilkinson@hotmail.com",
+                            Email = "Lynne91@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Marilyn",
-                            HourlyRate = 197.834990591665260m,
-                            IdentificationNumber = "8378",
+                            FirstName = "Lynne",
+                            HourlyRate = 192.465373302095280m,
+                            IdentificationNumber = "8411",
                             IsActive = true,
-                            LastName = "Wilkinson",
+                            LastName = "Herman",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 12, 17, 22, 29, 47, 42, DateTimeKind.Unspecified).AddTicks(9403),
+                            ShiftID = 3,
+                            StartDateOfWork = new DateTime(2022, 1, 29, 17, 22, 35, 309, DateTimeKind.Unspecified).AddTicks(1633),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 7,
+                            AppUserId = "b708da78-f5dd-4b9f-980a-8878435cfa7f",
                             DepartmentID = 4,
-                            Email = "Carroll59@gmail.com",
+                            Email = "Damon36@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Carroll",
-                            HourlyRate = 194.024574660707530m,
-                            IdentificationNumber = "1521",
+                            FirstName = "Damon",
+                            HourlyRate = 197.213234676613120m,
+                            IdentificationNumber = "9934",
                             IsActive = true,
-                            LastName = "Cormier",
+                            LastName = "Aufderhar",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 8, 4, 21, 37, 33, 939, DateTimeKind.Unspecified).AddTicks(2697),
+                            ShiftID = 3,
+                            StartDateOfWork = new DateTime(2020, 4, 8, 6, 22, 41, 147, DateTimeKind.Unspecified).AddTicks(1160),
                             Status = 0,
                             Title = "Resepsiyonist"
                         },
                         new
                         {
                             ID = 8,
+                            AppUserId = "186d7d00-399f-461b-8e74-0b185d04d390",
                             DepartmentID = 1,
-                            Email = "Debbie.Ziemann@yahoo.com",
+                            Email = "Flora.McGlynn@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Debbie",
-                            HourlyRate = 197.392319290615770m,
-                            IdentificationNumber = "2313",
+                            FirstName = "Flora",
+                            HourlyRate = 197.653185784655240m,
+                            IdentificationNumber = "3649",
                             IsActive = true,
-                            LastName = "Ziemann",
+                            LastName = "McGlynn",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 6, 4, 19, 58, 5, 809, DateTimeKind.Unspecified).AddTicks(9060),
+                            StartDateOfWork = new DateTime(2021, 1, 13, 17, 26, 55, 199, DateTimeKind.Unspecified).AddTicks(3350),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 9,
+                            AppUserId = "91568893-feb4-4c07-a523-6ce308888ddd",
                             DepartmentID = 1,
-                            Email = "John27@gmail.com",
+                            Email = "Clayton.Howell67@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "John",
-                            HourlyRate = 197.367167601998510m,
-                            IdentificationNumber = "3008",
+                            FirstName = "Clayton",
+                            HourlyRate = 190.33269607011820m,
+                            IdentificationNumber = "1113",
                             IsActive = true,
-                            LastName = "Graham",
+                            LastName = "Howell",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 3, 15, 16, 1, 1, 795, DateTimeKind.Unspecified).AddTicks(295),
+                            StartDateOfWork = new DateTime(2020, 1, 27, 10, 25, 34, 708, DateTimeKind.Unspecified).AddTicks(9151),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 10,
+                            AppUserId = "bdc19aee-648f-4e35-bffd-0a151340f9ce",
                             DepartmentID = 1,
-                            Email = "Dominic.OKon11@gmail.com",
+                            Email = "Cornelius85@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Dominic",
-                            HourlyRate = 192.020620117904910m,
-                            IdentificationNumber = "9531",
+                            FirstName = "Cornelius",
+                            HourlyRate = 196.700575415371250m,
+                            IdentificationNumber = "9684",
                             IsActive = true,
-                            LastName = "O'Kon",
+                            LastName = "Mueller",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 12, 30, 10, 30, 25, 935, DateTimeKind.Unspecified).AddTicks(4941),
+                            StartDateOfWork = new DateTime(2021, 2, 10, 21, 4, 59, 736, DateTimeKind.Unspecified).AddTicks(9401),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 11,
+                            AppUserId = "746bf451-2f0f-40bf-b10a-4c6faf62c132",
                             DepartmentID = 1,
-                            Email = "Joann.Brekke@yahoo.com",
+                            Email = "Alfonso68@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Joann",
-                            HourlyRate = 195.112676324840950m,
-                            IdentificationNumber = "6367",
+                            FirstName = "Alfonso",
+                            HourlyRate = 193.876531209739170m,
+                            IdentificationNumber = "5929",
                             IsActive = true,
-                            LastName = "Brekke",
+                            LastName = "Murray",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 3, 21, 19, 19, 24, 223, DateTimeKind.Unspecified).AddTicks(4585),
+                            StartDateOfWork = new DateTime(2021, 1, 3, 2, 27, 1, 866, DateTimeKind.Unspecified).AddTicks(2231),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 12,
+                            AppUserId = "758cac08-c79e-4683-bd68-bc7b13feca19",
                             DepartmentID = 1,
-                            Email = "Irvin87@gmail.com",
+                            Email = "Sergio.Deckow67@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Irvin",
-                            HourlyRate = 192.637281069828790m,
-                            IdentificationNumber = "2013",
+                            FirstName = "Sergio",
+                            HourlyRate = 194.702825497231830m,
+                            IdentificationNumber = "3045",
                             IsActive = true,
-                            LastName = "Murphy",
+                            LastName = "Deckow",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 2, 25, 9, 56, 28, 795, DateTimeKind.Unspecified).AddTicks(8348),
+                            StartDateOfWork = new DateTime(2021, 1, 11, 5, 46, 8, 244, DateTimeKind.Unspecified).AddTicks(4831),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 13,
+                            AppUserId = "4b0ba339-7c65-4d0d-b421-1f84ff78db57",
                             DepartmentID = 1,
-                            Email = "Kelly_Ernser@gmail.com",
+                            Email = "Sam_Powlowski83@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Kelly",
-                            HourlyRate = 195.558800229597280m,
-                            IdentificationNumber = "6825",
+                            FirstName = "Sam",
+                            HourlyRate = 199.910395047585660m,
+                            IdentificationNumber = "5230",
                             IsActive = true,
-                            LastName = "Ernser",
+                            LastName = "Powlowski",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 9, 5, 21, 38, 40, 183, DateTimeKind.Unspecified).AddTicks(786),
+                            StartDateOfWork = new DateTime(2020, 9, 2, 17, 46, 43, 168, DateTimeKind.Unspecified).AddTicks(3015),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 14,
+                            AppUserId = "16edb950-186f-42f4-9cec-6a33f8d69a1d",
                             DepartmentID = 1,
-                            Email = "Carlos69@hotmail.com",
+                            Email = "Edith21@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Carlos",
-                            HourlyRate = 195.411163310246150m,
-                            IdentificationNumber = "9735",
+                            FirstName = "Edith",
+                            HourlyRate = 198.790448773089070m,
+                            IdentificationNumber = "5084",
                             IsActive = true,
-                            LastName = "Crona",
+                            LastName = "Schneider",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 11, 13, 15, 35, 7, 30, DateTimeKind.Unspecified).AddTicks(2250),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 3, 5, 0, 51, 24, 516, DateTimeKind.Unspecified).AddTicks(9946),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 15,
+                            AppUserId = "3465ba99-caf2-4849-af96-6a55851a5b77",
                             DepartmentID = 1,
-                            Email = "Jake30@gmail.com",
+                            Email = "Paulette_Jerde30@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Jake",
-                            HourlyRate = 194.102654966573540m,
-                            IdentificationNumber = "2867",
+                            FirstName = "Paulette",
+                            HourlyRate = 197.063454607065510m,
+                            IdentificationNumber = "1881",
                             IsActive = true,
-                            LastName = "Steuber",
+                            LastName = "Jerde",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 12, 22, 20, 5, 20, 262, DateTimeKind.Unspecified).AddTicks(1169),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 7, 2, 14, 13, 51, 426, DateTimeKind.Unspecified).AddTicks(4965),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 16,
+                            AppUserId = "ed31056b-7fb0-4e77-b7e8-4085cbc926d7",
                             DepartmentID = 1,
-                            Email = "Geneva.Johnston@hotmail.com",
+                            Email = "Lee.Mayer99@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Geneva",
-                            HourlyRate = 199.804825032970320m,
-                            IdentificationNumber = "8267",
+                            FirstName = "Lee",
+                            HourlyRate = 194.236644378042150m,
+                            IdentificationNumber = "9604",
                             IsActive = true,
-                            LastName = "Johnston",
+                            LastName = "Mayer",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 6, 19, 11, 46, 14, 794, DateTimeKind.Unspecified).AddTicks(4318),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 7, 6, 2, 51, 58, 799, DateTimeKind.Unspecified).AddTicks(3996),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 17,
+                            AppUserId = "0083f5f9-e6fd-475a-a2df-f43523008feb",
                             DepartmentID = 1,
-                            Email = "Roosevelt_Roberts66@gmail.com",
+                            Email = "Jodi70@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Roosevelt",
-                            HourlyRate = 193.108077479111070m,
-                            IdentificationNumber = "5923",
+                            FirstName = "Jodi",
+                            HourlyRate = 196.430273641101210m,
+                            IdentificationNumber = "8961",
                             IsActive = true,
-                            LastName = "Roberts",
+                            LastName = "Volkman",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 12, 8, 9, 19, 26, 461, DateTimeKind.Unspecified).AddTicks(1494),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2021, 2, 2, 5, 13, 3, 660, DateTimeKind.Unspecified).AddTicks(845),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 18,
+                            AppUserId = "65ddf361-0344-465d-ab9e-b818daaf0be7",
                             DepartmentID = 1,
-                            Email = "Orville.Block94@yahoo.com",
+                            Email = "Justin.Gerhold@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Orville",
-                            HourlyRate = 191.218884820686130m,
-                            IdentificationNumber = "6629",
+                            FirstName = "Justin",
+                            HourlyRate = 190.1135315234370210m,
+                            IdentificationNumber = "7752",
                             IsActive = true,
-                            LastName = "Block",
+                            LastName = "Gerhold",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 1, 8, 22, 49, 56, 465, DateTimeKind.Unspecified).AddTicks(4402),
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 3, 22, 21, 50, 13, 875, DateTimeKind.Unspecified).AddTicks(1876),
                             Status = 0,
                             Title = "Temizlik Görevlisi"
                         },
                         new
                         {
                             ID = 19,
+                            AppUserId = "5b1c893c-4baa-4e91-99f3-e837cd63585b",
                             DepartmentID = 3,
-                            Email = "Devin_Nolan@hotmail.com",
+                            Email = "Tricia.Wiza@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Devin",
-                            HourlyRate = 194.96795476179940m,
-                            IdentificationNumber = "7937",
+                            FirstName = "Tricia",
+                            HourlyRate = 190.1131398277884070m,
+                            IdentificationNumber = "6569",
                             IsActive = true,
-                            LastName = "Nolan",
+                            LastName = "Wiza",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 1, 7, 18, 19, 17, 139, DateTimeKind.Unspecified).AddTicks(1940),
+                            StartDateOfWork = new DateTime(2019, 1, 9, 20, 12, 14, 715, DateTimeKind.Unspecified).AddTicks(7339),
                             Status = 0,
                             Title = "Aşçı"
                         },
                         new
                         {
                             ID = 20,
+                            AppUserId = "6e02fba6-cf2e-4ac4-b2c2-077e659740d4",
                             DepartmentID = 3,
-                            Email = "Jeff.Cormier@hotmail.com",
+                            Email = "Janice85@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Jeff",
-                            HourlyRate = 198.770130392522610m,
-                            IdentificationNumber = "7192",
+                            FirstName = "Janice",
+                            HourlyRate = 195.161676814389260m,
+                            IdentificationNumber = "3117",
                             IsActive = true,
-                            LastName = "Cormier",
+                            LastName = "Gaylord",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 8, 15, 17, 12, 40, 832, DateTimeKind.Unspecified).AddTicks(2745),
+                            StartDateOfWork = new DateTime(2022, 3, 16, 12, 40, 20, 420, DateTimeKind.Unspecified).AddTicks(191),
                             Status = 0,
                             Title = "Aşçı"
                         },
                         new
                         {
                             ID = 21,
+                            AppUserId = "4e66fd1d-0b73-4f78-a631-cfc3fd0f0bf6",
                             DepartmentID = 3,
-                            Email = "Ruben.Conroy34@gmail.com",
+                            Email = "Miriam.Bernier48@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Ruben",
-                            HourlyRate = 197.040949192382840m,
-                            IdentificationNumber = "4818",
-                            IsActive = true,
-                            LastName = "Conroy",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 10, 27, 2, 11, 23, 294, DateTimeKind.Unspecified).AddTicks(8962),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 22,
-                            DepartmentID = 3,
-                            Email = "Jasmine.Collins@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Jasmine",
-                            HourlyRate = 192.840733063798740m,
-                            IdentificationNumber = "8592",
-                            IsActive = true,
-                            LastName = "Collins",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 5, 17, 10, 3, 42, 560, DateTimeKind.Unspecified).AddTicks(367),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 23,
-                            DepartmentID = 3,
-                            Email = "Michael_Becker62@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Michael",
-                            HourlyRate = 191.599780335836010m,
-                            IdentificationNumber = "1841",
-                            IsActive = true,
-                            LastName = "Becker",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 6, 27, 4, 7, 11, 885, DateTimeKind.Unspecified).AddTicks(6789),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 24,
-                            DepartmentID = 3,
-                            Email = "Maurice.Glover22@yahoo.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Maurice",
-                            HourlyRate = 190.2285158914646670m,
-                            IdentificationNumber = "6270",
-                            IsActive = true,
-                            LastName = "Glover",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 6, 8, 19, 37, 45, 766, DateTimeKind.Unspecified).AddTicks(6682),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 25,
-                            DepartmentID = 3,
-                            Email = "Lynda.Keebler@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Lynda",
-                            HourlyRate = 193.724934106564580m,
-                            IdentificationNumber = "2499",
-                            IsActive = true,
-                            LastName = "Keebler",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 10, 31, 6, 14, 51, 691, DateTimeKind.Unspecified).AddTicks(3065),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 26,
-                            DepartmentID = 3,
-                            Email = "Elizabeth_Schmidt@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Elizabeth",
-                            HourlyRate = 190.3084167234173120m,
-                            IdentificationNumber = "4133",
-                            IsActive = true,
-                            LastName = "Schmidt",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 6, 10, 12, 15, 32, 48, DateTimeKind.Unspecified).AddTicks(1096),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 27,
-                            DepartmentID = 3,
-                            Email = "Kelly.Auer79@yahoo.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Kelly",
-                            HourlyRate = 190.6597136616053590m,
-                            IdentificationNumber = "1341",
-                            IsActive = true,
-                            LastName = "Auer",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 6, 6, 5, 24, 57, 820, DateTimeKind.Unspecified).AddTicks(8491),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 28,
-                            DepartmentID = 3,
-                            Email = "Louise_Dietrich@yahoo.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Louise",
-                            HourlyRate = 198.932409430356890m,
-                            IdentificationNumber = "7149",
-                            IsActive = true,
-                            LastName = "Dietrich",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2022, 4, 1, 7, 37, 4, 45, DateTimeKind.Unspecified).AddTicks(617),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 29,
-                            DepartmentID = 3,
-                            Email = "Rodney_Jast36@hotmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Rodney",
-                            HourlyRate = 197.204422129878970m,
-                            IdentificationNumber = "2674",
-                            IsActive = true,
-                            LastName = "Jast",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 2, 27, 19, 54, 27, 339, DateTimeKind.Unspecified).AddTicks(9821),
-                            Status = 0,
-                            Title = "Aşçı"
-                        },
-                        new
-                        {
-                            ID = 30,
-                            DepartmentID = 3,
-                            Email = "Timmy.OHara@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Timmy",
-                            HourlyRate = 191.875381200516310m,
-                            IdentificationNumber = "4599",
-                            IsActive = true,
-                            LastName = "O'Hara",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 9, 13, 10, 46, 5, 36, DateTimeKind.Unspecified).AddTicks(5023),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 31,
-                            DepartmentID = 3,
-                            Email = "Eddie.Bernier@hotmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Eddie",
-                            HourlyRate = 195.82278720840010m,
-                            IdentificationNumber = "8981",
+                            FirstName = "Miriam",
+                            HourlyRate = 193.751820281032390m,
+                            IdentificationNumber = "5594",
                             IsActive = true,
                             LastName = "Bernier",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 2, 12, 5, 57, 24, 998, DateTimeKind.Unspecified).AddTicks(2803),
+                            StartDateOfWork = new DateTime(2020, 4, 6, 11, 33, 30, 463, DateTimeKind.Unspecified).AddTicks(5908),
                             Status = 0,
-                            Title = "Garson"
+                            Title = "Aşçı"
                         },
                         new
                         {
-                            ID = 32,
+                            ID = 22,
+                            AppUserId = "3fbe28a2-383a-4bc1-91c3-39c49600fdf7",
                             DepartmentID = 3,
-                            Email = "Claire.Lockman@gmail.com",
+                            Email = "Mack_Hilpert@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Claire",
-                            HourlyRate = 197.247894856728560m,
-                            IdentificationNumber = "8238",
+                            FirstName = "Mack",
+                            HourlyRate = 191.207412654164910m,
+                            IdentificationNumber = "9782",
                             IsActive = true,
-                            LastName = "Lockman",
+                            LastName = "Hilpert",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 1, 7, 12, 1, 8, 34, DateTimeKind.Unspecified).AddTicks(2060),
+                            StartDateOfWork = new DateTime(2020, 7, 19, 17, 11, 29, 362, DateTimeKind.Unspecified).AddTicks(2063),
                             Status = 0,
-                            Title = "Garson"
+                            Title = "Aşçı"
                         },
                         new
                         {
-                            ID = 33,
+                            ID = 23,
+                            AppUserId = "8aefe060-1b14-446e-8780-16342e0d1fa6",
                             DepartmentID = 3,
-                            Email = "Emmett_Klocko@gmail.com",
+                            Email = "Elbert28@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Emmett",
-                            HourlyRate = 196.809085359242320m,
-                            IdentificationNumber = "7898",
+                            FirstName = "Elbert",
+                            HourlyRate = 195.92982682209920m,
+                            IdentificationNumber = "3540",
                             IsActive = true,
-                            LastName = "Klocko",
+                            LastName = "Volkman",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 6, 7, 12, 9, 1, 823, DateTimeKind.Unspecified).AddTicks(2543),
+                            StartDateOfWork = new DateTime(2019, 7, 27, 14, 21, 36, 926, DateTimeKind.Unspecified).AddTicks(46),
                             Status = 0,
-                            Title = "Garson"
+                            Title = "Aşçı"
                         },
                         new
                         {
-                            ID = 34,
+                            ID = 24,
+                            AppUserId = "33c98c9f-d8f0-42a6-b105-80f246aa2c11",
                             DepartmentID = 3,
-                            Email = "Taylor.Schoen75@gmail.com",
+                            Email = "Arlene_Hayes@gmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Taylor",
-                            HourlyRate = 199.906786018939120m,
-                            IdentificationNumber = "6346",
+                            FirstName = "Arlene",
+                            HourlyRate = 193.555256539748640m,
+                            IdentificationNumber = "4311",
                             IsActive = true,
-                            LastName = "Schoen",
+                            LastName = "Hayes",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 2, 9, 1, 37, 29, 501, DateTimeKind.Unspecified).AddTicks(7288),
+                            StartDateOfWork = new DateTime(2020, 8, 22, 17, 45, 27, 754, DateTimeKind.Unspecified).AddTicks(5010),
                             Status = 0,
-                            Title = "Garson"
+                            Title = "Aşçı"
                         },
                         new
                         {
-                            ID = 35,
+                            ID = 25,
+                            AppUserId = "f0773878-23d7-4835-a421-6e2ed4ab8038",
                             DepartmentID = 3,
-                            Email = "Amber.Jacobson@yahoo.com",
+                            Email = "Darren9@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Amber",
-                            HourlyRate = 196.210630329423880m,
-                            IdentificationNumber = "6278",
+                            FirstName = "Darren",
+                            HourlyRate = 190.5531718305094040m,
+                            IdentificationNumber = "2984",
                             IsActive = true,
-                            LastName = "Jacobson",
+                            LastName = "Oberbrunner",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2020, 1, 13, 12, 10, 52, 893, DateTimeKind.Unspecified).AddTicks(6156),
+                            Status = 0,
+                            Title = "Aşçı"
+                        },
+                        new
+                        {
+                            ID = 26,
+                            AppUserId = "51b8feca-22c2-49aa-a83b-c79b81393563",
+                            DepartmentID = 3,
+                            Email = "Johanna_Donnelly54@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Johanna",
+                            HourlyRate = 196.978073053517410m,
+                            IdentificationNumber = "2601",
+                            IsActive = true,
+                            LastName = "Donnelly",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 12, 8, 5, 50, 3, 336, DateTimeKind.Unspecified).AddTicks(9517),
+                            Status = 0,
+                            Title = "Aşçı"
+                        },
+                        new
+                        {
+                            ID = 27,
+                            AppUserId = "e02a26ff-8714-4309-9b94-cd438dab006d",
+                            DepartmentID = 3,
+                            Email = "Delbert_Lesch81@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Delbert",
+                            HourlyRate = 195.530074823428910m,
+                            IdentificationNumber = "1555",
+                            IsActive = true,
+                            LastName = "Lesch",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2021, 1, 2, 13, 20, 32, 224, DateTimeKind.Unspecified).AddTicks(1587),
+                            Status = 0,
+                            Title = "Aşçı"
+                        },
+                        new
+                        {
+                            ID = 28,
+                            AppUserId = "b7fccc7c-fff8-4ccc-840c-4e6ecec3ddc4",
+                            DepartmentID = 3,
+                            Email = "Hector20@yahoo.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Hector",
+                            HourlyRate = 195.101441673516040m,
+                            IdentificationNumber = "6235",
+                            IsActive = true,
+                            LastName = "Huels",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2022, 3, 19, 9, 15, 36, 232, DateTimeKind.Unspecified).AddTicks(2878),
+                            Status = 0,
+                            Title = "Aşçı"
+                        },
+                        new
+                        {
+                            ID = 29,
+                            AppUserId = "bfdb57ee-9ce1-4f57-a2af-cc89b606c643",
+                            DepartmentID = 3,
+                            Email = "Donna.Huels@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Donna",
+                            HourlyRate = 191.973969299334090m,
+                            IdentificationNumber = "9175",
+                            IsActive = true,
+                            LastName = "Huels",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 1, 23, 12, 52, 54, 966, DateTimeKind.Unspecified).AddTicks(4516),
+                            Status = 0,
+                            Title = "Aşçı"
+                        },
+                        new
+                        {
+                            ID = 30,
+                            AppUserId = "a1f2c838-8c0f-42d6-a480-1da6bd1ff4a9",
+                            DepartmentID = 3,
+                            Email = "Kristi.Moen1@yahoo.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Kristi",
+                            HourlyRate = 196.036900335940020m,
+                            IdentificationNumber = "5511",
+                            IsActive = true,
+                            LastName = "Moen",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 10, 25, 21, 2, 29, 684, DateTimeKind.Unspecified).AddTicks(2318),
+                            StartDateOfWork = new DateTime(2022, 2, 6, 22, 39, 42, 674, DateTimeKind.Unspecified).AddTicks(643),
                             Status = 0,
                             Title = "Garson"
                         },
                         new
                         {
-                            ID = 36,
+                            ID = 31,
+                            AppUserId = "7adeb4ea-e823-4699-ad3b-7eb2a3f0b749",
                             DepartmentID = 3,
-                            Email = "Robin69@yahoo.com",
+                            Email = "Winifred25@hotmail.com",
                             EmployeeStatus = 3,
-                            FirstName = "Robin",
-                            HourlyRate = 192.758066408689160m,
-                            IdentificationNumber = "7276",
-                            IsActive = true,
-                            LastName = "Paucek",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 1, 3, 2, 58, 27, 244, DateTimeKind.Unspecified).AddTicks(213),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 37,
-                            DepartmentID = 3,
-                            Email = "Tanya91@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Tanya",
-                            HourlyRate = 192.442356754300350m,
-                            IdentificationNumber = "3108",
-                            IsActive = true,
-                            LastName = "Koch",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 7, 13, 18, 33, 59, 896, DateTimeKind.Unspecified).AddTicks(392),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 38,
-                            DepartmentID = 3,
-                            Email = "Kenny_Abshire54@hotmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Kenny",
-                            HourlyRate = 196.832108072392690m,
-                            IdentificationNumber = "7276",
-                            IsActive = true,
-                            LastName = "Abshire",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 1, 3, 15, 14, 49, 339, DateTimeKind.Unspecified).AddTicks(6825),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 39,
-                            DepartmentID = 3,
-                            Email = "Carroll2@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Carroll",
-                            HourlyRate = 192.273137118794550m,
-                            IdentificationNumber = "2051",
-                            IsActive = true,
-                            LastName = "Treutel",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 7, 14, 7, 22, 46, 749, DateTimeKind.Unspecified).AddTicks(5796),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 40,
-                            DepartmentID = 3,
-                            Email = "Earl_Miller77@hotmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Earl",
-                            HourlyRate = 194.160087883546990m,
-                            IdentificationNumber = "9662",
-                            IsActive = true,
-                            LastName = "Miller",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 11, 11, 22, 10, 5, 543, DateTimeKind.Unspecified).AddTicks(428),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 41,
-                            DepartmentID = 3,
-                            Email = "Gregg.Zboncak@yahoo.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Gregg",
-                            HourlyRate = 198.767138043775750m,
-                            IdentificationNumber = "4049",
-                            IsActive = true,
-                            LastName = "Zboncak",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2021, 3, 10, 8, 24, 37, 712, DateTimeKind.Unspecified).AddTicks(8995),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 42,
-                            DepartmentID = 3,
-                            Email = "Boyd_Lowe56@gmail.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Boyd",
-                            HourlyRate = 196.117197906653020m,
-                            IdentificationNumber = "7577",
-                            IsActive = true,
-                            LastName = "Lowe",
-                            MonthlySalary = 0m,
-                            OvertimePay = 12m,
-                            PhoneNumber = "05454526235",
-                            ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 9, 11, 20, 20, 37, 276, DateTimeKind.Unspecified).AddTicks(9029),
-                            Status = 0,
-                            Title = "Garson"
-                        },
-                        new
-                        {
-                            ID = 43,
-                            DepartmentID = 1,
-                            Email = "Nelson.Corwin@yahoo.com",
-                            EmployeeStatus = 3,
-                            FirstName = "Nelson",
-                            HourlyRate = 192.295389344121980m,
-                            IdentificationNumber = "8051",
+                            FirstName = "Winifred",
+                            HourlyRate = 198.572303959434990m,
+                            IdentificationNumber = "2550",
                             IsActive = true,
                             LastName = "Corwin",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 7, 6, 19, 12, 22, 750, DateTimeKind.Unspecified).AddTicks(9766),
+                            StartDateOfWork = new DateTime(2021, 1, 21, 13, 36, 4, 781, DateTimeKind.Unspecified).AddTicks(6702),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 32,
+                            AppUserId = "24a7031f-3180-41fc-a471-555024ca8d66",
+                            DepartmentID = 3,
+                            Email = "Kayla.Reilly19@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Kayla",
+                            HourlyRate = 193.229083508825430m,
+                            IdentificationNumber = "9513",
+                            IsActive = true,
+                            LastName = "Reilly",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 1,
+                            StartDateOfWork = new DateTime(2022, 2, 27, 10, 56, 46, 22, DateTimeKind.Unspecified).AddTicks(2981),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 33,
+                            AppUserId = "5342700a-8c50-47ad-9599-039c6540fc99",
+                            DepartmentID = 3,
+                            Email = "Louise10@gmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Louise",
+                            HourlyRate = 197.905111535408120m,
+                            IdentificationNumber = "1550",
+                            IsActive = true,
+                            LastName = "Dickens",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 1,
+                            StartDateOfWork = new DateTime(2019, 6, 27, 15, 55, 55, 594, DateTimeKind.Unspecified).AddTicks(6028),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 34,
+                            AppUserId = "a7263790-59f1-4f6d-b0ec-3bd74899d1d0",
+                            DepartmentID = 3,
+                            Email = "Leland_Kessler77@yahoo.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Leland",
+                            HourlyRate = 191.96354946678670m,
+                            IdentificationNumber = "6975",
+                            IsActive = true,
+                            LastName = "Kessler",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 1,
+                            StartDateOfWork = new DateTime(2019, 3, 4, 19, 17, 25, 865, DateTimeKind.Unspecified).AddTicks(9686),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 35,
+                            AppUserId = "bf58fa77-59af-4b38-af7f-6cc60249b8a5",
+                            DepartmentID = 3,
+                            Email = "Otis_Sporer30@gmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Otis",
+                            HourlyRate = 193.608101319339170m,
+                            IdentificationNumber = "8444",
+                            IsActive = true,
+                            LastName = "Sporer",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 1,
+                            StartDateOfWork = new DateTime(2020, 1, 21, 13, 31, 47, 423, DateTimeKind.Unspecified).AddTicks(4589),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 36,
+                            AppUserId = "8d796e71-5df5-4fbf-8518-05885e3d5b75",
+                            DepartmentID = 3,
+                            Email = "Wayne41@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Wayne",
+                            HourlyRate = 194.92655759441040m,
+                            IdentificationNumber = "7878",
+                            IsActive = true,
+                            LastName = "Kassulke",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 1,
+                            StartDateOfWork = new DateTime(2020, 10, 23, 15, 37, 5, 206, DateTimeKind.Unspecified).AddTicks(8406),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 37,
+                            AppUserId = "04ec5159-4484-4f9b-9ef1-ac947433ecd3",
+                            DepartmentID = 3,
+                            Email = "Robyn.Quitzon@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Robyn",
+                            HourlyRate = 199.21755138282550m,
+                            IdentificationNumber = "4507",
+                            IsActive = true,
+                            LastName = "Quitzon",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2020, 8, 30, 8, 45, 57, 520, DateTimeKind.Unspecified).AddTicks(7391),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 38,
+                            AppUserId = "4239338b-9d71-4d98-87ab-75cb6805d7db",
+                            DepartmentID = 3,
+                            Email = "Estelle28@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Estelle",
+                            HourlyRate = 199.246293399131990m,
+                            IdentificationNumber = "8582",
+                            IsActive = true,
+                            LastName = "Kris",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2021, 11, 5, 15, 8, 59, 743, DateTimeKind.Unspecified).AddTicks(2515),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 39,
+                            AppUserId = "8a644b3f-f1c5-4934-8cad-d6b6b0472b3f",
+                            DepartmentID = 3,
+                            Email = "Ellis_Schowalter@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Ellis",
+                            HourlyRate = 197.407718336865180m,
+                            IdentificationNumber = "5057",
+                            IsActive = true,
+                            LastName = "Schowalter",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2021, 9, 17, 22, 26, 4, 840, DateTimeKind.Unspecified).AddTicks(3417),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 40,
+                            AppUserId = "0dbb3350-ac77-4695-94c2-c41095fcb649",
+                            DepartmentID = 3,
+                            Email = "Stacy16@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Stacy",
+                            HourlyRate = 198.886408362950390m,
+                            IdentificationNumber = "1835",
+                            IsActive = true,
+                            LastName = "Lebsack",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2021, 9, 27, 4, 30, 2, 669, DateTimeKind.Unspecified).AddTicks(2240),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 41,
+                            AppUserId = "ead7f891-0ef9-49ee-a5c2-cb7302311447",
+                            DepartmentID = 3,
+                            Email = "Kimberly.Braun68@gmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Kimberly",
+                            HourlyRate = 199.969621226177380m,
+                            IdentificationNumber = "2219",
+                            IsActive = true,
+                            LastName = "Braun",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2019, 6, 15, 2, 51, 11, 437, DateTimeKind.Unspecified).AddTicks(8173),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 42,
+                            AppUserId = "498253b1-8809-4cc6-9889-2da6fedaf631",
+                            DepartmentID = 3,
+                            Email = "Everett59@gmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Everett",
+                            HourlyRate = 190.06543837490744810m,
+                            IdentificationNumber = "9609",
+                            IsActive = true,
+                            LastName = "Olson",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 2,
+                            StartDateOfWork = new DateTime(2021, 11, 14, 12, 51, 31, 632, DateTimeKind.Unspecified).AddTicks(8589),
+                            Status = 0,
+                            Title = "Garson"
+                        },
+                        new
+                        {
+                            ID = 43,
+                            AppUserId = "f080f977-63eb-4b54-8047-9de9bf5798df",
+                            DepartmentID = 1,
+                            Email = "Calvin_Little@hotmail.com",
+                            EmployeeStatus = 3,
+                            FirstName = "Calvin",
+                            HourlyRate = 196.803197714874150m,
+                            IdentificationNumber = "4978",
+                            IsActive = true,
+                            LastName = "Little",
+                            MonthlySalary = 0m,
+                            OvertimePay = 12m,
+                            PhoneNumber = "05454526235",
+                            ShiftID = 1,
+                            StartDateOfWork = new DateTime(2020, 9, 16, 12, 38, 4, 205, DateTimeKind.Unspecified).AddTicks(5596),
                             Status = 0,
                             Title = "Elektirikçi"
                         },
                         new
                         {
                             ID = 44,
+                            AppUserId = "b51b9fee-6cc2-4cec-8fd4-fbf936cc4d5f",
                             DepartmentID = 2,
-                            Email = "Mabel.Reichert@gmail.com",
+                            Email = "Elisa51@yahoo.com",
                             EmployeeStatus = 3,
-                            FirstName = "Mabel",
-                            HourlyRate = 196.40221373010530m,
-                            IdentificationNumber = "2797",
+                            FirstName = "Elisa",
+                            HourlyRate = 195.813818446273830m,
+                            IdentificationNumber = "4389",
                             IsActive = true,
-                            LastName = "Reichert",
+                            LastName = "Hegmann",
                             MonthlySalary = 0m,
                             OvertimePay = 12m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 9, 6, 4, 54, 49, 892, DateTimeKind.Unspecified).AddTicks(2445),
+                            StartDateOfWork = new DateTime(2019, 2, 24, 13, 18, 16, 333, DateTimeKind.Unspecified).AddTicks(2044),
                             Status = 0,
                             Title = "Bilgi İşlem Sorumlusu"
                         },
                         new
                         {
                             ID = 45,
+                            AppUserId = "73ff4615-f322-439e-9251-83e45d2d8188",
                             DepartmentID = 5,
-                            Email = "Paul50@hotmail.com",
+                            Email = "Rafael_Weissnat27@yahoo.com",
                             EmployeeStatus = 0,
-                            FirstName = "Paul",
-                            HourlyRate = 199.575854381348870m,
-                            IdentificationNumber = "3020",
+                            FirstName = "Rafael",
+                            HourlyRate = 190.05715055393853720m,
+                            IdentificationNumber = "3240",
                             IsActive = true,
-                            LastName = "Parisian",
+                            LastName = "Weissnat",
                             MonthlySalary = 10000m,
                             OvertimePay = 0m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2019, 3, 17, 9, 37, 3, 229, DateTimeKind.Unspecified).AddTicks(2618),
+                            StartDateOfWork = new DateTime(2021, 8, 30, 23, 14, 36, 46, DateTimeKind.Unspecified).AddTicks(2861),
                             Status = 0,
                             Title = "Müdür"
                         },
                         new
                         {
                             ID = 46,
+                            AppUserId = "1c5463b5-5ce9-4b2a-974d-94026ee3e28d",
                             DepartmentID = 6,
-                            Email = "Louis13@hotmail.com",
+                            Email = "Freda86@hotmail.com",
                             EmployeeStatus = 1,
-                            FirstName = "Louis",
-                            HourlyRate = 194.100576892541990m,
-                            IdentificationNumber = "5278",
+                            FirstName = "Freda",
+                            HourlyRate = 193.333762652861780m,
+                            IdentificationNumber = "7812",
                             IsActive = true,
-                            LastName = "Lehner",
+                            LastName = "Bauch",
                             MonthlySalary = 10000m,
                             OvertimePay = 0m,
                             PhoneNumber = "05454526235",
                             ShiftID = 1,
-                            StartDateOfWork = new DateTime(2020, 1, 3, 3, 19, 4, 135, DateTimeKind.Unspecified).AddTicks(2106),
+                            StartDateOfWork = new DateTime(2019, 9, 21, 22, 34, 34, 47, DateTimeKind.Unspecified).AddTicks(166),
                             Status = 0,
                             Title = "İnsan Kaynakları Müdürü"
                         });
@@ -1531,6 +2545,13 @@ namespace DataAccess.Migrations
                             ID = 1,
                             Price = 600m,
                             ServiceName = "Sauna",
+                            Status = 0
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Price = 400m,
+                            ServiceName = "Hamam",
                             Status = 0
                         });
                 });
@@ -4101,50 +5122,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("EmployeeID");
 
                     b.ToTable("Salaries");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            BeenPaid = true,
-                            EmployeeID = 1,
-                            Month = 2,
-                            MonthlySalary = 5000m,
-                            PaymentDate = new DateTime(2022, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 0,
-                            Year = 2022
-                        },
-                        new
-                        {
-                            ID = 2,
-                            BeenPaid = true,
-                            EmployeeID = 2,
-                            Month = 2,
-                            MonthlySalary = 5500m,
-                            PaymentDate = new DateTime(2022, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 0,
-                            Year = 2022
-                        },
-                        new
-                        {
-                            ID = 3,
-                            BeenPaid = false,
-                            EmployeeID = 1,
-                            Month = 3,
-                            MonthlySalary = 5000m,
-                            Status = 0,
-                            Year = 2022
-                        },
-                        new
-                        {
-                            ID = 4,
-                            BeenPaid = false,
-                            EmployeeID = 2,
-                            Month = 3,
-                            MonthlySalary = 5500m,
-                            Status = 0,
-                            Year = 2022
-                        });
                 });
 
             modelBuilder.Entity("Entities.Concrete.ServicePack", b =>
@@ -4778,38 +5755,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("EmployeeID");
 
                     b.ToTable("WorkSchedules");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Date = new DateTime(2022, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmployeeID = 1,
-                            HaveOverTime = false,
-                            OverTimeHour = new TimeSpan(0, 0, 0, 0, 0),
-                            ShiftEndTime = new TimeSpan(0, 16, 0, 0, 0),
-                            ShiftName = "Gündüz",
-                            ShiftStartTime = new TimeSpan(0, 8, 0, 0, 0),
-                            Status = 0,
-                            TimesWorked = new TimeSpan(0, 8, 0, 0, 0),
-                            TotalWorkTime = new TimeSpan(0, 8, 0, 0, 0),
-                            WorkStatus = 1
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Date = new DateTime(2022, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmployeeID = 2,
-                            HaveOverTime = false,
-                            OverTimeHour = new TimeSpan(0, 0, 0, 0, 0),
-                            ShiftEndTime = new TimeSpan(0, 16, 0, 0, 0),
-                            ShiftName = "Gündüz",
-                            ShiftStartTime = new TimeSpan(0, 8, 0, 0, 0),
-                            Status = 0,
-                            TimesWorked = new TimeSpan(0, 8, 0, 0, 0),
-                            TotalWorkTime = new TimeSpan(0, 8, 0, 0, 0),
-                            WorkStatus = 0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -4842,51 +5787,58 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1",
-                            ConcurrencyStamp = "85408706-c2f3-4a33-8079-1e1476af092c",
+                            ConcurrencyStamp = "f5a56f9a-9bf9-478f-8987-dc520d1d88da",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b",
-                            ConcurrencyStamp = "dfb84c71-68bc-4662-ae03-4601406b8e81",
+                            ConcurrencyStamp = "39863d36-9f01-48a8-9429-f164573bbef0",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "3920b0ec-725e-4b34-ab67-27c7f816936d",
-                            ConcurrencyStamp = "f3a92d77-c33a-43aa-b45b-f5121669435f",
+                            ConcurrencyStamp = "6e648c1b-091a-4778-918d-23728dadf1ca",
                             Name = "resepsiyon",
                             NormalizedName = "RESEPSIYON"
                         },
                         new
                         {
                             Id = "75d8b242-e230-4fe8-ad20-b8e818d97957",
-                            ConcurrencyStamp = "a77e1cb3-d309-45e9-af92-13c470d1e8e0",
+                            ConcurrencyStamp = "a8fce85c-c1a7-44b8-9320-b803c8a42fe0",
                             Name = "insan kaynaklari",
                             NormalizedName = "INSAN KAYNAKLARI"
                         },
                         new
                         {
                             Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329",
-                            ConcurrencyStamp = "4cdaa0b9-04c1-4236-9667-c35c8988de70",
+                            ConcurrencyStamp = "6f7943e0-761a-4f32-a7b5-d45d293adc5b",
                             Name = "yardimci hizmetler",
                             NormalizedName = "YARDIMCI HIZMETLER"
                         },
                         new
                         {
                             Id = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1",
-                            ConcurrencyStamp = "77491223-3b93-4292-bea7-7a6d45a508a6",
+                            ConcurrencyStamp = "f16dbcf2-730d-457d-b556-f6b278ed15a2",
                             Name = "bilgi islem",
                             NormalizedName = "BILGI ISLEM"
                         },
                         new
                         {
                             Id = "a98546c7-b529-4836-8d88-6af9667d8008",
-                            ConcurrencyStamp = "0351866e-dc4e-450f-9c82-9c50caddef1e",
+                            ConcurrencyStamp = "7af1b97f-3731-4ac2-be2d-d024ec0f268a",
                             Name = "mutfak",
                             NormalizedName = "MUTFAK"
+                        },
+                        new
+                        {
+                            Id = "4353147a-1b09-492f-87aa-6b467d30e7e0",
+                            ConcurrencyStamp = "cf1573ee-87b2-48b6-a1bc-98033b905d49",
+                            Name = "muhasebe",
+                            NormalizedName = "MUHASEBE"
                         });
                 });
 
@@ -4973,6 +5925,503 @@ namespace DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "3c0f0dda-f64e-4760-8c55-374f7b42089e",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "3c0f0dda-f64e-4760-8c55-374f7b42089e",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "a8ce5158-6ebb-4ede-8154-296c471e76dd",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "a8ce5158-6ebb-4ede-8154-296c471e76dd",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "0f6cfb56-f35d-46e4-9b2f-f0e5264a696f",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "0f6cfb56-f35d-46e4-9b2f-f0e5264a696f",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "7e7deb9d-2f0e-4496-83f6-3f7f1c02d3c5",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "7e7deb9d-2f0e-4496-83f6-3f7f1c02d3c5",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "68a18ffe-ec3a-40f6-ac08-2b39dc044d6a",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "68a18ffe-ec3a-40f6-ac08-2b39dc044d6a",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "2eff5e09-9423-413b-bc53-bc1005a69ab5",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "2eff5e09-9423-413b-bc53-bc1005a69ab5",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "b708da78-f5dd-4b9f-980a-8878435cfa7f",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "b708da78-f5dd-4b9f-980a-8878435cfa7f",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "186d7d00-399f-461b-8e74-0b185d04d390",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "186d7d00-399f-461b-8e74-0b185d04d390",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "91568893-feb4-4c07-a523-6ce308888ddd",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "91568893-feb4-4c07-a523-6ce308888ddd",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "bdc19aee-648f-4e35-bffd-0a151340f9ce",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "bdc19aee-648f-4e35-bffd-0a151340f9ce",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "746bf451-2f0f-40bf-b10a-4c6faf62c132",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "746bf451-2f0f-40bf-b10a-4c6faf62c132",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "758cac08-c79e-4683-bd68-bc7b13feca19",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "758cac08-c79e-4683-bd68-bc7b13feca19",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "4b0ba339-7c65-4d0d-b421-1f84ff78db57",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "4b0ba339-7c65-4d0d-b421-1f84ff78db57",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "16edb950-186f-42f4-9cec-6a33f8d69a1d",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "16edb950-186f-42f4-9cec-6a33f8d69a1d",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "3465ba99-caf2-4849-af96-6a55851a5b77",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "3465ba99-caf2-4849-af96-6a55851a5b77",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "ed31056b-7fb0-4e77-b7e8-4085cbc926d7",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "ed31056b-7fb0-4e77-b7e8-4085cbc926d7",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "0083f5f9-e6fd-475a-a2df-f43523008feb",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "0083f5f9-e6fd-475a-a2df-f43523008feb",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "65ddf361-0344-465d-ab9e-b818daaf0be7",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "65ddf361-0344-465d-ab9e-b818daaf0be7",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "5b1c893c-4baa-4e91-99f3-e837cd63585b",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "5b1c893c-4baa-4e91-99f3-e837cd63585b",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "6e02fba6-cf2e-4ac4-b2c2-077e659740d4",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "6e02fba6-cf2e-4ac4-b2c2-077e659740d4",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "4e66fd1d-0b73-4f78-a631-cfc3fd0f0bf6",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "4e66fd1d-0b73-4f78-a631-cfc3fd0f0bf6",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "3fbe28a2-383a-4bc1-91c3-39c49600fdf7",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "3fbe28a2-383a-4bc1-91c3-39c49600fdf7",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "8aefe060-1b14-446e-8780-16342e0d1fa6",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "8aefe060-1b14-446e-8780-16342e0d1fa6",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "33c98c9f-d8f0-42a6-b105-80f246aa2c11",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "33c98c9f-d8f0-42a6-b105-80f246aa2c11",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "f0773878-23d7-4835-a421-6e2ed4ab8038",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "f0773878-23d7-4835-a421-6e2ed4ab8038",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "51b8feca-22c2-49aa-a83b-c79b81393563",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "51b8feca-22c2-49aa-a83b-c79b81393563",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "e02a26ff-8714-4309-9b94-cd438dab006d",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "e02a26ff-8714-4309-9b94-cd438dab006d",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "b7fccc7c-fff8-4ccc-840c-4e6ecec3ddc4",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "b7fccc7c-fff8-4ccc-840c-4e6ecec3ddc4",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "bfdb57ee-9ce1-4f57-a2af-cc89b606c643",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "bfdb57ee-9ce1-4f57-a2af-cc89b606c643",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "a1f2c838-8c0f-42d6-a480-1da6bd1ff4a9",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "a1f2c838-8c0f-42d6-a480-1da6bd1ff4a9",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "7adeb4ea-e823-4699-ad3b-7eb2a3f0b749",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "7adeb4ea-e823-4699-ad3b-7eb2a3f0b749",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "24a7031f-3180-41fc-a471-555024ca8d66",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "24a7031f-3180-41fc-a471-555024ca8d66",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "5342700a-8c50-47ad-9599-039c6540fc99",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "5342700a-8c50-47ad-9599-039c6540fc99",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "a7263790-59f1-4f6d-b0ec-3bd74899d1d0",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "a7263790-59f1-4f6d-b0ec-3bd74899d1d0",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "bf58fa77-59af-4b38-af7f-6cc60249b8a5",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "bf58fa77-59af-4b38-af7f-6cc60249b8a5",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "8d796e71-5df5-4fbf-8518-05885e3d5b75",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "8d796e71-5df5-4fbf-8518-05885e3d5b75",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "04ec5159-4484-4f9b-9ef1-ac947433ecd3",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "04ec5159-4484-4f9b-9ef1-ac947433ecd3",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "4239338b-9d71-4d98-87ab-75cb6805d7db",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "4239338b-9d71-4d98-87ab-75cb6805d7db",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "8a644b3f-f1c5-4934-8cad-d6b6b0472b3f",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "8a644b3f-f1c5-4934-8cad-d6b6b0472b3f",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "0dbb3350-ac77-4695-94c2-c41095fcb649",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "0dbb3350-ac77-4695-94c2-c41095fcb649",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "ead7f891-0ef9-49ee-a5c2-cb7302311447",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "ead7f891-0ef9-49ee-a5c2-cb7302311447",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "498253b1-8809-4cc6-9889-2da6fedaf631",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "498253b1-8809-4cc6-9889-2da6fedaf631",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "f080f977-63eb-4b54-8047-9de9bf5798df",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "f080f977-63eb-4b54-8047-9de9bf5798df",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "b51b9fee-6cc2-4cec-8fd4-fbf936cc4d5f",
+                            RoleId = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1"
+                        },
+                        new
+                        {
+                            UserId = "b51b9fee-6cc2-4cec-8fd4-fbf936cc4d5f",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "bcf7061b-0a59-426a-9b49-f520e1b4849b"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "75d8b242-e230-4fe8-ad20-b8e818d97957"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "a98546c7-b529-4836-8d88-6af9667d8008"
+                        },
+                        new
+                        {
+                            UserId = "73ff4615-f322-439e-9251-83e45d2d8188",
+                            RoleId = "4353147a-1b09-492f-87aa-6b467d30e7e0"
+                        },
+                        new
+                        {
+                            UserId = "1c5463b5-5ce9-4b2a-974d-94026ee3e28d",
+                            RoleId = "75d8b242-e230-4fe8-ad20-b8e818d97957"
+                        },
+                        new
+                        {
+                            UserId = "1c5463b5-5ce9-4b2a-974d-94026ee3e28d",
+                            RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1"
+                        },
+                        new
+                        {
+                            UserId = "1c5463b5-5ce9-4b2a-974d-94026ee3e28d",
+                            RoleId = "4353147a-1b09-492f-87aa-6b467d30e7e0"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -9,6 +9,7 @@ using Bogus;
 using Entities.Enum;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
+using System.Security.Cryptography;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
@@ -117,10 +118,24 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 );
             #endregion
 
+            //User
+            #region Role
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole { Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1", Name = "user", NormalizedName = "user".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b", Name = "admin", NormalizedName = "admin".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "resepsiyon", NormalizedName = "resepsiyon".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "75d8b242-e230-4fe8-ad20-b8e818d97957", Name = "insan kaynaklari", NormalizedName = "insan kaynaklari".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimci hizmetler", NormalizedName = "yardimci hizmetler".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1", Name = "bilgi islem", NormalizedName = "bilgi islem".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "a98546c7-b529-4836-8d88-6af9667d8008", Name = "mutfak", NormalizedName = "mutfak".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "4353147a-1b09-492f-87aa-6b467d30e7e0", Name = "muhasebe", NormalizedName = "muhasebe".ToUpper(new CultureInfo("en-US", false)) }
+                );
+            #endregion
+
             #region EmployeeData
             List<Employee> employees = new List<Employee>();
 
-            void FakeEmployee(string title, int departmentId, EmployeeStatus status)
+            void FakeEmployee(string title, int departmentId, EmployeeStatus status, int shiftId)
             {
                 var employee = new Faker<Employee>()
                     .RuleFor(x => x.FirstName, x => x.Person.FirstName)
@@ -131,7 +146,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                     .RuleFor(x => x.Email, x => x.Person.Email)
                     .RuleFor(x => x.PhoneNumber, x => x.Phone.PhoneNumber("05454526235"));
                 Employee emp = employee;
-                emp.ID = employees.Count + 1; emp.Title = title; emp.EmployeeStatus = status; emp.DepartmentID = departmentId; emp.IsActive = true; emp.ShiftID = 1;
+                emp.ID = employees.Count + 1; emp.Title = title; emp.EmployeeStatus = status; emp.DepartmentID = departmentId; emp.IsActive = true; emp.ShiftID = shiftId;
                 if (status!=EmployeeStatus.Worker)
                 {
                     emp.MonthlySalary = 10000;
@@ -145,36 +160,134 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             for (int i = 1; i <= 7; i++)
             {
-                FakeEmployee("Resepsiyonist", 4, EmployeeStatus.Worker);
+                if (i<=3)
+                {
+                    FakeEmployee("Resepsiyonist", 4, EmployeeStatus.Worker,1);
+                }
+                else if(i>3 && i<=5)
+                {
+                    FakeEmployee("Resepsiyonist", 4, EmployeeStatus.Worker, 2);
+                }
+                else
+                {
+                    FakeEmployee("Resepsiyonist", 4, EmployeeStatus.Worker, 3);
+                }
+                
             }
             for (int i = 1; i <= 11; i++)
             {
-                FakeEmployee("Temizlik Görevlisi", 1, EmployeeStatus.Worker);
+                if (i<=6)
+                {
+                    FakeEmployee("Temizlik Görevlisi", 1, EmployeeStatus.Worker,1);
+                }
+                else
+                {
+                    FakeEmployee("Temizlik Görevlisi", 1, EmployeeStatus.Worker, 2);
+                }
             }
             for (int i = 1; i <= 11; i++)
             {
-                FakeEmployee("Aşçı", 3, EmployeeStatus.Worker);
+                if (i <= 6)
+                {
+                    FakeEmployee("Aşçı", 3, EmployeeStatus.Worker,1);
+                }
+                else
+                {
+                    FakeEmployee("Aşçı", 3, EmployeeStatus.Worker,2);
+                }
+                
             }
             for (int i = 1; i <= 13; i++)
             {
-                FakeEmployee("Garson", 3, EmployeeStatus.Worker);
+                if (i<=7)
+                {
+                    FakeEmployee("Garson", 3, EmployeeStatus.Worker,1);
+                }
+                else
+                {
+                    FakeEmployee("Garson", 3, EmployeeStatus.Worker, 2);
+                }
             }
 
-            FakeEmployee("Elektirikçi", 1, EmployeeStatus.Worker);
-            FakeEmployee("Bilgi İşlem Sorumlusu", 2, EmployeeStatus.Worker);
-            FakeEmployee("Müdür", 5, EmployeeStatus.SeniorManagement);
-            FakeEmployee("İnsan Kaynakları Müdürü", 6, EmployeeStatus.MiddleManagement);
+            FakeEmployee("Elektirikçi", 1, EmployeeStatus.Worker, 1);
+            FakeEmployee("Bilgi İşlem Sorumlusu", 2, EmployeeStatus.Worker, 1);
+            FakeEmployee("Müdür", 5, EmployeeStatus.SeniorManagement, 1);
+            FakeEmployee("İnsan Kaynakları Müdürü", 6, EmployeeStatus.MiddleManagement, 1);
 
+            List<AppUser> appUsers = new List<AppUser>();
+            foreach (var item in employees)
+            {
+                //hesabın oluşturulması
+                var guid = Guid.NewGuid();
+                appUsers.Add(
+                            new AppUser { Id = guid.ToString(), FirstName = item.FirstName, LastName = item.LastName, UserName = item.Email, NormalizedUserName = item.Email.ToUpper(new CultureInfo("en-US", false)), Email = item.Email, NormalizedEmail = item.Email.ToUpper(new CultureInfo("en-US", false)), EmailConfirmed = true, PasswordHash = HashPassword(item.FirstName + ".123"), PhoneNumber = "05111111111" }
+                            );
+                //çalışana hesabın aktarımı
+                item.AppUserId = guid.ToString();
+            }
+            //Hesapların kaydedilmesi ve çalışanların kaydedilmesi.
+            builder.Entity<AppUser>().HasData(appUsers);
             builder.Entity<Employee>().HasData(employees);
+            //Rollerinin atanması                
+            foreach (var item in employees)
+            {
+                switch (item.DepartmentID)
+                {
+                    case 5:
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "bcf7061b-0a59-426a-9b49-f520e1b4849b" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "75d8b242-e230-4fe8-ad20-b8e818d97957" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "a98546c7-b529-4836-8d88-6af9667d8008" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "4353147a-1b09-492f-87aa-6b467d30e7e0" }
+                );
+                        break;
+                    case 2:
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1" }
+                );
+                        break;
+                    case 3:
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "a98546c7-b529-4836-8d88-6af9667d8008" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1" }
+                );
+                        break;
+                    case 4:
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "3920b0ec-725e-4b34-ab67-27c7f816936d" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1" }
+                );
+                        break;
+                    case 6:
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "75d8b242-e230-4fe8-ad20-b8e818d97957" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "4353147a-1b09-492f-87aa-6b467d30e7e0" }
+                );
+                        break;
+                    case 1:
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329" },
+                new IdentityUserRole<string> { UserId = item.AppUserId, RoleId = "c62f42df-2d75-4102-b281-a8637f2cb0a1" }
+                );
+                        break;
+                }
+            }
+
             #endregion
 
             #region SalaryData
-            builder.Entity<Salary>().HasData(
-                    new Salary { ID = 1, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = true, Month = 2, Year=2022, PaymentDate = DateTime.Parse("2022-03-05") },
-                    new Salary { ID = 2, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = true, Month = 2, Year = 2022, PaymentDate = DateTime.Parse("2022-03-05") },
-                    new Salary { ID = 3, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = false, Month = 3, Year = 2022 },
-                    new Salary { ID = 4, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = false, Month = 3, Year = 2022 }
-                    );
+            //builder.Entity<Salary>().HasData(
+            //        new Salary { ID = 1, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = true, Month = 2, Year=2022, PaymentDate = DateTime.Parse("2022-03-05") },
+            //        new Salary { ID = 2, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = true, Month = 2, Year = 2022, PaymentDate = DateTime.Parse("2022-03-05") },
+            //        new Salary { ID = 3, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = false, Month = 3, Year = 2022 },
+            //        new Salary { ID = 4, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = false, Month = 3, Year = 2022 }
+            //        );
             #endregion
 
             #region ShiftData
@@ -186,10 +299,10 @@ namespace DataAccess.Concrete.EntityFramework.Context
             #endregion
 
             #region WorkScheduleData
-            builder.Entity<WorkSchedule>().HasData(
-                new WorkSchedule { ID = 1, EmployeeID = 1, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, WorkStatus = WorkStatus.HaftalikIzin, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" },
-                new WorkSchedule { ID = 2, EmployeeID = 2, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" }
-                );
+            //builder.Entity<WorkSchedule>().HasData(
+            //    new WorkSchedule { ID = 1, EmployeeID = 1, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, WorkStatus = WorkStatus.HaftalikIzin, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" },
+            //    new WorkSchedule { ID = 2, EmployeeID = 2, Date = DateTime.Parse("2022-03-14"), TotalWorkTime = TimeSpan.FromHours(8), TimesWorked = TimeSpan.FromHours(8), HaveOverTime = false, ShiftStartTime = TimeSpan.FromHours(08), ShiftEndTime = TimeSpan.FromHours(16), ShiftName = "Gündüz" }
+            //    );
             #endregion
 
             #region EmployeeShift
@@ -459,23 +572,30 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region ExtraService
             builder.Entity<ExtraService>().HasData(
-                new ExtraService { ID = 1, ServiceName = "Sauna", Price = 600 }
+                new ExtraService { ID = 1, ServiceName = "Sauna", Price = 600 },
+                new ExtraService { ID = 2, ServiceName = "Hamam", Price = 400 }
                 );
             #endregion
+                        
+        }
 
-            //User
-            #region Role
-            builder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Id = "c62f42df-2d75-4102-b281-a8637f2cb0a1", Name = "user", NormalizedName = "user".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "bcf7061b-0a59-426a-9b49-f520e1b4849b", Name = "admin", NormalizedName = "admin".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "3920b0ec-725e-4b34-ab67-27c7f816936d", Name = "resepsiyon", NormalizedName = "resepsiyon".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "75d8b242-e230-4fe8-ad20-b8e818d97957", Name = "insan kaynaklari", NormalizedName = "insan kaynaklari".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimci hizmetler", NormalizedName = "yardimci hizmetler".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1", Name = "bilgi islem", NormalizedName = "bilgi islem".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "a98546c7-b529-4836-8d88-6af9667d8008", Name = "mutfak", NormalizedName = "mutfak".ToUpper(new CultureInfo("en-US", false)) }
-                );
-            #endregion
-
+        public static string HashPassword(string password)
+        {
+            byte[] salt;
+            byte[] buffer2;
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
+            {
+                salt = bytes.Salt;
+                buffer2 = bytes.GetBytes(0x20);
+            }
+            byte[] dst = new byte[0x31];
+            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
+            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
+            return Convert.ToBase64String(dst);
         }
     }
 }
