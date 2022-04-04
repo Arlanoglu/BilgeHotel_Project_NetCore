@@ -170,10 +170,10 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region SalaryData
             builder.Entity<Salary>().HasData(
-                    new Salary { ID = 1, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = true, Month = "Şubat", PaymentDate = DateTime.Parse("2022-03-05") },
-                    new Salary { ID = 2, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = true, Month = "Şubat", PaymentDate = DateTime.Parse("2022-03-05") },
-                    new Salary { ID = 3, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = false, Month = "Mart" },
-                    new Salary { ID = 4, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = false, Month = "Mart" }
+                    new Salary { ID = 1, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = true, Month = 2, Year=2022, PaymentDate = DateTime.Parse("2022-03-05") },
+                    new Salary { ID = 2, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = true, Month = 2, Year = 2022, PaymentDate = DateTime.Parse("2022-03-05") },
+                    new Salary { ID = 3, EmployeeID = 1, MonthlySalary = 5000, BeenPaid = false, Month = 3, Year = 2022 },
+                    new Salary { ID = 4, EmployeeID = 2, MonthlySalary = 5500, BeenPaid = false, Month = 3, Year = 2022 }
                     );
             #endregion
 

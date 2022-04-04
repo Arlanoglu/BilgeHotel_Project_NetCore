@@ -1,0 +1,134 @@
+﻿@model List<VMSalary>
+@{
+    ViewData["Title"] = "UnPaidSalaries";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Maaşlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Accounting/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Maaşlar</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.SalaryResult != null)
+    {
+        <div class="row">
+            @if (ViewBag.SalaryResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.SalaryResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.SalaryResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <!-- /.card -->
+    <form asp-action="CalculateSalary" asp-controller="Salary" method="post">
+        <div class="form-row">
+            <div class="col-md-2 form-group">
+                <label class="col-form-label">Ay</label>
+                <input name="month" class="form-control" type="number" min="1" />
+            </div>
+            <div class="col-md-3 form-group">
+                <label class="col-form-label">Yıl</label>
+                <input name="year" class="form-control" type="number" min="2022" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label class="col-form-label">Ay</label>
+                <select name="employeeId" class="form-control">
+                    @foreach (var item in (List<VMEmployeeList>)ViewBag.Employees)
+                    {
+                        <option value="@item.ID">@item.FullName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="row"><label class="col-form-label"><br /></label></div>
+                <button class="btn btn-primary" type="submit">Maaş Hesapla/Kaydet</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <a asp-action="PaidSalaries" asp-controller="Salary" class="btn btn-info">Ödenen Maaşlar</a>
+    <a asp-action="DeletedSalaries" asp-controller="Salary" class="btn btn-primary">Silinen Maaşlar</a>
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3 class="card-title text-danger">Hesaplamaları yapılmış ödemeleri yapılmamış maaş kayıtlarının listesi.</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-hover" id="example2">
+                <thead>
+                    <tr>
+                        <th scope="col">Çalışan ID</th>
+                        <th scope="col">İsim Soyisim</th>
+                        <th scope="col">Ay</th>
+                        <th scope="col">Yıl</th>
+                        <th scope="col">Maaş</th>
+                        <th scope="col">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.EmployeeID</th>
+                                <td>@item.EmployeeName</td>
+                                <td>@item.Month .Ay</td>
+                                <td>@item.Year</td>
+                                <td>@item.MonthlySalary</td>
+                                <td>
+                                    <a asp-action="PaySalary" asp-controller="Salary" asp-route-id="@item.SalaryID" class="btn btn-success">Öde</a>
+                                    <a asp-action="DeleteSalary" asp-controller="Salary" asp-route-id="@item.SalaryID" class="btn btn-danger">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@section dataTable{
+    <script>
+        $(function () {
+            $('#example2').DataTable(
+                //{
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"responsive": true,
+                //}
+            );
+        });
+    </script>
+}
+
+

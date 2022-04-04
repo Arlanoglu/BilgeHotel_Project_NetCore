@@ -9,5 +9,6 @@ namespace Business.Services.Abstract
 {
     public interface ISalaryService : IService<Salary>
     {
+        public decimal CalculateSalary(List<WorkSchedule> workSchedules);
     }
 }

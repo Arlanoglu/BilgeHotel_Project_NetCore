@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Enum;
 
 namespace Business.Services.Concrete
 {
@@ -126,6 +127,43 @@ namespace Business.Services.Concrete
         public async Task<Salary> GetFirstOrDefault()
         {
             return await unitOfWork.SalaryDal.GetFirstOrDefault();
+        }
+
+        public decimal CalculateSalary(List<WorkSchedule> workSchedules)
+        {
+            decimal salary = 0;
+
+            foreach (var item in workSchedules)
+            {
+                if (item.WorkStatus==WorkStatus.Calisti)
+                {
+                    if (item.Employee.MonthlySalary != 0)
+                    {
+                        salary += item.Employee.MonthlySalary;
+                    }
+                    else
+                    {
+                        decimal total = 0;
+                        decimal overtimeAmount = 0;
+                        if (item.HaveOverTime)
+                        {
+                            overtimeAmount = item.Employee.OvertimePay * item.OverTimeHour.Hours;
+                            total = (item.TotalWorkTime.Hours * item.Employee.HourlyRate) + overtimeAmount;
+                        }
+                        else
+                        {
+                            total = (item.TimesWorked.Hours * item.Employee.HourlyRate);
+                        }
+                        salary += total;
+                    }
+                }
+                else if (item.WorkStatus == WorkStatus.HaftalikIzin || item.WorkStatus == WorkStatus.ResmiTatilIzini || item.WorkStatus == WorkStatus.YillikIzin)
+                {
+                    salary += (item.TotalWorkTime.Hours * item.Employee.HourlyRate);
+                }
+            }
+            return salary;            
+            
         }
     }
 }

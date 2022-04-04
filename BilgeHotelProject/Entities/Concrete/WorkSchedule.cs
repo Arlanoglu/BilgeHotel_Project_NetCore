@@ -10,7 +10,7 @@ namespace Entities.Concrete
         public TimeSpan TotalWorkTime { get; set; }
         public TimeSpan TimesWorked { get; set; }
         public bool HaveOverTime { get; set; }
-        public TimeSpan? OverTimeHour { get; set; }
+        public TimeSpan OverTimeHour { get; set; }
         //public bool IsHoliday { get; set; }
         public WorkStatus WorkStatus { get; set; }
         public string Description { get; set; }

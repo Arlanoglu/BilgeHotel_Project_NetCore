@@ -10,7 +10,7 @@ namespace Entities.Enum
     {
         UcretsizIzin,
         HaftalikIzin,
-        ResmiTatil,
+        ResmiTatilIzini,
         YillikIzin,
         Calisti
     }
