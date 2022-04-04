@@ -1,0 +1,116 @@
+﻿@model List<VMExtraServiceList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ekstra Hizmetler</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Ekstra Hizmetler</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.ExtraServiceResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.ExtraServiceResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ExtraServiceResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ExtraServiceResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+<div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+        <form asp-action="ExtraServiceCreate" asp-controller="ExtraService" method="post">
+            <div asp-validation-summary="All">
+
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label class="col-form-label">Hizmet Adı</label>
+                    <input name="serviceName" class="form-control" type="text" placeholder="Zorunlu" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label">Fiyat</label>
+                    @Html.TextBox("price", null, new { @class = "form-control", @type = "currency" })
+                </div>
+                <div class="col-md-4">
+                    <div class="row"><label class="col-form-label"><br /></label></div>
+                    <button class="btn btn-primary" type="submit">Oluştur</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-md-10">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Hizmet Adı</th>
+                        <th scope="col">Fiyatı</th>
+                        <th scope="col">Durumu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.ServiceID</th>
+                            <td>@item.ServiceName</td>
+                            <td>@item.Price.ToString("C2")</td>
+                            @if (item.Status == Core.Entities.Enum.Status.Active)
+                            {
+                                <td class="text-success">@item.Status</td>
+                            }
+                            else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                            {
+                                <td class="text-danger">@item.Status</td>
+                            }
+                            <td>
+                                <a class="btn btn-primary" href="/Administrator/ExtraService/UpdateExtraService/@item.ServiceID">Düzenle</a>
+                                @if (item.Status == Core.Entities.Enum.Status.Active)
+                                {
+                                    <a class="btn btn-danger" href="/Administrator/ExtraService/ChangeStatus/@item.ServiceID">Pasif Yap</a>
+                                }
+                                else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                {
+                                    <a class="btn btn-success" href="/Administrator/ExtraService/ChangeStatus/@item.ServiceID">Aktif Yap</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+

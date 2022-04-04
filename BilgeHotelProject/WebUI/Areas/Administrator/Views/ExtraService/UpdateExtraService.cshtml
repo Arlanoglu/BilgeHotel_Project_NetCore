@@ -1,0 +1,65 @@
+﻿@model VMExtraServiceList
+@{
+    ViewData["Title"] = "UpdateExtraService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ekstra Hizmetler</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Ekstra Hizmetler</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.ExtraServiceResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.ExtraServiceResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ExtraServiceResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ExtraServiceResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+    <a asp-action="Index" asp-controller="ExtraService" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Extra Hizmetler</a>
+    <form asp-action="UpdateExtraService" asp-controller="ExtraService" method="post">
+        <input asp-for="ServiceID" type="hidden" value="@Model.ServiceID" />
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="col-12 form-group">
+                    <label class="col-form-label">Hizmet Adı</label>
+                    <input asp-for="ServiceName" class="form-control" type="text" placeholder="Zorunlu" />
+                </div>
+                <div class="col-md-12 form-group">
+                    <label class="col-form-label">Fiyat</label>
+                    @Html.TextBoxFor(x=>x.Price, new { @class = "form-control", @type = "currency" })
+                </div>
+                <div class="col-12 form-group d-flex justify-content-center">
+                    <button class="btn btn-primary" type="submit">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

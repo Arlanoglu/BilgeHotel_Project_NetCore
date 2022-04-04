@@ -126,6 +126,10 @@ namespace WebUI.Utilities
             CreateMap<VMExtraService, ExtraService>();
             CreateMap<ExtraService, VMExtraService>();
 
+            CreateMap<ExtraService, VMExtraServiceList>()
+               .ForMember(x => x.ServiceID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMExtraServiceList, ExtraService>();
+
             CreateMap<UseOfExtraService, VMUseOfExtraServiceCreate>();
             CreateMap<VMUseOfExtraServiceCreate, UseOfExtraService>();
 
