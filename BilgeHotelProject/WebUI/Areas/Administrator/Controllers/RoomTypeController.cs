@@ -13,6 +13,7 @@ using Core.Entities.Enum;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Common;
+using WebUI.Models.RoomFacility;
 
 namespace WebUI.Areas.Administrator.Controllers
 {
@@ -23,13 +24,17 @@ namespace WebUI.Areas.Administrator.Controllers
         private readonly IRoomTypeService roomTypeService;
         private readonly IRoomPictureService roomPictureService;
         private readonly IResult result;
+        private readonly IFacilityOfRoomService facilityOfRoomService;
+        private readonly IRoomFacilityService roomFacilityService;
 
-        public RoomTypeController(IMapper mapper, IRoomTypeService roomTypeService, IRoomPictureService roomPictureService, IResult result)
+        public RoomTypeController(IMapper mapper, IRoomTypeService roomTypeService, IRoomPictureService roomPictureService, IResult result, IFacilityOfRoomService facilityOfRoomService, IRoomFacilityService roomFacilityService)
         {
             this.mapper = mapper;
             this.roomTypeService = roomTypeService;
             this.roomPictureService = roomPictureService;
             this.result = result;
+            this.facilityOfRoomService = facilityOfRoomService;
+            this.roomFacilityService = roomFacilityService;
         }
         public async Task<IActionResult> Index()
         {
@@ -244,6 +249,69 @@ namespace WebUI.Areas.Administrator.Controllers
             }
 
             return RedirectToAction("Pictures", new { id = roomTypeId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoomTypeRoleSelection(VMRoomFacilitySelectionCombine vMRoomFacilitySelectionCombine)
+        {
+            var roomtypeFacilities = (await roomTypeService.GetById(vMRoomFacilitySelectionCombine.RoomTypeID)).FacilityOfRooms.ToList();
+            var selectedFacilities = vMRoomFacilitySelectionCombine.VMRoomFacilitySelections.Where(x => x.Selected == true).ToList();
+            var query = selectedFacilities.Where(x => roomtypeFacilities.Any(r => r.RoomFacilityID == x.FacilityID) == false).ToList();
+
+            var facilityOfRooms = mapper.Map<List<FacilityOfRoom>>(query);
+            foreach (var item in facilityOfRooms)
+            {
+                item.RoomTypeID = vMRoomFacilitySelectionCombine.RoomTypeID;
+            }
+            var createResult = facilityOfRoomService.Create(facilityOfRooms);
+            TempData["RoomTypeResult"] = JsonConvert.SerializeObject(createResult);
+
+            return RedirectToAction("RoomTypeDetail", new { id = vMRoomFacilitySelectionCombine.RoomTypeID });
+        }
+        public async Task<IActionResult> DeleteRoomFacility(int roomTypeId, int facilityId)
+        {
+            var facilityOfRoom = (await facilityOfRoomService.GetDefault(x => x.RoomTypeID == roomTypeId && x.RoomFacilityID == facilityId)).FirstOrDefault();
+
+            if (facilityOfRoom != null)
+            {
+                var deleteResult = facilityOfRoomService.RemoveForce(facilityOfRoom);
+                TempData["RoomTypeResult"] = JsonConvert.SerializeObject(deleteResult);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "İlgili idye ait kayıt bulunamadı.";
+                TempData["RoomTypeResult"] = JsonConvert.SerializeObject(result);
+            }
+
+            return RedirectToAction("RoomTypeDetail", new { id = roomTypeId });
+        }
+        public async Task<IActionResult> RoomTypeDetail(int id)
+        {
+            if (TempData["RoomTypeResult"] != null)
+            {
+                var roomTypeResult = JsonConvert.DeserializeObject<Result>(TempData["RoomTypeResult"].ToString());
+                ViewBag.RoomTypeResult = roomTypeResult;
+            }
+            var roomType = await roomTypeService.GetById(id);
+            if (roomType != null)
+            {
+                var roomfacilities = await roomFacilityService.GetActive();
+                var vmRoomType = mapper.Map<VMRoomTypeDetail>(roomType);
+
+                var query = roomfacilities.Where(x => roomType.FacilityOfRooms.Any(f => f.RoomFacilityID == x.ID)).ToList();
+
+                vmRoomType.VMRoomFacilities = mapper.Map<List<VMRoomFacility>>(query);
+                return View(vmRoomType);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "İlgili idye ait kayıt bulunamadı.";
+                TempData["RoomTypeResult"] = JsonConvert.SerializeObject(result);
+
+                return RedirectToAction("Index");
+            }
         }
     }
 }

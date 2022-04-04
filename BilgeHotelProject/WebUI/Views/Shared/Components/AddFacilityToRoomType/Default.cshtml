@@ -1,0 +1,37 @@
+﻿@model VMRoomFacilitySelectionCombine
+
+<form asp-action="RoomTypeRoleSelection" asp-controller="RoomType" method="post">
+    <input type="hidden" asp-for="RoomTypeID" value="@Model.RoomTypeID" />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center" colspan="2">Rol Ekle</th>
+            </tr>
+            <tr>
+                <th>Seçim</th>
+                <th>Olanaklar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.VMRoomFacilitySelections.Count > 0)
+            {
+                @for (int i = 0; i < Model.VMRoomFacilitySelections.Count; i++)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input type="hidden" asp-for="VMRoomFacilitySelections[i].FacilityID" value="@Model.VMRoomFacilitySelections[i].FacilityID" />
+                            <input type="checkbox" asp-for="@Model.VMRoomFacilitySelections[i].Selected" />
+                        </td>
+                        <td>@Model.VMRoomFacilitySelections[i].FacilityName</td>
+                    </tr>
+                }
+            }
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-primary w-100" type="submit">Ekle</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>

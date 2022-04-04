@@ -31,5 +31,6 @@ namespace WebUI.Utilities.Enums
         VMAddShiftToEmployeeCombine,
         VMEmployeeRoleSelection,
         VMEmployeeRoleSelectionCombine,
+        VMRoomFacilitySelectionCombine
     }
 }

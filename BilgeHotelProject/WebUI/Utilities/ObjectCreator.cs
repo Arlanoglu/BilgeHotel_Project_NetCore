@@ -96,9 +96,13 @@ namespace WebUI.Utilities
                 case ViewModels.VMEmployeeRoleSelectionCombine:
                     viewModel = new VMEmployeeRoleSelectionCombine();
                     break;
+                case ViewModels.VMRoomFacilitySelectionCombine:
+                    viewModel = new VMRoomFacilitySelectionCombine();
+                    break;
             }
             return viewModel; 
         }
+        
     }
     
 }

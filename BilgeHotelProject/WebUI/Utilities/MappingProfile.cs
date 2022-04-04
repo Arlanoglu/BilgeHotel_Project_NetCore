@@ -45,6 +45,10 @@ namespace WebUI.Utilities
             CreateMap<RoomPicture, VMRoomPicture>();
             CreateMap<VMRoomPicture, RoomPicture>();
 
+            CreateMap<RoomType, VMRoomTypeDetail>()
+                .ForMember(x => x.RoomTypeID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMRoomTypeDetail, RoomType>();
+
             CreateMap<Contact, VMContact>();
             CreateMap<VMContact, Contact>();
             CreateMap<VMSocialMedia, Contact>();
@@ -253,6 +257,13 @@ namespace WebUI.Utilities
                 .ForMember(x => x.SalaryID, w => w.MapFrom(y => y.ID))
                 .ForMember(x => x.EmployeeName, w => w.MapFrom(y => y.Employee.FirstName+" "+y.Employee.LastName));
             CreateMap<VMSalary, Salary>();
+
+            CreateMap<RoomFacility, VMRoomFacilitySelection>()
+                .ForMember(x => x.FacilityName, w => w.MapFrom(y => y.FacilityName))
+                .ForMember(x => x.FacilityID, w => w.MapFrom(y => y.ID));
+
+            CreateMap<VMRoomFacilitySelection, FacilityOfRoom>()
+                .ForMember(x => x.RoomFacilityID, w => w.MapFrom(y => y.FacilityID));
 
         }
     }

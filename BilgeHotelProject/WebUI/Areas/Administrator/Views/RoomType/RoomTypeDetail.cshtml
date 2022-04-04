@@ -1,0 +1,129 @@
+﻿@model VMRoomTypeDetail
+@{
+    ViewData["Title"] = "RoomTypeDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Oda Tipi Detay</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Oda Tipi Detay</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.RoomTypeResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.RoomTypeResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.RoomTypeResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.RoomTypeResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <a asp-action="Index" asp-controller="RoomType" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Oda Tipleri</a>
+    <a asp-action="Update" asp-controller="RoomType" asp-route-id="@Model.RoomTypeID" class="btn btn-warning mb-3">Oda Tipini Güncelle</a>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <h3 class="text-center font-weight-bold">Oda Tipi Bilgileri</h3>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-gradient-gray">
+                <th scope="col">ID</th>
+                <th scope="col">Oda Tip Adı</th>
+                <th scope="col">Kişi Sayısı</th>
+                <th scope="col">Yatak Sayısı</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                <tr>
+                    <th>@Model.RoomTypeID</th>
+                    <td>@Model.RoomTypeName</td>
+                    <td>@Model.NumberOfPeople</td>
+                    <td>@Model.NumberOfBed</td>
+                    <td>@Model.Price.ToString("C2")</td>
+                </tr>
+                <tr class="bg-gradient-gray">
+                    <th colspan="6" class="text-center">Açıklama</th>
+                </tr>
+                <tr>
+                    <td colspan="6">@Model.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!--Olanak Detayları-->
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 mb-3">
+                <h3 class="text-center font-weight-bold">Oda Olanakları</h3>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" colspan="2">Oda Tipine Ait Olanaklar</th>
+                        </tr>
+                        <tr>
+                            <th>Olanaklar</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.VMRoomFacilities != null)
+                        {
+                            @for (int i = 0; i < Model.VMRoomFacilities.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Model.VMRoomFacilities[i].FacilityName</td>
+                                    <td class="text-center">
+                                        <a asp-action="DeleteRoomFacility" asp-controller="RoomType" asp-route-roomTypeId="@Model.RoomTypeID" asp-route-facilityId="@Model.VMRoomFacilities[i].ID" class="text-danger font-weight-bold">Sil</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                @await Component.InvokeAsync("AddFacilityToRoomType", new { id = Model.RoomTypeID })
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

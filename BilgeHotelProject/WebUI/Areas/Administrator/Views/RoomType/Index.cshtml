@@ -25,7 +25,7 @@
 <!-- /.content-header -->
 
 <div class="container">
-    <a class="btn btn-primary mb-3" href="/Administrator/RoomType/RoomTypeCreate" >Yeni Oda Tipi Ekle</a>
+    <a class="btn btn-primary mb-3" href="/Administrator/RoomType/RoomTypeCreate">Yeni Oda Tipi Ekle</a>
     @if (ViewBag.RoomTypeResult != null)
     {
         <div class="row">
@@ -76,6 +76,7 @@
                         <td class="text-danger">@item.Status</td>
                     }
                     <td>
+                        <a class="btn btn-primary" href="/Administrator/RoomType/RoomTypeDetail/@item.ID">Detay</a>
                         <a class="btn btn-primary" href="/Administrator/RoomType/Update/@item.ID">Düzenle</a>
                         @if (item.Status == Core.Entities.Enum.Status.Active)
                         {
