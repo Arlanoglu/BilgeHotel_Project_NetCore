@@ -77,6 +77,51 @@ namespace WebUI.Controllers
             }
             
         }
+        public IActionResult AuthorizedLogin()
+        {
+            ViewBag.LoginSuccess = TempData["LoginSuccess"];
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AuthorizedLogin(VMLogin vMLogin)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(vMLogin.Email);
+                if (user != null)
+                {
+                    if (user.EmailConfirmed)
+                    {
+                        var result = await signInManager.PasswordSignInAsync(user, vMLogin.Password, false, false);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Home", new { Area = "Administrator" });
+                        }
+                        else
+                        {
+                            ViewBag.LoginError = "Giriş bilgileri hatalı.";
+                            return View(vMLogin);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.LoginError = "Eposta adresiniz doğrulanmammış. Lütfen mail adresinize gönderilen aktivasyon linkine tıklayın.";
+                        return View(vMLogin);
+                    }
+                }
+                else
+                {
+                    ViewBag.LoginError = "Giriş bilgileri hatalı.";
+                    return View(vMLogin);
+                }
+            }
+            else
+            {
+                ViewBag.LoginError = "Giriş Gerçekleştirilemedi.";
+                return View(vMLogin);
+            }
+
+        }
 
         public async Task<IActionResult> Logout()
         {

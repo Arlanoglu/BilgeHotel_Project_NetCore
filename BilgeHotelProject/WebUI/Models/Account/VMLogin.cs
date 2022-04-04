@@ -13,5 +13,6 @@ namespace WebUI.Models.Account
         public string Email { get; set; }
         [Required(ErrorMessage ="Şifre zorunlu.")]
         public string Password { get; set; }
+        public string Authorized { get; set; }
     }
 }

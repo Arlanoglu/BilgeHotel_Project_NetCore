@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebUI.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class HomeController : Controller
     {
         public IActionResult Index()

@@ -57,12 +57,12 @@
                             <div class="row">
                                 <div class="col d-flex justify-content-between">
                                     <h2>Giriş Yap</h2>
-                                    <a href="/Account/AuthorizedLogin">Yetikili Girişi</a>
+                                    <a href="/Account/Login">Kullanıcı Girişi</a>
                                 </div>
                             </div>
-                            
+
                             <hr />
-                            <form asp-controller="Account" asp-action="Login">
+                            <form asp-controller="Account" asp-action="AuthorizedLogin">
                                 <div asp-validation-summary="All">
 
                                 </div>
@@ -81,9 +81,9 @@
                                     <div class="col-10 form-group">
                                         <button class="w-100" type="submit">Giriş Yap</button>
                                     </div>
-                                    <div class="col-10 form-group">
+                                    @*<div class="col-10 form-group">
                                         <p>Üyeliğiniz yoksa <a href="/Account/Register">Üye Ol</a> butonuna tıklayarak üye olabilirsiniz.</p>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </form>
                         </div>
