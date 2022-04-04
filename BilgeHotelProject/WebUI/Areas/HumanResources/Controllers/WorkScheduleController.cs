@@ -12,10 +12,12 @@ using WebUI.Models.WorkSchedule;
 using Core.Entities.Enum;
 using Entities.Concrete;
 using WebUI.Models.Employee;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.HumanResources.Controllers
 {
     [Area("HumanResources")]
+    [Authorize(Roles = "insan kaynaklari")]
     public class WorkScheduleController : Controller
     {
         private readonly IMapper mapper;

@@ -4,6 +4,7 @@ using Core.Entities.Enum;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -15,6 +16,7 @@ using WebUI.Models.ServicePack;
 namespace WebUI.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [Authorize(Roles = "admin")]
     public class ServicePackController : Controller
     {
         private readonly IMapper mapper;

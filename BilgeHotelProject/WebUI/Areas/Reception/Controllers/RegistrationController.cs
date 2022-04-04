@@ -5,6 +5,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Entities.Concrete;
 using Entities.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -23,6 +24,7 @@ using WebUI.Utilities.Enums;
 namespace WebUI.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "resepsiyon")]
     public class RegistrationController : Controller
     {
         private readonly IMapper mapper;

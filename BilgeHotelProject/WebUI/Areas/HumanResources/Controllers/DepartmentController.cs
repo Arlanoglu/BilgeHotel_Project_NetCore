@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using WebUI.Models.Department;
 using Core.Entities.Enum;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.HumanResources.Controllers
 {
     [Area("HumanResources")]
+    [Authorize(Roles = "insan kaynaklari")]
     public class DepartmentController : Controller
     {
         private readonly IMapper mapper;

@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using WebUI.Models.Room;
 using Entities.Enum;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "resepsiyon")]
     public class RoomController : Controller
     {
         private readonly IMapper mapper;

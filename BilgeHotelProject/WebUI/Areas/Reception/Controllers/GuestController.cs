@@ -4,6 +4,7 @@ using Common;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -18,6 +19,7 @@ using WebUI.Utilities.Enums;
 namespace WebUI.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "resepsiyon")]
     public class GuestController : Controller
     {
         private readonly IMapper mapper;

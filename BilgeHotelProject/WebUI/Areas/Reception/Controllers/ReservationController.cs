@@ -19,10 +19,12 @@ using Entities.Concrete;
 using WebUI.Models.StatusOfRoom;
 using Core.Entities.Enum;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "resepsiyon")]
     public class ReservationController : Controller
     {
         private readonly IMapper mapper;

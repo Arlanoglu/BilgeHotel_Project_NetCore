@@ -10,10 +10,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models.Room;
 using Core.Entities.Enum;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.AncillaryServices.Controllers
 {
     [Area("AncillaryServices")]
+    [Authorize(Roles = "yardimci hizmetler")]
     public class RoomController : Controller
     {
         private readonly IMapper mapper;

@@ -11,10 +11,12 @@ using WebUI.Models.Shift;
 using Core.Entities.Enum;
 using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.HumanResources.Controllers
 {
     [Area("HumanResources")]
+    [Authorize(Roles = "insan kaynaklari")]
     public class ShiftController : Controller
     {
         private readonly IMapper mapper;

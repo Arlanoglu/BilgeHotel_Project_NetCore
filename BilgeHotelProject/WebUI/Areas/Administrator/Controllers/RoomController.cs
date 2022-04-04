@@ -13,10 +13,12 @@ using System.Threading.Tasks;
 using WebUI.Models.Room;
 using WebUI.Models.RoomType;
 using Core.Entities.Enum;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [Authorize(Roles = "admin")]
     public class RoomController : Controller
     {
         private readonly IMapper mapper;

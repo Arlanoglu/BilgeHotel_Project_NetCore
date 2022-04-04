@@ -18,10 +18,12 @@ using WebUI.Models.Department;
 using WebUI.Models.Shift;
 using Entities.Enum;
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.HumanResources.Controllers
 {
     [Area("HumanResources")]
+    [Authorize(Roles = "insan kaynaklari")]
     public class EmployeeController : Controller
     {
         private readonly IMapper mapper;
