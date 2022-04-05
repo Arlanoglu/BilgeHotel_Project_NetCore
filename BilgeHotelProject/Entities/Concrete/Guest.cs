@@ -12,7 +12,7 @@ namespace Entities.Concrete
         public string Country { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public bool IsActive { get; set; } //Müşteri kalıyorsa true çıktıysa false olacak buna göre api de bu müşteriler çekilecek.
+        public bool IsActive { get; set; } 
         public string IdCardFrontSideImage { get; set; }
         public string IdCardBackSideImage { get; set; }
         public virtual ICollection<GuestRegistration> GuestRegistrations { get; set; }

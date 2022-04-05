@@ -128,7 +128,8 @@ namespace DataAccess.Concrete.EntityFramework.Context
                 new IdentityRole { Id = "3a2aebe3-6100-4ece-b2be-8bfec2e2c329", Name = "yardimci hizmetler", NormalizedName = "yardimci hizmetler".ToUpper(new CultureInfo("en-US", false)) },
                 new IdentityRole { Id = "0cd03d09-4264-4f6e-b0d8-e18fe9c03aa1", Name = "bilgi islem", NormalizedName = "bilgi islem".ToUpper(new CultureInfo("en-US", false)) },
                 new IdentityRole { Id = "a98546c7-b529-4836-8d88-6af9667d8008", Name = "mutfak", NormalizedName = "mutfak".ToUpper(new CultureInfo("en-US", false)) },
-                new IdentityRole { Id = "4353147a-1b09-492f-87aa-6b467d30e7e0", Name = "muhasebe", NormalizedName = "muhasebe".ToUpper(new CultureInfo("en-US", false)) }
+                new IdentityRole { Id = "4353147a-1b09-492f-87aa-6b467d30e7e0", Name = "muhasebe", NormalizedName = "muhasebe".ToUpper(new CultureInfo("en-US", false)) },
+                new IdentityRole { Id = "faf7c5c9-62cc-4c83-8f95-d51395940793", Name = "valilik", NormalizedName = "valilik".ToUpper(new CultureInfo("en-US", false)) }
                 );
             #endregion
 
@@ -215,6 +216,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
             FakeEmployee("İnsan Kaynakları Müdürü", 6, EmployeeStatus.MiddleManagement, 1);
 
             List<AppUser> appUsers = new List<AppUser>();
+            var valilikGuid = Guid.NewGuid();
+            appUsers.Add(
+                new AppUser { Id = valilikGuid.ToString(), FirstName = "Bilge", LastName = "Hotel", UserName = "valilik@bilgehotel.com", NormalizedUserName = "valilik@bilgehotel.com".ToUpper(new CultureInfo("en-US", false)), Email = "valilik@bilgehotel.com", NormalizedEmail = "valilik@bilgehotel.com".ToUpper(new CultureInfo("en-US", false)), EmailConfirmed = true, PasswordHash = HashPassword("Valilik.2022"), PhoneNumber = "05111111111" });
             foreach (var item in employees)
             {
                 //hesabın oluşturulması
@@ -228,6 +232,9 @@ namespace DataAccess.Concrete.EntityFramework.Context
             //Hesapların kaydedilmesi ve çalışanların kaydedilmesi.
             builder.Entity<AppUser>().HasData(appUsers);
             builder.Entity<Employee>().HasData(employees);
+            builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string> { UserId = valilikGuid.ToString(), RoleId = "faf7c5c9-62cc-4c83-8f95-d51395940793" }
+                );
             //Rollerinin atanması                
             foreach (var item in employees)
             {
