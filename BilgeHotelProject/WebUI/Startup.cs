@@ -63,7 +63,7 @@ namespace WebUI
             services.ConfigureApplicationCookie(x =>
             {
                 x.LoginPath = new PathString("/Account/Login");
-                //DeniredPath yapýlmadý.
+                x.AccessDeniedPath = new PathString("/Account/Denied");
                 x.Cookie = new CookieBuilder
                 {
                     Name = "userAuthCookie"

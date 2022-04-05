@@ -240,5 +240,9 @@ namespace WebUI.Controllers
 
             return View(vmMyReservations);
         }
+        public IActionResult Denied()
+        {
+            return View();
+        }
     }
 }
