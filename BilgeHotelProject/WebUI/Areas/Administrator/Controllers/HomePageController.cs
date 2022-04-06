@@ -55,7 +55,7 @@ namespace WebUI.Areas.Administrator.Controllers
         {
             if (ModelState.IsValid)
             {
-                var uploadResult = ImageUploader.UploadImage("/img/slide/", file, (Result)result);
+                var uploadResult = ImageUploader.UploadImage("/img/", file, (Result)result);
                 if (uploadResult.ResultStatus == ResultStatus.Success)
                 {
                     var pictureUrl = uploadResult.Message;
@@ -129,7 +129,7 @@ namespace WebUI.Areas.Administrator.Controllers
                 homePage.Paragraph4 = vMHomePageUpdate.Paragraph4;
                 homePage.Paragraph5 = vMHomePageUpdate.Paragraph5;
 
-                var uploadResult = ImageUploader.UploadImage("/img/slide/", file, (Result)result);
+                var uploadResult = ImageUploader.UploadImage("/img/", file, (Result)result);
                 if (uploadResult.ResultStatus == ResultStatus.Success)
                 {                   
                     homePage.PictureUrl = uploadResult.Message;
@@ -177,7 +177,7 @@ namespace WebUI.Areas.Administrator.Controllers
             {
                 var slidePictures = await homePageSlideService.GetDefault(x => x.HomePageID == id);
                 var vmSlidePictures = mapper.Map<List<VMHomePageSlide>>(slidePictures);
-                //ViewBag.HomePageId = id;
+                ViewBag.HomePageId = id;
                 return View(vmSlidePictures);
             }
             else

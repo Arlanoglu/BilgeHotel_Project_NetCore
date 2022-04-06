@@ -47,6 +47,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-10">
+                    <a asp-action="Index" asp-controller="HomePage" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
                     <form asp-action="SlidePictureUpload" asp-controller="HomePage" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -58,7 +59,10 @@
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="inputGroupFile03">Görsel Seç</label>
-                                        <input type="hidden" name="HomePageID" value="@Model.FirstOrDefault().HomePageID" />
+                                        @if (ViewBag.HomePageId != null)
+                                        {
+                                            <input type="hidden" name="HomePageID" value="@ViewBag.HomePageId" />
+                                        }
                                         <input type="file" name="file" class="custom-file-input" accept="image/png, image/jpeg, image/jpg" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
                                     </div>
                                     <div class="">
@@ -71,7 +75,7 @@
                     </form>
                 </div>
             </div>
-            @if (Model != null)
+            @if (Model != null && Model.Count > 0)
             {
                 @foreach (var item in Model)
                 {

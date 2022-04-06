@@ -60,10 +60,16 @@ namespace WebUI.Utilities
             CreateMap<VMSocialMedia, Contact>();
             CreateMap<Contact, VMSocialMedia>();
 
-            CreateMap<Aboutus, VMAboutus>();
+            CreateMap<Aboutus, VMAboutus>().ForMember(x => x.AboutusID, w => w.MapFrom(y => y.ID));
             CreateMap<VMAboutus, Aboutus>();
 
-            CreateMap<Picture, VMPicture>();
+            CreateMap<Aboutus, VMAboutusCreate>();
+            CreateMap<VMAboutusCreate, Aboutus>();
+
+            CreateMap<Aboutus, VMAboutusUpdate>().ForMember(x => x.AboutusID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMAboutusUpdate, Aboutus>();
+
+            CreateMap<Picture, VMPicture>().ForMember(x => x.PictureID, w => w.MapFrom(y => y.ID));
             CreateMap<VMPicture, Picture>();
 
             CreateMap<HotelService, VMHotelService>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace WebUI.Models.Aboutus
 {
     public class VMAboutus : BaseVM
     {
+        public int AboutusID { get; set; }
         public string Title { get; set; }
         public string PictureUrl { get; set; }
         public string Paragraph1 { get; set; }
@@ -15,7 +17,7 @@ namespace WebUI.Models.Aboutus
         public string Paragraph3 { get; set; }
         public string Paragraph4 { get; set; }
         public string Paragraph5 { get; set; }
-
+        public Status Status { get; set; }
         public List<VMPicture> VMPictures { get; set; }
     }
 }
