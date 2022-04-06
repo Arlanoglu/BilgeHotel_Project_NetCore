@@ -1,0 +1,163 @@
+﻿@model List<VMHomePageSlide>
+@{
+    ViewData["Title"] = "SlidePictures";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ana Sayfa Slayt Görselleri</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Ana Sayfa Slayt Görselleri</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.HomePageResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.HomePageResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.HomePageResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.HomePageResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <form asp-action="SlidePictureUpload" asp-controller="HomePage" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="col-form-label">Görsel Adı</label>
+                                <input name="PictureName" class="form-control" type="text" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <div class="row"><label class="col-form-label"><br /></label></div>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <label class="custom-file-label" for="inputGroupFile03">Görsel Seç</label>
+                                        <input type="hidden" name="HomePageID" value="@Model.FirstOrDefault().HomePageID" />
+                                        <input type="file" name="file" class="custom-file-input" accept="image/png, image/jpeg, image/jpg" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+                                    </div>
+                                    <div class="">
+                                        <button class="btn btn-success ml-2" type="submit" id="inputGroupFileAddon03">Görsel Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="row justify-content-center mb-3" data-aos="fade-up">
+                        <div class="col-lg-10 php-email-form">
+                            <div class="row">
+                                <div class="col-xl-12 col-12">
+                                    <div class="row">
+                                        <div class="col-xl-5 border border-dark col-12 p-0">
+                                            <!--RoomPhotosCarousel-->
+                                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img style="height:13rem" src="@item.PictureUrl" class="d-block w-100">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--EndRoomPhotosCarousel-->
+                                        </div>
+                                        <div class="col-xl-7 col-12">
+                                            <div class="row h-100">
+                                                <div class="col-12 col-xl-6">
+                                                    <div class="row h-100 align-items-center">
+                                                        <div class="col-xl-12 col-6 text-center">
+                                                            <h6 class="font-weight-bold">Görsel Adı</h6>
+                                                            <hr />
+                                                        </div>
+                                                        <div class="col-xl-12 col-6 text-center">
+                                                            <h6>@item.PictureName</h6><hr />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-6">
+                                                    <div class="row h-100 align-items-center">
+                                                        <div class="col-xl-12 col-6 text-center">
+                                                            <h6 class="font-weight-bold">Durum</h6>
+                                                            <hr />
+                                                        </div>
+                                                        <div class="col-xl-12 col-6 text-center">
+                                                            @if (item.Status == Core.Entities.Enum.Status.Active)
+                                                            {
+                                                                <h6 class="text-success">@item.Status</h6>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h6 class="text-danger">@item.Status</h6>
+                                                            }
+                                                            <hr />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            @if (item.Status == Core.Entities.Enum.Status.Active)
+                                                            {
+                                                                <a class="btn btn-warning" href="/Administrator/HomePage/PictureDeActivate/@item.HomePageSlideID">Pasif Yap</a>
+                                                            }
+                                                            else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                                            {
+                                                                <a class="btn btn-success" href="/Administrator/HomePage/PictureActivate/@item.HomePageSlideID">Aktif Yap</a>
+                                                            }
+                                                            <a asp-action="PictureRemoveForce" asp-controller="HomePage" asp-route-id="@item.HomePageSlideID" class="btn btn-danger ml-2">Kalıcı Sil</a>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-xl-2 col-12 p-0 d-flex justify-content-center align-content-center">
+            <button class="btn btn-danger" type="submit">Rezervasyon</button>
+        </div>*@
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+    </section>
+
+</div>
+
+
+

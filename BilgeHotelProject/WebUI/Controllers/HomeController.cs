@@ -34,11 +34,15 @@ namespace WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var homePage = await homePageService.GetFirstOrDefault();
+            var homePage = (await homePageService.GetActive()).FirstOrDefault();
             var roomTypes = await roomTypeService.GetActive();
 
             var vmHomePage = mapper.Map<VMHomePage>(homePage);
-            vmHomePage.VMHomePageSlide = mapper.Map<List<VMHomePageSlide>>(homePage.HomePageSlides);
+            if (homePage!=null)
+            {
+                var slides = homePage.HomePageSlides.Where(x => x.Status == Core.Entities.Enum.Status.Active);
+                vmHomePage.VMHomePageSlide = mapper.Map<List<VMHomePageSlide>>(slides);
+            }
 
             List<VMRoomType> vmRoomTypes = new List<VMRoomType>();
             foreach (var item in roomTypes)

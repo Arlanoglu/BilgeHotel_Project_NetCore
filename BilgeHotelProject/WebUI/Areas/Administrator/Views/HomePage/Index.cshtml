@@ -1,0 +1,123 @@
+﻿@model List<VMHomePage>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ana Sayfa</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Ana Sayfa</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.HomePageResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.HomePageResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.HomePageResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.HomePageResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+<section id="contact" class="contact">
+    <div class="container">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="row justify-content-center mb-3" data-aos="fade-up">
+                    <div class="col-10 php-email-form">
+                        <a asp-action="SlidePictures" asp-controller="HomePage" asp-route-id="@item.ID" class="btn btn-info">Slayt Görselleri</a>
+                        <a asp-action="HomePageCreate" asp-controller="HomePage" class="btn btn-primary">Yeni İçerik Oluştur</a>
+                        <a class="btn btn-primary" href="/Administrator/HomePage/UpdateHomePage/@item.ID">Düzenle</a>
+                        @if (item.Status == Core.Entities.Enum.Status.Active)
+                        {
+                            <a class="btn btn-warning" href="/Administrator/HomePage/ChangeStatus/@item.ID">Pasif Yap</a>
+                        }
+                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                        {
+                            <a class="btn btn-success" href="/Administrator/HomePage/ChangeStatus/@item.ID">Aktif Yap</a>
+                        }
+                        <a asp-action="RemoveForce" asp-controller="HomePage" asp-route-id="@item.ID" class="btn btn-danger">Kalıcı Sil</a>
+                        <table class="table table-bordered mt-3">
+                            <thead>
+                                <tr class="bg-gradient-light">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Görsel</th>
+                                    <th scope="col">Başlık</th>
+                                    <th scope="col">Alt Başlık</th>
+                                    <th scope="col">Durumu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">@item.ID</th>
+                                    <td>
+                                        <img style="width:150px; height:100px;" src="@item.PictureUrl" />
+                                    </td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Subtitle</td>
+                                    @if (item.Status == Core.Entities.Enum.Status.Active)
+                                    {
+                                        <td class="text-success">@item.Status</td>
+                                    }
+                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                    {
+                                        <td class="text-danger">@item.Status</td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <th colspan="6" class="text-center bg-gradient-light">İçerik</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <p>@item.Paragraph1</p>
+                                        <p>@item.Paragraph2</p>
+                                        <p>@item.Paragraph3</p>
+                                        <p>@item.Paragraph4</p>
+                                        <p>@item.Paragraph5</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row justify-content-center mb-3" data-aos="fade-up">
+                <div class="col-10 php-email-form">
+                    <h5>Kayıtlı içerik bulunamadı yeni içerik oluşturmak için <a asp-action="HomePageCreate" asp-controller="HomePage" class="text-success font-weight-bold">tıklayın</a></h5>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+</div>
+

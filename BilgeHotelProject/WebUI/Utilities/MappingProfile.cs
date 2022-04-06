@@ -35,8 +35,14 @@ namespace WebUI.Utilities
             CreateMap<HomePage, VMHomePage>();
             CreateMap<VMHomePage, HomePage>();
 
-            CreateMap<HomePageSlide, VMHomePageSlide>();
+            CreateMap<HomePageSlide, VMHomePageSlide>().ForMember(x => x.HomePageSlideID, w => w.MapFrom(y => y.ID));
             CreateMap<VMHomePageSlide, HomePageSlide>();
+
+            CreateMap<HomePage, VMHomePageCreate>();
+            CreateMap<VMHomePageCreate, HomePage>();
+
+            CreateMap<HomePage, VMHomePageUpdate>().ForMember(x => x.HomePageID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMHomePageUpdate, HomePage>().ForMember(x => x.ID, w => w.MapFrom(y => y.HomePageID)); ;
 
             CreateMap<RoomType, VMRoomType>();
             CreateMap<VMRoomType, RoomType>();
