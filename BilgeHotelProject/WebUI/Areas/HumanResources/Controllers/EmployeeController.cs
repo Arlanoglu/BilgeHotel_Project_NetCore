@@ -480,6 +480,7 @@ namespace WebUI.Areas.HumanResources.Controllers
 
             return View(vMEmployeeUpdate);
         }
+        [Authorize(Roles ="admin")]
         [HttpPost]
         public async Task<IActionResult> EmployeeRoleSelection(VMEmployeeRoleSelectionCombine vMEmployeeRoleSelectionCombine)
         {
@@ -510,6 +511,7 @@ namespace WebUI.Areas.HumanResources.Controllers
             }
             return RedirectToAction("EmployeeDetail", new { id = vMEmployeeRoleSelectionCombine.EmployeeID });
         }
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteEmployeeRole(int employeeId, string roleName)
         {
             var employeeEmail = (await employeeService.GetById(employeeId)).Email;
