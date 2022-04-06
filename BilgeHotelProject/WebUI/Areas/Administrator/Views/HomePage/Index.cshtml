@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Ana Sayfa</h1>
+                <h1 class="m-0">Ana Sayfa İçerik Yönetimi</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Ana Sayfa</li>
+                    <li class="breadcrumb-item active">Ana Sayfa İçerik Yönetimi</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -51,59 +51,60 @@
             {
                 <div class="row justify-content-center mb-3" data-aos="fade-up">
                     <div class="col-10 php-email-form">
-                        <a asp-action="SlidePictures" asp-controller="HomePage" asp-route-id="@item.ID" class="btn btn-info">Slayt Görselleri</a>
-                        <a asp-action="HomePageCreate" asp-controller="HomePage" class="btn btn-primary">Yeni İçerik Oluştur</a>
-                        <a class="btn btn-primary" href="/Administrator/HomePage/UpdateHomePage/@item.ID">Düzenle</a>
-                        @if (item.Status == Core.Entities.Enum.Status.Active)
-                        {
-                            <a class="btn btn-warning" href="/Administrator/HomePage/ChangeStatus/@item.ID">Pasif Yap</a>
-                        }
-                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                        {
-                            <a class="btn btn-success" href="/Administrator/HomePage/ChangeStatus/@item.ID">Aktif Yap</a>
-                        }
-                        <a asp-action="RemoveForce" asp-controller="HomePage" asp-route-id="@item.ID" class="btn btn-danger">Kalıcı Sil</a>
-                        <table class="table table-bordered mt-3">
-                            <thead>
-                                <tr class="bg-gradient-light">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Görsel</th>
-                                    <th scope="col">Başlık</th>
-                                    <th scope="col">Alt Başlık</th>
-                                    <th scope="col">Durumu</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">@item.ID</th>
-                                    <td>
-                                        <img style="width:150px; height:100px;" src="@item.PictureUrl" />
-                                    </td>
-                                    <td>@item.Title</td>
-                                    <td>@item.Subtitle</td>
-                                    @if (item.Status == Core.Entities.Enum.Status.Active)
-                                    {
-                                        <td class="text-success">@item.Status</td>
-                                    }
-                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                                    {
-                                        <td class="text-danger">@item.Status</td>
-                                    }
-                                </tr>
-                                <tr>
-                                    <th colspan="6" class="text-center bg-gradient-light">İçerik</th>
-                                </tr>
-                                <tr>
-                                    <td colspan="6">
-                                        <p>@item.Paragraph1</p>
-                                        <p>@item.Paragraph2</p>
-                                        <p>@item.Paragraph3</p>
-                                        <p>@item.Paragraph4</p>
-                                        <p>@item.Paragraph5</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="row">
+                            <div class="col-10">
+                                <a asp-action="SlidePictures" asp-controller="HomePage" asp-route-id="@item.ID" class="btn btn-info">Slayt Görselleri</a>
+                                <a asp-action="HomePageCreate" asp-controller="HomePage" class="btn btn-primary">Yeni İçerik Oluştur</a>
+                                <a class="btn btn-primary" href="/Administrator/HomePage/UpdateHomePage/@item.ID">Düzenle</a>
+                                @if (item.Status == Core.Entities.Enum.Status.Active)
+                                {
+                                    <a class="btn btn-warning" href="/Administrator/HomePage/ChangeStatus/@item.ID">Pasif Yap</a>
+                                }
+                                else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                {
+                                    <a class="btn btn-success" href="/Administrator/HomePage/ChangeStatus/@item.ID">Aktif Yap</a>
+                                }
+                                <a asp-action="RemoveForce" asp-controller="HomePage" asp-route-id="@item.ID" class="btn btn-danger">Kalıcı Sil</a>
+                            </div>
+                            <div class="col-2 d-flex justify-content-end">
+                                @if (item.Status == Core.Entities.Enum.Status.Active)
+                                {
+                                    <span class="text-success">@item.Status</span>
+                                }
+                                else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                {
+                                    <span class="text-danger">@item.Status</span>
+                                }
+                            </div>
+                        </div>
+                        <hr />
+                        <!--İçerik-->
+                        <div class="row">
+                            <div class="col d-flex justify-content-center">
+                                <h4 class="font-weight-bold">@item.Title</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-5 border border-dark col-12 p-0">
+                                <!--RoomPhotosCarousel-->
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img style="height:13rem" src="@item.PictureUrl" class="d-block w-100">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--EndRoomPhotosCarousel-->
+                            </div>
+                            <div class="col-xl-7 col-12">
+                                <h5 class="mt-3"><i>@item.Subtitle</i></h5>
+                                <p>@item.Paragraph1</p>
+                                <p>@item.Paragraph2</p>
+                                <p>@item.Paragraph3</p>
+                                <p>@item.Paragraph4</p>
+                                <p>@item.Paragraph5</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }
@@ -120,4 +121,44 @@
 </section>
 
 </div>
-
+@*<table class="table table-bordered mt-3">
+    <thead>
+        <tr class="bg-gradient-light">
+            <th scope="col">#</th>
+            <th scope="col">Görsel</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Alt Başlık</th>
+            <th scope="col">Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@item.ID</th>
+            <td>
+                <img style="width:150px; height:100px;" src="@item.PictureUrl" />
+            </td>
+            <td>@item.Title</td>
+            <td>@item.Subtitle</td>
+            @if (item.Status == Core.Entities.Enum.Status.Active)
+            {
+                <td class="text-success">@item.Status</td>
+            }
+            else if (item.Status == Core.Entities.Enum.Status.Deleted)
+            {
+                <td class="text-danger">@item.Status</td>
+            }
+        </tr>
+        <tr>
+            <th colspan="6" class="text-center bg-gradient-light">İçerik</th>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <p>@item.Paragraph1</p>
+                <p>@item.Paragraph2</p>
+                <p>@item.Paragraph3</p>
+                <p>@item.Paragraph4</p>
+                <p>@item.Paragraph5</p>
+            </td>
+        </tr>
+    </tbody>
+</table>*@
