@@ -21,7 +21,7 @@ namespace WebUI.Models.Contact
         [Required(ErrorMessage = "Konu boş bırakılamaz.")]
         public string Subject { get; set; }
         [Required(ErrorMessage = "Mesaj içeriği boş bırakılamaz.")]
-        [MaxLength(ErrorMessage ="Maksimum 500 karakterde mesaj girilebilir.")]
+        [MaxLength(500,ErrorMessage ="Maksimum 500 karakterde mesaj girilebilir.")]
         public string MessageContent { get; set; }
 
         public string AppUserID { get; set; }

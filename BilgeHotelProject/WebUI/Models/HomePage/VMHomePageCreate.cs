@@ -15,15 +15,15 @@ namespace WebUI.Models.HomePage
         public string PictureUrl { get; set; }
 
         [Required(ErrorMessage = "En az 1 paragraf girilmelidir.")]
-        [MaxLength(ErrorMessage = "En fazla 500 karakter girilebilir.")]
+        [MaxLength(500, ErrorMessage = "En fazla 500 karakter girilebilir.")]
         public string Paragraph1 { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 500 karakter girilebilir.")]
+        [MaxLength(500, ErrorMessage = "En fazla 500 karakter girilebilir.")]
         public string Paragraph2 { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 500 karakter girilebilir.")]
+        [MaxLength(500, ErrorMessage = "En fazla 500 karakter girilebilir.")]
         public string Paragraph3 { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 500 karakter girilebilir.")]
+        [MaxLength(500, ErrorMessage = "En fazla 500 karakter girilebilir.")]
         public string Paragraph4 { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 500 karakter girilebilir.")]
+        [MaxLength(500, ErrorMessage = "En fazla 500 karakter girilebilir.")]
         public string Paragraph5 { get; set; }
     }
 }

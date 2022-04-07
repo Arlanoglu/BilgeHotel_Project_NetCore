@@ -10,7 +10,7 @@ namespace WebUI.Models.Contact
     {
         public int ContactID { get; set; }
         [Required(ErrorMessage = "Adres alanı boş bırakılamaz.")]
-        [MaxLength(ErrorMessage = "En fazla 200 karakter girilebilir.")]
+        [MaxLength(200,ErrorMessage = "En fazla 200 karakter girilebilir.")]
         public string Adress { get; set; }
         [Required(ErrorMessage = "Adres alanı boş bırakılamaz.")]
         public string Phone1 { get; set; }
@@ -18,11 +18,11 @@ namespace WebUI.Models.Contact
         public string Fax { get; set; }
         [Required(ErrorMessage = "Adres alanı boş bırakılamaz.")]
         public string Email { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 200 karakter girilebilir.")]
+        [MaxLength(200,ErrorMessage = "En fazla 200 karakter girilebilir.")]
         public string Facebook { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 200 karakter girilebilir.")]
+        [MaxLength(200,ErrorMessage = "En fazla 200 karakter girilebilir.")]
         public string Instagram { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 200 karakter girilebilir.")]
+        [MaxLength(200,ErrorMessage = "En fazla 200 karakter girilebilir.")]
         public string Twitter { get; set; }
     }
 }

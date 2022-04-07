@@ -12,7 +12,7 @@ namespace WebUI.Models.HotelService
         public string IconPicture { get; set; }
         [Required(ErrorMessage = "Hizmet adı boş geçilemez.")]
         public string ServiceName { get; set; }
-        [MaxLength(ErrorMessage = "En fazla 200 karakter girilmelidir.")]
+        [MaxLength(200, ErrorMessage = "En fazla 200 karakter girilmelidir.")]
         public string Description { get; set; }
     }
 }

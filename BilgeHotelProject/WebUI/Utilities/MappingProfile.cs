@@ -25,6 +25,7 @@ using WebUI.Models.Department;
 using Microsoft.AspNetCore.Identity;
 using WebUI.Models.WorkSchedule;
 using WebUI.Models.Salary;
+using WebUI.Models.Setting;
 
 namespace WebUI.Utilities
 {
@@ -71,6 +72,9 @@ namespace WebUI.Utilities
 
             CreateMap<Aboutus, VMAboutusUpdate>().ForMember(x => x.AboutusID, w => w.MapFrom(y => y.ID));
             CreateMap<VMAboutusUpdate, Aboutus>();
+
+            CreateMap<Setting, VMSettingCreateUpdate>().ForMember(x => x.SettingID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMSettingCreateUpdate, Setting>();
 
             CreateMap<Picture, VMPicture>().ForMember(x => x.PictureID, w => w.MapFrom(y => y.ID));
             CreateMap<VMPicture, Picture>();

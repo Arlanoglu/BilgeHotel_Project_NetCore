@@ -126,41 +126,48 @@ using WebUI.Models.Picture;
 #nullable disable
 #nullable restore
 #line 17 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Entities.Concrete;
+using WebUI.Models.Setting;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Core.Utilities.Results.Concrete;
+using Entities.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Core.Utilities.Results.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Core.Entities.Enum;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 21 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
+using Core.Entities.Enum;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 22 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
 using Entities.Enum;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a6b00be0c8cc7abd472fcf9612bbe0e64d7e678", @"/Areas/Administrator/Views/HotelService/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"82bb7b7ff412ea93091eacbe7e80be4b04e59900", @"/Areas/Administrator/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0da75e6dd2f7fb9ff27808b4a96c75b75aff5055", @"/Areas/Administrator/Views/_ViewImports.cshtml")]
     public class Areas_Administrator_Views_HotelService_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<VMHotelService>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "ServiceCreate", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -292,7 +299,7 @@ using Entities.Enum;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n    <section id=\"contact\" class=\"contact\">\r\n        <div class=\"container\">\r\n\r\n            <div class=\"row justify-content-center\">\r\n                <div class=\"col-10\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67815768", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67816016", async() => {
                 WriteLiteral(@"
                         <div class=""row"">
                             <div class=""col-md-6 form-group"">
@@ -448,7 +455,7 @@ WriteAttributeValue("", 4717, item.IconPicture, 4717, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                            <td class=\"text-center\">\r\n                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67824935", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67825183", async() => {
                 WriteLiteral("<i class=\"nav-icon fas ion-edit\"></i>");
             }
             );
@@ -491,7 +498,7 @@ WriteAttributeValue("", 4717, item.IconPicture, 4717, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67828013", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67828261", async() => {
                 WriteLiteral("Pasif Yap");
             }
             );
@@ -535,7 +542,7 @@ WriteAttributeValue("", 4717, item.IconPicture, 4717, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67831120", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67831368", async() => {
                 WriteLiteral("Aktif Yap");
             }
             );
@@ -577,7 +584,7 @@ WriteAttributeValue("", 4717, item.IconPicture, 4717, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67834064", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a6b00be0c8cc7abd472fcf9612bbe0e64d7e67834312", async() => {
                 WriteLiteral("Sil");
             }
             );
