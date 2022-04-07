@@ -137,5 +137,23 @@ namespace Business.Services.Concrete
             }
             return extraServicesPrice + registration.Price;
         }
+
+        public decimal DailyIncome(List<Income> incomes, DateTime date)
+        {
+            var result = incomes.Where(x => x.IncomeDate.Date.ToString("yyyy-MM-dd") == date.Date.ToString("yyyy-MM-dd")).Select(x => x.TotalPrice).Sum();
+            return result;
+        }
+
+        public decimal MonthlyIncome(List<Income> incomes, int month, int year)
+        {
+            var result = incomes.Where(x => x.IncomeDate.Date.Month == month && x.IncomeDate.Date.Year == year).Select(x => x.TotalPrice).Sum();
+            return result;
+        }
+
+        public decimal YearlyIncome(List<Income> incomes, int year)
+        {
+            var result = incomes.Where(x => x.IncomeDate.Date.Year == year).Select(x => x.TotalPrice).Sum();
+            return result;
+        }
     }
 }

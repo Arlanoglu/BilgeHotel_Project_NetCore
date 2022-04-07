@@ -10,6 +10,7 @@ using WebUI.Models.ExtraService;
 using WebUI.Models.Guest;
 using WebUI.Models.HomePage;
 using WebUI.Models.HotelService;
+using WebUI.Models.Income;
 using WebUI.Models.Picture;
 using WebUI.Models.Registration;
 using WebUI.Models.Reservation;
@@ -98,6 +99,9 @@ namespace WebUI.Utilities
                     break;
                 case ViewModels.VMRoomFacilitySelectionCombine:
                     viewModel = new VMRoomFacilitySelectionCombine();
+                    break;
+                case ViewModels.VMIncomeCombine:
+                    viewModel = new VMIncomeCombine();
                     break;
             }
             return viewModel; 

@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Identity;
 using WebUI.Models.WorkSchedule;
 using WebUI.Models.Salary;
 using WebUI.Models.Setting;
+using WebUI.Models.Income;
 
 namespace WebUI.Utilities
 {
@@ -304,6 +305,9 @@ namespace WebUI.Utilities
 
             CreateMap<VMRoomFacilitySelection, FacilityOfRoom>()
                 .ForMember(x => x.RoomFacilityID, w => w.MapFrom(y => y.FacilityID));
+
+            CreateMap<Income, VMIncome>().ForMember(x => x.IncomeID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMIncome, Income>().ForMember(x => x.ID, w => w.MapFrom(y => y.IncomeID));
 
         }
     }
