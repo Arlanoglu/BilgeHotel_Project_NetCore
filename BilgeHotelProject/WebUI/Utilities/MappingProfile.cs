@@ -55,10 +55,13 @@ namespace WebUI.Utilities
                 .ForMember(x => x.RoomTypeID, w => w.MapFrom(y => y.ID));
             CreateMap<VMRoomTypeDetail, RoomType>();
 
-            CreateMap<Contact, VMContact>();
+            CreateMap<Contact, VMContact>().ForMember(x => x.ContactID, w => w.MapFrom(y => y.ID));
             CreateMap<VMContact, Contact>();
             CreateMap<VMSocialMedia, Contact>();
             CreateMap<Contact, VMSocialMedia>();
+
+            CreateMap<Contact, VMContactCreateUpdate>().ForMember(x => x.ContactID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMContactCreateUpdate, Contact>();
 
             CreateMap<Aboutus, VMAboutus>().ForMember(x => x.AboutusID, w => w.MapFrom(y => y.ID));
             CreateMap<VMAboutus, Aboutus>();

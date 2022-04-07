@@ -7,6 +7,7 @@ namespace WebUI.Models.Contact
 {
     public class VMContact : BaseVM
     {
+        public int ContactID { get; set; }
         public string Adress { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }

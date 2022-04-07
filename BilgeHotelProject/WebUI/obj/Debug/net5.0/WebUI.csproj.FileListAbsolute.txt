@@ -267,3 +267,4 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Administrator\Views\Aboutus\GalleryPictures.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Administrator\Views\HotelService\Index.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Administrator\Views\HotelService\UpdateService.cshtml.g.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Administrator\Views\Contact\Index.cshtml.g.cs

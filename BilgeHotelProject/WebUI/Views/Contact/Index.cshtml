@@ -33,7 +33,7 @@
                             <div class="col-lg-4 info">
                                 <i class="icofont-google-map"></i>
                                 <h4>Adres:</h4>
-                                @if (Model.Adress != null)
+                                @if (Model != null && Model.Adress != null)
                                 {
                                     <p>@Model.Adress</p>
                                 }
@@ -42,7 +42,7 @@
                             <div class="col-lg-4 info mt-4 mt-lg-0">
                                 <i class="icofont-envelope"></i>
                                 <h4>Eposta:</h4>
-                                @if (Model.Email != null)
+                                @if (Model != null && Model.Email != null)
                                 {
                                     <p>@Model.Email</p>
                                 }
@@ -51,11 +51,11 @@
                             <div class="col-lg-4 info mt-4 mt-lg-0">
                                 <i class="icofont-phone"></i>
                                 <h4>Telefon:</h4>
-                                @if (Model.Phone1 != null)
+                                @if (Model != null && Model.Phone1 != null)
                                 {
                                     <p>@Model.Phone1</p>
                                 }
-                                @if (Model.Phone2 != null)
+                                @if (Model != null && Model.Phone2 != null)
                                 {
                                     <p>@Model.Phone2</p>
                                 }
