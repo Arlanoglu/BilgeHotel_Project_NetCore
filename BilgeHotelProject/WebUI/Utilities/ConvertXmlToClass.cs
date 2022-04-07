@@ -12,16 +12,23 @@ namespace WebUI.Utilities
     {
         public static T ConvertXmlFrom(string url)
         {
-            WebClient client1 = new WebClient();
-            var xmlFormat = client1.DownloadString(url);
-
-
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-            using (StringReader reader = new StringReader(xmlFormat))
+            try
             {
-                var xmlClass = (T)serializer.Deserialize(reader);
+                WebClient client1 = new WebClient();
+                var xmlFormat = client1.DownloadString(url);
 
-                return xmlClass;
+
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                using (StringReader reader = new StringReader(xmlFormat))
+                {
+                    var xmlClass = (T)serializer.Deserialize(reader);
+
+                    return xmlClass;
+                }
+            }
+            catch
+            {
+                return null;
             }
 
             

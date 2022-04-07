@@ -21,10 +21,17 @@ namespace WebUI.Areas.Administrator.Controllers
         public IActionResult GetCurrencyRate()
         {
             var data = ConvertXmlToClass<Tarih_Date>.ConvertXmlFrom("https://tcmb.gov.tr/kurlar/today.xml");
-            var result = data.Currency.Select(CurrencyModel.Map).ToArray();
-            var json = JsonConvert.SerializeObject(result);
+            if (data != null)
+            {
+                var result = data.Currency.Select(CurrencyModel.Map).ToArray();
+                var json = JsonConvert.SerializeObject(result);
 
-            return Ok(json);
+                return Ok(json);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

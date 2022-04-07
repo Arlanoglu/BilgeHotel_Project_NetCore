@@ -75,11 +75,11 @@ namespace WebUI.Areas.Administrator.Controllers
 
 
         }
-        public async Task<IActionResult> RemoveForce(int serviceId)
+        public async Task<IActionResult> RemoveForce(int id)
         {
-            if (await hotelServiceService.Any(x => x.ID == serviceId))
+            if (await hotelServiceService.Any(x => x.ID == id))
             {
-                var deleteResult = hotelServiceService.RemoveForce(serviceId);
+                var deleteResult = hotelServiceService.RemoveForce(id);
                 TempData["ServiceResult"] = JsonConvert.SerializeObject(deleteResult);
             }
             else
@@ -90,7 +90,7 @@ namespace WebUI.Areas.Administrator.Controllers
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> UpdateAboutus(int serviceId)
+        public async Task<IActionResult> UpdateService(int id)
         {
             if (TempData["ServiceResult"] != null)
             {
@@ -98,7 +98,7 @@ namespace WebUI.Areas.Administrator.Controllers
                 ViewBag.ServiceResult = serviceResult;
             }
 
-            var service = await hotelServiceService.GetById(serviceId);
+            var service = await hotelServiceService.GetById(id);
             if (service != null)
             {
                 var vmService = mapper.Map<VMHotelServiceUpdate>(service);
@@ -112,9 +112,9 @@ namespace WebUI.Areas.Administrator.Controllers
 
                 return RedirectToAction("Index");
             }
-        } //Update Yapılacak
+        } 
         [HttpPost]
-        public async Task<IActionResult> UpdateAboutus(VMHotelServiceUpdate vMHotelServiceUpdate, IFormFile file)
+        public async Task<IActionResult> UpdateService(VMHotelServiceUpdate vMHotelServiceUpdate, IFormFile file)
         {
             if (ModelState.IsValid)
             {
@@ -132,9 +132,9 @@ namespace WebUI.Areas.Administrator.Controllers
             }
             return View(vMHotelServiceUpdate);
         }
-        public async Task<IActionResult> ChangeStatus(int serviceId)
+        public async Task<IActionResult> ChangeStatus(int id)
         {
-            var service = await hotelServiceService.GetById(serviceId);
+            var service = await hotelServiceService.GetById(id);
             if (service != null)
             {
                 if (service.Status == Status.Active)

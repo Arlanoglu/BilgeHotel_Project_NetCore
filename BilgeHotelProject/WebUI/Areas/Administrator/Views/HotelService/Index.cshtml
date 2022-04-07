@@ -82,7 +82,7 @@
                         <div class="col-12">
                             <table class="table-bordered table-hover w-100">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th scope="col">Icon</th>
                                         <th scope="col">Hizmet Adı</th>
                                         <th scope="col">Açıklama</th>
@@ -96,8 +96,8 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                <td>
-                                                    <img style="height:2rem; width:1.4rem;" src="@item.IconPicture" class="d-block w-100">
+                                                <td class="text-center p-2">
+                                                    <img style="height:3rem; " src="@item.IconPicture">
                                                 </td>
                                                 <td class="text-center">@item.ServiceName</td>
                                                 <td>@item.Description</td>
@@ -109,17 +109,18 @@
                                                 {
                                                     <td class="text-danger text-center">@item.Status</td>
                                                 }
-                                                <td class="text-center">
-                                                    @if (item.Status == Core.Entities.Enum.Status.Active)
-                                                    {
-                                                        <a asp-action="ChangeStatus" asp-controller="HotelService" asp-route-serviceId="@item.ServiceID" class="btn btn-warning">Pasif Yap</a>
-                                                    }
-                                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                                                    {
-                                                        <a asp-action="ChangeStatus" asp-controller="HotelService" asp-route-serviceId="@item.ServiceID" class="btn btn-success">Aktif Yap</a>
-                                                    }
-                                                    <a asp-action="RemoveForce" asp-controller="HotelService" asp-route-serviceId="@item.ServiceID" class="btn btn-danger">Sil</a>
-                                                </td>
+                                            <td class="text-center">
+                                                <a asp-action="UpdateService" asp-controller="HotelService" asp-route-id="@item.ServiceID" class="btn btn-primary"><i class="nav-icon fas ion-edit"></i></a>
+                                                @if (item.Status == Core.Entities.Enum.Status.Active)
+                                                {
+                                                    <a asp-action="ChangeStatus" asp-controller="HotelService" asp-route-id="@item.ServiceID" class="btn btn-warning">Pasif Yap</a>
+                                                }
+                                                else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                                {
+                                                    <a asp-action="ChangeStatus" asp-controller="HotelService" asp-route-id="@item.ServiceID" class="btn btn-success">Aktif Yap</a>
+                                                }
+                                                <a asp-action="RemoveForce" asp-controller="HotelService" asp-route-id="@item.ServiceID" class="btn btn-danger">Sil</a>
+                                            </td>
 
 
                                             </tr>
