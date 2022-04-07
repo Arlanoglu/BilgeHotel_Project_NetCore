@@ -18,6 +18,6 @@ namespace Entities.Concrete
         public string Paragraph5 { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
-        public virtual ICollection<Setting> Settings { get; set; }
+        //public virtual ICollection<Setting> Settings { get; set; }
     }
 }

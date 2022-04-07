@@ -18,6 +18,6 @@ namespace Entities.Concrete
         public string Instagram { get; set; }
         public string Twitter { get; set; }
 
-        public virtual ICollection<Setting> Settings { get; set; }
+        //public virtual ICollection<Setting> Settings { get; set; }
     }
 }

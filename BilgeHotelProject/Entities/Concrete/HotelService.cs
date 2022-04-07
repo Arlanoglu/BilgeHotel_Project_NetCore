@@ -13,7 +13,7 @@ namespace Entities.Concrete
         public string ServiceName { get; set; }
         public string Description { get; set; }
 
-        public int SettingID { get; set; }
-        public virtual Setting Setting { get; set; }
+        //public int SettingID { get; set; }
+        //public virtual Setting Setting { get; set; }
     }
 }

@@ -25,8 +25,7 @@ using WebAPI.Token;
 namespace WebAPI
 {
     public class Startup
-    {
-        private readonly UserManager<AppUser> userManager;
+    {        
 
         public Startup(IConfiguration configuration)
         {

@@ -14,12 +14,12 @@ namespace Entities.Concrete
         public string SmtpEmail { get; set; }
         public string SmtpPassword { get; set; }
 
-        public int HomePageID { get; set; }
-        public int AboutusID { get; set; }
-        public int ContactID { get; set; }
-        public virtual HomePage HomePage { get; set; }
-        public virtual Aboutus Aboutus { get; set; }
-        public virtual Contact Contact { get; set; }
-        public virtual ICollection<HotelService> HotelServices { get; set; }
+        //public int HomePageID { get; set; }
+        //public int AboutusID { get; set; }
+        //public int ContactID { get; set; }
+        //public virtual HomePage HomePage { get; set; }
+        //public virtual Aboutus Aboutus { get; set; }
+        //public virtual Contact Contact { get; set; }
+        //public virtual ICollection<HotelService> HotelServices { get; set; }
     }
 }

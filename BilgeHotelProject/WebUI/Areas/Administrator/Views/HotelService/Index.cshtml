@@ -1,0 +1,140 @@
+﻿@model List<VMHotelService>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Hizmetler İçerik Yönetimi</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Hizmetler İçerik Yönetimi</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.ServiceResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.ServiceResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.ServiceResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.ServiceResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <form asp-action="ServiceCreate" asp-controller="HotelService" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="col-form-label">Hizmet Adı</label>
+                                <input name="ServiceName" class="form-control" type="text" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <div class="row"><label class="col-form-label"><br /></label></div>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <label class="custom-file-label" for="inputGroupFile03">Görsel Seç</label>
+                                        <input type="file" name="file" class="custom-file-input" accept="image/png, image/jpeg, image/jpg" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+                                    </div>
+                                    <div class="">
+                                        <button class="btn btn-success ml-2" type="submit" id="inputGroupFileAddon03">Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="col-form-label">Açıklama</label>
+                                <textarea name="Description" class="form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-3" data-aos="fade-up">
+                <div class="col-10 php-email-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table-bordered table-hover w-100">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Icon</th>
+                                        <th scope="col">Hizmet Adı</th>
+                                        <th scope="col">Açıklama</th>
+                                        <th scope="col">Durum</th>
+                                        <th scope="col">İşlem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <img style="height:2rem; width:1.4rem;" src="@item.IconPicture" class="d-block w-100">
+                                                </td>
+                                                <td class="text-center">@item.ServiceName</td>
+                                                <td>@item.Description</td>
+                                                @if (item.Status == Core.Entities.Enum.Status.Active)
+                                                {
+                                                    <td class="text-success text-center">@item.Status</td>
+                                                }
+                                                else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                                {
+                                                    <td class="text-danger text-center">@item.Status</td>
+                                                }
+                                                <td class="text-center">
+                                                    @if (item.Status == Core.Entities.Enum.Status.Active)
+                                                    {
+                                                        <a asp-action="ChangeStatus" asp-controller="HotelService" asp-route-serviceId="@item.ServiceID" class="btn btn-warning">Pasif Yap</a>
+                                                    }
+                                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                                    {
+                                                        <a asp-action="ChangeStatus" asp-controller="HotelService" asp-route-serviceId="@item.ServiceID" class="btn btn-success">Aktif Yap</a>
+                                                    }
+                                                    <a asp-action="RemoveForce" asp-controller="HotelService" asp-route-serviceId="@item.ServiceID" class="btn btn-danger">Sil</a>
+                                                </td>
+
+
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+

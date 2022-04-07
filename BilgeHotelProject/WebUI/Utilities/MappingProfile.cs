@@ -72,8 +72,14 @@ namespace WebUI.Utilities
             CreateMap<Picture, VMPicture>().ForMember(x => x.PictureID, w => w.MapFrom(y => y.ID));
             CreateMap<VMPicture, Picture>();
 
-            CreateMap<HotelService, VMHotelService>();
+            CreateMap<HotelService, VMHotelService>().ForMember(x => x.ServiceID, w => w.MapFrom(y => y.ID));
             CreateMap<VMHotelService, HotelService>();
+
+            CreateMap<HotelService, VMHotelServiceCreate>();
+            CreateMap<VMHotelServiceCreate, HotelService>();
+
+            CreateMap<HotelService, VMHotelServiceUpdate>().ForMember(x => x.ServiceID, w => w.MapFrom(y => y.ID));
+            CreateMap<VMHotelServiceUpdate, HotelService>().ForMember(x => x.ID, w => w.MapFrom(y => y.ServiceID));
 
             CreateMap<VMRoomFacility, RoomFacility>();
             CreateMap<RoomFacility, VMRoomFacility>();
