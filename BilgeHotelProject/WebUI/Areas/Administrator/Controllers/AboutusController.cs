@@ -5,6 +5,7 @@ using Core.Entities.Enum;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,6 +18,8 @@ using WebUI.Models.Picture;
 
 namespace WebUI.Areas.Administrator.Controllers
 {
+    [Area("Administrator")]
+    [Authorize(Roles ="admin")]
     public class AboutusController : Controller
     {
         private readonly IMapper mapper;
@@ -68,7 +71,7 @@ namespace WebUI.Areas.Administrator.Controllers
                 }
                 else
                 {
-                    TempData["AboutusResult"] = JsonConvert.SerializeObject(uploadResult);
+                    ViewBag.AboutusResult = uploadResult;
                 }
             }
             return View(vMAboutusCreate);
@@ -174,7 +177,7 @@ namespace WebUI.Areas.Administrator.Controllers
             {
                 var pictures = await pictureService.GetDefault(x => x.AboutusID == aboutusId);
                 var vmPictures = mapper.Map<List<VMPicture>>(pictures);
-                ViewBag.AboutusId = aboutusId;
+                ViewBag.AboutusID = aboutusId;
                 return View(vmPictures);
             }
             else

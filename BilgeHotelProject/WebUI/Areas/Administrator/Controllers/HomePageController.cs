@@ -70,7 +70,7 @@ namespace WebUI.Areas.Administrator.Controllers
                 }
                 else
                 {
-                    TempData["HomePageResult"] = JsonConvert.SerializeObject(uploadResult);
+                    ViewBag.HomePageResult = uploadResult;
                 }
             }
             return View(vMHomePageCreate);            

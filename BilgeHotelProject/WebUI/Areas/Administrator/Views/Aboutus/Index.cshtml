@@ -1,0 +1,121 @@
+﻿@model List<VMAboutus>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Hakkımızda İçerik Yönetimi</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Hakkımızda İçerik Yönetimi</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+    @if (ViewBag.AboutusResult != null)
+    {
+        <div class="row mb-3">
+            @if (ViewBag.AboutusResult.ResultStatus == ResultStatus.Success)
+            {
+                <div class="col alert-success">
+                    <span>@ViewBag.AboutusResult.Message</span>
+                </div>
+            }
+            else
+            {
+                <div class="col alert-danger">
+                    <span>@ViewBag.AboutusResult.Message</span>
+                </div>
+            }
+        </div>
+    }
+
+    <section id="contact" class="contact">
+        <div class="container">
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="row justify-content-center mb-3" data-aos="fade-up">
+                        <div class="col-10 php-email-form">
+                            <div class="row">
+                                <div class="col-10">
+                                    <a asp-action="GalleryPictures" asp-controller="Aboutus" asp-route-aboutusId="@item.AboutusID" class="btn btn-info">Görseller</a>
+                                    <a asp-action="AboutusCreate" asp-controller="Aboutus" class="btn btn-primary">Yeni İçerik Oluştur</a>
+                                    <a asp-action="UpdateAboutus" asp-controller="Aboutus" asp-route-aboutusId="@item.AboutusID" class="btn btn-primary">Düzenle</a>
+                                    @if (item.Status == Core.Entities.Enum.Status.Active)
+                                    {
+                                        <a asp-action="ChangeStatus" asp-controller="Aboutus" asp-route-aboutusId="@item.AboutusID" class="btn btn-warning">Pasif Yap</a>
+                                    }
+                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                    {
+                                <a asp-action="ChangeStatus" asp-controller="Aboutus" asp-route-aboutusId="@item.AboutusID" class="btn btn-success">Aktif Yap</a>
+                                    }
+                                    <a asp-action="RemoveForce" asp-controller="Aboutus" asp-route-aboutusId="@item.AboutusID" class="btn btn-danger">Kalıcı Sil</a>
+                                </div>
+                                <div class="col-2 d-flex justify-content-end">
+                                    @if (item.Status == Core.Entities.Enum.Status.Active)
+                                    {
+                                        <span class="text-success">@item.Status</span>
+                                    }
+                                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                    {
+                                        <span class="text-danger">@item.Status</span>
+                                    }
+                                </div>
+                            </div>
+                            <hr />
+                            <!--İçerik-->
+                            <div class="row">
+                                <div class="col-xl-5 col-12 p-0">
+                                    <!--RoomPhotosCarousel-->
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img style="height:13rem" src="@item.PictureUrl" class="d-block w-100 border border-dark">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--EndRoomPhotosCarousel-->
+                                </div>
+                                <div class="col-xl-7 col-12">
+                                    <h5 class="mt-3"><i>@item.Title</i></h5>
+                                    <p>@item.Paragraph1</p>
+                                    <p>@item.Paragraph2</p>
+                                    <p>@item.Paragraph3</p>
+                                    <p>@item.Paragraph4</p>
+                                    <p>@item.Paragraph5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row justify-content-center mb-3" data-aos="fade-up">
+                    <div class="col-10 php-email-form">
+                        <h5>Kayıtlı içerik bulunamadı yeni içerik oluşturmak için <a asp-action="AboutusCreate" asp-controller="Aboutus" class="text-success font-weight-bold">tıklayın</a></h5>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+</div>
+
+

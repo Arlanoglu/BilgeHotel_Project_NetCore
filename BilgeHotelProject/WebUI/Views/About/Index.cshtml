@@ -27,7 +27,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about-img">
-                        @if (Model.PictureUrl != null)
+                        @if (Model != null && Model.PictureUrl != null)
                         {
                             <img src="@Model.PictureUrl" class="img-fluid">
                         }
@@ -36,27 +36,27 @@
                 <div class="col-lg-6">
                     <div class="about-content">
                         <div class="section-title-1">
-                            @if (Model.Title != null)
+                            @if (Model != null && Model.Title != null)
                             {
                                 <h2>@Model.Title</h2>
                             }
-                            @if (Model.Paragraph1 != null)
+                            @if (Model != null && Model.Paragraph1 != null)
                             {
                                 <p>@Model.Paragraph1</p>
                             }
-                            @if (Model.Paragraph2 != null)
+                            @if (Model != null && Model.Paragraph2 != null)
                             {
                                 <p>@Model.Paragraph2</p>
                             }
-                            @if (Model.Paragraph3 != null)
+                            @if (Model != null && Model.Paragraph3 != null)
                             {
                                 <p>@Model.Paragraph3</p>
                             }
-                            @if (Model.Paragraph4 != null)
+                            @if (Model != null && Model.Paragraph4 != null)
                             {
                                 <p>@Model.Paragraph4</p>
                             }
-                            @if (Model.Paragraph5 != null)
+                            @if (Model != null && Model.Paragraph5 != null)
                             {
                                 <p>@Model.Paragraph5</p>
                             }
@@ -74,21 +74,24 @@
                 </div>
                 <div class="row portfolio-container" style="position: relative; height: 1800px;">
 
-                    @foreach (var item in Model.VMPictures)
+                    @if (Model != null && Model.VMPictures != null)
                     {
-                        if (item.PictureUrl != null)
+                        @foreach (var item in Model.VMPictures)
                         {
-                            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                                <div class="portfolio-wrap">
-                                    <img style="height:14rem" src="@item.PictureUrl" class="img-fluid w-100" alt="@item.PictureName">
-                                    <div class="portfolio-info">
-                                        <div class="portfolio-links">
-                                            <a href="@item.PictureUrl" data-gall="portfolioGallery" class="venobox"><i class="icofont-expand"></i></a>
+                            if (item.PictureUrl != null)
+                            {
+                                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                                    <div class="portfolio-wrap">
+                                        <img style="height:14rem" src="@item.PictureUrl" class="img-fluid w-100" alt="@item.PictureName">
+                                        <div class="portfolio-info">
+                                            <div class="portfolio-links">
+                                                <a href="@item.PictureUrl" data-gall="portfolioGallery" class="venobox"><i class="icofont-expand"></i></a>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
                     }
 

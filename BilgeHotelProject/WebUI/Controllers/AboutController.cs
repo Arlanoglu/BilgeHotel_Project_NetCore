@@ -24,7 +24,10 @@ namespace WebUI.Controllers
         {
             var aboutus = await aboutusService.GetActive();
             var vmAboutus = mapper.Map<VMAboutus>(aboutus.FirstOrDefault());
-            vmAboutus.VMPictures = mapper.Map<List<VMPicture>>(aboutus.FirstOrDefault().Pictures);
+            if (vmAboutus != null)
+            {
+                vmAboutus.VMPictures = mapper.Map<List<VMPicture>>(aboutus.FirstOrDefault().Pictures);
+            }
             return View(vmAboutus);
         }
     }

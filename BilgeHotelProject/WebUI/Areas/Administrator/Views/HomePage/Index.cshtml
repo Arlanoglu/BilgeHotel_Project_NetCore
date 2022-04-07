@@ -85,12 +85,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-5 border border-dark col-12 p-0">
+                            <div class="col-xl-5 col-12 p-0">
                                 <!--RoomPhotosCarousel-->
                                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img style="height:13rem" src="@item.PictureUrl" class="d-block w-100">
+                                            <img style="height:13rem" src="@item.PictureUrl" class="d-block w-100 border border-dark">
                                         </div>
                                     </div>
                                 </div>
@@ -121,44 +121,3 @@
 </section>
 
 </div>
-@*<table class="table table-bordered mt-3">
-    <thead>
-        <tr class="bg-gradient-light">
-            <th scope="col">#</th>
-            <th scope="col">Görsel</th>
-            <th scope="col">Başlık</th>
-            <th scope="col">Alt Başlık</th>
-            <th scope="col">Durumu</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">@item.ID</th>
-            <td>
-                <img style="width:150px; height:100px;" src="@item.PictureUrl" />
-            </td>
-            <td>@item.Title</td>
-            <td>@item.Subtitle</td>
-            @if (item.Status == Core.Entities.Enum.Status.Active)
-            {
-                <td class="text-success">@item.Status</td>
-            }
-            else if (item.Status == Core.Entities.Enum.Status.Deleted)
-            {
-                <td class="text-danger">@item.Status</td>
-            }
-        </tr>
-        <tr>
-            <th colspan="6" class="text-center bg-gradient-light">İçerik</th>
-        </tr>
-        <tr>
-            <td colspan="6">
-                <p>@item.Paragraph1</p>
-                <p>@item.Paragraph2</p>
-                <p>@item.Paragraph3</p>
-                <p>@item.Paragraph4</p>
-                <p>@item.Paragraph5</p>
-            </td>
-        </tr>
-    </tbody>
-</table>*@
