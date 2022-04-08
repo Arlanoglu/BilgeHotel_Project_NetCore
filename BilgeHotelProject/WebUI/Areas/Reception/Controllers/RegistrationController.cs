@@ -231,7 +231,7 @@ namespace WebUI.Areas.Reception.Controllers
                             vMRegistrationCreate.RegistrationType = RegistrationType.ResepsiyonKayit;
                         }
                         var registration = mapper.Map<Registration>(vMRegistrationCreate);
-
+                        
                         ObjectCreator creator = new ObjectCreator();
                         var vmStatusOfRoom = (VMStatusOfRoom)creator.FactoryMethod(ViewModels.VMStatusOfRoom);
                         vmStatusOfRoom.StatusStartDate = registration.CheckInDate;
@@ -379,7 +379,8 @@ namespace WebUI.Areas.Reception.Controllers
             var useOfExtraServices = registration.UseOfExtraServices.ToList();
             if (registration!=null)
             {
-                registration.CheckOutTime = TimeSpan.FromHours(10); //Todo: anlık saat bilgisi alınacak geçici yapıldı.
+                var checkOutTime = DateTime.Now.TimeOfDay.ToString("hh\\:mm\\:ss");
+                registration.CheckOutTime = TimeSpan.Parse(checkOutTime); 
                 registration.RegistrationStatus = RegistrationStatus.CikisYapildi;
                 if (registration.ServicePack.PackName=="Tam Pansiyon")
                 {
