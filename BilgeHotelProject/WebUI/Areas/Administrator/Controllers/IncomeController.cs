@@ -12,7 +12,7 @@ using WebUI.Utilities;
 namespace WebUI.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
-    [Authorize("admin")]
+    [Authorize(Roles ="admin")]
     public class IncomeController : Controller
     {
         private readonly IMapper mapper;

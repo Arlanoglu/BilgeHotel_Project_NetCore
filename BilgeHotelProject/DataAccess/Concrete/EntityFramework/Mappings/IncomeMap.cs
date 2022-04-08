@@ -16,6 +16,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
         {
             CoreConfig(builder);
             builder.Property(x => x.TotalPrice).IsRequired();
+            builder.Property(x => x.IncomeDate).HasColumnType("date");
         }
     }
 }

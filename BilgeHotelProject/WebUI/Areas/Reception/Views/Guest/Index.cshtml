@@ -97,11 +97,15 @@
                                 <td>
                                     <a asp-action="GuestDetail" asp-controller="Guest" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
                                 </td>
-                                @if (Model.RegistrationID != 0)
+                                @if (Model.RegistrationID != 0 && item.IsActive==false)
                                 {
                                     <td>
                                         <a asp-action="AddGuestToRegistration" asp-controller="Registration" asp-route-registrationId="@Model.RegistrationID" asp-route-guestId="@item.ID" class="btn btn-primary">Kayıta Ekle</a>
                                     </td>
+                                }
+                                else
+                                {
+                                    <td> Kayıtlı </td>
                                 }
                             </tr>
                         }

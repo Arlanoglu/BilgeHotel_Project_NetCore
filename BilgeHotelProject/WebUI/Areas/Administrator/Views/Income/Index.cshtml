@@ -31,32 +31,36 @@
 
             <div class="row justify-content-center">
                 <div class="col-10 php-email-form">
-                    <table class="text-center">
-                        <thead>
-                            <tr>
-                                <th>Toplam Gelir</th>
-                                <th>Günlük Gelir</th>
-                                <th>Aylık Gelir</th>
-                                <th>Yıllık Gelir</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>@Model.TotalIncome.ToString("C2")</td>
-                                <td>@Model.DailyIncome.ToString("C2")</td>
-                                <td>@Model.MonthlyIncome.ToString("C2")</td>
-                                <td>@Model.YearlyIncome.ToString("C2")</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="text-center w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Toplam Gelir</th>
+                                        <th>Günlük Gelir</th>
+                                        <th>Aylık Gelir</th>
+                                        <th>Yıllık Gelir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.TotalIncome.ToString("C2")</td>
+                                        <td>@Model.DailyIncome.ToString("C2")</td>
+                                        <td>@Model.MonthlyIncome.ToString("C2")</td>
+                                        <td>@Model.YearlyIncome.ToString("C2")</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center mb-3" data-aos="fade-up">
+            <div class="row justify-content-center mt-2" data-aos="fade-up">
                 <div class="col-10 php-email-form">
                     <div class="row">
                         <div class="col-12">
-                            <table class="table-bordered table-hover w-100">
+                            <table class="table-bordered text-center table-hover w-100">
                                 <thead>
                                     <tr class="text-center">
                                         <th scope="col">Gelir Tarihi</th>
@@ -72,7 +76,7 @@
                                             <tr>
                                                 <td>@item.IncomeDate.Date.ToString("yyyy-MM-dd")</td>
                                                 <td>@item.TotalPrice.ToString("C2")</td>
-                                                <td>
+                                                <td class="p-1">
                                                     <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="@item.RegistrationID" class="btn btn-primary">Kayıta Git</a>
                                                 </td>
                                             </tr>
