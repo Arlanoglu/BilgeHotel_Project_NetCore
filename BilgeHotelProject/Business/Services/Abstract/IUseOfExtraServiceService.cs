@@ -12,5 +12,6 @@ namespace Business.Services.Abstract
     {
         IResult RemoveForce(UseOfExtraService model);
         IResult RemoveForceList(List<UseOfExtraService> modelList);
+        IResult UpdateSelf(UseOfExtraService model);
     }
 }

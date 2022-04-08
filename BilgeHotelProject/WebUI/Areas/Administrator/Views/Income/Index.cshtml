@@ -1,0 +1,93 @@
+﻿@model VMIncomeCombine
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Gelir Tablosu</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item active">Gelir Tablosu</li>
+                </ol>
+            </div><!-- /.col -->
+            <div class="col-12">
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="container">
+
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-10 php-email-form">
+                    <table class="text-center">
+                        <thead>
+                            <tr>
+                                <th>Toplam Gelir</th>
+                                <th>Günlük Gelir</th>
+                                <th>Aylık Gelir</th>
+                                <th>Yıllık Gelir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.TotalIncome.ToString("C2")</td>
+                                <td>@Model.DailyIncome.ToString("C2")</td>
+                                <td>@Model.MonthlyIncome.ToString("C2")</td>
+                                <td>@Model.YearlyIncome.ToString("C2")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-3" data-aos="fade-up">
+                <div class="col-10 php-email-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table-bordered table-hover w-100">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">Gelir Tarihi</th>
+                                        <th scope="col">Gelir Tutarı</th>
+                                        <th scope="col">Kayıt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null && Model.vMIncomes != null)
+                                    {
+                                        @foreach (var item in Model.vMIncomes)
+                                        {
+                                            <tr>
+                                                <td>@item.IncomeDate.Date.ToString("yyyy-MM-dd")</td>
+                                                <td>@item.TotalPrice.ToString("C2")</td>
+                                                <td>
+                                                    <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="@item.RegistrationID" class="btn btn-primary">Kayıta Git</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+

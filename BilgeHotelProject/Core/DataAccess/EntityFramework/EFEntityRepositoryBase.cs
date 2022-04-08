@@ -139,7 +139,7 @@ namespace Core.DataAccess.EntityFramework
             db.Entry(entityModel).CurrentValues.SetValues(model);
 
         }
-
+        
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> exp)
         {
             return entity.Where(exp);

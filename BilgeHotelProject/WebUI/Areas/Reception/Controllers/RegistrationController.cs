@@ -110,14 +110,25 @@ namespace WebUI.Areas.Reception.Controllers
             return View(vmRegistrationDetails);
         }
         [HttpPost]
-        public IActionResult AddUseOfExtraService(VMUseOfExtraServiceCreate vMUseOfExtraServiceCreate)
+        public async Task<IActionResult> AddUseOfExtraService(VMUseOfExtraServiceCreate vMUseOfExtraServiceCreate)
         {
             if (vMUseOfExtraServiceCreate.Quantity!=0)
             {
-                var useOfExtraService = mapper.Map<UseOfExtraService>(vMUseOfExtraServiceCreate);
+                var query = (await useOfExtraServiceService.GetDefault(x => x.ExtraServiceID == vMUseOfExtraServiceCreate.ExtraServiceID && x.RegistrationID == vMUseOfExtraServiceCreate.RegistrationID)).FirstOrDefault();
+                if (query != null)
+                {
+                    query.Quantity += vMUseOfExtraServiceCreate.Quantity;
+                    var updateResult = useOfExtraServiceService.UpdateSelf(query);
+                    TempData["RegistrationResult"] = JsonConvert.SerializeObject(updateResult);
+                }
+                else
+                {
+                    var useOfExtraService = mapper.Map<UseOfExtraService>(vMUseOfExtraServiceCreate);
 
-                var createResult = useOfExtraServiceService.Create(useOfExtraService);
-                TempData["RegistrationResult"] = JsonConvert.SerializeObject(createResult);
+                    var createResult = useOfExtraServiceService.Create(useOfExtraService);
+                    TempData["RegistrationResult"] = JsonConvert.SerializeObject(createResult);
+                }
+                
             }
             else
             {

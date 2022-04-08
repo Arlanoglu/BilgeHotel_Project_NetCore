@@ -133,41 +133,48 @@ using WebUI.Models.Setting;
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Entities.Concrete;
+using WebUI.Models.Income;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Core.Utilities.Results.Concrete;
+using Entities.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Core.Utilities.Results.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 21 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
-using Core.Entities.Enum;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 22 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
+using Core.Entities.Enum;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 23 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Administrator\Views\_ViewImports.cshtml"
 using Entities.Enum;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4397ba6dadf2571e697f81767f58fdf9c876a97b", @"/Areas/Administrator/Views/HomePage/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0da75e6dd2f7fb9ff27808b4a96c75b75aff5055", @"/Areas/Administrator/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6003a1a1319f9338d68a565aa381e4038c4ce3e1", @"/Areas/Administrator/Views/_ViewImports.cshtml")]
     public class Areas_Administrator_Views_HomePage_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<VMHomePage>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "SlidePictures", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -316,7 +323,7 @@ using Entities.Enum;
                         <div class=""row"">
                             <div class=""col-10"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b15453", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b15700", async() => {
                 WriteLiteral("Slayt Görselleri");
             }
             );
@@ -350,7 +357,7 @@ using Entities.Enum;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b18045", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b18292", async() => {
                 WriteLiteral("Yeni İçerik Oluştur");
             }
             );
@@ -429,7 +436,7 @@ WriteAttributeValue("", 2793, item.ID, 2793, 8, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b22409", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b22656", async() => {
                 WriteLiteral("Kalıcı Sil");
             }
             );
@@ -612,7 +619,7 @@ WriteAttributeValue("", 4500, item.PictureUrl, 4500, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("            <div class=\"row justify-content-center mb-3\" data-aos=\"fade-up\">\r\n                <div class=\"col-10 php-email-form\">\r\n                    <h5>Kayıtlı içerik bulunamadı yeni içerik oluşturmak için ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b31997", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4397ba6dadf2571e697f81767f58fdf9c876a97b32244", async() => {
                 WriteLiteral("tıklayın");
             }
             );

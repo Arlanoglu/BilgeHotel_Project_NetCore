@@ -165,5 +165,24 @@ namespace Business.Services.Concrete
                 return result;
             }
         }
+
+        public IResult UpdateSelf(UseOfExtraService model)
+        {
+            try
+            {
+                unitOfWork.UseOfExtraServiceDal.UpdateSelf(model);
+                unitOfWork.SaveChange();
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
+                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Error;
+                result.Message = "İşlem sırasında bir hata meydana geldi.";
+                result.Exception = ex;
+                return result;
+            }
+        }
     }
 }

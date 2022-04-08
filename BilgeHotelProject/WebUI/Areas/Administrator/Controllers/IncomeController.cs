@@ -28,10 +28,14 @@ namespace WebUI.Areas.Administrator.Controllers
             ObjectCreator creator = new ObjectCreator();
             var incomeCombine = (VMIncomeCombine)creator.FactoryMethod(Utilities.Enums.ViewModels.VMIncomeCombine);
 
-            var income = await incomeService.GetActive();
-            var vmIncome = mapper.Map<List<VMIncome>>(income);
-            incomeCombine.DailyIncome = vmIncome.Where(x => x.IncomeDate.Date.ToString("yyyy-MM-dd") == DateTime.Now.Date.ToString("yyyy-MM-dd")).Select(x => x.TotalPrice).Sum();
-            return View();
+            var incomes = await incomeService.GetActive();
+            var vmIncomes = mapper.Map<List<VMIncome>>(incomes);
+            incomeCombine.DailyIncome = incomeService.DailyIncome(incomes, DateTime.Now);
+            incomeCombine.MonthlyIncome = incomeService.MonthlyIncome(incomes, DateTime.Now.Month, DateTime.Now.Year);
+            incomeCombine.YearlyIncome = incomeService.YearlyIncome(incomes, DateTime.Now.Year);
+            incomeCombine.TotalIncome = incomeService.TotalIncome(incomes);
+            incomeCombine.vMIncomes = vmIncomes;
+            return View(incomeCombine);
         }
     }
 }

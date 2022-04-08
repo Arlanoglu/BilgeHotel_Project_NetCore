@@ -155,5 +155,11 @@ namespace Business.Services.Concrete
             var result = incomes.Where(x => x.IncomeDate.Date.Year == year).Select(x => x.TotalPrice).Sum();
             return result;
         }
+
+        public decimal TotalIncome(List<Income> incomes)
+        {
+            var result = incomes.Select(x => x.TotalPrice).Sum();
+            return result;
+        }
     }
 }

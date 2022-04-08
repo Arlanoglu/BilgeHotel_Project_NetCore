@@ -13,5 +13,6 @@ namespace Business.Services.Abstract
         public decimal DailyIncome(List<Income> incomes, DateTime date);
         public decimal MonthlyIncome(List<Income> incomes, int month, int year);
         public decimal YearlyIncome(List<Income> incomes, int year);
+        public decimal TotalIncome(List<Income> incomes);
     }
 }
