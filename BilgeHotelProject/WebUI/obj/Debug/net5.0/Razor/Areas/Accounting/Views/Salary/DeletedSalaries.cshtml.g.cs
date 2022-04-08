@@ -91,34 +91,41 @@ using WebUI.Models.Salary;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Accounting\Views\_ViewImports.cshtml"
-using Entities.Concrete;
+using WebUI.Models.Income;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Accounting\Views\_ViewImports.cshtml"
-using Core.Utilities.Results.Concrete;
+using Entities.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Accounting\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Core.Utilities.Results.Concrete;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Accounting\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\Areas\Accounting\Views\_ViewImports.cshtml"
 using WebUI.Models.ExtraService;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"83aee7f62055204c1228adbf6fc2cd5dcaf24ef6", @"/Areas/Accounting/Views/Salary/DeletedSalaries.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"669af2c66ae81a07dcc07c603b88b047f8eb2111", @"/Areas/Accounting/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"51964600b8d8ca521554da1e221e53c54d3ae77b", @"/Areas/Accounting/Views/_ViewImports.cshtml")]
     public class Areas_Accounting_Views_Salary_DeletedSalaries : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<VMSalary>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "PaidSalaries", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -245,7 +252,7 @@ using WebUI.Models.ExtraService;
 #line hidden
 #nullable disable
             WriteLiteral("    <!-- /.card -->\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef612713", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef612957", async() => {
                 WriteLiteral("Ödenen Maaşlar");
             }
             );
@@ -264,7 +271,7 @@ using WebUI.Models.ExtraService;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef614170", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef614414", async() => {
                 WriteLiteral("Ödenmeyen Maaşlar");
             }
             );
@@ -360,7 +367,7 @@ using WebUI.Models.ExtraService;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef618989", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef619233", async() => {
                 WriteLiteral("Aktif Et");
             }
             );
@@ -394,7 +401,7 @@ using WebUI.Models.ExtraService;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef621589", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83aee7f62055204c1228adbf6fc2cd5dcaf24ef621833", async() => {
                 WriteLiteral("Kalıcı sil");
             }
             );

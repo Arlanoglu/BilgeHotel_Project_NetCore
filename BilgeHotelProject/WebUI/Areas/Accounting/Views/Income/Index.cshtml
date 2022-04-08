@@ -77,7 +77,7 @@
                                                 <td>@item.IncomeDate.Date.ToString("yyyy-MM-dd")</td>
                                                 <td>@item.TotalPrice.ToString("C2")</td>
                                                 <td class="p-1">
-                                                    <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="@item.RegistrationID" class="btn btn-primary">Kayıta Git</a>
+                                                    <a asp-action="RegistrationDetail" asp-controller="Registration" asp-area="Reception" asp-route-id="@item.RegistrationID" class="btn btn-primary">Kayıta Git</a>
                                                 </td>
                                             </tr>
                                         }

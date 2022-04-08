@@ -1,8 +1,9 @@
 ﻿@{
 
                 @inject UserManager<AppUser> userManager
-
-                var user = await userManager.GetUserAsync(User); }
+                @inject SignInManager<AppUser> signInManager
+                var user = await userManager.GetUserAsync(User); 
+}
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -32,6 +33,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
     with font-awesome or any other icon font library -->
+                @if (User.IsInRole("admin"))
+                {
                 <li class="nav-header">SİTE YÖNETİMİ</li>
                 <li class="nav-item">
                     <a href="/Administrator/HomePage/Index" class="nav-link">
@@ -64,20 +67,22 @@
                             İletişim
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Administrator/Contact/Index" class="nav-link">
-                        <i class="nav-icon fas ion-ios-telephone"></i>
-                        <p>
-                            Mesajlar
-                        </p>
-                    </a>
-                </li>
+                </li>                
                 <li class="nav-item">
                     <a href="/Administrator/Setting/Index" class="nav-link">
                         <i class="nav-icon fas ion-gear-a"></i>
                         <p>
                             Ayarlar
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-header">İLETİŞİM / MESAJ</li>
+                <li class="nav-item">
+                    <a href="/Administrator/Message/Index" class="nav-link">
+                        <i class="nav-icon fas ion-android-chat"></i>
+                        <p>
+                            Mesajlar
                         </p>
                     </a>
                 </li>
@@ -128,7 +133,10 @@
                         </p>
                     </a>
                 </li>
+                }
 
+                @if (User.IsInRole("insan kaynaklari"))
+                {
                 <li class="nav-header">İNSAN KAYNAKLARI</li>
                 <li class="nav-item">
                     <a href="/HumanResources/Employee/Index" class="nav-link">
@@ -162,7 +170,10 @@
                         </p>
                     </a>
                 </li>
-
+                }
+                
+                @if (User.IsInRole("muhasebe"))
+                {
                 <li class="nav-header">Muhasebe</li>
                 <li class="nav-item">
                     <a href="/Accounting/Salary/PaidSalaries" class="nav-link">
@@ -171,12 +182,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Administrator/Income/Index" class="nav-link">
+                    <a href="/Accounting/Income/Index" class="nav-link">
                         <i class="nav-icon fas ion-pricetags"></i>
                         <p>Konaklama Gelirleri</p>
                     </a>
                 </li>
-
+                }
+                
+                @if (User.IsInRole("resepsiyon"))
+                {
                 <li class="nav-header">Resepsiyon</li>
                 <li class="nav-item">
                     <a href="/Reception/Reservation/Index" class="nav-link">
@@ -202,7 +216,10 @@
                         <p>Misafirler</p>
                     </a>
                 </li>
-
+                }
+                
+                @if (User.IsInRole("yardimci hizmetler"))
+                {
                 <li class="nav-header">Yardımcı Hizmetler</li>
                 <li class="nav-item">
                     <a href="/AncillaryServices/Room/Index" class="nav-link">
@@ -210,6 +227,8 @@
                         <p>Odalar</p>
                     </a>
                 </li>
+                }
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

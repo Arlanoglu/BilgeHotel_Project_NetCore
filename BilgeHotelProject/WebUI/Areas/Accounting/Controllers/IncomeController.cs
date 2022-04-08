@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using WebUI.Models.Income;
 using WebUI.Utilities;
 
-namespace WebUI.Areas.Administrator.Controllers
+namespace WebUI.Areas.Accounting.Controllers
 {
-    [Area("Administrator")]
-    [Authorize(Roles ="admin")]
+    [Area("Accounting")]
+    [Authorize(Roles = "muhasebe")]
     public class IncomeController : Controller
     {
         private readonly IMapper mapper;
