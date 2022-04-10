@@ -222,5 +222,21 @@ namespace WebUI.Areas.Accounting.Controllers
             return RedirectToAction("UnPaidSalaries");
         }
 
+        public async Task<IActionResult> RemoveForce(int id)
+        {
+            if (await salaryService.Any(x => x.ID == id))
+            {
+                var deleteResult = salaryService.RemoveForce(id);
+                TempData["SalaryResult"] = JsonConvert.SerializeObject(deleteResult);
+            }
+            else
+            {
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "İlgili idye ait kayıt bulunamadı.";
+                TempData["SalaryResult"] = JsonConvert.SerializeObject(result);
+            }
+            return RedirectToAction("DeletedSalaries");
+        }
+
     }
 }

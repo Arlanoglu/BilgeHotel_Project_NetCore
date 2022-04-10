@@ -47,7 +47,14 @@
 
     <form asp-action="AddShiftToEmployee" asp-controller="Employee" method="post">
         <input type="hidden" asp-for="ShiftID" />
-        <button class="btn btn-primary mb-3" type="submit">Vardiyaya Çalışanları Ekle</button>
+        <div class="row d-flex justify-content-between">
+            <div class="col">
+                <a class="btn btn-info" asp-action="Index" asp-controller="Shift"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
+            </div>
+            <div>
+                <button class="btn btn-success mb-3" type="submit">Vardiyaya Çalışanları Ekle</button>
+            </div>
+        </div>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title text-danger">@Model.ShiftName vardiyasına eklenmesi istenilen çalışanlar seçilip Vardiyaya Ekle butonuna tıklanacaktır.</h3>

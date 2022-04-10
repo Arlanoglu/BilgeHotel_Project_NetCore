@@ -70,7 +70,7 @@
     </form>
     <hr />
     <a asp-action="PaidSalaries" asp-controller="Salary" class="btn btn-info">Ödenen Maaşlar</a>
-    <a asp-action="DeletedSalaries" asp-controller="Salary" class="btn btn-primary">Silinen Maaşlar</a>
+    <a asp-action="DeletedSalaries" asp-controller="Salary" class="btn btn-danger">Silinen Maaşlar</a>
     <div class="card mt-3">
         <div class="card-header">
             <h3 class="card-title text-danger">Hesaplamaları yapılmış ödemeleri yapılmamış maaş kayıtlarının listesi.</h3>
@@ -101,7 +101,7 @@
                                 <td>@item.MonthlySalary</td>
                                 <td>
                                     <a asp-action="PaySalary" asp-controller="Salary" asp-route-id="@item.SalaryID" class="btn btn-success">Öde</a>
-                                    <a asp-action="DeleteSalary" asp-controller="Salary" asp-route-id="@item.SalaryID" class="btn btn-danger">Sil</a>
+                                    <a asp-action="ChangeStatus" asp-controller="Salary" asp-route-id="@item.SalaryID" class="btn btn-danger">Sil</a>
                                 </td>
                             </tr>
                         }
