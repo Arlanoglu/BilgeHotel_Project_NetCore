@@ -21,6 +21,7 @@
         </div>
     </div>
 
+
     <section id="contact" class="contact">
         <div class="container">
 
@@ -72,12 +73,22 @@
             <div class="row mt-5 justify-content-center">
                 <div class="col-lg-10">
                     <form asp-controller="Contact" asp-action="Index" class="php-email-form">
-                        @if (ViewBag.MessageSuccess != null)
+
+                        @if (ViewBag.MessageResult != null)
                         {
-                            <div class="row">
-                                <div class="col-lg-4 info">
-                                    <h6 class="text-success">@ViewBag.MessageSuccess</h6>
-                                </div>
+                            <div class="row mb-3">
+                                @if (ViewBag.MessageResult.ResultStatus == ResultStatus.Success)
+                                {
+                                    <div class="col alert-success">
+                                        <span>@ViewBag.MessageResult.Message</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col alert-danger">
+                                        <span>@ViewBag.MessageResult.Message</span>
+                                    </div>
+                                }
                             </div>
                         }
                         <div asp-validation-summary="All">
