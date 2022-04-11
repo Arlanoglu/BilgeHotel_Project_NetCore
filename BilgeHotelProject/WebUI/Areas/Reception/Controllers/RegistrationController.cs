@@ -317,6 +317,7 @@ namespace WebUI.Areas.Reception.Controllers
                     registration.RegistrationType = RegistrationType.WebRezervasyon;
                     registration.ID = 0;
                     registration.ReservationID = id;
+                    registration.Price = webReservation.DiscountedPrice;
                     createResult = registrationService.Create(registration);
                     if (createResult.ResultStatus == ResultStatus.Success)
                     {

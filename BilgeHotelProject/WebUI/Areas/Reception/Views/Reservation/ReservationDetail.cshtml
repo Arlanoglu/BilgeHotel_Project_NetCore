@@ -74,7 +74,7 @@
                 <th scope="col">Giriş Tarihi</th>
                 <th scope="col">Çıkış Tarihi</th>
                 <th scope="col">Fiyat</th>
-                @if (Model.DiscountedPrice != 0)
+                @if (Model.DiscountedPrice != Model.Price && Model.DiscountedPrice != 0)
                 {
                     <th scope="col" class="text-success">İndrml. Fiyat</th>
                 }
@@ -97,7 +97,7 @@
                     <td>@Model.CheckInDate.Date.ToShortDateString()</td>
                     <td>@Model.CheckOutDate.Date.ToShortDateString()</td>
                     <td>@Model.Price.ToString("C2")</td>
-                    @if (Model.DiscountedPrice != 0)
+                    @if (Model.DiscountedPrice != Model.Price && Model.DiscountedPrice != 0)
                     {
                         <td class="text-success">@Model.DiscountedPrice.ToString("C2")</td>
                     }
