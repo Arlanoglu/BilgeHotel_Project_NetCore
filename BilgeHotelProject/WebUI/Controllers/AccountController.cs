@@ -144,6 +144,7 @@ namespace WebUI.Controllers
                     var appUser = mapper.Map<AppUser>(vMRegister);
                     appUser.UserName = vMRegister.Email;
                     appUser.ActivationKey = Guid.NewGuid().ToString();
+                    appUser.CreatedDate = DateTime.Now;
 
                     var result = await userManager.CreateAsync(appUser, vMRegister.Password);
                     var roleResult = await userManager.AddToRoleAsync(appUser, "user");

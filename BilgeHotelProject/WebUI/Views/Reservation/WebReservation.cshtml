@@ -22,13 +22,30 @@
 
     <section id="contact" class="contact">
         <div class="container">
+            @if (ViewBag.ReservationResult != null)
+            {
+                <div class="row mb-3">
+                    @if (ViewBag.ReservationResult.ResultStatus == ResultStatus.Success)
+                    {
+                        <div class="col alert-success">
+                            <span>@ViewBag.ReservationResult.Message</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col alert-danger">
+                            <span>@ViewBag.ReservationResult.Message</span>
+                        </div>
+                    }
+                </div>
+            }
             <div class="row justify-content-center" data-aos="fade-up">
                 <div class="col-lg-12">
                     @if (TempData["FormError"] != null)
                     {
                         <div class="text-center"><h6>@TempData["FormError"]</h6></div>
                     }
-                    @if (Model !=null )
+                    @if (Model != null)
                     {
                         <form class="php-email-form" asp-controller="Reservation" asp-action="WebReservation">
                             <div class="form-row">

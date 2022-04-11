@@ -235,6 +235,7 @@ namespace WebUI.Areas.HumanResources.Controllers
                             var user = mapper.Map<AppUser>(vMEmployeeCreate);
                             user.UserName = vMEmployeeCreate.Email;
                             user.EmailConfirmed = true;
+                            user.CreatedDate = DateTime.Now;
                             var result = await userManager.CreateAsync(user, $"{vMEmployeeCreate.FirstName}.123");
                             if (result.Succeeded)
                             {

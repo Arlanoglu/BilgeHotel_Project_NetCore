@@ -48,6 +48,11 @@ namespace WebUI.Controllers
         }
         public async Task<IActionResult> WebReservation()
         {
+            if (TempData["ReservationResult"] != null)
+            {
+                var reservationResult = JsonConvert.DeserializeObject<Result>(TempData["ReservationResult"].ToString());
+                ViewBag.ReservationResult = reservationResult;
+            }
             var servicePacks = await servicePackService.GetActive();
             var vmServicePacks = mapper.Map<List<VMServicePack>>(servicePacks);
 
@@ -168,61 +173,71 @@ namespace WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> WebReservationComplete(VMWebReservation vMWebReservation)
         {
-            var avaibleRooms = await roomService.AvaibleRooms(vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate, vMWebReservation.NumberOfPeople);
-
-            if (avaibleRooms.Count>0)
+            if (ModelState.IsValid)
             {
-                var filterRooms = avaibleRooms.Where(x => x.RoomTypeID == vMWebReservation.RoomTypeID).ToList();
+                var avaibleRooms = await roomService.AvaibleRooms(vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate, vMWebReservation.NumberOfPeople);
 
-                if (filterRooms.Count > 0)
+                if (avaibleRooms.Count > 0)
                 {
-                    vMWebReservation.RoomID = filterRooms.Select(x => x.ID).FirstOrDefault();
+                    var filterRooms = avaibleRooms.Where(x => x.RoomTypeID == vMWebReservation.RoomTypeID).ToList();
 
-                    var webReservation = mapper.Map<WebReservation>(vMWebReservation);
-
-                    ObjectCreator creator = new ObjectCreator();
-                    var vmStatusOfRoom = (VMStatusOfRoom)creator.FactoryMethod(ViewModels.VMStatusOfRoom);
-                    vmStatusOfRoom.StatusStartDate = vMWebReservation.CheckInDate;
-                    vmStatusOfRoom.StatusEndDate = vMWebReservation.CheckOutDate;
-                    vmStatusOfRoom.RoomStatus = Entities.Enum.RoomStatus.Rezerve;
-                    vmStatusOfRoom.RoomID = vMWebReservation.RoomID;
-                    var statusOfRoom = mapper.Map<StatusOfRoom>(vmStatusOfRoom);
-
-                    var createResult = (Result)webReservationService.ReservationCreate(webReservation, statusOfRoom);
-
-                    //Rezervasyon sonunda mail gönderim işlemi
-                    if (createResult.ResultStatus==ResultStatus.Success && signInManager.IsSignedIn(User))
+                    if (filterRooms.Count > 0)
                     {
-                        var user = await userManager.GetUserAsync(User);
-                        var setting = (await settingService.GetActive()).FirstOrDefault();
-                        var reservationID = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
-                        var reservationDate = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).OrderByDescending(x => x.ID).FirstOrDefault().ReservationDate;
-                        var message = MailSender.ReservationCompleteMessage(reservationID, reservationDate, vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate);
+                        vMWebReservation.RoomID = filterRooms.Select(x => x.ID).FirstOrDefault();
 
-                        //Kullanıcıya gönderilen mail.
-                        MailSender.SendMail(user.Email, "Rezervasyon", message, setting);
-                        if (user.Email!=vMWebReservation.Email)
+                        var webReservation = mapper.Map<WebReservation>(vMWebReservation);
+
+                        ObjectCreator creator = new ObjectCreator();
+                        var vmStatusOfRoom = (VMStatusOfRoom)creator.FactoryMethod(ViewModels.VMStatusOfRoom);
+                        vmStatusOfRoom.StatusStartDate = vMWebReservation.CheckInDate;
+                        vmStatusOfRoom.StatusEndDate = vMWebReservation.CheckOutDate;
+                        vmStatusOfRoom.RoomStatus = Entities.Enum.RoomStatus.Rezerve;
+                        vmStatusOfRoom.RoomID = vMWebReservation.RoomID;
+                        var statusOfRoom = mapper.Map<StatusOfRoom>(vmStatusOfRoom);
+
+                        var createResult = (Result)webReservationService.ReservationCreate(webReservation, statusOfRoom);
+
+                        //Rezervasyon sonunda mail gönderim işlemi
+                        if (createResult.ResultStatus == ResultStatus.Success && signInManager.IsSignedIn(User))
                         {
-                            //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
-                            MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
-                        }                       
-                        
-                    }
+                            var user = await userManager.GetUserAsync(User);
+                            var setting = (await settingService.GetActive()).FirstOrDefault();
+                            var reservationID = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).OrderByDescending(x => x.ID).FirstOrDefault().ID;
+                            var reservationDate = (await webReservationService.GetDefault(x => x.AppUserID == user.Id)).OrderByDescending(x => x.ID).FirstOrDefault().ReservationDate;
+                            var message = MailSender.ReservationCompleteMessage(reservationID, reservationDate, vMWebReservation.CheckInDate, vMWebReservation.CheckOutDate);
 
-                    TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);
+                            //Kullanıcıya gönderilen mail.
+                            MailSender.SendMail(user.Email, "Rezervasyon", message, setting);
+                            if (user.Email != vMWebReservation.Email)
+                            {
+                                //Rezervasyon yapan kişinin bilgilerine gönderilen mail.
+                                MailSender.SendMail(vMWebReservation.Email, "Rezervasyon", message, setting);
+                            }
+
+                        }
+
+                        TempData["ReservationResult"] = JsonConvert.SerializeObject(createResult);
+                    }
+                    else
+                    {
+                        TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
+                        return RedirectToAction("WebReservation");
+                    }
                 }
                 else
                 {
                     TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
                     return RedirectToAction("WebReservation");
                 }
+                return RedirectToAction("WebReservationResult", vMWebReservation);
             }
             else
             {
-                TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
+                result.ResultStatus = ResultStatus.Error;
+                result.Message = "Lütfen rezervasyonunuzu tamamlarken zorunlu olan isim, soyisim, eposta, telefon alanlarını doldurun.";
+                TempData["ReservationResult"] = JsonConvert.SerializeObject(result);
                 return RedirectToAction("WebReservation");
             }
-            return RedirectToAction("WebReservationResult",vMWebReservation);
         }
 
         public IActionResult WebReservationResult(VMWebReservation vMWebReservation)
