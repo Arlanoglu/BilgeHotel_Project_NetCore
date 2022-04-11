@@ -24,7 +24,6 @@ namespace Entities.Concrete
         public TimeSpan? CheckOutTime { get; set; }
         public RegistrationType RegistrationType { get; set; }
         public RegistrationStatus RegistrationStatus { get; set; }
-        //Todo: Giriş saati farketmeksizin 14:00 olacaktır. Map işleminde yazıldı kontrol edilecek.
         public int? ReservationID { get; set; }
 
         public int RoomID { get; set; }

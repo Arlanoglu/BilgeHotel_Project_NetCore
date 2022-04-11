@@ -214,13 +214,14 @@ namespace WebUI.Controllers
                 else
                 {
                     TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
+                    return RedirectToAction("WebReservation");
                 }
             }
             else
             {
                 TempData["FormError"] = "Girilen kriterlere uygun rezervasyon bulunmamaktadır. Lütfen rezervasyon ekranından tekrar sorgulama yapınız.";
+                return RedirectToAction("WebReservation");
             }
-                        //Todo: hata alırsa nereye gidecek incele.
             return RedirectToAction("WebReservationResult",vMWebReservation);
         }
 

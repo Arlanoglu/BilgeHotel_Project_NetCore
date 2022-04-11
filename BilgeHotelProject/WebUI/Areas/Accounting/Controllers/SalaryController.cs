@@ -43,7 +43,7 @@ namespace WebUI.Areas.Accounting.Controllers
             }
 
             var salaries = (await salaryService.GetActive()).Where(x => x.BeenPaid == true).ToList();
-            var vmSalaries = mapper.Map<List<VMSalary>>(salaries); //Todo : Boş gelirse hata verecek mi test edilecek.
+            var vmSalaries = mapper.Map<List<VMSalary>>(salaries);
 
             var employees = await employeeService.GetActive();
             ViewBag.Employees = mapper.Map<List<VMEmployeeList>>(employees);
@@ -59,7 +59,7 @@ namespace WebUI.Areas.Accounting.Controllers
             }
 
             var salaries = (await salaryService.GetActive()).Where(x => x.BeenPaid == false).ToList();
-            var vmSalaries = mapper.Map<List<VMSalary>>(salaries); //Todo : Boş gelirse hata verecek mi test edilecek.
+            var vmSalaries = mapper.Map<List<VMSalary>>(salaries);
 
             var employees = await employeeService.GetActive();
             ViewBag.Employees = mapper.Map<List<VMEmployeeList>>(employees);
@@ -159,7 +159,7 @@ namespace WebUI.Areas.Accounting.Controllers
             }
 
             var salaries = await salaryService.GetDefault(x => x.Status == Status.Deleted);
-            var vmSalaries = mapper.Map<List<VMSalary>>(salaries); //Todo : Boş gelirse hata verecek mi test edilecek.
+            var vmSalaries = mapper.Map<List<VMSalary>>(salaries);
 
             return View(vmSalaries);
         }

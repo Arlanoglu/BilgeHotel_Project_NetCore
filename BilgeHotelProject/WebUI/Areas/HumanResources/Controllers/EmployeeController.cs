@@ -224,15 +224,24 @@ namespace WebUI.Areas.HumanResources.Controllers
                     //İşlem yapan kişi admin olmadığı sürece admin yetkisi atayamaz.
                     if ((User.IsInRole("admin") && vMEmployeeCreate.UserRole == "admin") || vMEmployeeCreate.UserRole != "admin")
                     {
-                        var user = mapper.Map<AppUser>(vMEmployeeCreate);
-                        user.UserName = vMEmployeeCreate.Email;
-                        user.EmailConfirmed = true;
-                        var result = await userManager.CreateAsync(user, $"{vMEmployeeCreate.FirstName}.123");
-                        if (result.Succeeded)
+                        var userTest = await userManager.FindByEmailAsync(vMEmployeeCreate.Email);
+                        if (userTest != null)
                         {
-                            await userManager.AddToRoleAsync(user, vMEmployeeCreate.UserRole);
-                            await userManager.AddToRoleAsync(user, "user");
+                            await userManager.AddToRoleAsync(userTest, vMEmployeeCreate.UserRole);
                             vMEmployeeCreate.AppUserId = (await userManager.FindByEmailAsync(vMEmployeeCreate.Email)).Id;
+                        }
+                        else
+                        {
+                            var user = mapper.Map<AppUser>(vMEmployeeCreate);
+                            user.UserName = vMEmployeeCreate.Email;
+                            user.EmailConfirmed = true;
+                            var result = await userManager.CreateAsync(user, $"{vMEmployeeCreate.FirstName}.123");
+                            if (result.Succeeded)
+                            {
+                                await userManager.AddToRoleAsync(user, vMEmployeeCreate.UserRole);
+                                await userManager.AddToRoleAsync(user, "user");
+                                vMEmployeeCreate.AppUserId = (await userManager.FindByEmailAsync(vMEmployeeCreate.Email)).Id;
+                            }
                         }
 
                         var employee = mapper.Map<Employee>(vMEmployeeCreate);

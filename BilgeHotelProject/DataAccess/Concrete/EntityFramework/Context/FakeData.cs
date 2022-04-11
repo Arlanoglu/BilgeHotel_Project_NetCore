@@ -142,7 +142,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                     .RuleFor(x => x.FirstName, x => x.Person.FirstName)
                     .RuleFor(x => x.LastName, x => x.Person.LastName)
                     .RuleFor(x => x.StartDateOfWork, x => x.Date.Between(DateTime.Parse("2019-01-01"), DateTime.Now))
-                    .RuleFor(x => x.HourlyRate, x => x.Random.Decimal(190, 200))
+                    .RuleFor(x => x.HourlyRate, x => x.Random.Decimal(20, 30))
                     .RuleFor(x => x.IdentificationNumber, x => x.Random.ULong(1111, 9999).ToString())
                     .RuleFor(x => x.Email, x => x.Person.Email)
                     .RuleFor(x => x.PhoneNumber, x => x.Phone.PhoneNumber("05454526235"));
