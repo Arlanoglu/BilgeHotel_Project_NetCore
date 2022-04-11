@@ -42,29 +42,40 @@
             }
         </div>
     }
-    <a asp-action="Index" asp-controller="ServicePack" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Hizmet Paketleri</a>
-    <form asp-action="UpdateServicePack" asp-controller="ServicePack" method="post">
-        <input asp-for="ServicePackID" type="hidden" value="@Model.ServicePackID" />
-        <div class="form-row d-flex justify-content-center">
-            <div class="col-md-6">
-                <div class="col-12 form-group">
-                    <label class="col-form-label">Hizmet Paketi Adı</label>
-                    <input asp-for="PackName" class="form-control" type="text" placeholder="Zorunlu" />
-                </div>
-                <div class="col-md-12 form-group">
-                    <label class="col-form-label">Fiyatı</label>
-                    @Html.TextBoxFor(x => x.PackPrice, new { @class = "form-control", @type = "currency" })
-                </div>
-                <div class="col-md-12 form-group">
-                    <label class="col-form-label">Açıklama</label>
-                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-                </div>
-                <div class="col-12 form-group d-flex justify-content-center">
-                    <button class="btn btn-primary" type="submit">Güncelle</button>
+
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-10 php-email-form">
+                    <a asp-action="Index" asp-controller="ServicePack" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Hizmet Paketleri</a>
+                    <form asp-action="UpdateServicePack" asp-controller="ServicePack" method="post">
+                        <input asp-for="ServicePackID" type="hidden" value="@Model.ServicePackID" />
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="col-md-6">
+                                <div class="col-12 form-group">
+                                    <label class="col-form-label">Hizmet Paketi Adı</label>
+                                    <input asp-for="PackName" class="form-control" type="text" placeholder="Zorunlu" />
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label class="col-form-label">Fiyatı</label>
+                                    @Html.TextBoxFor(x => x.PackPrice, new { @class = "form-control", @type = "currency" })
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label class="col-form-label">Açıklama</label>
+                                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                                </div>
+                                <div class="col-12 form-group d-flex justify-content-center">
+                                    <button class="btn btn-primary" type="submit">Güncelle</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
+    </section>
+    
 </div>
 
 

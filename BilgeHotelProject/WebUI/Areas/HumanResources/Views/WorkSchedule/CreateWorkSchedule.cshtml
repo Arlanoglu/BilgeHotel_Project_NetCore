@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Çalışma Çizelgesi</h1>
+                <h1 class="m-0">Çalışma Çizelgesi Oluştur</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/HumanResources/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Çalışma Çizelgesi</li>
+                    <li class="breadcrumb-item active">Çalışma Çizelgesi Oluştur</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -43,18 +43,16 @@
         </div>
     }
 
-    <div class="row">
-        <div class="col-12">
-            <h3 class="text-center font-weight-bold">Çalışma Çizelgesi Oluştur</h3>
-        </div>
-    </div>
-
+    
     <form asp-action="CreateWorkSchedule" asp-controller="WorkSchedule" method="post">
         <div asp-validation-summary="All">
 
         </div>
-        <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışma Çizelgesi</a>
-        <button class="btn btn-success mb-3" type="submit">Çizelgeyi Ekle</button>
+        <div class="row d-flex justify-content-between">
+            <a asp-action="Index" asp-controller="WorkSchedule" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Çalışma Çizelgesi</a>
+            <button class="btn btn-success mb-3" type="submit">Çizelgeyi Ekle</button>
+        </div>
+
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title text-danger">Tüm bilgiler eksiksiz doldurulup Çizelgeyi Ekle butonuna tıklanacaktır.</h3>

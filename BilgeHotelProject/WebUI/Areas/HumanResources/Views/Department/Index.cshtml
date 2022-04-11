@@ -25,7 +25,6 @@
 <!-- /.content-header -->
 
 <div class="container">
-    <a class="btn btn-primary mb-3" href="/HumanResources/Department/CreateDepartment">Yeni Departman Ekle</a>
     @if (ViewBag.DepartmentResult != null)
     {
         <div class="row">
@@ -44,47 +43,57 @@
         </div>
     }
 
-<div class="row d-flex justify-content-center">
-    <div class="col-md-10">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Departman Adı</th>
-                    <th scope="col">Durumu</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <th scope="row">@item.ID</th>
-                        <td>@item.DepartmentName</td>
-                        @if (item.Status == Core.Entities.Enum.Status.Active)
-                        {
-                            <td class="text-success">@item.Status</td>
-                        }
-                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                        {
-                            <td class="text-danger">@item.Status</td>
-                        }
-                        <td>
-                            <a class="btn btn-primary" href="/HumanResources/Department/UpdateDepartment/@item.ID">Düzenle</a>
-                            @if (item.Status == Core.Entities.Enum.Status.Active)
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-11 php-email-form">
+                    <a class="btn btn-primary mb-3" href="/HumanResources/Department/CreateDepartment">Yeni Departman Ekle</a>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Departman Adı</th>
+                                <th scope="col">Durumu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
                             {
-                                <a class="btn btn-warning" href="/HumanResources/Department/ChangeStatus/@item.ID">Pasif Yap</a>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.ID</th>
+                                        <td>@item.DepartmentName</td>
+                                        @if (item.Status == Core.Entities.Enum.Status.Active)
+                                        {
+                                            <td class="text-success">@item.Status</td>
+                                        }
+                                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                        {
+                                            <td class="text-danger">@item.Status</td>
+                                        }
+                                        <td class="text-center">
+                                            <a class="btn btn-primary" href="/HumanResources/Department/UpdateDepartment/@item.ID">Düzenle</a>
+                                            @if (item.Status == Core.Entities.Enum.Status.Active)
+                                            {
+                                                <a class="btn btn-warning" href="/HumanResources/Department/ChangeStatus/@item.ID">Pasif Yap</a>
+                                            }
+                                            else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                            {
+                                                <a class="btn btn-success" href="/HumanResources/Department/ChangeStatus/@item.ID">Aktif Yap</a>
+                                            }
+                                            <a class="btn btn-danger" href="/HumanResources/Department/RemoveForce/@item.ID">Kalıcı Sil</a>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                            else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                            {
-                                <a class="btn btn-success" href="/HumanResources/Department/ChangeStatus/@item.ID">Aktif Yap</a>
-                            }
-                            <a class="btn btn-danger" href="/HumanResources/Department/RemoveForce/@item.ID">Kalıcı Sil</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>
 

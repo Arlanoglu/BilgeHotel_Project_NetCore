@@ -42,61 +42,78 @@
             }
         </div>
     }
-    <form asp-action="RoomFacilityCreate" asp-controller="RoomFacility" method="post">
-        <div class="form-row">
-            <div class="col-md-3 form-group">
-                <div class="row">
-                    <div class="col-12">
-                        <label class="col-form-label">Olanak Adı</label>
-                        <input name="facilityName" class="form-control" type="text" placeholder="Zorunlu"/>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <button class="btn btn-primary w-100" type="submit">Oluştur</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5 form-group">
-                <div class="row">
-                    <div class="col-12">
-                        <label class="col-form-label">Açıklama</label>
-                        <textarea name="description" class="form-control" rows="3"></textarea>
-                    </div>
+
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-11 php-email-form">
+                    <form asp-action="RoomFacilityCreate" asp-controller="RoomFacility" method="post">
+                        <div class="form-row">
+                            <div class="col-md-3 form-group">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label">Olanak Adı</label>
+                                        <input name="facilityName" class="form-control" type="text" placeholder="Zorunlu" />
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button class="btn btn-primary w-100" type="submit">Oluştur</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label">Açıklama</label>
+                                        <textarea name="description" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Olanak Adı</th>
+                                <th scope="col">Açıklama</th>
+                                <th scope="col">Durumu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.ID</th>
+                                        <td>@item.FacilityName</td>
+                                        <td>@item.Description</td>
+                                        @if (item.Status == Core.Entities.Enum.Status.Active)
+                                        {
+                                            <td class="text-success">@item.Status</td>
+                                        }
+                                        else if (item.Status == Core.Entities.Enum.Status.Deleted)
+                                        {
+                                            <td class="text-danger">@item.Status</td>
+                                        }
+                                        <td>
+                                            <a class="btn btn-primary" href="/Administrator/RoomFacility/UpdateRoomFacility/@item.ID">Düzenle</a>
+                                            <a class="btn btn-danger" href="/Administrator/RoomFacility/RemoveForce/@item.ID">Kalıcı Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </form>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Olanak Adı</th>
-                <th scope="col">Açıklama</th>
-                <th scope="col">Durumu</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th scope="row">@item.ID</th>
-                    <td>@item.FacilityName</td>
-                    <td>@item.Description</td>
-                    @if (item.Status == Core.Entities.Enum.Status.Active)
-                    {
-                        <td class="text-success">@item.Status</td>
-                    }
-                    else if (item.Status == Core.Entities.Enum.Status.Deleted)
-                    {
-                        <td class="text-danger">@item.Status</td>
-                    }
-                    <td>
-                        <a class="btn btn-primary" href="/Administrator/RoomFacility/UpdateRoomFacility/@item.ID">Düzenle</a>
-                        <a class="btn btn-danger" href="/Administrator/RoomFacility/RemoveForce/@item.ID">Kalıcı Sil</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    </section>
+
+    
+    
 </div>
 
 

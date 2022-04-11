@@ -61,10 +61,7 @@
                         <th scope="col">Ülke</th>
                         <th scope="col">Durumu</th>
                         <th scope="col">İşlem</th>
-                        @if (Model.RegistrationID != 0)
-                        {
-                            <th scope="col">Kayıt</th>
-                        }
+                        <th scope="col">Kayıt</th>
 
                     </tr>
                 </thead>
@@ -99,13 +96,13 @@
                                 </td>
                                 @if (Model.RegistrationID != 0 && item.IsActive==false)
                                 {
-                                    <td>
+                                    <td class="text-center">
                                         <a asp-action="AddGuestToRegistration" asp-controller="Registration" asp-route-registrationId="@Model.RegistrationID" asp-route-guestId="@item.ID" class="btn btn-primary">Kayıta Ekle</a>
                                     </td>
                                 }
                                 else
                                 {
-                                    <td> -- </td>
+                                    <td class="text-center"> -- </td>
                                 }
                             </tr>
                         }

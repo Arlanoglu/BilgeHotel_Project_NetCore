@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Vardiyalar</h1>
+                <h1 class="m-0">Vardiya Ekle</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Vardiyalar</li>
+                    <li class="breadcrumb-item active">Vardiya Ekle</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -42,41 +42,43 @@
             }
         </div>
     }
-    <div class="row">
-        <div class="col-12">
-            <h3 class="text-center font-weight-bold">Vardiya Oluştur</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <form asp-action="CreateShift" asp-controller="Shift" method="post">
-                <div asp-validation-summary="All">
 
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-10 php-email-form">
+                    <a asp-action="Index" asp-controller="Shift" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Vardiyalar</a>
+                    <form asp-action="CreateShift" asp-controller="Shift" method="post">
+                        <div asp-validation-summary="All">
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label class="col-form-label">Vardiya Adı</label>
+                                <input asp-for="ShiftName" class="form-control" type="text" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label class="col-form-label">Başlangıç Saati</label>
+                                <input asp-for="StartTime" class="form-control" type="time" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label class="col-form-label">Bitiş Saati</label>
+                                <input asp-for="EndTime" class="form-control" type="time" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="col-form-label">Açıklama</label>
+                                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                            </div>
+                            <div class="col-12 form-group d-flex justify-content-center">
+                                <button class="btn btn-primary" type="submit">Oluştur</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-4 form-group">
-                        <label class="col-form-label">Vardiya Adı</label>
-                        <input asp-for="ShiftName" class="form-control" type="text" />
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <label class="col-form-label">Başlangıç Saati</label>
-                        <input asp-for="StartTime" class="form-control" type="time" />
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <label class="col-form-label">Bitiş Saati</label>
-                        <input asp-for="EndTime" class="form-control" type="time" />
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label class="col-form-label">Açıklama</label>
-                        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-                    </div>
-                    <div class="col-12 form-group d-flex justify-content-center">
-                        <button class="btn btn-primary" type="submit">Oluştur</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 
 
