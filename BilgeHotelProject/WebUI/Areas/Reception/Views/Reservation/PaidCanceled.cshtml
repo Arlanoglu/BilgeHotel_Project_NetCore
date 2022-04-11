@@ -1,8 +1,7 @@
 ﻿@model List<VMReservationList>
 @{
-    ViewData["Title"] = "PaidReservations";
+    ViewData["Title"] = "PaidCanceled";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    decimal totalPrice = 0;
 }
 
 <!-- Content Header (Page header) -->
@@ -10,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Rezervasyon</h1>
+                <h1 class="m-0">Rezervasyonlar</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Reception/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Rezervasyon</li>
+                    <li class="breadcrumb-item active">Rezervasyonlar</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -26,8 +25,7 @@
 <!-- /.content-header -->
 
 <div class="container">
-    <a asp-action="Index" asp-controller="Reservation" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Rezervasyonlar</a>
-    <a asp-action="PaidCanceled" asp-controller="Reservation" class="btn btn-warning mb-3">Ödemesi Alınmış İptal Edilenler</a>
+    <a asp-action="PaidReservations" asp-controller="Reservation" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
     @if (ViewBag.ReservationResult != null)
     {
         <div class="row">
@@ -49,7 +47,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Henüz giriş yapmamış rezervasyonların ödeme durumları</h3>
+            <h3 class="card-title">Ödemesi yapılmış ve iptal edilmiş rezervasyonların listesi.</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -65,7 +63,6 @@
                         <th scope="col">Rezerv. Tipi</th>
                         <th scope="col">Rezerv. Durumu</th>
                         <th scope="col">İşlem</th>
-                        <th scope="col">İşlem</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,14 +70,6 @@
                     {
                         @foreach (var item in Model)
                         {
-                            if (item.DiscountedPrice != 0)
-                            {
-                                totalPrice += item.DiscountedPrice;
-                            }
-                            else
-                            {
-                                totalPrice += item.Price;
-                            }
                             <tr>
                                 @if (item.ReservationType == Entities.Enum.ReservationType.Reception)
                                 {
@@ -125,16 +114,12 @@
                                 <td>
                                     <a asp-action="ReservationDetail" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-primary">Detay</a>
                                 </td>
-                                <td>
-                                    <a asp-action="ChangePayment" asp-controller="Reservation" asp-route-reservationType="@item.ReservationType" asp-route-id="@item.ID" class="btn btn-danger mb-3">İade</a>
-                                </td>
                             </tr>
                         }
                     }
                 </tbody>
             </table>
-            <hr />
-            <b>Toplam Ödenen :</b><b class="text-success">@totalPrice.ToString("C2")</b>
+
         </div>
     </div>
 </div>
@@ -156,4 +141,5 @@
         });
     </script>
 }
+
 

@@ -62,8 +62,15 @@ namespace WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> WebReservation(VMReservation vMReservation)
         {
-            vMReservation.VMServicePacks = JsonConvert.DeserializeObject<List<VMServicePack>>(TempData["VMServicePacks"].ToString());
-            TempData.Keep("VMServicePacks");
+            if (TempData["VMServicePacks"] != null)
+            {
+                vMReservation.VMServicePacks = JsonConvert.DeserializeObject<List<VMServicePack>>(TempData["VMServicePacks"].ToString());
+                TempData.Keep("VMServicePacks");
+            }
+            else
+            {
+                vMReservation.VMServicePacks = mapper.Map<List<VMServicePack>>(await servicePackService.GetActive());
+            }
 
             var selectedServicePack = vMReservation.VMServicePacks.Where(x => x.ID == vMReservation.ServicePackID).FirstOrDefault();
 
@@ -121,17 +128,23 @@ namespace WebUI.Controllers
             }
             else
             {
-                TempData["FormError"] = "Tarih bilgilerinde hata gözlemlendi. Lütfen giriş ve çıkış tarihlerini kontrol ediniz.";                
+                TempData["FormError"] = "Tarih bilgilerinde hata gözlemlendi. Lütfen giriş ve çıkış tarihlerini kontrol ediniz.";
+                if (vMReservation.RoomTypeID != 0)
+                {
+                    return RedirectToAction("RoomDetail", "Room", new { id = vMReservation.RoomTypeID });
+                }
             }
 
-            if (vMReservation.RoomTypeID != 0)
-            {
-                return RedirectToAction("RoomDetail", "Room", new { id = vMReservation.RoomTypeID });
-            }
-            else
-            {
-                return View(vMReservation);
-            }
+            return View(vMReservation);
+
+            //if (vMReservation.RoomTypeID != 0)
+            //{
+            //    return RedirectToAction("RoomDetail", "Room", new { id = vMReservation.RoomTypeID });
+            //}
+            //else
+            //{
+                
+            //}
             
         }
 

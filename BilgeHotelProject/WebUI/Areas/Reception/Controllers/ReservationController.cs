@@ -410,5 +410,15 @@ namespace WebUI.Areas.Reception.Controllers
             return RedirectToAction("ReservationDetail", new { reservationType = reservationType, id = id });
 
         }
+        public async Task<IActionResult> PaidCanceled()
+        {
+            var webReservations = await webReservationService.GetDefault(x=>x.ReservationStatus == ReservationStatus.RezervasyonIptalEdildi && x.Payment==true);
+            var receptionReservations = await receptionReservationService.GetDefault(x => x.ReservationStatus == ReservationStatus.RezervasyonIptalEdildi && x.Payment == true);
+            var vmReservations = mapper.Map<List<VMReservationList>>(webReservations);
+            var vmReceptionReservations = mapper.Map<List<VMReservationList>>(receptionReservations);
+
+            vmReservations.AddRange(vmReceptionReservations);
+            return View(vmReservations);
+        }
     }
 }

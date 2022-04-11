@@ -5,6 +5,7 @@
 }
 
 <div class="container">
+    <a asp-action="RoomTypeDetail" asp-controller="RoomType" asp-route-id="@Model.ID" class="btn btn-info mb-3"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
     <form asp-action="Update" asp-controller="RoomType" method="post">
         <input asp-for="Status" type="hidden" value="@Model.Status" />
         <input asp-for="ID" type="hidden" value="@Model.ID" />

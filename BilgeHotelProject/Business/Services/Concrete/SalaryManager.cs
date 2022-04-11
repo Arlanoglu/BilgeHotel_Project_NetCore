@@ -152,7 +152,7 @@ namespace Business.Services.Concrete
                         }
                         else
                         {
-                            total = (item.TimesWorked.Hours * item.Employee.HourlyRate);
+                            total = (item.TotalWorkTime.Hours * item.Employee.HourlyRate);
                         }
                         salary += total;
                     }

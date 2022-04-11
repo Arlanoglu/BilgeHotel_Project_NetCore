@@ -270,3 +270,4 @@ C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelPr
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Administrator\Views\Contact\Index.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Administrator\Views\Setting\Index.cshtml.g.cs
 C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Accounting\Views\Income\Index.cshtml.g.cs
+C:\Users\arlan\source\repos\Repositories\BilgeHotel_Project_NetCore\BilgeHotelProject\WebUI\obj\Debug\net5.0\Razor\Areas\Reception\Views\Reservation\PaidCanceled.cshtml.g.cs
