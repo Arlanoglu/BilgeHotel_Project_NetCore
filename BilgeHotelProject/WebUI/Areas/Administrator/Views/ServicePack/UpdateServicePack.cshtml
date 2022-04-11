@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Hizmet Paketleri</h1>
+                <h1 class="m-0">Hizmeti Güncelle</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Administrator/Home/Index">Ana Sayfa</a></li>
-                    <li class="breadcrumb-item active">Hizmet Paketleri</li>
+                    <li class="breadcrumb-item active">Hizmet Paketi Güncelle</li>
                 </ol>
             </div><!-- /.col -->
             <div class="col-12">
@@ -48,7 +48,7 @@
 
             <div class="row justify-content-center" data-aos="fade-up">
                 <div class="col-10 php-email-form">
-                    <a asp-action="Index" asp-controller="ServicePack" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Hizmet Paketleri</a>
+                    <a asp-action="Index" asp-controller="ServicePack" class="btn btn-info"><i class="nav-icon far ion-arrow-left-b"></i> Geri</a>
                     <form asp-action="UpdateServicePack" asp-controller="ServicePack" method="post">
                         <input asp-for="ServicePackID" type="hidden" value="@Model.ServicePackID" />
                         <div class="form-row d-flex justify-content-center">

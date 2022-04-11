@@ -32,6 +32,7 @@ namespace WebUI.Utilities.Enums
         VMEmployeeRoleSelection,
         VMEmployeeRoleSelectionCombine,
         VMRoomFacilitySelectionCombine,
-        VMIncomeCombine
+        VMIncomeCombine,
+        VMPasswordUpdate
     }
 }

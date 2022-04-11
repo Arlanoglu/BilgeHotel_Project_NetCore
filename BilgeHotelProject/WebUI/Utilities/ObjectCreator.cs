@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebUI.Models;
 using WebUI.Models.Aboutus;
+using WebUI.Models.Account;
 using WebUI.Models.Contact;
 using WebUI.Models.Employee;
 using WebUI.Models.ExtraService;
@@ -103,10 +104,14 @@ namespace WebUI.Utilities
                 case ViewModels.VMIncomeCombine:
                     viewModel = new VMIncomeCombine();
                     break;
+                case ViewModels.VMPasswordUpdate:
+                    viewModel = new VMPasswordUpdate();
+                    break;
             }
             return viewModel; 
         }
         
+
     }
     
 }

@@ -46,9 +46,13 @@ namespace Common
         /// <param name="controllerName">Activasyon Linki tıklandığında yönlendirilecek Controller ismi.</param>
         /// <param name="actionName">Activasyon Linki tıklandığında yönlendirilecek Action ismi.</param>
         /// <returns>Geriye string tipte bir mesage dönecektir. SendMail metodunun message parametresine gönderilir.</returns>
-        public static string RegisterActivationMessage(Guid uniqueKey, string controllerName, string actionName)
+        public static string RegisterActivationMessage(string uniqueKey, string controllerName, string actionName)
         {
             return $"Marhaba,\n\nÜyelik işleminizi onaylamak için lütfen linki tıklayın.\n\n https://localhost:44321/{controllerName}/{actionName}/" + uniqueKey+ "\n\nSaygılarımızla,\nBilge Hotel";
+        }
+        public static string PasswordUpdateActivationMessage(string uniqueKey, string controllerName, string actionName)
+        {
+            return $"Marhaba,\n\nŞifre yenileme işleminizi onaylamak için lütfen linki tıklayın.\n\n https://localhost:44321/{controllerName}/{actionName}/" + uniqueKey + "\n\nSaygılarımızla,\nBilge Hotel";
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace Entities.Concrete
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Guid ActivationKey { get; set; }
+        public string ActivationKey { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }

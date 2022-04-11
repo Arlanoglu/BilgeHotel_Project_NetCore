@@ -143,7 +143,7 @@ namespace WebUI.Controllers
                 {
                     var appUser = mapper.Map<AppUser>(vMRegister);
                     appUser.UserName = vMRegister.Email;
-                    appUser.ActivationKey = Guid.NewGuid();
+                    appUser.ActivationKey = Guid.NewGuid().ToString();
 
                     var result = await userManager.CreateAsync(appUser, vMRegister.Password);
                     var roleResult = await userManager.AddToRoleAsync(appUser, "user");
@@ -193,7 +193,7 @@ namespace WebUI.Controllers
         public async Task<IActionResult> SendActivationAgain(string email, string activationKey)
         {
             var setting = await settingService.GetActive();
-            var message = MailSender.RegisterActivationMessage(Guid.Parse(activationKey), "Account", "AccountActivation");
+            var message = MailSender.RegisterActivationMessage(activationKey, "Account", "AccountActivation");
             MailSender.SendMail(email, "Üyelik", message, setting.FirstOrDefault());
 
             ViewBag.RegisterSuccess = "Aktivasyon linki gönderildi. Lütfen girmiş olduğunuz mail adresine gönderilen aktivasyon linkine tıklayarak üyelik işleminizi onaylayınız.";
@@ -202,10 +202,10 @@ namespace WebUI.Controllers
         }
         public async Task<IActionResult> AccountActivation(Guid id)
         {
-            var result = userManager.Users.Any(x => x.ActivationKey == id);
+            var result = userManager.Users.Any(x => x.ActivationKey == id.ToString());
             if (result)
             {
-                var appUser = userManager.Users.Where(x => x.ActivationKey == id).FirstOrDefault();
+                var appUser = userManager.Users.Where(x => x.ActivationKey == id.ToString()).FirstOrDefault();
                 if (appUser.EmailConfirmed)
                 {
                     TempData["LoginSuccess"] = "Hesabınız zaten aktif. Giriş yapabilirsiniz.";
@@ -244,5 +244,86 @@ namespace WebUI.Controllers
         {
             return View();
         }
+        public IActionResult ForgotMyPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotMyPassword(string email)
+        {
+            if (TempData["PasswordError"] != null)
+            {
+                ViewBag.PasswordError = TempData["PasswordError"];
+            }
+            var user = await userManager.FindByEmailAsync(email);
+
+            if (user != null)
+            {
+                user.ActivationKey = Guid.NewGuid().ToString();
+                await userManager.UpdateAsync(user);
+
+                //Mail gönderimi başarılı olursa;
+                var setting = await settingService.GetActive();
+                var message = MailSender.PasswordUpdateActivationMessage(user.ActivationKey, "Account", "PasswordUpdate");
+                var mailResult = MailSender.SendMail(user.Email, "Şifre Güncelleme", message, setting.FirstOrDefault());
+                if (mailResult == 1)
+                {
+                    ViewBag.PasswordSuccess = "Şifre güncelleme işlemi için aktivasyon kodu mail adresinize gönderildi. Gönderilen linki tıklayarak şifrenizi güncelleyebilirsiniz.";
+                }
+                else
+                {
+                    ViewBag.PasswordError = "Beklenmeyen bir hata meydana geldi lütfen tekrar deneyin";
+                }
+            }
+            else
+            {
+                ViewBag.PasswordError = "Eposta adresi hatalı veya kayıtlı değil.";
+            }
+
+            return View();
+        }
+        public IActionResult PasswordUpdate(Guid id)
+        {
+            var result = userManager.Users.Any(x => x.ActivationKey == id.ToString());
+            if (result)
+            {
+                var appUser = userManager.Users.Where(x => x.ActivationKey == id.ToString()).FirstOrDefault();
+                var vmPasswordUpdate = mapper.Map<VMPasswordUpdate>(appUser);
+                vmPasswordUpdate.Email = appUser.Email;
+                return View(vmPasswordUpdate);
+            }
+            else
+            {
+                ViewBag.PasswordError = "Aktivasyon kodu geçerli değil.";
+                return View("ForgotMyPassword");
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> PasswordUpdate(VMPasswordUpdate vMPasswordUpdate)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(vMPasswordUpdate.Email);
+                user.ActivationKey = null;
+                user.PasswordHash = userManager.PasswordHasher.HashPassword(user, vMPasswordUpdate.Password);
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    TempData["LoginSuccess"] = "Şifreniz başarıyla güncellendi.";
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    TempData["PasswordError"] = "İşlem sırasında bir hata meydana geldi lütfen tekrar deneyin";
+                    return View("ForgotMyPassword");
+                }
+            }
+            else
+            {
+                return View(vMPasswordUpdate);
+            }
+        }
+
     }
 }
