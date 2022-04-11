@@ -34,7 +34,7 @@ namespace Business.Services.Concrete
                 unitOfWork.HotelServiceDal.Create(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace Business.Services.Concrete
                 unitOfWork.HotelServiceDal.Delete(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace Business.Services.Concrete
                 unitOfWork.HotelServiceDal.RemoveForce(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -113,7 +113,7 @@ namespace Business.Services.Concrete
                 unitOfWork.HotelServiceDal.Update(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)

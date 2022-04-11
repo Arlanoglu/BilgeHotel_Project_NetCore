@@ -33,7 +33,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.Create(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.Delete(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.RemoveForce(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -112,7 +112,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.Update(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -135,7 +135,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.RemoveForce(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -154,7 +154,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.RemoveForceList(modelList);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -173,7 +173,7 @@ namespace Business.Services.Concrete
                 unitOfWork.UseOfExtraServiceDal.UpdateSelf(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)

@@ -33,7 +33,7 @@ namespace Business.Services.Concrete
                 unitOfWork.GuestRegistrationDal.Create(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace Business.Services.Concrete
                 unitOfWork.GuestRegistrationDal.Delete(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace Business.Services.Concrete
                 unitOfWork.GuestRegistrationDal.RemoveForce(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -117,7 +117,7 @@ namespace Business.Services.Concrete
                 unitOfWork.GuestRegistrationDal.Update(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)

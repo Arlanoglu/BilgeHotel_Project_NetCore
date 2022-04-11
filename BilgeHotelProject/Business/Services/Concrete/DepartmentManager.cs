@@ -33,7 +33,7 @@ namespace Business.Services.Concrete
                 unitOfWork.DepartmentDal.Create(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace Business.Services.Concrete
                 unitOfWork.DepartmentDal.Delete(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace Business.Services.Concrete
                 unitOfWork.DepartmentDal.RemoveForce(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -112,7 +112,7 @@ namespace Business.Services.Concrete
                 unitOfWork.DepartmentDal.Update(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)

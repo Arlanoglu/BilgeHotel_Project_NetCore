@@ -32,7 +32,7 @@ namespace Business.Services.Concrete
                 unitOfWork.FacilityOfRoomDal.Create(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace Business.Services.Concrete
                 unitOfWork.FacilityOfRoomDal.Delete(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -92,7 +92,7 @@ namespace Business.Services.Concrete
                 unitOfWork.FacilityOfRoomDal.RemoveForce(id);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace Business.Services.Concrete
                 unitOfWork.FacilityOfRoomDal.Update(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Güncelleme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -137,7 +137,7 @@ namespace Business.Services.Concrete
                 }
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Oluşturma işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
@@ -157,7 +157,7 @@ namespace Business.Services.Concrete
                 unitOfWork.FacilityOfRoomDal.RemoveForce(model);
                 unitOfWork.SaveChange();
                 result.ResultStatus = Core.Utilities.Results.Concrete.ResultStatus.Success;
-                result.Message = "Silme işlemi başarıyla gerçekleştirildi.";
+                result.Message = "İşlem başarıyla gerçekleştirildi.";
                 return result;
             }
             catch (Exception ex)
