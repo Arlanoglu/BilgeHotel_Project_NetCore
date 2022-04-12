@@ -11,7 +11,7 @@ Bu proje, sertifikasyon programı için kurgulanan bitirme projesi kapsamında t
 var mailResult = MailSender.SendMail("arlanoglumustafa@hotmail.com", "Müşteri İletişim", message, setting);
 ```
 6. PackageManager Console üzerinde ```update-database -Project DataAccess``` komutu ile veritabanının oluşturulması.<br>
-7. Veritabanındaki setting tablosunda smtp için gerekli mail bilgilerinin değiştirilmesi<br>
+7. Veritabanındaki setting tablosunda smtp için gerekli mail bilgilerinin değiştirilmesi (Üyelik ve rezervasyon işlemlerinde gönderilecek mail işlemleri için)<br>
 
 # Admin paneline giriş için kullanılabilecek hesaplar.
 Müdür : <br>
