@@ -1,5 +1,5 @@
 # NOT
-Bu proje, sertifikasyon programı için kurgulanan bitirme projesi kapsamında tamamen bilgiyi pekiştirmek ve yeni bilgiler, deneyimler edinmek amacıyla tarafımca yazılmış bir projedir. Bu sebeple geliştirilebilecek, daha temiz ve efektif yazılabilecek alanları da bulunmaktadır.
+Bu proje, sertifikasyon programı için kurgulanan bitirme projesi kapsamında tamamen bilgiyi pekiştirmek ve yeni bilgiler, deneyimler edinmek amacıyla tarafımca yazılmış bir projedir. Bu sebeple geliştirilebilecek, daha temiz ve kullanışlı yazılabilecek alanları da bulunmaktadır.
 # Projeyi Çalıştırmadan Önce Yapılması Gerekenler.
 
 1. WebUI ve WebAPI katmanlarındaki appsetting.json içerisindeki ConnectionStringin değiştirilmesi.<br>
