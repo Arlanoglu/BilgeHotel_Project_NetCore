@@ -1,10 +1,10 @@
 # Projeyi Çalıştırmadan Önce Yapılması Gerekenler.
 
-1. WebUI ve WebAPI katmanlarındaki appsetting.json içerisindeki connectionStringin değiştirilmesi.<br>
+1. WebUI ve WebAPI katmanlarındaki appsetting.json içerisindeki ConnectionStringin değiştirilmesi.<br>
 ```csharp
 "ConnectionStrings": { "defaultConnection": "Server=DESKTOP-CAP6I0L\\SQLEXPRESS; Database=BilgeHotelDB; Trusted_Connection=True" }
 ```
-2. Common katmanındaki MailSender classının içinde bulunan “RegisterActivationMessage" ve “PasswordUpdateActivationMessage” metotlarındaki localhost un değiştirilnesi<br>
+2. Common katmanındaki MailSender classının içinde bulunan “RegisterActivationMessage" ve “PasswordUpdateActivationMessage” metotlarındaki localhost un değiştirilmesi<br>
 ```csharp
         public static string RegisterActivationMessage(string uniqueKey, string controllerName, string actionName)
         {

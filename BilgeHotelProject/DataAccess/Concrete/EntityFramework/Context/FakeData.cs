@@ -82,7 +82,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
             #region Setting
             builder.Entity<Setting>().HasData(
-                new Setting { ID = 1, SmtpHost = "smtp.gmail.com", SmtpPort = 587, SmtpEmail = "the.mstfa@gmail.com", SmtpPassword = "Mustafa.2525774" } //Todo: Email değiştirilecek.
+                new Setting { ID = 1, SmtpHost = "smtp.gmail.com", SmtpPort = 587, SmtpEmail = "mailadres@gmail.com", SmtpPassword = "Sifre" } //Todo: Email değiştirilecek.
                 );
             #endregion
 
