@@ -21,7 +21,7 @@
                 .ForMember(x => x.IdCardBackSideImage, w => w.MapFrom(x => "https://localhost:44321" + x.IdCardBackSideImage))
                 .ForMember(x => x.IdCardFrontSideImage, w => w.MapFrom(x => "https://localhost:44321" + x.IdCardFrontSideImage));
 ```
-4. WebUI katmanında Administrator aresında Home Controllerındeki Index View içerisindeki javascript ajax içinde bulunan localhost un değiştirilmesi<br>
+4. WebUI katmanında, Administrator areasının Home Controllerındeki Index View içerisindeki javascript ajax içinde bulunan localhost un değiştirilmesi<br>
 ```csharp
 $(document).ready(function () {
             $.ajax({
