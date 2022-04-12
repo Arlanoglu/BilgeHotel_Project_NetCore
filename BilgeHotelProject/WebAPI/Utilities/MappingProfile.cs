@@ -12,7 +12,9 @@ namespace WebAPI.Utilities
     {
         public MappingProfile()
         {
-            CreateMap<Guest, GuestListModel>();
+            CreateMap<Guest, GuestListModel>()
+                .ForMember(x => x.IdCardBackSideImage, w => w.MapFrom(x => "https://localhost:44321" + x.IdCardBackSideImage))
+                .ForMember(x => x.IdCardFrontSideImage, w => w.MapFrom(x => "https://localhost:44321" + x.IdCardFrontSideImage));
             CreateMap<GuestListModel, Guest>();
         }
     }
