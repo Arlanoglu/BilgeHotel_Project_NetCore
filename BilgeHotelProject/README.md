@@ -36,12 +36,15 @@ var mailResult = MailSender.SendMail("arlanoglumustafa@hotmail.com", "Müşteri 
 7. Veritabanındaki setting tablosunda smtp için gerekli mail bilgilerinin değiştirilmesi<br>
 
 # Admin paneline giriş için kullanılabilecek hesaplar.
-Müdür : 
-Email : Ida_Ruecker@yahoo.com	Şifre : Ida.123
-Insan Kaynaklari : 
-Email : Tina.Zieme@yahoo.com		Şifre : Tina.123
-Resepsiyon : 
-Email : Adrian.Maggio@gmail.com	Şifre : Adrian.123
-Temizlik Görevlisi : 
+Müdür : <br>
+Email : Ida_Ruecker@yahoo.com	Şifre : Ida.123<br><br>
+
+Insan Kaynaklari : <br>
+Email : Tina.Zieme@yahoo.com		Şifre : Tina.123<br><br>
+
+Resepsiyon : <br>
+Email : Adrian.Maggio@gmail.com	Şifre : Adrian.123<br><br>
+
+Temizlik Görevlisi : <br>
 Email : Eunice96@yahoo.com		Şifre : Eunice.123
 
