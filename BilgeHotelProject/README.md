@@ -34,3 +34,14 @@ var mailResult = MailSender.SendMail("arlanoglumustafa@hotmail.com", "Müşteri 
 ```
 6. PackageManager Console üzerinde "update-database -Project DataAccess" komutu ile veritabanının oluşturulması.<br>
 7. Veritabanındaki setting tablosunda smtp için gerekli mail bilgilerinin değiştirilmesi<br>
+
+# Admin paneline giriş için kullanılabilecek hesaplar.
+Müdür : 
+Email : Ida_Ruecker@yahoo.com	Şifre : Ida.123
+Insan Kaynaklari : 
+Email : Tina.Zieme@yahoo.com		Şifre : Tina.123
+Resepsiyon : 
+Email : Adrian.Maggio@gmail.com	Şifre : Adrian.123
+Temizlik Görevlisi : 
+Email : Eunice96@yahoo.com		Şifre : Eunice.123
+
